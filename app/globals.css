@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ============================================================
+   NAG / NOVIK Design System — token port
+   Source: nag-novik-design-system (_ds tokens)
+   Light is the default surface. Dark bands use [data-surface="dark"].
+   Components MUST consume tokens — never hardcode hex.
+   ============================================================ */
+
+@theme inline {
+  /* --- semantic colors (resolve to vars that flip per surface) --- */
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-inset: var(--surface-inset);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-faint: var(--border-faint);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-text-inverse: var(--text-inverse);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-press: var(--accent-press);
+  --color-accent-wash: var(--accent-wash);
+  --color-on-accent: var(--on-accent);
+  --color-heat: var(--heat);
+  --color-glow: var(--glow);
+
+  /* --- fixed palette (do not flip per surface) --- */
+  --color-paper: #fbfaf7;
+  --color-ivory: #f5f3ee;
+  --color-ink: #0b0b0d;
+  --color-red: #e11507;
+  --color-red-600: #c01206;
+  --color-red-700: #9e0e04;
+  --color-orange: #ff5a0c;
+  --color-amber: #f59e2e;
+  --color-amber-warn: #e6a400;
+  --color-green: #34b36a;
+
+  /* --- fonts (next/font binds --font-oswald / --font-golos / --font-jetbrains) --- */
+  --font-display: var(--font-oswald), "PT Sans Narrow", "Arial Narrow", system-ui, sans-serif;
+  --font-text: var(--font-golos), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), "SFMono-Regular", ui-monospace, monospace;
+
+  /* --- type scale (px, technical rhythm) --- */
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 21px;
+  --text-xl: 26px;
+  --text-2xl: 33px;
+  --text-3xl: 42px;
+  --text-4xl: 54px;
+  --text-5xl: 68px;
+  --text-6xl: 88px;
+  --text-7xl: 116px;
+
+  /* --- radii (hardware-square, small functional rounding) --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 999px;
+
+  /* --- containers --- */
+  --container-nag: 1240px;
+  --container-nag-wide: 1440px;
+}
+
+/* ============================================================
+   Raw token layer (referenced via var() in components)
+   ============================================================ */
+:root {
+  /* palette — blacks */
+  --nag-black-980: #08080a;
+  --nag-black-950: #0b0b0d;
+  --nag-black-900: #111114;
+  --nag-black-850: #16161b;
+  --nag-black-800: #1c1c22;
+  --nag-black-750: #232329;
+  /* palette — grays */
+  --nag-gray-700: #2e2e36;
+  --nag-gray-600: #3c3c45;
+  --nag-gray-500: #565660;
+  --nag-gray-400: #7b7b86;
+  --nag-gray-300: #a2a2ad;
+  --nag-gray-200: #c9c9d1;
+  --nag-gray-100: #e4e4e8;
+  /* palette — ivory / paper */
+  --nag-ivory-50: #f5f3ee;
+  --nag-ivory-100: #ece9e2;
+  --nag-ivory-200: #ded9cf;
+  --nag-paper: #fbfaf7;
+  --nag-white: #ffffff;
+  /* palette — red */
+  --nag-red-700: #9e0e04;
+  --nag-red-600: #c01206;
+  --nag-red-500: #e11507;
+  --nag-red-400: #f4361f;
+  --nag-red-300: #ff6a55;
+  --nag-red-100: #fbe1dc;
+  /* palette — accents */
+  --nag-orange-500: #ff5a0c;
+  --nag-amber-500: #f59e2e;
+  --nag-amber-300: #f8c57a;
+  --nag-amber-warn: #e6a400;
+  --nag-green-500: #34b36a;
+
+  /* semantic — LIGHT (default) */
+  --bg: #fbfaf7;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ece9e2;
+  --surface-inset: #ded9cf;
+  --border: rgba(11, 11, 13, 0.12);
+  --border-strong: rgba(11, 11, 13, 0.2);
+  --border-faint: rgba(11, 11, 13, 0.06);
+  --text: #0b0b0d;
+  --text-muted: #54545e;
+  --text-faint: #87878f;
+  --text-inverse: #f5f3ee;
+  --accent: #e11507;
+  --accent-hover: #c01206;
+  --accent-press: #9e0e04;
+  --accent-wash: #fbe1dc;
+  --on-accent: #ffffff;
+  --heat: #ff5a0c;
+  --glow: #f59e2e;
+  --focus-ring: #e11507;
+
+  /* line-height */
+  --lh-tight: 1.02;
+  --lh-snug: 1.14;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.65;
+
+  /* letter-spacing */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.04em;
+  --ls-label: 0.14em;
+  --ls-mono: 0.02em;
+
+  /* font weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* spacing (8px grid + 4px half-step) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+
+  /* layout */
+  --container: 1240px;
+  --container-wide: 1440px;
+  --gutter: clamp(16px, 4vw, 48px);
+
+  /* borders */
+  --border-w: 1px;
+  --border-w-thick: 2px;
+  --border-w-rule: 3px;
+
+  /* control heights */
+  --control-sm: 32px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-xl: 56px;
+
+  /* elevation — light */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(11, 11, 13, 0.06), 0 1px 1px rgba(11, 11, 13, 0.04);
+  --shadow-2: 0 4px 14px rgba(11, 11, 13, 0.08), 0 1px 3px rgba(11, 11, 13, 0.06);
+  --shadow-3: 0 14px 32px rgba(11, 11, 13, 0.12), 0 4px 10px rgba(11, 11, 13, 0.07);
+  --shadow-4: 0 30px 64px rgba(11, 11, 13, 0.16), 0 10px 24px rgba(11, 11, 13, 0.1);
+  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.65), inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+
+  /* signal glows */
+  --glow-red: 0 0 0 1px rgba(225, 21, 7, 0.5), 0 0 18px rgba(225, 21, 7, 0.35);
+  --glow-amber: 0 0 22px rgba(245, 158, 46, 0.4);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.6, 0, 0.2, 1);
+  --ease-snap: cubic-bezier(0.5, 0, 0.1, 1.2);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 360ms;
+
+  /* noise texture (fractal noise overlay used across the designs) */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* semantic — DARK surface band */
+[data-surface="dark"] {
+  --bg: #08080a;
+  --bg-raised: #111114;
+  --surface: #16161b;
+  --surface-2: #1c1c22;
+  --surface-inset: #2e2e36;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-faint: rgba(255, 255, 255, 0.05);
+  --text: #f5f3ee;
+  --text-muted: #a2a2ad;
+  --text-faint: #7b7b86;
+  --text-inverse: #0b0b0d;
+  --accent-hover: #f4361f;
+  --accent-press: #c01206;
+  --accent-wash: rgba(225, 21, 7, 0.14);
+  --focus-ring: #f4361f;
+
+  /* dark elevation — tight, deep, top highlight line */
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 14px rgba(0, 0, 0, 0.55);
+  --shadow-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 34px rgba(0, 0, 0, 0.6);
+  --shadow-4: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 28px 70px rgba(0, 0, 0, 0.66);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* paper grain overlay */
+.bg-noise {
+  background-image: var(--noise);
+}
+
+/* native disclosure marker reset (used by Accordion / details) */
+details > summary {
+  list-style: none;
+  outline: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* mono numerals align in spec tables */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--text);
+}

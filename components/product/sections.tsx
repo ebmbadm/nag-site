@@ -49,6 +49,20 @@ export function Breadcrumb({ items }: { items: ProductFrontmatter["breadcrumb"] 
 }
 
 export function ProductHero({ product }: { product: ProductFrontmatter }) {
+  const { price, models, partnerLogos, software, specGroups } = product;
+
+  // Derived price display
+  const minModelPrice =
+    models && models.length > 0
+      ? models.filter((m) => m.price != null).map((m) => m.price!)
+      : [];
+  const displayPrice =
+    minModelPrice.length > 0
+      ? `от ${formatPrice(Math.min(...minModelPrice))}`
+      : price?.amount != null
+        ? formatPrice(price.amount, price.currency ?? "₽")
+        : null;
+
   return (
     <Container className="grid gap-10 py-10 lg:grid-cols-2 lg:gap-14">
       <Gallery images={product.gallery} />
@@ -63,7 +77,11 @@ export function ProductHero({ product }: { product: ProductFrontmatter }) {
 
         <h1
           className="font-display uppercase text-text"
-          style={{ fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))", lineHeight: "var(--lh-tight)", letterSpacing: "var(--ls-tight)" }}
+          style={{
+            fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
+            lineHeight: "var(--lh-tight)",
+            letterSpacing: "var(--ls-tight)",
+          }}
         >
           {product.name}
         </h1>
@@ -71,7 +89,10 @@ export function ProductHero({ product }: { product: ProductFrontmatter }) {
           <p className="mt-2 font-mono text-sm text-text-muted">{product.subtitle}</p>
         ) : null}
 
-        <p className="mt-5 max-w-prose text-sm text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
+        <p
+          className="mt-5 max-w-prose text-sm text-text-muted"
+          style={{ lineHeight: "var(--lh-relaxed)" }}
+        >
           {product.summary}
         </p>
 
@@ -83,49 +104,95 @@ export function ProductHero({ product }: { product: ProductFrontmatter }) {
 
         <Divider className="my-7" />
 
-        <div>
-          <Eyebrow className="block">Розничная цена</Eyebrow>
-          <div
-            className="mt-1 font-display text-text"
-            style={{ fontSize: "var(--text-4xl)", lineHeight: "var(--lh-tight)" }}
-          >
-            {formatPrice(product.price.amount, product.price.currency)}
+        {/* Price block */}
+        {(displayPrice || price?.onRequest) && (
+          <div>
+            <Eyebrow className="block">
+              {models && minModelPrice.length > 0 ? "Цена от" : "Розничная цена"}
+            </Eyebrow>
+            {displayPrice ? (
+              <div
+                className="mt-1 font-display text-text"
+                style={{ fontSize: "var(--text-4xl)", lineHeight: "var(--lh-tight)" }}
+              >
+                {displayPrice}
+              </div>
+            ) : null}
+            {price?.note ? (
+              <p className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                {price.note}
+              </p>
+            ) : null}
           </div>
-          {product.price.note ? (
-            <p className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-              {product.price.note}
-            </p>
-          ) : null}
-        </div>
+        )}
 
+        {/* CTAs */}
         <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Заказ: ${product.name}`)}`}
-            className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
-          >
-            В корзину
-          </a>
-          <a href={`tel:${CONTACT_TEL}`} className={buttonVariants({ variant: "outline", size: "lg" })}>
-            Купить в 1 клик
-          </a>
+          {price?.onRequest ? (
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Запрос цены: ${product.name}`)}`}
+              className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
+            >
+              Запросить расчёт
+            </a>
+          ) : (
+            <>
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Заказ: ${product.name}`)}`}
+                className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
+              >
+                В корзину
+              </a>
+              <a
+                href={`tel:${CONTACT_TEL}`}
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                Купить в 1 клик
+              </a>
+            </>
+          )}
         </div>
         <p className="mt-3 font-mono text-2xs text-text-faint">
           Оформление — по телефону или почте. Онлайн-корзина скоро.
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-5 text-text-muted">
-          <a href="#software" className="inline-flex items-center gap-2 text-sm transition-colors hover:text-accent">
-            <MonitorSmartphone className="size-4" aria-hidden /> Программа
-          </a>
-          <a href="#specs" className="inline-flex items-center gap-2 text-sm transition-colors hover:text-accent">
-            <FileText className="size-4" aria-hidden /> Характеристики
-          </a>
-        </div>
+        {/* Quick-links — shown only when the sections exist */}
+        {(software || specGroups.length > 0) && (
+          <div className="mt-6 flex flex-wrap gap-5 text-text-muted">
+            {software && (
+              <a
+                href="#software"
+                className="inline-flex items-center gap-2 text-sm transition-colors hover:text-accent"
+              >
+                <MonitorSmartphone className="size-4" aria-hidden /> Программа
+              </a>
+            )}
+            {specGroups.length > 0 && (
+              <a
+                href="#specs"
+                className="inline-flex items-center gap-2 text-sm transition-colors hover:text-accent"
+              >
+                <FileText className="size-4" aria-hidden /> Характеристики
+              </a>
+            )}
+          </div>
+        )}
 
-        <div className="mt-6 flex items-center gap-4 opacity-80">
-          <Image src="/products/d-8000/burr-brown-logo.png" alt="Burr-Brown" width={84} height={24} className="h-5 w-auto" />
-          <Image src="/products/d-8000/wifi-usb-rj45-connectivity.png" alt="Wi-Fi · USB · LAN" width={96} height={24} className="h-5 w-auto" />
-        </div>
+        {/* Partner logo strip — frontmatter-driven */}
+        {partnerLogos && partnerLogos.length > 0 && (
+          <div className="mt-6 flex items-center gap-4 opacity-80">
+            {partnerLogos.map((logo) => (
+              <Image
+                key={logo.src}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                className="h-5 w-auto"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </Container>
   );
@@ -218,7 +285,13 @@ export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"
   );
 }
 
-export function SoftwareSection({ software }: { software: NonNullable<ProductFrontmatter["software"]> }) {
+export function SoftwareSection({
+  software,
+  docs,
+}: {
+  software: NonNullable<ProductFrontmatter["software"]>;
+  docs?: ProductFrontmatter["docs"];
+}) {
   return (
     <section id="software" className="scroll-mt-20 py-16">
       <Container>
@@ -247,6 +320,22 @@ export function SoftwareSection({ software }: { software: NonNullable<ProductFro
           caption={software.hero.caption}
           className="mt-8"
         />
+
+        {docs && docs.length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {docs.map((doc) => (
+              <a
+                key={doc.href}
+                href={doc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonVariants({ variant: "outline", size: "md" })}
+              >
+                {doc.label}
+              </a>
+            ))}
+          </div>
+        )}
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {software.items.map((item) => (

@@ -89,3 +89,31 @@ describe("Power amps — CX", () => {
     expect(mass?.value).toBe("11.9 кг");
   });
 });
+
+describe("Tube amps (NOVIK) — по запросу", () => {
+  test("all four are price-less (onRequest, no amount)", () => {
+    for (const slug of ["e12", "black-fire", "redbear", "n1202"]) {
+      const p = getProduct(slug).frontmatter;
+      expect(p.price?.onRequest).toBe(true);
+      expect(p.price?.amount).toBeUndefined();
+      expect(p.line).toBe("Ламповый усилитель · NOVIK");
+    }
+  });
+
+  test("e12: 2×200 Вт RMS row", () => {
+    const rows = getProduct("e12").frontmatter.specGroups.flatMap((g) => g.rows);
+    expect(rows.find((r) => r.label === "Мощность RMS")?.value).toBe("2×200 Вт");
+  });
+
+  test("redbear: name carries both MKX50 and MKX50+", () => {
+    const name = getProduct("redbear").frontmatter.name;
+    expect(name).toContain("MKX50");
+    expect(name).toContain("MKX50+");
+  });
+
+  test("n1202: 2-image gallery + only-on-order note", () => {
+    const p = getProduct("n1202").frontmatter;
+    expect(p.gallery).toHaveLength(2);
+    expect(p.price?.note).toBe("Изготавливается только под заказ");
+  });
+});

@@ -42,7 +42,7 @@ export function InquiryModal({
         name: fd.get("name") as string,
         contact: fd.get("contact") as string,
         message: (fd.get("message") as string) || undefined,
-        source_url: typeof window !== "undefined" ? window.location.href : undefined,
+        source_url: window.location.href,
         website: fd.get("website") as string,
       });
       setResult(res);
@@ -63,10 +63,13 @@ export function InquiryModal({
     <dialog
       ref={ref}
       onClose={onClose}
+      aria-modal="true"
+      aria-labelledby="inquiry-modal-title"
       className="m-auto max-w-lg w-full rounded-[var(--radius-lg)] border border-border bg-bg p-6 shadow-[var(--shadow-3)] backdrop:bg-[rgb(0_0_0/0.5)]"
     >
       <div className="mb-5 flex items-start justify-between gap-4">
         <h2
+          id="inquiry-modal-title"
           className="font-display text-lg uppercase text-text"
           style={{ letterSpacing: "var(--ls-tight)" }}
         >

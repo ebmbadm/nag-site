@@ -1,99 +1,108 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Shield, Zap, Wrench, Award } from "lucide-react";
+import { ArrowRight, ShieldCheck, Activity, ShieldHalf, Wrench } from "lucide-react";
 import {
   Container,
   Eyebrow,
   Surface,
   SectionHeader,
   Rule,
+  Badge,
   buttonVariants,
 } from "@/components/ds";
 import { SpecTicker } from "@/components/layout/spec-ticker";
+import { HeroAmp } from "@/components/landing/hero-amp";
 
-const QM400_SPECS = [
-  { label: "Выходная мощность", value: "4 × 2250 Вт (2 Ω)" },
-  { label: "Класс усиления", value: "Class-TD" },
-  { label: "КНИ", value: "< 0.1 %" },
-  { label: "Демпинг-фактор", value: "> 950" },
-  { label: "АЧХ ±0.1 дБ", value: "20 Гц – 20 кГц" },
-  { label: "Шум", value: "−99 дБ" },
+const HERO_STATS = [
+  { value: "40+", label: "лет на рынке" },
+  { value: "100 %", label: "тестирование" },
+  { value: "2 года", label: "гарантия · EAC" },
 ];
 
 const CATEGORIES = [
   {
-    eyebrow: "DSP",
+    eyebrow: "Процессоры · DSP",
     title: "Процессоры",
-    text: "Корректоры-контроллеры NAG D-серии: 4×8, 8×8, Wi-Fi, 192 кГц / 32 бит.",
+    text: "DSP-процессоры NAG: D-8000 Wi-Fi, F-8, F-8 PRO.",
     href: "/catalog/processors",
-    image: "/products/d-8000/nag-d8000-front-panel.jpg",
     price: "от 95 000 ₽",
   },
   {
-    eyebrow: "PA",
+    eyebrow: "Усилители мощности",
     title: "Усилители",
-    text: "Транзисторные усилители мощности NAG QM-серии и TD-серии для инсталляции и тура.",
+    text: "Транзисторные QM-400, серии TD и CX — 4 × 700 Вт с DSP.",
     href: "/catalog/amplifiers",
-    image: "/products/qm-400/nag-qm400-front-panel.jpg",
     price: "от 85 000 ₽",
   },
   {
-    eyebrow: "Boutique",
+    eyebrow: "Ламповые · NOVIK",
     title: "Лампа",
-    text: "Ламповые усилители NOVIK: головы, комбо и стеки для студии и сцены.",
+    text: "Ламповые усилители — наследие NOVIK с 1976 года.",
     href: "/catalog/tubes",
-    image: "/history/novik-n1202-head.jpg",
     price: "от 120 000 ₽",
   },
   {
-    eyebrow: "OEM",
+    eyebrow: "Модули встраиваемые",
     title: "Модули",
-    text: "Силовые модули TDS/TDH-20 для интеграции в собственные корпуса и системы.",
+    text: "Встраиваемые модули для активной акустики: TDS / TDH, TDX.",
     href: "/catalog/modules",
-    image: "/products/modules/nag-module-tds-rear-panel.png",
     price: "от 18 000 ₽",
   },
 ];
 
 const ADVANTAGES = [
   {
-    Icon: Award,
-    title: "Сертифицировано по ЕВРАЗЭС.",
-    text: "Вся техника NAG · NOVIK сертифицирована EAC и соответствует требованиям Таможенного союза.",
+    Icon: ShieldCheck,
+    title: "EAC сертификация",
+    text: "Техника сертифицирована по требованиям ЕАЭС.",
   },
   {
-    Icon: Zap,
-    title: "100 % тест под нагрузкой.",
-    text: "Каждый аппарат тестируем под нагрузкой перед отгрузкой: измеряем мощность, шум и КНИ.",
+    Icon: Activity,
+    title: "100 % тестирование",
+    text: "Каждый аппарат проходит полный тест под нагрузкой перед отгрузкой.",
   },
   {
-    Icon: Shield,
-    title: "Два года гарантии.",
-    text: "Гарантия распространяется на всю технику NAG · NOVIK; при заводском дефекте срок увеличивается.",
+    Icon: ShieldHalf,
+    title: "Гарантия 2 года",
+    text: "Два года гарантии на всю технику NAG · NOVIK.",
   },
   {
     Icon: Wrench,
-    title: "Свой сервис в Петербурге.",
-    text: "Ремонтируем в гарантию и после. Инженеры, которые собирали аппарат, его и обслуживают.",
+    title: "Сервис в Петербурге",
+    text: "Собственный отдел ремонта: гарантийное и постгарантийное обслуживание.",
   },
+];
+
+const QM400_FEATURE_STATS = [
+  { value: "4×2250", label: "Вт · 2 Ω", accent: true },
+  { value: "0.1 %", label: "КНИ · 8 Ω", accent: false },
+  { value: "950", label: "Демпинг", accent: false },
 ];
 
 export default function HomePage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <Surface mode="dark">
-        <Container className="grid items-center gap-10 py-[clamp(56px,10vw,120px)] lg:grid-cols-[1fr_auto]">
-          <div className="max-w-[580px]">
-            <Eyebrow accent className="mb-5 block">
-              NOVIK Amplifiers Group · Pro Audio · с 1992
-            </Eyebrow>
-
+      <Surface mode="dark" className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 90% at 78% 18%, rgba(225,21,7,.16), transparent 52%), radial-gradient(90% 70% at 8% 90%, rgba(255,90,12,.07), transparent 60%)",
+          }}
+        />
+        <Container className="relative grid items-center gap-[clamp(24px,3vw,48px)] py-[clamp(48px,6vw,84px)] lg:grid-cols-[1.04fr_.96fr]">
+          <div>
+            <div className="mb-[22px] flex items-center gap-3">
+              <Rule className="w-[38px]" />
+              <Eyebrow>NOVIK Amplifiers Group · Pro Audio · с 1992</Eyebrow>
+            </div>
             <h1
               className="font-display font-bold uppercase text-text"
               style={{
-                fontSize: "clamp(52px,9vw,var(--text-7xl))",
-                lineHeight: 0.9,
+                fontSize: "clamp(46px,6.6vw,92px)",
+                lineHeight: 0.93,
                 letterSpacing: "var(--ls-tight)",
               }}
             >
@@ -103,64 +112,43 @@ export default function HomePage() {
               <br />
               <span className="text-accent">ГОДАМИ.</span>
             </h1>
-
             <p
-              className="mt-6 max-w-prose text-md text-text-muted"
+              className="mt-6 max-w-[46ch] text-md text-text-muted"
               style={{ lineHeight: "var(--lh-relaxed)" }}
             >
               Производим, продаём и обслуживаем усилители мощности, DSP-процессоры и ламповые
-              усилители. Каждый аппарат тестируем под нагрузкой, сертифицирован EAC, гарантия - два
-              года.
+              усилители. Каждый аппарат проходит 100% тестирование, сертифицирован EAC и обеспечен
+              гарантией два года.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/catalog" className={buttonVariants({ variant: "primary" })}>
-                Каталог
+            <div className="mt-8 flex flex-wrap gap-3.5">
+              <Link href="/catalog" className={buttonVariants({ variant: "primary", size: "lg" })}>
+                Смотреть каталог
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <Link href="/kontakty" className={buttonVariants({ variant: "outline" })}>
-                Связаться
+              <Link
+                href="/o-kompanii"
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                О компании
               </Link>
             </div>
-
-            <Rule className="mt-10" />
-
-            <div className="mt-6 grid grid-cols-3 gap-4">
-              {[
-                { value: "40+", label: "лет опыта" },
-                { value: "100 %", label: "тестирование" },
-                { value: "2 года", label: "гарантия" },
-              ].map((s) => (
+            <div className="mt-[38px] flex gap-[clamp(20px,3vw,46px)] border-t border-border pt-6">
+              {HERO_STATS.map((s) => (
                 <div key={s.label}>
                   <div
-                    className="font-display font-bold uppercase text-accent"
-                    style={{
-                      fontSize: "clamp(22px,3.5vw,var(--text-3xl))",
-                      letterSpacing: "var(--ls-tight)",
-                      lineHeight: "var(--lh-tight)",
-                    }}
+                    className="font-display font-bold uppercase tabular-nums text-text"
+                    style={{ fontSize: "var(--text-4xl)", lineHeight: 1 }}
                   >
                     {s.value}
                   </div>
-                  <div className="mt-0.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                  <div className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
                     {s.label}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="hidden lg:block">
-            <Image
-              src="/products/qm-400/nag-qm400-front-panel.jpg"
-              alt="NAG QM-400 — флагманский четырёхканальный усилитель"
-              width={400}
-              height={240}
-              priority
-              className="rounded-[var(--radius-lg)] object-cover shadow-[var(--shadow-2)]"
-              style={{ maxHeight: 280, width: "auto" }}
-            />
-          </div>
+          <HeroAmp />
         </Container>
       </Surface>
 
@@ -168,82 +156,76 @@ export default function HomePage() {
       <SpecTicker />
 
       {/* ── CATEGORIES ── */}
-      <Container className="py-[clamp(48px,8vw,96px)]">
-        <SectionHeader eyebrow="Каталог" title="Четыре направления техники" className="mb-10" />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="py-[clamp(52px,6vw,92px)]">
+        <div className="mb-[34px] flex flex-wrap items-end justify-between gap-5">
+          <SectionHeader eyebrow="Каталог" title="Четыре направления техники" />
+          <Link
+            href="/catalog"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent"
+          >
+            Весь каталог
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
+        </div>
+        <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.href}
               href={cat.href}
-              className="group flex flex-col overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface shadow-[var(--shadow-1)] transition-shadow hover:shadow-[var(--shadow-2)]"
+              className="flex min-h-[226px] flex-col bg-bg p-[26px] transition-colors hover:bg-surface-2"
             >
-              <div className="relative h-44 overflow-hidden bg-surface-2">
-                <Image
-                  src={cat.image}
-                  alt={cat.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <Eyebrow className="mb-2 block">{cat.eyebrow}</Eyebrow>
-                <h2
-                  className="font-display uppercase text-text"
-                  style={{
-                    fontSize: "var(--text-2xl)",
-                    lineHeight: "var(--lh-tight)",
-                    letterSpacing: "var(--ls-tight)",
-                  }}
-                >
-                  {cat.title}
-                </h2>
-                <p
-                  className="mt-2 flex-1 text-sm text-text-muted"
-                  style={{ lineHeight: "var(--lh-relaxed)" }}
-                >
-                  {cat.text}
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-                    {cat.price}
-                  </span>
-                  <ArrowRight
-                    className="size-4 text-accent transition-transform group-hover:translate-x-1"
-                    aria-hidden
-                  />
-                </div>
+              <Eyebrow accent className="mb-3.5 block">
+                {cat.eyebrow}
+              </Eyebrow>
+              <h3
+                className="mb-2.5 font-display uppercase text-text"
+                style={{ fontSize: "var(--text-xl)", lineHeight: 1.04 }}
+              >
+                {cat.title}
+              </h3>
+              <p
+                className="flex-1 text-sm text-text-muted"
+                style={{ lineHeight: "var(--lh-normal)" }}
+              >
+                {cat.text}
+              </p>
+              <div className="mt-[18px] flex items-center justify-between">
+                <span className="font-mono text-xs text-text-faint">{cat.price}</span>
+                <ArrowRight className="size-[18px] text-accent" aria-hidden />
               </div>
             </Link>
           ))}
         </div>
       </Container>
 
-      {/* ── ADVANTAGES ── */}
-      <Surface mode="dark">
-        <Container className="py-[clamp(48px,8vw,96px)]">
+      {/* ── TRUST BAND ── */}
+      <Surface mode="dark" className="relative overflow-hidden border-y border-border">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: "radial-gradient(70% 120% at 84% 0%, rgba(225,21,7,.10), transparent 60%)",
+          }}
+        />
+        <Container className="relative py-[clamp(48px,5vw,80px)]">
           <SectionHeader
-            eyebrow="Качество"
+            eyebrow="Почему NOVIK"
             title="Гарантия не на словах, а на стенде"
-            className="mb-10"
+            className="mb-10 max-w-[18ch]"
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {ADVANTAGES.map(({ Icon, title, text }) => (
-              <div key={title} className="flex flex-col gap-3">
-                <div className="flex size-10 items-center justify-center rounded-[var(--radius-md)] bg-accent/15">
-                  <Icon className="size-5 text-accent" aria-hidden />
+              <div key={title}>
+                <div className="mb-4 inline-flex size-[46px] items-center justify-center rounded-[var(--radius-md)] bg-accent text-on-accent">
+                  <Icon className="size-[22px]" aria-hidden />
                 </div>
                 <h3
-                  className="font-display uppercase text-text"
-                  style={{
-                    fontSize: "var(--text-sm)",
-                    lineHeight: "var(--lh-tight)",
-                    letterSpacing: "var(--ls-tight)",
-                  }}
+                  className="mb-2 font-display uppercase text-text"
+                  style={{ fontSize: "var(--text-md)", lineHeight: "var(--lh-tight)" }}
                 >
                   {title}
                 </h3>
-                <p className="text-sm text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
+                <p className="text-sm text-text-muted" style={{ lineHeight: "var(--lh-normal)" }}>
                   {text}
                 </p>
               </div>
@@ -252,144 +234,200 @@ export default function HomePage() {
         </Container>
       </Surface>
 
-      {/* ── QM-400 FEATURE ── */}
-      <Container className="py-[clamp(48px,8vw,96px)]">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-[var(--radius-lg)] bg-surface-2">
+      {/* ── FEATURED QM-400 ── */}
+      <Container className="py-[clamp(52px,6vw,96px)]">
+        <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-2">
+          <div
+            className="rounded-[var(--radius-lg)] bg-ivory p-[30px] shadow-[var(--shadow-3)]"
+            style={{ background: "var(--nag-ivory-50)" }}
+          >
             <Image
               src="/products/qm-400/nag-qm400-front-panel.jpg"
-              alt="NAG QM-400 — вид спереди"
+              alt="NAG QM-400 — передняя панель"
               width={600}
               height={360}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full rounded-[var(--radius-sm)] object-cover"
             />
+            <div className="mt-3.5 flex justify-between font-mono text-xs text-[#54545E]">
+              <span>QM-400 · передняя панель</span>
+              <span>483 × 463 × 88 мм · 17.3 кг</span>
+            </div>
           </div>
-
           <div>
-            <Eyebrow accent className="mb-4 block">
-              Флагман · 4 канала · Class-TD
-            </Eyebrow>
+            <div className="mb-[18px] flex gap-2">
+              <Badge>Флагман</Badge>
+              <Badge className="bg-transparent border border-[var(--nag-green-500)] text-[var(--nag-green-500)]">
+                EAC
+              </Badge>
+            </div>
+            <Eyebrow className="mb-2.5 block">Усилитель мощности · Class-TD</Eyebrow>
             <h2
-              className="font-display font-bold uppercase text-text"
+              className="mb-4 font-display font-bold uppercase text-text"
               style={{
-                fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-                lineHeight: "var(--lh-tight)",
+                fontSize: "clamp(36px,4.6vw,64px)",
+                lineHeight: 0.96,
                 letterSpacing: "var(--ls-tight)",
               }}
             >
               NAG QM-400
             </h2>
-            <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              Флагманский четырёхканальный усилитель. Четыре автономных канала, каждый работает
-              независимо; схемотехнически это четыре модуля TDS/TDH-20 в одном корпусе.
+            <p
+              className="mb-[26px] max-w-[48ch] text-md text-text-muted"
+              style={{ lineHeight: "var(--lh-relaxed)" }}
+            >
+              Флагманский четырёхканальный усилитель. Четыре автономных канала — высокая надёжность;
+              схемотехнически это четыре модуля TDS/TDH-20 в одном корпусе.
             </p>
-
-            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-border pt-6">
-              {QM400_SPECS.map((s) => (
-                <div key={s.label}>
-                  <div className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+            <div className="mb-7 grid grid-cols-3 gap-px overflow-hidden rounded-[var(--radius-md)] border border-border bg-border">
+              {QM400_FEATURE_STATS.map((s) => (
+                <div key={s.label} className="bg-bg p-4">
+                  <div
+                    className="font-display font-bold uppercase tabular-nums"
+                    style={{
+                      fontSize: "var(--text-2xl)",
+                      lineHeight: 1,
+                      color: s.accent ? "var(--accent)" : "var(--text)",
+                    }}
+                  >
+                    {s.value}
+                  </div>
+                  <div className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
                     {s.label}
                   </div>
-                  <div className="mt-0.5 font-mono text-sm text-text">{s.value}</div>
                 </div>
               ))}
             </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/catalog/qm-400" className={buttonVariants({ variant: "primary" })}>
-                Подробнее
+            <div className="flex flex-wrap items-center gap-[22px]">
+              <div>
+                <div
+                  className="font-display font-bold uppercase tabular-nums text-text"
+                  style={{ fontSize: "var(--text-3xl)", lineHeight: 1 }}
+                >
+                  от 285 000 ₽
+                </div>
+                <div className="mt-1.5 font-mono text-xs text-text-faint">
+                  Без НДС · Гарантия 2 года · EAC
+                </div>
+              </div>
+              <Link
+                href="/catalog/qm-400"
+                className={buttonVariants({ variant: "primary", size: "lg" })}
+              >
+                Открыть QM-400
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <span className="font-mono text-sm text-text-muted">
-                от <span className="text-text">285 000 ₽</span>
-              </span>
             </div>
           </div>
         </div>
       </Container>
 
-      {/* ── HISTORY TEASER ── */}
-      <section className="border-t border-border bg-surface-2 py-[clamp(48px,8vw,96px)]">
+      {/* ── HISTORY ── */}
+      <section className="border-t border-border bg-surface py-[clamp(48px,5vw,84px)]">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-[clamp(28px,4vw,60px)] lg:grid-cols-[.85fr_1.15fr]">
+            <div className="overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-3)]">
+              <Image
+                src="/history/redbear-mk60.jpg"
+                alt="RedBear — ламповое наследие NOVIK"
+                width={560}
+                height={420}
+                className="aspect-[4/3] h-full w-full object-cover"
+              />
+            </div>
             <div>
-              <div
-                className="font-display font-bold uppercase text-accent"
+              <Eyebrow className="mb-3.5 block">Компания · с 1976</Eyebrow>
+              <h2
+                className="mb-[18px] font-display font-bold uppercase text-text"
                 style={{
-                  fontSize: "clamp(72px,14vw,var(--text-7xl))",
-                  lineHeight: 0.85,
+                  fontSize: "clamp(30px,3.6vw,50px)",
+                  lineHeight: 1,
                   letterSpacing: "var(--ls-tight)",
                 }}
-                aria-hidden="true"
               >
-                1976
-              </div>
-              <Eyebrow className="mt-4 block">История компании</Eyebrow>
+                История NOVIK
+              </h2>
               <p
-                className="mt-3 max-w-md text-text-muted"
+                className="mb-7 max-w-[52ch] text-md text-text-muted"
                 style={{ lineHeight: "var(--lh-relaxed)" }}
               >
-                От первых ламповых усилителей Сергея Новикова и серии RedBear для Gibson - до бренда
+                От первых ламповых усилителей Сергея Новикова и серии RedBear для Gibson — до бренда
                 NOVIK и профессиональной линейки NAG. Сорок лет схемотехники, собранной в
                 Санкт-Петербурге.
               </p>
-              <Link
-                href="/istoriya"
-                className={buttonVariants({ variant: "outline", className: "mt-6" })}
-              >
+              <Link href="/istoriya" className={buttonVariants({ variant: "outline" })}>
                 Читать историю
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-            </div>
-
-            <div className="overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-2)]">
-              <Image
-                src="/history/redbear-mk60.jpg"
-                alt="RedBear MK-60 — ранние усилители NOVIK"
-                width={560}
-                height={380}
-                className="h-auto w-full object-cover"
-              />
             </div>
           </div>
         </Container>
       </section>
 
       {/* ── CONTACT CTA ── */}
-      <Container className="py-[clamp(48px,8vw,96px)]">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow accent className="mb-4 block">
-            Контакты
-          </Eyebrow>
-          <h2
-            className="font-display font-bold uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-2xl), 4.5vw, var(--text-4xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            Подберём усилитель под вашу задачу
-          </h2>
-          <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            Звоните или пишите: поможем подобрать, рассчитать и скомплектовать под инсталляцию, тур
-            или прокат.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a href="tel:+79219372508" className={buttonVariants({ variant: "primary" })}>
-              +7 921 937 25 08
-            </a>
-            <a href="mailto:novikamps@mail.ru" className={buttonVariants({ variant: "outline" })}>
-              novikamps@mail.ru
-            </a>
+      <Surface mode="dark" className="relative overflow-hidden border-t border-border">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: "radial-gradient(90% 130% at 18% 0%, rgba(225,21,7,.14), transparent 58%)",
+          }}
+        />
+        <Container className="relative grid items-center gap-[clamp(28px,4vw,56px)] py-[clamp(52px,6vw,92px)] lg:grid-cols-[1.1fr_.9fr]">
+          <div>
+            <h2
+              className="mb-[18px] font-display font-bold uppercase text-text"
+              style={{
+                fontSize: "clamp(30px,4vw,56px)",
+                lineHeight: 0.98,
+                letterSpacing: "var(--ls-tight)",
+              }}
+            >
+              Подберём усилитель
+              <br />
+              под вашу задачу
+            </h2>
+            <p
+              className="mb-7 max-w-[42ch] text-md text-text-muted"
+              style={{ lineHeight: "var(--lh-relaxed)" }}
+            >
+              Звоните или пишите — поможем с подбором, расчётом и комплектацией под инсталляцию, тур
+              или прокат.
+            </p>
+            <Link href="/catalog" className={buttonVariants({ variant: "primary", size: "lg" })}>
+              Смотреть каталог
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </div>
-
-          <p className="mt-6 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-            Санкт-Петербург, Московское шоссе, 25А · офис 216А
-          </p>
-        </div>
-      </Container>
+          <div className="flex flex-col gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border">
+            <a
+              href="tel:+79219372508"
+              className="flex items-center gap-3.5 bg-surface px-[22px] py-[18px] transition-colors hover:bg-surface-2"
+            >
+              <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                Телефон
+              </span>
+              <span className="ml-auto font-mono text-md text-text">+7 921 937 25 08</span>
+            </a>
+            <a
+              href="mailto:novikamps@mail.ru"
+              className="flex items-center gap-3.5 bg-surface px-[22px] py-[18px] transition-colors hover:bg-surface-2"
+            >
+              <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                Почта
+              </span>
+              <span className="ml-auto font-mono text-md text-text">novikamps@mail.ru</span>
+            </a>
+            <div className="flex items-center gap-3.5 bg-surface px-[22px] py-[18px]">
+              <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                Адрес
+              </span>
+              <span className="ml-auto text-right text-sm text-text">
+                Санкт-Петербург, Московское шоссе, 25 литера А, офис 216А
+              </span>
+            </div>
+          </div>
+        </Container>
+      </Surface>
     </div>
   );
 }

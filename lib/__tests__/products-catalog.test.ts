@@ -61,3 +61,20 @@ describe("Power amps — single SKU", () => {
     expect(stage?.value).toBe("Class-D");
   });
 });
+
+describe("Power amps — series (matrix)", () => {
+  test("td-series: models prices incl TD-40 80490 + matrix Цена row", () => {
+    const p = getProduct("td-series").frontmatter;
+    expect(p.models?.find((m) => m.name === "TD-40")?.price).toBe(80490);
+    const priceRow = p.specMatrix?.rows.find((r) => r.label === "Цена");
+    expect(priceRow?.values).toEqual(["70 000 ₽", "80 490 ₽", "110 900 ₽", "120 900 ₽"]);
+  });
+
+  test("modules: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
+    const p = getProduct("modules").frontmatter;
+    const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
+    expect(byName["TDS-20"]).toBe(44490);
+    expect(byName["TDH-20"]).toBe(44900);
+    expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
+  });
+});

@@ -69,7 +69,6 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
               type="button"
               onClick={() => scrollTo(i)}
               aria-label={`Фото ${i + 1}`}
-              aria-current={i === selected}
               className={cn(
                 "relative aspect-square w-16 shrink-0 overflow-hidden rounded-[var(--radius-sm)] border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)]",
                 i === selected

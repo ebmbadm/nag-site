@@ -31,6 +31,7 @@ export function PillGroup({
         return (
           <button
             key={opt.value}
+            id={tabRole ? `tab-${opt.value}` : undefined}
             type="button"
             role={tabRole ? "tab" : undefined}
             aria-selected={tabRole ? isSelected : undefined}

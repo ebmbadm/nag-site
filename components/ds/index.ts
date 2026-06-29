@@ -21,3 +21,4 @@ export { Prose } from "./prose";
 export { SpecMatrixTable, type SpecMatrixProps } from "./spec-matrix-table";
 export { ProductCard, type ProductCardProps } from "./product-card";
 export { PillGroup, type PillGroupProps, type PillGroupOption } from "./pill-group";
+export { Tabs, type TabsProps, type TabItem } from "./tabs";

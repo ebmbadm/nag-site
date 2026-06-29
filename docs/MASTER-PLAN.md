@@ -33,7 +33,7 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | **P0 — Foundation + 2 pages** | ✅ Done — tokens, DS primitives, content pipeline, `/istoriya`, `/catalog/d-8000`, placeholder `/`, `CLAUDE.md`, this plan. |
 | **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
 | **P2 — Catalog (DSP + power amps + tube)** | ✅ DSP processors (6 pages + `/catalog/processors`), transistor power amps (5 pages + `/catalog/amplifiers`), NOVIK tube amps (4 pages + `/catalog/tubes`). КОНТУР family still pending. |
-| **P3 — Company/legal + boutique** | 🚧 Company & legal done (`/o-kompanii`, `/garantiya`, `/kontakty`); boutique pending. |
+| **P3 — Company/legal + boutique** | ✅ Company & legal (`/o-kompanii`, `/garantiya`, `/kontakty`) + NOVIK Tubes Boutique (`/catalog/boutique`, `/catalog/savers`, `/catalog/converters`). |
 | P4–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
@@ -65,9 +65,9 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/catalog/n1202` | NOVIK N1202 | product | ✅ P2 | `n1202/n1202.md` |
 | `/catalog/kontur` | КОНТУР — автозвук DSP | category | P2 | `page47571769.html/…md` |
 | `/catalog/kontur-a8` | КОНТУР A8 | product | P2 | `page48424917.html/…md` |
-| `/catalog/boutique` | Бутик ламп НОВИК | category | P3 | `bt/bt.md` |
-| `/catalog/savers` | Tube Savers | product | P3 | `savers/savers.md` |
-| `/catalog/converters` | Tube Converters | product | P3 | `converters/converters.md` |
+| `/catalog/boutique` | Бутик ламп НОВИК | category | ✅ P3 | `bt/bt.md` |
+| `/catalog/savers` | Tube Savers | product | ✅ P3 | `savers/savers.md` |
+| `/catalog/converters` | Tube Converters | product | ✅ P3 | `converters/converters.md` |
 
 ~28 pages total. Embedded modules menu (`modules_menu`) and `rqst-tubes` are nav/form fragments,
 folded into `/catalog/modules` and the P5 inquiry flow respectively.

@@ -31,10 +31,17 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
     };
   }, [embla, onSelect]);
 
-  const scrollTo = (i: number) => embla?.scrollTo(i);
+  const scrollTo = (i: number) => {
+    const jump = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    embla?.scrollTo(i, jump);
+  };
 
   return (
-    <div className={cn("flex flex-col gap-3", className)}>
+    <section
+      role="region"
+      aria-label="Галерея изображений"
+      className={cn("flex flex-col gap-3", className)}
+    >
       <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-2" ref={emblaRef}>
         <div className="flex">
           {images.map((img, i) => (
@@ -64,7 +71,7 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
               aria-label={`Фото ${i + 1}`}
               aria-current={i === selected}
               className={cn(
-                "relative aspect-square w-16 shrink-0 overflow-hidden rounded-[var(--radius-sm)] border-2 transition-colors",
+                "relative aspect-square w-16 shrink-0 overflow-hidden rounded-[var(--radius-sm)] border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)]",
                 i === selected
                   ? "border-accent"
                   : "border-border opacity-70 hover:opacity-100 hover:border-accent/40",
@@ -81,6 +88,6 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
           {images[selected].caption}
         </p>
       ) : null}
-    </div>
+    </section>
   );
 }

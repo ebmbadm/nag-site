@@ -39,6 +39,7 @@ export function Toc({ items, className }: { items: TocItem[]; className?: string
             key={item.id}
             href={`#${item.id}`}
             data-active={isActive || undefined}
+            aria-current={isActive ? "location" : undefined}
             className={cn(
               "border-l-2 py-1.5 pl-3 font-mono text-xs tracking-[var(--ls-mono)] transition-colors",
               isActive

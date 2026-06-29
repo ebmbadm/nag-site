@@ -27,7 +27,10 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <div className="h-[var(--border-w-rule)] w-full bg-[rgba(11,11,13,0.07)]">
+    <div
+      className="h-[var(--border-w-rule)] w-full bg-[color-mix(in_srgb,var(--text)_7%,transparent)] motion-reduce:hidden"
+      aria-hidden
+    >
       <div
         className="h-full bg-accent transition-[width] duration-75 ease-linear"
         style={{ width: `${pct}%` }}

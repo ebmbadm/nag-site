@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/ds";
+import { Container, Breadcrumb } from "@/components/ds";
 import {
-  Breadcrumb,
   ProductHero,
   FeatureBand,
   TechBand,
@@ -54,7 +53,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <article>
-      <Breadcrumb items={p.breadcrumb} />
+      <div className="pt-6">
+        <Container>
+          <Breadcrumb items={[{ label: "Главная", href: "/" }, ...p.breadcrumb]} />
+        </Container>
+      </div>
       <ProductHero product={p} />
 
       {body.trim() ? (

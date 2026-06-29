@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, FileText, MonitorSmartphone } from "lucide-react";
+import { FileText, MonitorSmartphone } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -12,6 +12,7 @@ import {
   AccordionItem,
   Figure,
   Gallery,
+  Breadcrumb,
   buttonVariants,
 } from "@/components/ds";
 import { FeatureIcon } from "./icon-map";
@@ -20,33 +21,6 @@ import type { ProductFrontmatter } from "@/lib/content/schema";
 
 const CONTACT_EMAIL = "novikamps@mail.ru";
 const CONTACT_TEL = "+79219372508";
-
-export function Breadcrumb({ items }: { items: ProductFrontmatter["breadcrumb"] }) {
-  return (
-    <Container className="pt-6">
-      <nav
-        className="flex flex-wrap items-center gap-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint"
-        aria-label="Хлебные крошки"
-      >
-        <Link href="/" className="transition-colors hover:text-accent">
-          Главная
-        </Link>
-        {items.map((item, i) => (
-          <span key={i} className="flex items-center gap-1.5">
-            <ChevronRight className="size-3" aria-hidden />
-            {item.href ? (
-              <Link href={item.href} className="transition-colors hover:text-accent">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-text-muted">{item.label}</span>
-            )}
-          </span>
-        ))}
-      </nav>
-    </Container>
-  );
-}
 
 export function ProductHero({ product }: { product: ProductFrontmatter }) {
   const { price, models, partnerLogos, software, specGroups } = product;

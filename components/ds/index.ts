@@ -16,3 +16,4 @@ export { ScrollProgress } from "./scroll-progress";
 export { Toc, type TocItem } from "./toc";
 export { Gallery, type GalleryImage } from "./gallery";
 export { ExpandAllControl } from "./expand-all-control";
+export { Breadcrumb, type BreadcrumbItem } from "./breadcrumb";

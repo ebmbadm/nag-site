@@ -18,3 +18,4 @@ export { Gallery, type GalleryImage } from "./gallery";
 export { ExpandAllControl } from "./expand-all-control";
 export { Breadcrumb, type BreadcrumbItem } from "./breadcrumb";
 export { Prose } from "./prose";
+export { SpecMatrixTable, type SpecMatrixProps } from "./spec-matrix-table";

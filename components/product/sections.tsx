@@ -177,7 +177,7 @@ export function FeatureBand({ features }: { features: NonNullable<ProductFrontma
     <Surface mode="dark" className="relative overflow-hidden py-16">
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
-        style={{ background: "radial-gradient(60% 80% at 80% 0%, rgba(245,158,46,0.10), transparent 70%)" }}
+        style={{ background: "radial-gradient(60% 80% at 80% 0%, var(--ambient-amber), transparent 70%)" }}
         aria-hidden
       />
       <Container className="relative">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Container, Breadcrumb } from "@/components/ds";
+import { Container, Breadcrumb, Prose } from "@/components/ds";
 import {
   ProductHero,
   FeatureBand,
@@ -61,11 +61,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <ProductHero product={p} />
 
       {body.trim() ? (
-        <section className="py-4">
-          <Container className="max-w-3xl">
-            <div className="text-base">
+        <section className="py-8">
+          <Container>
+            <Prose>
               <Mdx source={body} />
-            </div>
+            </Prose>
           </Container>
         </section>
       ) : null}

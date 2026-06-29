@@ -83,7 +83,11 @@ export function ProductHero({ product }: { product: ProductFrontmatter }) {
         {(displayPrice || price?.onRequest) && (
           <div>
             <Eyebrow className="block">
-              {models && minModelPrice.length > 0 ? "Цена от" : "Розничная цена"}
+              {price?.onRequest
+                ? "Цена по запросу"
+                : models && minModelPrice.length > 0
+                  ? "Цена от"
+                  : "Розничная цена"}
             </Eyebrow>
             {displayPrice ? (
               <div

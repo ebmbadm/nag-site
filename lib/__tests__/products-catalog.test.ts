@@ -78,3 +78,14 @@ describe("Power amps — series (matrix)", () => {
     expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
   });
 });
+
+describe("Power amps — CX", () => {
+  test("cx-series: 2 models, software present, 11.9 кг", () => {
+    const p = getProduct("cx-series").frontmatter;
+    expect(p.models?.map((m) => m.name)).toEqual(["CX-520", "CX-540"]);
+    expect(p.software).toBeTruthy();
+    expect(p.docs?.[0].href).toBe("https://disk.yandex.ru/d/QI0coVnIuCc2Lw");
+    const mass = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Масса нетто");
+    expect(mass?.value).toBe("11.9 кг");
+  });
+});

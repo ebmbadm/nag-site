@@ -1,0 +1,78 @@
+---
+name: "NAG F-8"
+line: "DSP-процессор · Серия NAG F"
+subtitle: "Процессор 4 × 8 с FIR и Wi-Fi"
+badges: ["FIR", "Wi-Fi"]
+category: "Процессоры"
+breadcrumb:
+  - { label: "Каталог" }
+  - { label: "Процессоры", href: "/catalog/processors" }
+  - { label: "F-8" }
+price:
+  amount: 79900
+  currency: "₽"
+  note: "Без НДС · Гарантия 2 года · EAC"
+summary: "Цифровой контроллер-корректор 4 × 8 серии NAG F с FIR-фильтрами и управлением по Wi-Fi. DSP ADAU1452 и преобразователи ES9018K2M, поканальный PEQ с переключением IIR↔FIR, FIR-режим до 512 taps, 24 пресета с паролями."
+specChips:
+  - "4 вх. XLR"
+  - "8 вых. XLR"
+  - "512 taps FIR"
+  - "Wi-Fi · LAN · USB"
+  - "ADAU1452 · ES9018K2M"
+  - "24 пресета"
+gallery:
+  - { src: "/products/f-8/nag-f8-front-panel-interface.png", alt: "NAG F-8 — передняя панель и интерфейс", caption: "Передняя панель" }
+features:
+  eyebrow: "Ключевые преимущества"
+  title: "Почему F-8"
+  cards:
+    - { icon: "wifi", title: "Wi-Fi / Ethernet / USB", text: "Подключение по USB, RS-232/RS-485 и Ethernet с сетевой группировкой. Опциональный Wi-Fi-модуль для беспроводного управления." }
+    - { icon: "activity", title: "FIR до 512 taps", text: "До 512 taps на каждый выход, конвертация IIR→FIR, импорт измерительных кривых для авто-EQ и фазовой коррекции." }
+    - { icon: "sliders", title: "Гибкий DSP", text: "8 полос PEQ, Shelf, Notch, Band-Pass, All-Pass. Кроссоверы Linkwitz-Riley / Bessel / Butterworth, 12/18/24/48 dB/oct." }
+    - { icon: "layers", title: "Память и защита", text: "24 пользовательских пресета, пароль на каждую ячейку и отдельный канал." }
+tech:
+  eyebrow: "Архитектура"
+  title: "Hi-Fi ЦАП и АЦП"
+  lede: "Преобразователи ES9018K2M и DSP ADAU1452: THD+N < 0.002 %, SNR ≥ 100 dB, переходное затухание > 88 dB."
+  cards:
+    - { label: "DSP", chip: "ADAU1452", text: "32-битное ядро обработки." }
+    - { label: "ЦАП/АЦП", chip: "ES9018K2M", text: "32-битное преобразование A/D и D/A." }
+    - { label: "Задержка", chip: "шаг 21 µs", text: "Независимо на каждом входе и выходе." }
+software:
+  eyebrow: "Программное обеспечение"
+  title: "Управление по входам и выходам"
+  lede: "Gains View, маршрутизация с задержкой, поканальный PEQ с переключением IIR↔FIR и FIR-режим до 512 taps."
+  hero: { src: "/products/f-8/nag-f8-software-routing-screen.png", alt: "Главный экран ПО F-8 — маршрутизация", caption: "Маршрутизация и источники" }
+  items:
+    - { src: "/products/f-8/nag-f8-software-matrix-screen.png", alt: "ПО F-8 — матрица маршрутизации", title: "Матрица маршрутизации", text: "Выбор, какие входы идут на какие выходы. Задержка в миллисекундах и метрах." }
+    - { src: "/products/f-8/nag-f8-software-eq-screen.png", alt: "ПО F-8 — эквалайзер", title: "PEQ и фильтры", text: "До 8 полос на канал, переключение IIR↔FIR по каждой полосе, АЧХ в реальном времени." }
+    - { src: "/products/f-8/nag-f8-software-fir-screen.png", alt: "ПО F-8 — FIR-режим", title: "FIR-режим", text: "До 512 taps, загрузка внешнего FIR-файла, настройка сглаживания, фазы и усиления." }
+    - { src: "/products/f-8/nag-f8-software-level-meters.png", alt: "ПО F-8 — индикаторы уровня", title: "Индикаторы и лимитеры", text: "Поканальные индикаторы уровня с лимитерами и отображением перегрузки." }
+specGroups:
+  - title: "Аудио-интерфейсы и уровни"
+    defaultOpen: true
+    rows:
+      - { label: "Аудио-интерфейсы", value: "4 × XLR Female (бал.), 8 × XLR Male (бал.)" }
+      - { label: "Импеданс", value: "вход - 20 kΩ, выход - 100 Ω" }
+      - { label: "Макс. уровень входа", value: "≤ +22 dBu" }
+      - { label: "Регулировка уровня (вход/выход)", value: "-40 … +12 dB, шаг 0.1 dB" }
+      - { label: "Частотный отклик", value: "20 Hz - 20 kHz (-0.5 dB)" }
+      - { label: "SNR / Crosstalk", value: "≥ 100 dB @ 0 dBu / > 88 dB @ 1 kHz" }
+      - { label: "THD+N", value: "< 0.002 % @ 0 dBu, 1 kHz" }
+  - title: "Обработка и DSP"
+    rows:
+      - { label: "DSP / преобразователи", value: "ADAU1452 (32-bit), ES9018K2M (32-bit A/D и D/A)" }
+      - { label: "Выходные фильтры (HPF/LPF)", value: "Linkwitz-Riley, Bessel, Butterworth; 12/18/24/48 dB/oct; 20 Hz-20 kHz, шаг 1 Hz" }
+      - { label: "FIR-обработка", value: "3 - 512 taps / канал, IIR→FIR, импорт внешних FIR" }
+      - { label: "Задержка", value: "шаг 21 µs (вход и выход)" }
+      - { label: "Пресеты", value: "24, индивидуальные пароли и блокировка каналов" }
+  - title: "Коммутация, питание, габариты"
+    rows:
+      - { label: "Коммутация и контроль", value: "USB (plug-n-play), RS-232, RS-485, Ethernet (сетевая группировка), опц. Wi-Fi" }
+      - { label: "Питание / потребление", value: "90 - 245 V AC, 50/60 Hz / ≤ 25 W" }
+      - { label: "Габариты / Вес", value: "485 × 200 × 45 mm (1U), 4 kg" }
+---
+
+Процессор **NAG F-8** - цифровой контроллер-корректор 4 × 8 серии NAG F с FIR-фильтрами и управлением по Wi-Fi.
+
+В основе - DSP ADAU1452 и преобразователи ES9018K2M. Поканальный PEQ с переключением IIR↔FIR, FIR-режим до 512 taps, кроссоверы Linkwitz-Riley, Bessel и Butterworth до 48 dB/oct. 24 пресета с индивидуальными паролями и блокировкой каналов.

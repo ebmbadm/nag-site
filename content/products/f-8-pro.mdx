@@ -1,0 +1,78 @@
+---
+name: "NAG F-8 PRO"
+line: "DSP-процессор · Серия NAG F"
+subtitle: "Продвинутый процессор 4 × 8 с FIR"
+badges: ["FIR", "AES/EBU"]
+category: "Процессоры"
+breadcrumb:
+  - { label: "Каталог" }
+  - { label: "Процессоры", href: "/catalog/processors" }
+  - { label: "F-8 PRO" }
+price:
+  amount: 139900
+  currency: "₽"
+  note: "Без НДС · Гарантия 2 года · EAC"
+summary: "Продвинутый цифровой контроллер-корректор 4 × 8 серии NAG F с FIR-фильтрами до 512 taps на каждом входе и выходе, цифровыми входами AES и ЦАП/АЦП экспертного уровня. Свободная маршрутизация, кроссоверы до 48 dB/oct и задержки до 2000 мс."
+specChips:
+  - "4 вх. XLR"
+  - "8 вых. XLR"
+  - "512 taps FIR"
+  - "AES/EBU"
+  - "Ethernet · USB"
+  - "SNR 113 dB"
+gallery:
+  - { src: "/products/f-8-pro/nag-f8pro-front-panel.png", alt: "NAG F-8 PRO — передняя панель", caption: "Передняя панель" }
+features:
+  eyebrow: "Ключевые преимущества"
+  title: "Почему F-8 PRO"
+  cards:
+    - { icon: "activity", title: "FIR-фильтры 512 taps", text: "До 512 taps на каждом из 4 входов и 8 выходов. Импорт внешних кривых, автокалибровка, окна Kaiser, Nuttall, Hanning, Blackman." }
+    - { icon: "git-branch", title: "Свободная маршрутизация", text: "Любые физические входы и выходы, смешение и комбинация каналов до и после FIR. Матрица 4 × 4." }
+    - { icon: "sliders", title: "Гибкий DSP", text: "15 полос PEQ на входах, 10 на выходах. Shelf, All-Pass, Phase, Notch, Elliptic, VariQ. Кроссоверы до 48 dB/oct." }
+    - { icon: "usb", title: "Ethernet / USB", text: "Прямое подключение к ПК по USB и Ethernet с группировкой нескольких устройств." }
+tech:
+  eyebrow: "Архитектура"
+  title: "DSP и преобразователи экспертного уровня"
+  lede: "Низкие искажения и широкий динамический диапазон: THD+N -92 dB, SNR 113 dB, переходное затухание 110 dB."
+  cards:
+    - { label: "FIR", chip: "512 taps", text: "512 на вход и 512 на выход. Окна Kaiser, Nuttall, Hanning, Blackman." }
+    - { label: "Кроссоверы", chip: "3 типа · 48 dB/oct", text: "Крутизна до 48 dB/oct на каждом выходе." }
+    - { label: "Задержка", chip: "0-2000 мс", text: "На каждом входе и выходе." }
+software:
+  eyebrow: "Программное обеспечение"
+  title: "Графическая панель управления"
+  lede: "Логичная цепочка модулей: NOISE GATE → PEQ-X → DEQ → DELAY → MATRIX1 → FIR → PEQ-X → COMP → LIMIT. Каждый модуль - отдельная иконка с активацией и глубокой настройкой."
+  hero: { src: "/products/f-8-pro/nag-f8pro-software-routing.jpg", alt: "Главный экран ПО F-8 PRO — маршрутизация", caption: "Маршрутизация и цепочка обработки" }
+  items:
+    - { src: "/products/f-8-pro/nag-f8pro-software-eq.jpg", alt: "ПО F-8 PRO — графический эквалайзер", title: "Эквалайзер", text: "До 15 полос PEQ на входах, 10 на выходах. Parametric, Shelf, Allpass, Notch, Elliptic, VariQ." }
+    - { src: "/products/f-8-pro/nag-f8pro-software-channel-settings.jpg", alt: "ПО F-8 PRO — настройка каналов", title: "Настройка каналов", text: "Источник, mute, фаза, маршрутизация - независимо по каждому каналу." }
+    - { src: "/products/f-8-pro/nag-f8pro-software-compressor.jpg", alt: "ПО F-8 PRO — компрессор и лимитер", title: "Компрессор и лимитер", text: "Threshold, Ratio, Attack, Release, Knee с мгновенной визуализацией." }
+specGroups:
+  - title: "Аналоговые интерфейсы и уровни"
+    defaultOpen: true
+    rows:
+      - { label: "Аналоговые интерфейсы", value: "4 × XLR F (бал.), 8 × XLR M (бал.)" }
+      - { label: "Макс. уровень", value: "+20 dBu" }
+      - { label: "Частотный диапазон", value: "20 Гц - 20 кГц (A-wt)" }
+      - { label: "Уровень шума", value: "-93 dBu (A-wt)" }
+      - { label: "THD+N", value: "-92 dB @ 0 dBu, 1 kHz" }
+      - { label: "Динамический диапазон / SNR", value: "113 dB @ 20 dBu, 1 kHz" }
+      - { label: "Переходное затухание", value: "110 dB" }
+  - title: "Обработка сигнала"
+    rows:
+      - { label: "FIR-taps", value: "512 на вход / 512 на выход" }
+      - { label: "Кроссоверы", value: "3 типа, до 48 dB/oct" }
+      - { label: "EQ-полосы", value: "вход - 15, выход - 10" }
+      - { label: "Задержка", value: "0 - 2000 мс (вход/выход)" }
+      - { label: "Матрица маршрутизации", value: "4 × 4 (любые комбинации вход⇄выход)" }
+      - { label: "Пресеты", value: "30, с опцией блокировки" }
+  - title: "Питание и габариты"
+    rows:
+      - { label: "Питание", value: "90 - 245 V AC, 50/60 Hz" }
+      - { label: "Энергопотребление", value: "< 20 W" }
+      - { label: "Габариты / Вес", value: "481 × 268 × 45 мм, ~3,6 кг" }
+---
+
+Процессор **NAG F-8 PRO** - продвинутый цифровой контроллер-корректор 4 × 8 серии NAG F. Поддерживает FIR-фильтры до 512 taps на каждом входе и выходе, цифровые входы AES и ЦАП/АЦП экспертного уровня.
+
+Логично выстроенная цепочка обработки, свободная маршрутизация каналов и встроенный FIR-дизайнер с импортом измерительных кривых и автокалибровкой. Кроссоверы трёх типов с крутизной до 48 dB/oct, задержки до 2000 мс на каждом канале.

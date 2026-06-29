@@ -25,7 +25,10 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      # npm install (not ci): the committed lock is generated on macOS and omits
+      # linux-only optional native subtrees (@emnapi/*), which strict `npm ci`
+      # rejects on the Linux runner. install resolves per-platform.
+      - run: npm install --no-audit --no-fund
       - name: Build static export
         env:
           PAGES_BASE_PATH: /nag-site

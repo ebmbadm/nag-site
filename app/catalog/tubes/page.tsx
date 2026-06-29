@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Container, Eyebrow, Breadcrumb, ProductCard, buttonVariants } from "@/components/ds";
 import { getProductsByCategory } from "@/lib/content/products";
+import { TubesInquiryCta } from "./tubes-inquiry-cta";
 
 const CATEGORY = "Ламповые усилители";
 const ORDER = ["e12", "redbear", "black-fire", "n1202"];
-const CONTACT_EMAIL = "novikamps@mail.ru";
 const CONTACT_TEL = "+79219372508";
 
 const LEDE =
@@ -77,12 +77,7 @@ export default function TubesPage() {
             изготовления под заказ.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Ламповые усилители NOVIK")}`}
-              className={buttonVariants({ variant: "primary", size: "lg" })}
-            >
-              Запросить модель
-            </a>
+            <TubesInquiryCta />
             <a href={`tel:${CONTACT_TEL}`} className={buttonVariants({ variant: "outline", size: "lg" })}>
               Позвонить
             </a>

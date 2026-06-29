@@ -34,7 +34,8 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
 | **P2 — Catalog (DSP + power amps + tube)** | ✅ DSP processors (6 pages + `/catalog/processors`), transistor power amps (5 pages + `/catalog/amplifiers`), NOVIK tube amps (4 pages + `/catalog/tubes`). КОНТУР family still pending. |
 | **P3 — Company/legal + boutique** | ✅ Company & legal (`/o-kompanii`, `/garantiya`, `/kontakty`) + NOVIK Tubes Boutique (`/catalog/boutique`, `/catalog/savers`, `/catalog/converters`). |
-| P4–P7 | ⏳ Planned — see roadmap + slices. |
+| **P5 — Forms & Inquiries** | ✅ Vercel migration (P5a) + Supabase + server action + DS primitives (P5b) + ContactForm + InquiryModal + ProductCtaButtons + boutique wiring (P5c). |
+| P4, P6–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
 
@@ -43,7 +44,7 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/` | Homepage | homepage | P4 (placeholder in P0) | `index/index.md` |
 | `/istoriya` | История компании NOVIK | company | ✅ P0 | `history/history.md` |
 | `/o-kompanii` | О компании (hub) | company | ✅ P3 | — (+ `История - направления.dc.html`) |
-| `/kontakty` | Контакты | company/form | ✅ P3 (form P5) | `contacts/contacts.md` |
+| `/kontakty` | Контакты | company/form | ✅ P5 | `contacts/contacts.md` |
 | `/garantiya` | Гарантия и сервис | company | ✅ P3 | `guarantee/guarantee.md` |
 | `/catalog/processors` | Процессоры — модельный ряд | category | ✅ P2 | `dsp/dsp.md` |
 | `/catalog/d-8000` | NAG D-8000 WI-FI | product | ✅ P0 | `d8000/d8000.md` |

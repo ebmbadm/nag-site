@@ -31,7 +31,8 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | Phase | State |
 |---|---|
 | **P0 — Foundation + 2 pages** | ✅ Done — tokens, DS primitives, content pipeline, `/istoriya`, `/catalog/d-8000`, placeholder `/`, `CLAUDE.md`, this plan. |
-| P1–P7 | ⏳ Planned — see roadmap + slices. |
+| **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
+| P2–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
 

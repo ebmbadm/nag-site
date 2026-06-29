@@ -32,7 +32,7 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 |---|---|
 | **P0 — Foundation + 2 pages** | ✅ Done — tokens, DS primitives, content pipeline, `/istoriya`, `/catalog/d-8000`, placeholder `/`, `CLAUDE.md`, this plan. |
 | **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
-| **P2 — Catalog (DSP + power amps)** | ✅ DSP processors (6 pages + `/catalog/processors`) and transistor power amps (5 pages + `/catalog/amplifiers`, `specMatrix` series tables). Tube / КОНТУР families still pending. |
+| **P2 — Catalog (DSP + power amps + tube)** | ✅ DSP processors (6 pages + `/catalog/processors`), transistor power amps (5 pages + `/catalog/amplifiers`), NOVIK tube amps (4 pages + `/catalog/tubes`). КОНТУР family still pending. |
 | P3–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
@@ -57,11 +57,11 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/catalog/cx-series` | CX / DSP SERIES | product (series) | ✅ P2 | `cx-series/cx-series.md` |
 | `/catalog/modules` | NAG TDS / TDH | product (series) | ✅ P2 | `modules/modules.md` |
 | `/catalog/tdx` | NAG TDX | product | ✅ P2 | `tdx/tdx.md` |
-| `/catalog/tubes` | Ламповые усилители НОВИК | category | P2 | `tubes/tubes.md` |
-| `/catalog/e12` | NOVIK E12 | product | P2 | `e12/e12.md` |
-| `/catalog/black-fire` | NOVIK BLACK FIRE | product | P2 | `black-fire/black-fire.md` |
-| `/catalog/redbear` | REDBEAR MKX50 / NOVIK MKX50+ | product | P2 | `redbear/redbear.md` |
-| `/catalog/n1202` | NOVIK N1202 | product | P2 | `n1202/n1202.md` |
+| `/catalog/tubes` | Ламповые усилители НОВИК | category | ✅ P2 | `tubes/tubes.md` |
+| `/catalog/e12` | NOVIK E12 | product | ✅ P2 | `e12/e12.md` |
+| `/catalog/black-fire` | NOVIK BLACK FIRE | product | ✅ P2 | `black-fire/black-fire.md` |
+| `/catalog/redbear` | REDBEAR MKX50 / NOVIK MKX50+ | product | ✅ P2 | `redbear/redbear.md` |
+| `/catalog/n1202` | NOVIK N1202 | product | ✅ P2 | `n1202/n1202.md` |
 | `/catalog/kontur` | КОНТУР — автозвук DSP | category | P2 | `page47571769.html/…md` |
 | `/catalog/kontur-a8` | КОНТУР A8 | product | P2 | `page48424917.html/…md` |
 | `/catalog/boutique` | Бутик ламп НОВИК | category | P3 | `bt/bt.md` |

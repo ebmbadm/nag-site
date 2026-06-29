@@ -44,3 +44,20 @@ describe("THE ROGUE", () => {
     expect(rows.find((r) => r.label === "Интерфейс управления")?.value).toBe("USB Type B");
   });
 });
+
+describe("Power amps — single SKU", () => {
+  test("qm-400: price 199900 + dual-mode groups", () => {
+    const p = getProduct("qm-400").frontmatter;
+    expect(p.price?.amount).toBe(199900);
+    const titles = p.specGroups.map((g) => g.title);
+    expect(titles).toContain("Четырёхканальный режим");
+    expect(titles).toContain("Мостовой режим (bridge)");
+  });
+
+  test("tdx: price 49900 + Class-D (not Class-TD)", () => {
+    const p = getProduct("tdx").frontmatter;
+    expect(p.price?.amount).toBe(49900);
+    const stage = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Тип выходного каскада");
+    expect(stage?.value).toBe("Class-D");
+  });
+});

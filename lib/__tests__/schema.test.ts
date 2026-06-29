@@ -83,3 +83,27 @@ describe("productFrontmatterSchema", () => {
     expect(result.success).toBe(true);
   });
 });
+
+const base = {
+  slug: "x", name: "X", line: "L", category: "C",
+  summary: "s", gallery: [{ src: "/a.jpg", alt: "a" }], specGroups: [],
+};
+
+describe("productFrontmatterSchema.specMatrix", () => {
+  test("parses a product with specMatrix", () => {
+    const r = productFrontmatterSchema.safeParse({
+      ...base,
+      specMatrix: {
+        columns: ["A", "B"],
+        rows: [{ label: "P", values: ["1", null] }],
+        caption: "cmp",
+      },
+    });
+    expect(r.success).toBe(true);
+    expect(r.success && r.data.specMatrix?.columns).toEqual(["A", "B"]);
+  });
+
+  test("specMatrix is optional (back-compat)", () => {
+    expect(productFrontmatterSchema.safeParse(base).success).toBe(true);
+  });
+});

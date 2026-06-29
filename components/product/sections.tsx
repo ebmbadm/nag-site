@@ -9,6 +9,7 @@ import {
   Divider,
   Surface,
   SpecTable,
+  SpecMatrixTable,
   AccordionItem,
   Figure,
   Gallery,
@@ -327,7 +328,13 @@ export function SoftwareSection({
   );
 }
 
-export function SpecsSection({ groups }: { groups: ProductFrontmatter["specGroups"] }) {
+export function SpecsSection({
+  groups,
+  specMatrix,
+}: {
+  groups: ProductFrontmatter["specGroups"];
+  specMatrix?: ProductFrontmatter["specMatrix"];
+}) {
   return (
     <section id="specs" className="scroll-mt-20 border-t border-border bg-surface-2 py-16">
       <Container>
@@ -340,6 +347,21 @@ export function SpecsSection({ groups }: { groups: ProductFrontmatter["specGroup
         >
           Характеристики
         </h2>
+        {specMatrix ? (
+          <div className="mb-8 rounded-[var(--radius-lg)] border border-border bg-bg p-5">
+            <h3
+              className="mb-4 font-display text-md uppercase text-text"
+              style={{ letterSpacing: "var(--ls-tight)" }}
+            >
+              Сравнение моделей
+            </h3>
+            <SpecMatrixTable
+              columns={specMatrix.columns}
+              rows={specMatrix.rows}
+              caption={specMatrix.caption}
+            />
+          </div>
+        ) : null}
         <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-bg">
           {groups.map((group) => (
             <AccordionItem

@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {p.features ? <FeatureBand features={p.features} /> : null}
       {p.tech ? <TechBand tech={p.tech} /> : null}
       {p.software ? <SoftwareSection software={p.software} docs={p.docs} /> : null}
-      <SpecsSection groups={p.specGroups} />
+      <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
     </article>
   );
 }

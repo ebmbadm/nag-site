@@ -60,6 +60,20 @@ export const productFrontmatterSchema = z.object({
     .array(z.object({ label: z.string(), href: z.string().url() }))
     .optional(),
 
+  // §6 — N-column comparison table for series pages
+  specMatrix: z
+    .object({
+      columns: z.array(z.string()),
+      rows: z.array(
+        z.object({
+          label: z.string(),
+          values: z.array(z.string().nullable()),
+        }),
+      ),
+      caption: z.string().optional(),
+    })
+    .optional(),
+
   features: z
     .object({
       eyebrow: z.string().optional(),

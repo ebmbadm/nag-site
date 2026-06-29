@@ -33,3 +33,14 @@ describe("F-series products", () => {
     expect(p.specChips).toContain("ADAU1452 · ES9018K2M");
   });
 });
+
+describe("THE ROGUE", () => {
+  test("price + pink noise + 40 ms total delay + USB-B", () => {
+    const p = getProduct("the-rogue").frontmatter;
+    expect(p.price?.amount).toBe(24900);
+    expect(p.specChips).toContain("Розовый шум");
+    const rows = p.specGroups.flatMap((g) => g.rows);
+    expect(rows.find((r) => r.label === "Задержка")?.value).toContain("40 мс");
+    expect(rows.find((r) => r.label === "Интерфейс управления")?.value).toBe("USB Type B");
+  });
+});

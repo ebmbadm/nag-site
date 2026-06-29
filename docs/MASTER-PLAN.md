@@ -32,7 +32,8 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 |---|---|
 | **P0 — Foundation + 2 pages** | ✅ Done — tokens, DS primitives, content pipeline, `/istoriya`, `/catalog/d-8000`, placeholder `/`, `CLAUDE.md`, this plan. |
 | **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
-| P2–P7 | ⏳ Planned — see roadmap + slices. |
+| **P2 — DSP processors** | ✅ Done — 5 product pages (F-8 PRO, F-8, D-4, D-8, THE ROGUE) + `/catalog/processors` landing; `getProductsByCategory` loader; breadcrumb a11y fix. Power-amp / tube / КОНТУР families still pending. |
+| P3–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
 
@@ -43,13 +44,13 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/o-kompanii` | О компании (hub) | company | P3 | — (+ `История - направления.dc.html`) |
 | `/kontakty` | Контакты | company/form | P3 (form P5) | `contacts/contacts.md` |
 | `/garantiya` | Гарантия и сервис | company | P3 | `guarantee/guarantee.md` |
-| `/catalog/processors` | Процессоры — модельный ряд | category | P2 | `dsp/dsp.md` |
+| `/catalog/processors` | Процессоры — модельный ряд | category | ✅ P2 | `dsp/dsp.md` |
 | `/catalog/d-8000` | NAG D-8000 WI-FI | product | ✅ P0 | `d8000/d8000.md` |
-| `/catalog/f-8-pro` | NAG F-8 PRO | product | P2 | `f8000/f8000.md` |
-| `/catalog/f-8` | NAG F-8 | product | P2 | `f8wifi/f8wifi.md` |
-| `/catalog/d-4` | DSP BY NAG D-4 | product | P2 | `dspd4/dspd4.md` |
-| `/catalog/d-8` | DSP BY NAG D-8 | product | P2 | `dspd8/dspd8.md` |
-| `/catalog/the-rogue` | DSP BY NAG THE ROGUE | product | P2 | `therogue/therogue.md` |
+| `/catalog/f-8-pro` | NAG F-8 PRO | product | ✅ P2 | `f8000/f8000.md` |
+| `/catalog/f-8` | NAG F-8 | product | ✅ P2 | `f8wifi/f8wifi.md` |
+| `/catalog/d-4` | DSP BY NAG D-4 | product | ✅ P2 | `dspd4/dspd4.md` |
+| `/catalog/d-8` | DSP BY NAG D-8 | product | ✅ P2 | `dspd8/dspd8.md` |
+| `/catalog/the-rogue` | DSP BY NAG THE ROGUE | product | ✅ P2 | `therogue/therogue.md` |
 | `/catalog/amplifiers` | Усилители мощности | category | P2 | `transistors/transistors.md` |
 | `/catalog/qm-400` | NAG QM-400 | product | P2 | `qm400/qm400.md` |
 | `/catalog/td-series` | NAG TD SERIES | product (series) | P2 | `td-series/td-series.md` |

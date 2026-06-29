@@ -56,7 +56,7 @@ cd /Users/viktor/Code/NAG-SITE
 for pair in "f8000:f-8-pro" "f8wifi:f-8" "dspd4:d-4" "dspd8:d-8" "therogue:the-rogue"; do
   src="${pair%%:*}"; dst="${pair##*:}"
   mkdir -p "public/products/$dst"
-  cp /Users/viktor/Documents/kimi/workspace/novikamps/$src/images/*.{png,jpg,jpeg} "public/products/$dst/" 2>/dev/null
+  cp /Users/viktor/Documents/kimi/workspace/novikamps/$src/images/* "public/products/$dst/"
 done
 ```
 
@@ -64,9 +64,9 @@ done
 
 Run:
 ```bash
-for d in f-8-pro f-8 d-4 d-8 the-rogue; do echo -n "$d: "; ls -1 public/products/$d | wc -l; done
+for d in f-8-pro f-8 d-4 d-8 the-rogue; do echo -n "$d: "; find public/products/$d -type f | wc -l; done
 ```
-Expected: `f-8-pro: 5`, `f-8: 6`, `d-4: 11`, `d-8: 10`, `the-rogue: 6`.
+Expected: `f-8-pro: 5`, `f-8: 6`, `d-4: 11`, `d-8: 11`, `the-rogue: 6`.
 
 - [ ] **Step 3: Commit**
 
@@ -535,7 +535,7 @@ git commit -m "feat(p2): F-8 PRO and F-8 product pages"
 
 D-4 and D-8 share one source table (`dspd4.md` / `dspd8.md` are mirror). They differ only in I/O (2×6 vs 4×8) and price (34 900 vs 39 900). Both 96 кГц.
 
-> **FIDELITY FLAG (for final review):** the source prints output impedance as `100 кОм` (`dspd4.md`/`dspd8.md` line 50). The F-8 sister product lists output impedance `100 Ω`, and a 100 кОм output into a 600 Ω min load is physically inconsistent — almost certainly an OCR slip for `100 Ω`. Transcribed verbatim below per fact-lock; surface to the human in the final review to confirm before launch. Do NOT silently change it.
+> **OCR FIX (human-confirmed):** the source prints output impedance as `100 кОм` (`dspd4.md`/`dspd8.md` line 50), but that is impossible into the stated 600 Ω min load and the sister F-8 lists `100 Ω`. The human confirmed this is an OCR slip — ship **`100 Ω`** (already corrected in the MDX below). This is the one sanctioned deviation from verbatim source for this slice.
 
 - [ ] **Step 1: Write `content/products/d-4.mdx`**
 
@@ -594,7 +594,7 @@ specGroups:
       - { label: "Импеданс (входной)", value: "симметричный >20 кОм, несимметричный >10 кОм" }
       - { label: "Ослабление синфазного сигнала", value: ">65 dB, 1 кГц" }
       - { label: "Аналоговый выход", value: "6 каналов, XLR" }
-      - { label: "Импеданс на выходе", value: "100 кОм" }
+      - { label: "Импеданс на выходе", value: "100 Ω" }
       - { label: "Минимальная нагрузка", value: "600 Ом" }
       - { label: "Макс. выходной уровень", value: "+20 dBu при нагрузке 600 Ом" }
   - title: "Сигнал и обработка"
@@ -683,7 +683,7 @@ specGroups:
       - { label: "Импеданс (входной)", value: "симметричный >20 кОм, несимметричный >10 кОм" }
       - { label: "Ослабление синфазного сигнала", value: ">65 dB, 1 кГц" }
       - { label: "Аналоговый выход", value: "8 каналов, XLR" }
-      - { label: "Импеданс на выходе", value: "100 кОм" }
+      - { label: "Импеданс на выходе", value: "100 Ω" }
       - { label: "Минимальная нагрузка", value: "600 Ом" }
       - { label: "Макс. выходной уровень", value: "+20 dBu при нагрузке 600 Ом" }
   - title: "Сигнал и обработка"

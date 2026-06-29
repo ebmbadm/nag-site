@@ -21,9 +21,43 @@ export function PillGroup({
   tabRole = false,
   className,
 }: PillGroupProps) {
+  const handleKeyDown = tabRole
+    ? (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const currentIndex = options.findIndex((o) => o.value === value);
+        const length = options.length;
+        let nextIndex: number | null = null;
+
+        switch (event.key) {
+          case "ArrowRight":
+          case "ArrowDown":
+            event.preventDefault();
+            nextIndex = (currentIndex + 1) % length;
+            break;
+          case "ArrowLeft":
+          case "ArrowUp":
+            event.preventDefault();
+            nextIndex = (currentIndex - 1 + length) % length;
+            break;
+          case "Home":
+            event.preventDefault();
+            nextIndex = 0;
+            break;
+          case "End":
+            event.preventDefault();
+            nextIndex = length - 1;
+            break;
+        }
+
+        if (nextIndex !== null) {
+          onChange(options[nextIndex].value);
+        }
+      }
+    : undefined;
+
   return (
     <div
       role={tabRole ? "tablist" : "group"}
+      onKeyDown={handleKeyDown}
       className={cn("flex flex-wrap gap-2", className)}
     >
       {options.map((opt) => {

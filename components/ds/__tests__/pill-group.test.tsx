@@ -42,4 +42,56 @@ describe("PillGroup", () => {
     render(<PillGroup options={OPTIONS} value="a" onChange={() => {}} />);
     expect(screen.getByRole("group")).toBeInTheDocument();
   });
+
+  describe("keyboard navigation (tabRole=true)", () => {
+    const THREE = [
+      { value: "a", label: "Alpha" },
+      { value: "b", label: "Beta" },
+      { value: "c", label: "Gamma" },
+    ];
+
+    it("ArrowRight moves to next tab and wraps around", async () => {
+      const user = userEvent.setup();
+      const handleChange = vi.fn();
+      render(
+        <PillGroup options={THREE} value="c" onChange={handleChange} tabRole />,
+      );
+      await user.click(screen.getByText("Gamma"));
+      await user.keyboard("{ArrowRight}");
+      expect(handleChange).toHaveBeenCalledWith("a");
+    });
+
+    it("ArrowLeft moves to previous tab and wraps around", async () => {
+      const user = userEvent.setup();
+      const handleChange = vi.fn();
+      render(
+        <PillGroup options={THREE} value="a" onChange={handleChange} tabRole />,
+      );
+      await user.click(screen.getByText("Alpha"));
+      await user.keyboard("{ArrowLeft}");
+      expect(handleChange).toHaveBeenCalledWith("c");
+    });
+
+    it("Home moves to first tab", async () => {
+      const user = userEvent.setup();
+      const handleChange = vi.fn();
+      render(
+        <PillGroup options={THREE} value="c" onChange={handleChange} tabRole />,
+      );
+      await user.click(screen.getByText("Gamma"));
+      await user.keyboard("{Home}");
+      expect(handleChange).toHaveBeenCalledWith("a");
+    });
+
+    it("End moves to last tab", async () => {
+      const user = userEvent.setup();
+      const handleChange = vi.fn();
+      render(
+        <PillGroup options={THREE} value="a" onChange={handleChange} tabRole />,
+      );
+      await user.click(screen.getByText("Alpha"));
+      await user.keyboard("{End}");
+      expect(handleChange).toHaveBeenCalledWith("c");
+    });
+  });
 });

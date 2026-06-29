@@ -9,7 +9,7 @@ export type ProductCardProps = {
   slug: string;
   name: string;
   eyebrow: string;
-  image: { src: string; alt: string; width: number; height: number };
+  image: { src: string; alt: string; width?: number; height?: number };
   price?: { amount?: number; onRequest?: boolean };
   badge?: string;
   className?: string;

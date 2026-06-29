@@ -39,3 +39,10 @@ export function getProduct(slug: string): ProductDoc {
   }
   return { frontmatter: parsed.data, body: content };
 }
+
+/** Frontmatter of every product in a given category (catalog grids). */
+export function getProductsByCategory(category: string): ProductFrontmatter[] {
+  return getProductSlugs()
+    .map((slug) => getProduct(slug).frontmatter)
+    .filter((fm) => fm.category === category);
+}

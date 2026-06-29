@@ -19,3 +19,4 @@ export { ExpandAllControl } from "./expand-all-control";
 export { Breadcrumb, type BreadcrumbItem } from "./breadcrumb";
 export { Prose } from "./prose";
 export { SpecMatrixTable, type SpecMatrixProps } from "./spec-matrix-table";
+export { ProductCard, type ProductCardProps } from "./product-card";

@@ -67,3 +67,22 @@ export interface CompanyHubContent {
   cards: CompanyHubCard[];
   stat: { value: string; label: string };
 }
+
+/* ---- Tubes boutique (P3) ---- */
+
+export interface BoutiqueCta { label: string; href: string }
+export interface BoutiqueFeature { title: string }
+export interface BoutiqueAreaCard { title: string; text: string; href: string }
+export interface BoutiqueCustom { title: string; body: string[]; cta: BoutiqueCta }
+export interface BoutiquePage {
+  slug: "boutique" | "savers" | "converters";
+  eyebrow: string;
+  title: string;
+  lede: string;
+  hero?: { src: string; alt: string; caption?: string };
+  heroDark?: { src: string; alt: string };
+  features?: { title: string; items: BoutiqueFeature[] };
+  areaCards?: BoutiqueAreaCard[];
+  custom?: BoutiqueCustom;
+  cta: BoutiqueCta;
+}

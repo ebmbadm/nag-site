@@ -36,7 +36,10 @@ export function Breadcrumb({
                 {item.label}
               </Link>
             ) : (
-              <span aria-current="page" className="text-text-muted">
+              <span
+                aria-current={i === items.length - 1 ? "page" : undefined}
+                className={i === items.length - 1 ? "text-text-muted" : undefined}
+              >
                 {item.label}
               </span>
             )}

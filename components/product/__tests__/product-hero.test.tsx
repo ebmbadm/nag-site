@@ -27,6 +27,7 @@ describe("ProductHero price branch", () => {
     render(
       <ProductHero
         product={{ ...base, price: { onRequest: true, note: "Изготавливается под заказ" } }}
+        slug="x"
       />,
     );
     expect(screen.getByText("Цена по запросу")).toBeInTheDocument();
@@ -37,7 +38,7 @@ describe("ProductHero price branch", () => {
 
   test("priced product still shows «Розничная цена» + «В корзину» (no regression)", () => {
     render(
-      <ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} />,
+      <ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} slug="x" />,
     );
     expect(screen.getByText("Розничная цена")).toBeInTheDocument();
     expect(screen.getByText("В корзину")).toBeInTheDocument();

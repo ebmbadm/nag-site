@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { FileText, MonitorSmartphone } from "lucide-react";
 import {
@@ -19,11 +18,9 @@ import {
 import { FeatureIcon } from "./icon-map";
 import { formatPrice } from "@/lib/format";
 import type { ProductFrontmatter } from "@/lib/content/schema";
+import { ProductCtaButtons } from "./product-cta-buttons";
 
-const CONTACT_EMAIL = "novikamps@mail.ru";
-const CONTACT_TEL = "+79219372508";
-
-export function ProductHero({ product }: { product: ProductFrontmatter }) {
+export function ProductHero({ product, slug }: { product: ProductFrontmatter; slug: string }) {
   const { price, models, partnerLogos, software, specGroups } = product;
 
   // Derived price display
@@ -106,34 +103,9 @@ export function ProductHero({ product }: { product: ProductFrontmatter }) {
         )}
 
         {/* CTAs */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          {price?.onRequest ? (
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Запрос цены: ${product.name}`)}`}
-              className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
-            >
-              Запросить расчёт
-            </a>
-          ) : (
-            <>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Заказ: ${product.name}`)}`}
-                className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
-              >
-                В корзину
-              </a>
-              <a
-                href={`tel:${CONTACT_TEL}`}
-                className={buttonVariants({ variant: "outline", size: "lg" })}
-              >
-                Купить в 1 клик
-              </a>
-            </>
-          )}
+        <div className="mt-6">
+          <ProductCtaButtons price={price} name={product.name} slug={slug} />
         </div>
-        <p className="mt-3 font-mono text-2xs text-text-faint">
-          Оформление — по телефону или почте. Онлайн-корзина скоро.
-        </p>
 
         {/* Quick-links — shown only when the sections exist */}
         {(software || specGroups.length > 0) && (

@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <Breadcrumb items={[{ label: "Главная", href: "/" }, ...p.breadcrumb]} />
         </Container>
       </div>
-      <ProductHero product={p} />
+      <ProductHero product={p} slug={slug} />
 
       {body.trim() ? (
         <section className="py-8">

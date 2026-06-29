@@ -238,7 +238,7 @@ export default function HomePage() {
       <Container className="py-[clamp(52px,6vw,96px)]">
         <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-2">
           <div
-            className="rounded-[var(--radius-lg)] bg-ivory p-[30px] shadow-[var(--shadow-3)]"
+            className="rounded-[var(--radius-lg)] p-[30px] shadow-[var(--shadow-3)]"
             style={{ background: "var(--nag-ivory-50)" }}
           >
             <Image

@@ -16,9 +16,11 @@ export function HeroAmp() {
 
   return (
     <div className="relative flex min-h-[330px] flex-col items-center justify-center">
-      <QM400Amp scale={0.82} />
+      <div aria-hidden>
+        <QM400Amp scale={0.82} />
+      </div>
       <div className="mt-1.5 flex items-center gap-[18px]">
-        <div className="flex items-end gap-[9px]">
+        <div className="flex items-end gap-[9px]" aria-hidden>
           <LevelMeter value={levels.l} peak={90} label="L" length={92} />
           <LevelMeter value={levels.r} peak={86} label="R" length={92} />
         </div>

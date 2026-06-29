@@ -73,7 +73,7 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <Container className="flex flex-wrap items-center justify-between gap-2 py-5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
           <span>© {new Date().getFullYear()} NAG · NOVIK</span>
-          <span>EAC · Гарантия 2 года</span>
+          <span>EAC · Гарантия 1 год</span>
         </Container>
       </div>
     </footer>

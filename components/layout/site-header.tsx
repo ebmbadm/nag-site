@@ -4,12 +4,12 @@ import { ShoppingCart } from "lucide-react";
 import { Container } from "@/components/ds";
 import { MobileNav } from "./mobile-nav";
 
-const NAV = [
+export const NAV = [
   { label: "Каталог", href: "/catalog" },
   { label: "Процессоры", href: "/catalog/processors" },
   { label: "Усилители", href: "/catalog/amplifiers" },
   { label: "Лампы", href: "/catalog/tubes" },
-  { label: "О компании", href: "/istoriya" },
+  { label: "О компании", href: "/o-kompanii" },
   { label: "Контакты", href: "/kontakty" },
 ];
 

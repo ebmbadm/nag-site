@@ -32,7 +32,7 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 |---|---|
 | **P0 — Foundation + 2 pages** | ✅ Done — tokens, DS primitives, content pipeline, `/istoriya`, `/catalog/d-8000`, placeholder `/`, `CLAUDE.md`, this plan. |
 | **P1 — Design-system completion** | ✅ Done — schema §6 fixes, 6 DS primitives (Breadcrumb, Prose, SpecMatrixTable, ProductCard, PillGroup/Tabs), MobileNav, a11y pass, motion utilities, `/_ds` dev route. |
-| **P2 — DSP processors** | ✅ Done — 5 product pages (F-8 PRO, F-8, D-4, D-8, THE ROGUE) + `/catalog/processors` landing; `getProductsByCategory` loader; breadcrumb a11y fix. Power-amp / tube / КОНТУР families still pending. |
+| **P2 — Catalog (DSP + power amps)** | ✅ DSP processors (6 pages + `/catalog/processors`) and transistor power amps (5 pages + `/catalog/amplifiers`, `specMatrix` series tables). Tube / КОНТУР families still pending. |
 | P3–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
@@ -51,12 +51,12 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/catalog/d-4` | DSP BY NAG D-4 | product | ✅ P2 | `dspd4/dspd4.md` |
 | `/catalog/d-8` | DSP BY NAG D-8 | product | ✅ P2 | `dspd8/dspd8.md` |
 | `/catalog/the-rogue` | DSP BY NAG THE ROGUE | product | ✅ P2 | `therogue/therogue.md` |
-| `/catalog/amplifiers` | Усилители мощности | category | P2 | `transistors/transistors.md` |
-| `/catalog/qm-400` | NAG QM-400 | product | P2 | `qm400/qm400.md` |
-| `/catalog/td-series` | NAG TD SERIES | product (series) | P2 | `td-series/td-series.md` |
-| `/catalog/cx-series` | CX / DSP SERIES | product (series) | P2 | `cx-series/cx-series.md` |
-| `/catalog/modules` | NAG TDS / TDH | product (series) | P2 | `modules/modules.md` |
-| `/catalog/tdx` | NAG TDX | product | P2 | `tdx/tdx.md` |
+| `/catalog/amplifiers` | Усилители мощности | category | ✅ P2 | `transistors/transistors.md` |
+| `/catalog/qm-400` | NAG QM-400 | product | ✅ P2 | `qm400/qm400.md` |
+| `/catalog/td-series` | NAG TD SERIES | product (series) | ✅ P2 | `td-series/td-series.md` |
+| `/catalog/cx-series` | CX / DSP SERIES | product (series) | ✅ P2 | `cx-series/cx-series.md` |
+| `/catalog/modules` | NAG TDS / TDH | product (series) | ✅ P2 | `modules/modules.md` |
+| `/catalog/tdx` | NAG TDX | product | ✅ P2 | `tdx/tdx.md` |
 | `/catalog/tubes` | Ламповые усилители НОВИК | category | P2 | `tubes/tubes.md` |
 | `/catalog/e12` | NOVIK E12 | product | P2 | `e12/e12.md` |
 | `/catalog/black-fire` | NOVIK BLACK FIRE | product | P2 | `black-fire/black-fire.md` |

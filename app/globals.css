@@ -350,7 +350,7 @@ details > summary::-webkit-details-marker {
   flex-direction: row-reverse;
 }
 .nag-meter--vertical .nag-meter__track {
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .nag-meter__seg {
   border-radius: 1px;

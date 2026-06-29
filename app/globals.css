@@ -323,3 +323,50 @@ details > summary::-webkit-details-marker {
   background: var(--accent-wash);
   color: var(--text);
 }
+
+/* ── LevelMeter (segmented VU/peak) ───────────────────────────── */
+.nag-meter {
+  display: inline-flex;
+  gap: 10px;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+}
+.nag-meter__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.nag-meter__track {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--nag-black-980);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-inset);
+}
+.nag-meter--horizontal .nag-meter__track {
+  flex-direction: row-reverse;
+}
+.nag-meter--vertical .nag-meter__track {
+  flex-direction: column;
+}
+.nag-meter__seg {
+  border-radius: 1px;
+  transition:
+    opacity var(--dur-fast) linear,
+    background var(--dur-fast) linear;
+}
+.nag-meter--vertical .nag-meter__seg {
+  width: 14px;
+}
+.nag-meter--horizontal .nag-meter__seg {
+  height: 14px;
+}
+.nag-meter__label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}

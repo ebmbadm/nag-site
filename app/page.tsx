@@ -121,7 +121,7 @@ export default function HomePage() {
               гарантией два года.
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
-              <Link href="/catalog" className={buttonVariants({ variant: "primary", size: "lg" })}>
+              <Link href="/catalog/amplifiers" className={buttonVariants({ variant: "primary", size: "lg" })}>
                 Смотреть каталог
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
@@ -160,7 +160,7 @@ export default function HomePage() {
         <div className="mb-[34px] flex flex-wrap items-end justify-between gap-5">
           <SectionHeader eyebrow="Каталог" title="Четыре направления техники" />
           <Link
-            href="/catalog"
+            href="/catalog/amplifiers"
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent"
           >
             Весь каталог
@@ -393,7 +393,7 @@ export default function HomePage() {
               Звоните или пишите — поможем с подбором, расчётом и комплектацией под инсталляцию, тур
               или прокат.
             </p>
-            <Link href="/catalog" className={buttonVariants({ variant: "primary", size: "lg" })}>
+            <Link href="/catalog/amplifiers" className={buttonVariants({ variant: "primary", size: "lg" })}>
               Смотреть каталог
               <ArrowRight className="size-4" aria-hidden />
             </Link>

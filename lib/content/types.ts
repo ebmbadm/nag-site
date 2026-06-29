@@ -33,3 +33,37 @@ export interface HistoryContent {
   hero: HistoryHero;
   chapters: HistoryChapter[];
 }
+
+/* ---- Company & legal (P3) ---- */
+
+export interface ContactsContent {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  phone: { display: string; href: string };
+  email: { display: string; href: string };
+  address: { lines: string[] };
+  form: { title: string; note: string; disabled: true };
+}
+
+export interface GuaranteeContent {
+  hero: { eyebrow: string; title: string; lede: string };
+  terms: { value: string; label: string }[];
+  service: { eyebrow: string; title: string; blocks: HistoryBlock[] };
+  cta: { text: string; href: string; label: string };
+}
+
+export interface CompanyHubCard {
+  kicker: string;
+  title: string;
+  text: string;
+  href: string;
+}
+
+export interface CompanyHubContent {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  cards: CompanyHubCard[];
+  stat: { value: string; label: string };
+}

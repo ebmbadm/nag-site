@@ -17,6 +17,11 @@ import {
 } from "@/components/ds";
 import { TabsDemo } from "./_tabs-demo";
 import { PillDemo } from "./_pill-demo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function DsPage() {
   if (process.env.NODE_ENV === "production") notFound();

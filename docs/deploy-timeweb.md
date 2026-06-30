@@ -13,8 +13,13 @@
 >   --env-file /opt/nag-site/.env \
 >   --add-host fcqhwpfoiojhuedbezum.supabase.co:104.18.38.10 \
 >   --add-host fcqhwpfoiojhuedbezum.supabase.co:172.64.149.246 \
+>   --add-host api.telegram.org:149.154.167.220 \
 >   nag-site:latest && docker network connect supabase_default nag-site
 > ```
+>
+> **Telegram-уведомления:** в `.env` есть `TELEGRAM_BOT_TOKEN` (@naghubbot) + `TELEGRAM_CHAT_ID`.
+> api.telegram.org тоже под FakeDNS + у Telegram в РФ заблокированы почти все DC-IP; рабочий —
+> `149.154.167.220` (пин через `--add-host`). Проверено: getMe + sendMessage из контейнера = ok.
 >
 > **Env Supabase:** `/opt/nag-site/.env` (из Vercel, `vercel env pull`). Форма работает
 > (Supabase REST auth = 200 из контейнера). **Сервер блокирует `*.supabase.co` через Xray

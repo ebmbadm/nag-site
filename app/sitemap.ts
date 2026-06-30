@@ -10,6 +10,7 @@ const CATEGORY_ROUTES = [
   "/catalog/boutique",
   "/catalog/converters",
   "/catalog/savers",
+  "/catalog/arhiv",
 ];
 
 const INFO_ROUTES = ["/o-kompanii", "/istoriya", "/kontakty", "/garantiya"];

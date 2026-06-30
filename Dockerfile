@@ -24,6 +24,10 @@ RUN npm run build
 
 # --- runtime ---
 FROM node:22-slim AS runner
+# ca-certificates: node:slim ships without them, so server-side HTTPS (Supabase,
+# Resend, Telegram) fails TLS verification. Required.
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

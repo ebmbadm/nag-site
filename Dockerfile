@@ -8,7 +8,9 @@ FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+# `npm install` (not `npm ci`): the lockfile is generated on macOS and omits Linux
+# optional binaries (sharp, @next/swc-linux-*); strict `npm ci` would fail on Linux.
+RUN npm install --no-audit --no-fund
 
 # --- build (produces .next/standalone) ---
 FROM node:22-alpine AS builder

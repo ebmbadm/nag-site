@@ -1,5 +1,19 @@
 # Деплой на Timeweb (Docker) — сервер PoliteShark
 
+> **Статус: РАЗВЁРНУТО (2026-06-30).** Сайт живёт на https://novikamps.com — контейнер
+> `nag-site` на сервере PoliteShark (`147.45.108.78`), за общим `supabase-caddy`
+> (Let's Encrypt, авто-TLS). Репозиторий на сервере: `/opt/nag-site`. Контейнер на
+> `127.0.0.1:8090`, в сети `supabase_default` (caddy ходит на `nag-site:3000`).
+> **На сервере есть второй проект `nightbc.ru` (Supabase+VPN) — не трогать.**
+>
+> **Обновление:** `cd /opt/nag-site && git pull && docker build -t nag-site:latest . && \
+> docker rm -f nag-site && docker run -d --name nag-site --restart unless-stopped \
+> -p 127.0.0.1:8090:3000 nag-site:latest && docker network connect supabase_default nag-site`
+>
+> **Не сделано:** Supabase-env на контейнере (форма обратной связи падает при отправке) —
+> добавить `.env` и перезапустить с `--env-file`. Безопасность: сменить root-пароль и
+> Timeweb-токен (светились), убрать временный deploy-ключ из `~/.ssh/authorized_keys`.
+
 Образ собирается из `Dockerfile` (Next.js `output: "standalone"` → `node server.js`).
 Локально проверено: standalone-сервер поднимается и отдаёт страницы, редиректы (301),
 robots/sitemap/OG. Слушает `0.0.0.0:3000`.

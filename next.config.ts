@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { tildaRedirects } from "./lib/redirects";
+import { tildaRedirects, ruLegacyRedirects } from "./lib/redirects";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     root: import.meta.dirname,
   },
   async redirects() {
-    return tildaRedirects;
+    return [...tildaRedirects, ...ruLegacyRedirects];
   },
 };
 

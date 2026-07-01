@@ -26,28 +26,44 @@ const CATEGORIES = [
     title: "Процессоры",
     text: "DSP-процессоры NAG: D-8000 Wi-Fi, F-8, F-8 PRO.",
     href: "/catalog/processors",
-    price: "от 95 000 ₽",
+    price: "от 24 900 ₽",
+    image: {
+      src: "/products/d-8000/nag-d8000-front-panel.jpg",
+      alt: "NAG D-8000 — передняя панель",
+    },
   },
   {
     eyebrow: "Усилители мощности",
     title: "Усилители",
     text: "Транзисторные QM-400, серии TD и CX — 4 × 700 Вт с DSP.",
     href: "/catalog/amplifiers",
-    price: "от 85 000 ₽",
+    price: "от 41 900 ₽",
+    image: {
+      src: "/products/qm-400/nag-qm400-front-panel.jpg",
+      alt: "NAG QM-400 — передняя панель",
+    },
   },
   {
     eyebrow: "Ламповые · NOVIK",
     title: "Лампа",
     text: "Ламповые усилители — наследие NOVIK с 1976 года.",
     href: "/catalog/tubes",
-    price: "от 120 000 ₽",
+    price: "Цена по запросу",
+    image: {
+      src: "/products/e12/novik-e12-head-front.png",
+      alt: "NOVIK E12 — передняя панель",
+    },
   },
   {
     eyebrow: "Модули встраиваемые",
     title: "Модули",
     text: "Встраиваемые модули для активной акустики: TDS / TDH, TDX.",
     href: "/catalog/modules",
-    price: "от 18 000 ₽",
+    price: "от 41 900 ₽",
+    image: {
+      src: "/products/modules/nag-module-tds-rear-panel.png",
+      alt: "NAG TDS — задняя панель модуля",
+    },
   },
 ];
 
@@ -186,6 +202,15 @@ export default function HomePage() {
               href={cat.href}
               className="flex min-h-[226px] flex-col bg-bg p-[26px] transition-colors hover:bg-surface-2"
             >
+              <div className="-mt-1 mb-4 overflow-hidden rounded-[var(--radius-sm)]">
+                <Image
+                  src={cat.image.src}
+                  alt={cat.image.alt}
+                  width={320}
+                  height={160}
+                  className="h-[120px] w-full object-cover"
+                />
+              </div>
               <Eyebrow accent className="mb-3.5 block">
                 {cat.eyebrow}
               </Eyebrow>
@@ -315,7 +340,7 @@ export default function HomePage() {
                   className="font-display font-bold uppercase tabular-nums text-text"
                   style={{ fontSize: "var(--text-3xl)", lineHeight: 1 }}
                 >
-                  от 285 000 ₽
+                  199 900 ₽
                 </div>
                 <div className="mt-1.5 font-mono text-xs text-text-faint">
                   Без НДС · Гарантия 2 года · EAC

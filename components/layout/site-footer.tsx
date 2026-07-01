@@ -10,6 +10,7 @@ const COLUMNS = [
       { label: "Усилители мощности", href: "/catalog/amplifiers" },
       { label: "Ламповые усилители", href: "/catalog/tubes" },
       { label: "Модули", href: "/catalog/modules" },
+      { label: "Архив моделей", href: "/catalog/arhiv" },
     ],
   },
   {

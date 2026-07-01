@@ -12,6 +12,7 @@ import {
 } from "@/components/ds";
 import { SpecTicker } from "@/components/layout/spec-ticker";
 import { HeroAmp } from "@/components/landing/hero-amp";
+import type { Metadata } from "next";
 
 const HERO_STATS = [
   { value: "40+", label: "лет на рынке" },
@@ -78,6 +79,17 @@ const QM400_FEATURE_STATS = [
   { value: "0.1 %", label: "КНИ · 8 Ω", accent: false },
   { value: "950", label: "Демпинг", accent: false },
 ];
+
+export const metadata: Metadata = {
+  description:
+    "NAG · NOVIK — производитель профессионального звукового оборудования из Санкт-Петербурга: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. Производство и сервис с 1992 года.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "NAG · NOVIK — профессиональное звуковое оборудование",
+    description:
+      "Производитель профессионального звукового оборудования из Санкт-Петербурга: DSP-процессоры, усилители Class-TD, ламповые усилители. С 1992 года.",
+  },
+};
 
 export default function HomePage() {
   return (

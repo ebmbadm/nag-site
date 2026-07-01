@@ -10,6 +10,8 @@ import {
 } from "@/components/product/sections";
 import { Mdx } from "@/lib/content/mdx";
 import { getProduct, getProductSlugs } from "@/lib/content/products";
+import { JsonLd } from "@/components/seo/json-ld";
+import { productSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -32,6 +34,7 @@ export async function generateMetadata({
   return {
     title: product.name,
     description: product.summary,
+    alternates: { canonical: `/catalog/${slug}` },
     openGraph: {
       title: product.name,
       description: product.summary,
@@ -50,12 +53,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   const { frontmatter: p, body } = doc;
+  const crumbs = [{ label: "Главная", href: "/" }, ...p.breadcrumb];
 
   return (
     <article>
+      <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
       <div className="pt-6">
         <Container>
-          <Breadcrumb items={[{ label: "Главная", href: "/" }, ...p.breadcrumb]} />
+          <Breadcrumb items={crumbs} />
         </Container>
       </div>
       <ProductHero product={p} slug={slug} />

@@ -6,7 +6,19 @@
 > `127.0.0.1:8090`, в сети `supabase_default` (caddy ходит на `nag-site:3000`).
 > **На сервере есть второй проект `nightbc.ru` (Supabase+VPN) — не трогать.**
 >
-> **Обновление (обязательно сохранять `--env-file` И `--add-host`, иначе форма отвалится):**
+> **CI/CD:** настроен GitHub Actions (`.github/workflows/deploy.yml`). При каждом push в
+> `main` выполняется сборка, затем SSH-деплой на PoliteShark: `git pull` + `./scripts/deploy.sh`.
+> Секреты, которые нужно добавить в GitHub → Settings → Secrets and variables → Actions:
+> - `DEPLOY_HOST` — IP сервера (`147.45.108.78`)
+> - `DEPLOY_USER` — пользователь с правами на Docker (рекомендуется `deploy` или root)
+> - `DEPLOY_KEY` — приватный SSH-ключ
+> - `DEPLOY_PORT` — SSH-порт (опционально, по умолчанию `22`)
+>
+> **Обновление вручную (обязательно сохранять `--env-file` И `--add-host`, иначе форма отвалится):**
+> ```
+> cd /opt/nag-site && git pull && ./scripts/deploy.sh
+> ```
+> Или полностью:
 > ```
 > cd /opt/nag-site && git pull && docker build -t nag-site:latest . && docker rm -f nag-site && \
 > docker run -d --name nag-site --restart unless-stopped -p 127.0.0.1:8090:3000 \

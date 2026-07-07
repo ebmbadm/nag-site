@@ -391,10 +391,9 @@ export default function HomePage() {
                 NOVIK и профессиональной линейки NAG. Сорок лет схемотехники, собранной в
                 Санкт-Петербурге.
               </p>
-              <Link href="/istoriya" className={buttonVariants({ variant: "outline" })}>
-                Читать историю
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
+              <span className={buttonVariants({ variant: "outline" })} aria-disabled="true">
+                Будет доступно позже
+              </span>
             </div>
           </div>
         </Container>

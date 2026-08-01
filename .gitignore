@@ -1,35 +1,26 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
+# Secrets — never commit. .env.example is the tracked template.
+.env
+.env.*
+!.env.example
 
-# next.js
-/.next/
-/out/
+# Editor / IDE
+.idea/
+.vscode/*
 
-# production
-/build
+# Next.js generated — regenerated on every build
+next-env.d.ts
 
-# misc
+/tmp
+/out-tsc
+/out
+/.next
+/.vercel
+tsconfig.tsbuildinfo
 .DS_Store
-*.pem
 
-# debug
+/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# env
-.env*
-!.env.example
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# editor
-.vscode/*
-!.vscode/extensions.json
-.idea/
-.superpowers/
-.vercel
+/.pnp
+.pnp.js

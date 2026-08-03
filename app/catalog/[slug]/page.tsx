@@ -7,6 +7,7 @@ import {
   TechBand,
   SoftwareSection,
   SpecsSection,
+  DocsSection,
 } from "@/components/product/sections";
 import { Mdx } from "@/lib/content/mdx";
 import { getProduct, getProductSlugs } from "@/lib/content/products";
@@ -77,8 +78,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       {p.features ? <FeatureBand features={p.features} /> : null}
       {p.tech ? <TechBand tech={p.tech} /> : null}
-      {p.software ? <SoftwareSection software={p.software} docs={p.docs} /> : null}
+      {p.software ? <SoftwareSection software={p.software} /> : null}
       <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
+      {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
     </article>
   );
 }

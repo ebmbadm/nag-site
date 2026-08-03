@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FileText, MonitorSmartphone } from "lucide-react";
+import { Download, FileText, MonitorSmartphone } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -13,15 +13,16 @@ import {
   Figure,
   Gallery,
   Breadcrumb,
-  buttonVariants,
+  DownloadList,
 } from "@/components/ds";
 import { FeatureIcon } from "./icon-map";
 import { formatPrice } from "@/lib/format";
+import { describeDownload } from "@/lib/content/downloads";
 import type { ProductFrontmatter } from "@/lib/content/schema";
 import { ProductCtaButtons } from "./product-cta-buttons";
 
 export function ProductHero({ product, slug }: { product: ProductFrontmatter; slug: string }) {
-  const { price, models, partnerLogos, software, specGroups } = product;
+  const { price, models, partnerLogos, software, specGroups, docs } = product;
 
   // Derived price display
   const minModelPrice =
@@ -108,8 +109,16 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
         </div>
 
         {/* Quick-links — shown only when the sections exist */}
-        {(software || specGroups.length > 0) && (
+        {(software || specGroups.length > 0 || (docs && docs.length > 0)) && (
           <div className="mt-6 flex flex-wrap gap-5 text-text-muted">
+            {docs && docs.length > 0 && (
+              <a
+                href="#docs"
+                className="inline-flex items-center gap-2 text-sm transition-colors hover:text-accent"
+              >
+                <Download className="size-4" aria-hidden /> Документы и ПО
+              </a>
+            )}
             {software && (
               <a
                 href="#software"
@@ -236,12 +245,34 @@ export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"
   );
 }
 
+/** Manuals + software downloads. Rendered for every product that has `docs`. */
+export function DocsSection({ docs }: { docs: NonNullable<ProductFrontmatter["docs"]> }) {
+  return (
+    <section id="docs" className="scroll-mt-20 border-t border-border py-14">
+      <Container>
+        <Eyebrow accent className="mb-3 block">
+          Загрузки
+        </Eyebrow>
+        <h2
+          className="font-display uppercase text-text"
+          style={{
+            fontSize: "clamp(var(--text-2xl), 4vw, var(--text-3xl))",
+            lineHeight: "var(--lh-tight)",
+            letterSpacing: "var(--ls-tight)",
+          }}
+        >
+          Документы и ПО
+        </h2>
+        <DownloadList className="mt-8" links={docs.map(describeDownload)} />
+      </Container>
+    </section>
+  );
+}
+
 export function SoftwareSection({
   software,
-  docs,
 }: {
   software: NonNullable<ProductFrontmatter["software"]>;
-  docs?: ProductFrontmatter["docs"];
 }) {
   return (
     <section id="software" className="scroll-mt-20 py-16">
@@ -271,22 +302,6 @@ export function SoftwareSection({
           caption={software.hero.caption}
           className="mt-8"
         />
-
-        {docs && docs.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {docs.map((doc) => (
-              <a
-                key={doc.href}
-                href={doc.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonVariants({ variant: "outline", size: "md" })}
-              >
-                {doc.label}
-              </a>
-            ))}
-          </div>
-        )}
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {software.items.map((item) => (

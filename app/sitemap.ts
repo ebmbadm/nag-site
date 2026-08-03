@@ -13,7 +13,7 @@ const CATEGORY_ROUTES = [
   "/catalog/arhiv",
 ];
 
-const INFO_ROUTES = ["/o-kompanii", "/istoriya", "/kontakty", "/garantiya"];
+const INFO_ROUTES = ["/o-kompanii", "/istoriya", "/kontakty", "/garantiya", "/zagruzki"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

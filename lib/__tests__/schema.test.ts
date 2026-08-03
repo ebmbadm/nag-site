@@ -64,7 +64,15 @@ describe("productFrontmatterSchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("rejects docs with non-url href", () => {
+  it("accepts docs with a site-root path (local file in /public)", () => {
+    const result = productFrontmatterSchema.safeParse({
+      ...BASE,
+      docs: [{ label: "Руководство", href: "/downloads/nag-qm-400-manual-ru.pdf" }],
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects docs with a bare relative href", () => {
     const result = productFrontmatterSchema.safeParse({
       ...BASE,
       docs: [{ label: "Скачать", href: "not-a-url" }],

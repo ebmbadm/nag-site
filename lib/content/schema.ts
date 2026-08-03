@@ -55,9 +55,16 @@ export const productFrontmatterSchema = z.object({
     )
     .optional(),
 
-  // §6.5 — download links (software / manuals)
+  // §6.5 — download links (software / manuals): local /downloads/… or external URL
   docs: z
-    .array(z.object({ label: z.string(), href: z.string().url() }))
+    .array(
+      z.object({
+        label: z.string(),
+        href: z.string().refine((h) => h.startsWith("/") || URL.canParse(h), {
+          message: "href must be an absolute URL or a site-root path (/downloads/…)",
+        }),
+      }),
+    )
     .optional(),
 
   // §6 — N-column comparison table for series pages

@@ -6,16 +6,19 @@ const COLUMNS = [
   {
     title: "Каталог",
     links: [
-      { label: "DSP-процессоры", href: "/catalog/processors" },
+      { label: "Процессоры", href: "/catalog/processors" },
       { label: "Усилители мощности", href: "/catalog/amplifiers" },
       { label: "Ламповые усилители", href: "/catalog/tubes" },
-      { label: "Модули", href: "/catalog/modules" },
+      { label: "Ламповый бутик", href: "/catalog/boutique" },
+      { label: "Конвертеры", href: "/catalog/converters" },
+      { label: "Сейверы", href: "/catalog/savers" },
       { label: "Архив моделей", href: "/catalog/arhiv" },
     ],
   },
   {
     title: "Компания",
     links: [
+      { label: "О компании", href: "/o-kompanii" },
       { label: "История", href: "/istoriya" },
       { label: "Загрузки", href: "/zagruzki" },
       { label: "Гарантия и сервис", href: "/garantiya" },
@@ -48,14 +51,15 @@ export function SiteFooter() {
               novikamps@mail.ru
             </a>
           </div>
-          <p className="mt-4 text-xs text-text-faint" style={{ lineHeight: "var(--lh-normal)" }}>
+          <p className="mt-4 text-xs text-text-muted" style={{ lineHeight: "var(--lh-normal)" }}>
             Санкт-Петербург, Московское шоссе, 25 литера А, офис 216А
           </p>
         </div>
 
         {COLUMNS.map((col) => (
           <div key={col.title}>
-            <Eyebrow className="mb-4 block">{col.title}</Eyebrow>
+            {/* text-faint on bg-surface-2 is ~2.9:1 — below the 4.5:1 floor */}
+            <Eyebrow className="mb-4 block text-text-muted">{col.title}</Eyebrow>
             <ul className="space-y-2">
               {col.links.map((link) => (
                 <li key={link.href}>
@@ -73,7 +77,7 @@ export function SiteFooter() {
       </Container>
 
       <div className="border-t border-border">
-        <Container className="flex flex-wrap items-center justify-between gap-2 py-5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+        <Container className="flex flex-wrap items-center justify-between gap-2 py-5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">
           <span>© {new Date().getFullYear()} NAG · NOVIK</span>
           <span>EAC · Гарантия 1 год</span>
         </Container>

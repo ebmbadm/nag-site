@@ -22,7 +22,7 @@ const HERO_STATS = [
 
 const CATEGORIES = [
   {
-    eyebrow: "Процессоры · DSP",
+    eyebrow: "D-8000 · F-8 · F-8 PRO",
     title: "Процессоры",
     text: "DSP-процессоры NAG: D-8000 Wi-Fi, F-8, F-8 PRO.",
     href: "/catalog/processors",
@@ -33,7 +33,7 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "Усилители мощности",
+    eyebrow: "QM-400 · TD · CX",
     title: "Усилители",
     text: "Транзисторные QM-400, серии TD и CX — 4 × 700 Вт с DSP.",
     href: "/catalog/amplifiers",
@@ -44,7 +44,7 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "Ламповые · NOVIK",
+    eyebrow: "E12 · RedBear",
     title: "Лампа",
     text: "Ламповые усилители — наследие NOVIK с 1976 года.",
     href: "/catalog/tubes",
@@ -55,7 +55,7 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "Модули встраиваемые",
+    eyebrow: "TDS / TDH · TDX",
     title: "Модули",
     text: "Встраиваемые модули для активной акустики: TDS / TDH, TDX.",
     href: "/catalog/modules",
@@ -160,16 +160,29 @@ export default function HomePage() {
                 О компании
               </Link>
             </div>
-            <div className="mt-[38px] flex gap-[clamp(20px,3vw,46px)] border-t border-border pt-6">
+            {/* minmax(0,1fr), не flex: иначе min-content строки статистики
+                распирает колонку героя и на 360px съедает правое поле. */}
+            {/* minmax(0,1fr), не flex: иначе min-content строки статистики
+                распирает колонку героя и на 360px съедает правое поле.
+                Потолок кегля 42px, а не 54px: колонка упирается в
+                max-width контейнера, и «2 ГОДА» переносилось на 1024–1224
+                и от 1304px, сбивая метки с общей базовой линии. */}
+            <div className="mt-[38px] grid grid-cols-[repeat(3,minmax(0,1fr))] gap-[clamp(12px,3vw,28px)] border-t border-border pt-6">
               {HERO_STATS.map((s) => (
                 <div key={s.label}>
                   <div
                     className="font-display font-bold uppercase tabular-nums text-text"
-                    style={{ fontSize: "var(--text-4xl)", lineHeight: 1 }}
+                    style={{
+                      fontSize: "clamp(var(--text-xl), 6vw, var(--text-3xl))",
+                      lineHeight: 1,
+                    }}
                   >
                     {s.value}
                   </div>
-                  <div className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+                  {/* На 320px «тестирование» (97.7px при полном трекинге) не
+                      влезает в 88px ячейку. Ужимаем трекинг до sm; break-words
+                      остаётся страховкой, а не основным механизмом. */}
+                  <div className="mt-1.5 break-words font-mono text-[10px] uppercase tracking-normal text-text-faint sm:text-2xs sm:tracking-[var(--ls-label)]">
                     {s.label}
                   </div>
                 </div>
@@ -200,7 +213,7 @@ export default function HomePage() {
             <Link
               key={cat.href}
               href={cat.href}
-              className="flex min-h-[226px] flex-col bg-bg p-[26px] transition-colors hover:bg-surface-2"
+              className="group flex min-h-[226px] flex-col bg-bg p-[26px] transition-colors hover:bg-surface-2"
             >
               <div className="-mt-1 mb-4 overflow-hidden rounded-[var(--radius-sm)]">
                 <Image
@@ -208,7 +221,7 @@ export default function HomePage() {
                   alt={cat.image.alt}
                   width={320}
                   height={160}
-                  className="h-[120px] w-full object-cover"
+                  className="h-[120px] w-full object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
               </div>
               <Eyebrow accent className="mb-3.5 block">
@@ -228,7 +241,10 @@ export default function HomePage() {
               </p>
               <div className="mt-[18px] flex items-center justify-between">
                 <span className="font-mono text-xs text-text-faint">{cat.price}</span>
-                <ArrowRight className="size-[18px] text-accent" aria-hidden />
+                <ArrowRight
+                  className="size-[18px] text-accent transition-transform duration-[var(--dur-base)] ease-[var(--ease-out)] group-hover:translate-x-1 motion-reduce:transition-none"
+                  aria-hidden
+                />
               </div>
             </Link>
           ))}
@@ -248,7 +264,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Почему NOVIK"
             title="Гарантия не на словах, а на стенде"
-            className="mb-10 max-w-[18ch]"
+            className="mb-10"
           />
           <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {ADVANTAGES.map(({ Icon, title, text }) => (
@@ -274,10 +290,7 @@ export default function HomePage() {
       {/* ── FEATURED QM-400 ── */}
       <Container className="py-[clamp(52px,6vw,96px)]">
         <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-2">
-          <div
-            className="rounded-[var(--radius-lg)] p-[30px] shadow-[var(--shadow-3)]"
-            style={{ background: "var(--nag-ivory-50)" }}
-          >
+          <div className="rounded-[var(--radius-lg)] bg-surface-2 p-[30px] shadow-[var(--shadow-3)]">
             <Image
               src="/products/qm-400/nag-qm400-front-panel.jpg"
               alt="NAG QM-400 — передняя панель"
@@ -285,7 +298,7 @@ export default function HomePage() {
               height={360}
               className="h-auto w-full rounded-[var(--radius-sm)] object-cover"
             />
-            <div className="mt-3.5 flex justify-between font-mono text-xs text-[#54545E]">
+            <div className="mt-3.5 flex justify-between font-mono text-xs text-text-muted">
               <span>QM-400 · передняя панель</span>
               <span>483 × 463 × 88 мм · 17.3 кг</span>
             </div>
@@ -293,7 +306,7 @@ export default function HomePage() {
           <div>
             <div className="mb-[18px] flex gap-2">
               <Badge>Флагман</Badge>
-              <Badge className="bg-transparent border border-[var(--nag-green-500)] text-[var(--nag-green-500)]">
+              <Badge className="border border-green bg-transparent text-text">
                 EAC
               </Badge>
             </div>
@@ -362,13 +375,16 @@ export default function HomePage() {
       <section className="border-t border-border bg-surface py-[clamp(48px,5vw,84px)]">
         <Container>
           <div className="grid items-center gap-[clamp(28px,4vw,60px)] lg:grid-cols-[.85fr_1.15fr]">
-            <div className="overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-3)]">
+            <div className="w-full max-w-[380px] overflow-hidden rounded-[var(--radius-lg)] bg-surface-2 shadow-[var(--shadow-3)] lg:max-w-none">
+              {/* Source is a 181×314 portrait scan — object-contain plus a width
+                  cap until a ≥1120px re-export lands; uncapped it upscales ~3×
+                  at tablet width, and object-cover cropped the MK60 head out. */}
               <Image
                 src="/history/redbear-mk60.jpg"
                 alt="RedBear — ламповое наследие NOVIK"
-                width={560}
-                height={420}
-                className="aspect-[4/3] h-full w-full object-cover"
+                width={181}
+                height={314}
+                className="aspect-[3/4] h-full w-full object-contain"
               />
             </div>
             <div>
@@ -391,7 +407,7 @@ export default function HomePage() {
                 NOVIK и профессиональной линейки NAG. Сорок лет схемотехники, собранной в
                 Санкт-Петербурге.
               </p>
-              <span className={buttonVariants({ variant: "outline" })} aria-disabled="true">
+              <span className="font-mono text-xs uppercase tracking-[var(--ls-label)] text-text-faint">
                 Будет доступно позже
               </span>
             </div>

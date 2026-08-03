@@ -29,7 +29,7 @@ export default function AmplifiersPage() {
   );
 
   return (
-    <div className="py-6">
+    <div className="pt-10 pb-24">
       <Container>
         <Breadcrumb
           items={[
@@ -56,16 +56,18 @@ export default function AmplifiersPage() {
           </p>
         </header>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        {/* 5 товаров: 1 колонка на мобильных, 3 — от md (ряды 3+2). Последний
+            ряд неполный, и это меньшее зло: col-span-2 у первой карточки
+            растягивал соседнюю по высоте и «лайтбоксил» панорамное фото. */}
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
           {products.map((p) => (
             <ProductCard
               key={p.slug}
               slug={p.slug}
               name={p.name}
-              eyebrow={p.line}
               image={{ src: p.gallery[0].src, alt: p.gallery[0].alt }}
               price={{ amount: p.price?.amount, onRequest: p.price?.onRequest }}
-              badge={p.slug === FLAGSHIP ? "Флагман" : p.badges[0]}
+              badge={p.slug === FLAGSHIP ? "Флагман" : undefined}
             />
           ))}
         </div>

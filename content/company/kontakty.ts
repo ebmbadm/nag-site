@@ -1,7 +1,7 @@
 import type { ContactsContent } from "@/lib/content/types";
 
 export const kontakty: ContactsContent = {
-  eyebrow: "Контакты",
+  eyebrow: "Санкт-Петербург · с 1992",
   title: "Свяжитесь с нами",
   lede: "Остались вопросы? Напишите нам и оставьте свои контакты, мы обязательно свяжемся с вами.",
   phone: { display: "+7 921 937 25 08", href: "tel:+79219372508" },

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function HistoryPage() {
   return (
-    <Surface mode="dark" className="py-16">
+    <Surface mode="dark" className="flex min-h-[60vh] items-start py-16">
       <Container>
         <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "История" }]} />
         <div className="mt-6 max-w-prose">

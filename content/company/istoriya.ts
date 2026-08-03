@@ -271,6 +271,12 @@ export const istoriya: HistoryContent = {
           type: "p",
           text: "Реальное соотношение сил не давало мне шансов на продажу под собственным брендом — ещё одно неприятное открытие мирового бизнеса. Небольшое утешение: почти в таком же положении оказалась известная английская фирма Orange, работавшая по эксклюзивному контракту с Gibson в это же время — правда, под своим брендом.",
         },
+        {
+          type: "figure",
+          src: "/history/redbear-mk120-1993-dark-stack.jpg",
+          alt: "RedBear MK120/60 для Gibson",
+          caption: "1993 · RedBear MK120/60, изготовленный NOVIK для Gibson.",
+        },
       ],
     },
     {
@@ -289,9 +295,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/redbear-mk60.jpg",
-          alt: "RedBear MK60",
-          caption: "RedBear MK60 — стек, изготовленный NOVIK для Gibson.",
+          src: "/history/redbear-mke120-1994-front-stack.jpg",
+          alt: "RedBear MKE120/60 для Gibson",
+          caption: "1994 · RedBear MKE120/60, изготовленный NOVIK для Gibson.",
         },
         {
           type: "p",
@@ -320,6 +326,20 @@ export const istoriya: HistoryContent = {
       ],
     },
     {
+      id: "mkx-cub-combo",
+      year: "1995",
+      label: "RedBear MKX CUB Combo · Gibson",
+      title: "RedBear MKX CUB Combo",
+      blocks: [
+        {
+          type: "figure",
+          src: "/history/redbear-mkx-cub-combo-1995-front.jpg",
+          alt: "RedBear MKX CUB Combo для Gibson",
+          caption: "1995 · RedBear MKX CUB Combo для Gibson.",
+        },
+      ],
+    },
+    {
       id: "pellarin",
       year: "1995",
       label: "PELLARIN · N1202 / N602",
@@ -331,9 +351,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n1202-head.jpg",
-          alt: "NOVIK N1202",
-          caption: "NOVIK N1202 — голова, ставшая основой собственной линейки.",
+          src: "/history/novik-n1202-n602-1995-front.jpg",
+          alt: "NOVIK N1202 / N602 для Pellarin",
+          caption: "1995 · NOVIK N1202 / N602 для Pellarin.",
         },
         {
           type: "p",
@@ -371,6 +391,12 @@ export const istoriya: HistoryContent = {
           type: "p",
           text: "Кроме того, для выставки 1997 года был разработан гитарный оконечник 2 × 60 Вт, который впоследствии практически спас фирму НОВИК. Весь 1996–1997 год велись переговоры с известной немецкой фирмой CAMAC; её директор Norbert Hoiser был хорошо знаком с продукцией NOVIK. Но в 1998-м Hoiser прекращает деятельность на музыкальном рынке Германии и уезжает в Америку. Победить Германию, как в 1945-м, пока не удаётся — однако жизнь продолжается, и Россия становится всё ближе.",
         },
+        {
+          type: "figure",
+          src: "/history/novik-n1202c-n602c-1996-rear.jpg",
+          alt: "NOVIK N1202C / N602C для Pellarin",
+          caption: "1996 · NOVIK N1202C / N602C для Pellarin.",
+        },
       ],
     },
     {
@@ -385,9 +411,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n602-stack.jpg",
-          alt: "NOVIK N602",
-          caption: "NOVIK N602 — гитарный оконечник, превратившийся в линейный усилитель мощности для рынка РА.",
+          src: "/history/novik-mk50-combo-1997-1998-front.jpg",
+          alt: "NOVIK MK50 Combo",
+          caption: "1997–1998 · NOVIK MK50 Combo для внутреннего рынка.",
         },
         {
           type: "p",

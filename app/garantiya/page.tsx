@@ -49,7 +49,7 @@ export default function GuaranteePage() {
       <section className="border-t border-border bg-surface-2 py-16">
         <Container>
           <SectionHeader eyebrow={g.service.eyebrow} title={g.service.title} className="mb-8" />
-          <div className="max-w-[760px]">
+          <div className="max-w-[66ch]">
             {g.service.blocks.map((b, i) => (
               <Block key={i} block={b} />
             ))}

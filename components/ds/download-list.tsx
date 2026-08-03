@@ -17,7 +17,7 @@ export function DownloadList({
   className?: string;
 }) {
   return (
-    <ul className={cn("grid gap-2 sm:grid-cols-2", className)}>
+    <ul className={cn("grid gap-2", links.length > 1 && "sm:grid-cols-2", className)}>
       {links.map((link) => {
         const external = !link.href.startsWith("/");
         return (

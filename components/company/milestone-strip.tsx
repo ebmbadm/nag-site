@@ -17,7 +17,7 @@ export function MilestoneStrip({
           <Eyebrow accent>Компания в датах</Eyebrow>
           <span className="flex flex-col text-right">
             <b className="font-display text-2xl uppercase text-text" style={{ letterSpacing: "var(--ls-tight)" }}>{stat.value}</b>
-            <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">{stat.label}</span>
+            <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{stat.label}</span>
           </span>
         </div>
 
@@ -25,7 +25,7 @@ export function MilestoneStrip({
           {chapters.map((c) => (
             <li key={c.id} className="bg-bg p-5" style={{ borderTop: "var(--border-w-rule) solid var(--accent)" }}>
               <div className="font-display text-xl text-text tabular" style={{ letterSpacing: "var(--ls-tight)" }}>{c.year}</div>
-              <div className="mt-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">{c.label}</div>
+              <div className="mt-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{c.label}</div>
             </li>
           ))}
         </ol>

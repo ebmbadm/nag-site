@@ -12,7 +12,7 @@ export function Field({ label, htmlFor, children, error }: FieldProps) {
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={htmlFor}
-        className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint"
+        className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted"
       >
         {label}
       </label>

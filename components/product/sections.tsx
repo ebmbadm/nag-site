@@ -6,6 +6,7 @@ import {
   Badge,
   Chip,
   Divider,
+  Rule,
   Surface,
   SpecTable,
   SpecMatrixTable,
@@ -14,8 +15,10 @@ import {
   Gallery,
   Breadcrumb,
   DownloadList,
+  ExpandAllControl,
 } from "@/components/ds";
 import { FeatureIcon } from "./icon-map";
+import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/format";
 import { describeDownload } from "@/lib/content/downloads";
 import type { ProductFrontmatter } from "@/lib/content/schema";
@@ -89,8 +92,11 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
             </Eyebrow>
             {displayPrice ? (
               <div
-                className="mt-1 font-display text-text"
-                style={{ fontSize: "var(--text-4xl)", lineHeight: "var(--lh-tight)" }}
+                className="mt-1 font-display text-text tabular"
+                style={{
+                  fontSize: "clamp(var(--text-xl), 3.4vw, var(--text-3xl))",
+                  lineHeight: "var(--lh-tight)",
+                }}
               >
                 {displayPrice}
               </div>
@@ -198,8 +204,8 @@ export function FeatureBand({ features }: { features: NonNullable<ProductFrontma
 
 export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"]> }) {
   return (
-    <Surface mode="dark" className="py-16" style={{ background: "var(--nag-black-980)" }}>
-      <Container className="grid gap-10 lg:grid-cols-2 lg:items-center">
+    <Surface mode="dark" className="border-t border-border bg-surface py-24">
+      <Container className={cn("grid gap-10", tech.image && "lg:grid-cols-2 lg:items-center")}>
         <div>
           <Eyebrow accent className="mb-3 block">
             {tech.eyebrow}
@@ -219,7 +225,7 @@ export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"
             {tech.cards.map((card) => (
               <div
                 key={card.label}
-                className="rounded-[var(--radius-md)] border border-border bg-surface px-5 py-4"
+                className="rounded-[var(--radius-md)] border border-border bg-surface-2 px-5 py-4"
                 style={{ borderLeft: "var(--border-w-rule) solid var(--accent)" }}
               >
                 <div className="flex items-baseline justify-between gap-4">
@@ -250,9 +256,7 @@ export function DocsSection({ docs }: { docs: NonNullable<ProductFrontmatter["do
   return (
     <section id="docs" className="scroll-mt-20 border-t border-border py-14">
       <Container>
-        <Eyebrow accent className="mb-3 block">
-          Загрузки
-        </Eyebrow>
+        <Rule className="mb-4" />
         <h2
           className="font-display uppercase text-text"
           style={{
@@ -268,6 +272,16 @@ export function DocsSection({ docs }: { docs: NonNullable<ProductFrontmatter["do
     </section>
   );
 }
+
+/** Column counts as whole literal strings — Tailwind can't see composed class names. */
+const SOFTWARE_COLS: Record<number, string> = {
+  1: "",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  // 4 items stay 2x2 rather than 4-up: at four columns a 1155px UI capture
+  // paints at ~0.11x and stops being a readable screenshot.
+  4: "sm:grid-cols-2",
+};
 
 export function SoftwareSection({
   software,
@@ -303,10 +317,17 @@ export function SoftwareSection({
           className="mt-8"
         />
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className={cn("mt-8 grid gap-5", SOFTWARE_COLS[Math.min(Math.max(software.items.length, 1), 4)])}>
           {software.items.map((item) => (
             <div key={item.title}>
-              <Figure src={item.src} alt={item.alt} className="[&_img]:aspect-video" height={400} />
+              {/* contain, не cover: скриншоты ПО бывают квадратными, и cover
+                  срезал у них ~44% — вместе с заголовком окна. */}
+              <Figure
+                src={item.src}
+                alt={item.alt}
+                height={400}
+                imgClassName="aspect-video object-contain"
+              />
               <h3 className="mt-3 font-display text-md uppercase text-text" style={{ letterSpacing: "var(--ls-tight)" }}>
                 {item.title}
               </h3>
@@ -329,15 +350,18 @@ export function SpecsSection({
   return (
     <section id="specs" className="scroll-mt-20 border-t border-border bg-surface-2 py-16">
       <Container>
-        <Eyebrow accent className="mb-3 block">
-          Технические данные
-        </Eyebrow>
-        <h2
-          className="mb-8 font-display uppercase text-text"
-          style={{ fontSize: "clamp(var(--text-2xl), 4vw, var(--text-3xl))", lineHeight: "var(--lh-tight)", letterSpacing: "var(--ls-tight)" }}
-        >
-          Характеристики
-        </h2>
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <div>
+            <Rule className="mb-4" />
+            <h2
+              className="font-display uppercase text-text"
+              style={{ fontSize: "clamp(var(--text-2xl), 4vw, var(--text-3xl))", lineHeight: "var(--lh-tight)", letterSpacing: "var(--ls-tight)" }}
+            >
+              Характеристики
+            </h2>
+          </div>
+          <ExpandAllControl targetSelector="#specs" />
+        </div>
         {specMatrix ? (
           <div className="mb-8 rounded-[var(--radius-lg)] border border-border bg-bg p-5">
             <h3

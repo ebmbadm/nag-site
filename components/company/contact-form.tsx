@@ -67,7 +67,7 @@ export function ContactForm({ form }: { form: ContactsContent["form"] }) {
         </button>
         <FormStatus state={result} />
       </form>
-      <p className="mt-3 font-mono text-2xs text-text-faint">{form.note}</p>
+      <p className="mt-3 font-mono text-2xs text-text-muted">{form.note}</p>
     </div>
   );
 }

@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <ProductHero product={p} slug={slug} />
 
       {body.trim() ? (
-        <section className="py-8">
+        <section className="border-t border-border py-16">
           <Container>
             <Prose>
               <Mdx source={body} />

@@ -110,7 +110,7 @@ export default function ArchivePage() {
         <Container>
           <Breadcrumb items={CRUMBS} />
           <div className="mt-6 max-w-prose">
-            <Eyebrow accent>Каталог · Архив</Eyebrow>
+            <Eyebrow accent>Сняты с производства</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
               style={{

@@ -51,8 +51,8 @@ export function HistoryHero({ hero }: { hero: HistoryHero }) {
           </div>
           <figcaption className="mt-3.5">
             <span
-              className="block text-text"
-              style={{ fontFamily: "'Segoe Script','Brush Script MT',cursive", fontSize: "26px", transform: "rotate(-4deg)" }}
+              className="block font-display uppercase text-text"
+              style={{ fontSize: "var(--text-lg)", letterSpacing: "var(--ls-wide)" }}
             >
               {hero.portrait.sign}
             </span>

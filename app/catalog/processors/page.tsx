@@ -29,7 +29,7 @@ export default function ProcessorsPage() {
   );
 
   return (
-    <div className="py-6">
+    <div className="pt-10 pb-24">
       <Container>
         <Breadcrumb
           items={[
@@ -56,6 +56,7 @@ export default function ProcessorsPage() {
           </p>
         </header>
 
+        {/* 6 товаров: 2 и 3 колонки делятся нацело — одиночных карточек нет ни на одном брейкпоинте. */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard
@@ -65,7 +66,7 @@ export default function ProcessorsPage() {
               eyebrow={p.line}
               image={{ src: p.gallery[0].src, alt: p.gallery[0].alt }}
               price={{ amount: p.price?.amount, onRequest: p.price?.onRequest }}
-              badge={p.slug === FLAGSHIP ? "Флагман" : p.badges[0]}
+              badge={p.slug === FLAGSHIP ? "Флагман" : undefined}
             />
           ))}
         </div>

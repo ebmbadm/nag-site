@@ -42,10 +42,16 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
       aria-label="Галерея изображений"
       className={cn("flex flex-col gap-3", className)}
     >
-      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-2" ref={emblaRef}>
+      <div
+        className={cn(
+          "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-2",
+          images.length > 1 && "cursor-grab active:cursor-grabbing",
+        )}
+        ref={emblaRef}
+      >
         <div className="flex">
           {images.map((img, i) => (
-            <div key={i} className="relative min-w-0 flex-[0_0_100%]">
+            <div key={i} className="group relative min-w-0 flex-[0_0_100%]">
               <div className="relative aspect-[16/10] w-full p-4">
                 <Image
                   src={img.src}
@@ -53,7 +59,7 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
                   fill
                   priority={i === 0}
                   sizes="(max-width: 900px) 100vw, 600px"
-                  className="object-contain p-2"
+                  className="object-contain p-2 transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
               </div>
             </div>
@@ -62,7 +68,7 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
       </div>
 
       {images.length > 1 ? (
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {images.map((img, i) => (
             <button
               key={i}

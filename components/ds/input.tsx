@@ -16,7 +16,7 @@ export function Input({ id, name, type = "text", placeholder, required, error }:
       placeholder={placeholder}
       required={required}
       aria-invalid={error ? true : undefined}
-      className="h-11 w-full rounded-[var(--radius-md)] border border-border bg-surface-2 px-3 text-sm text-text placeholder:text-text-faint focus:border-border-strong focus:outline-none aria-invalid:border-accent"
+      className="h-11 w-full rounded-[var(--radius-md)] border border-border bg-surface-2 px-3 text-sm text-text placeholder:text-text-faint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)] aria-invalid:border-accent"
     />
   );
 }

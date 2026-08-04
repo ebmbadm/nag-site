@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container, Eyebrow, Toc, ScrollProgress, ExpandAllControl } from "@/components/ds";
 import { HistoryHero } from "@/components/history/hero";
 import { Chapter } from "@/components/history/chapter";
+import { HistoryPreface } from "@/components/history/preface";
 import { getHistory } from "@/lib/content/company";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function HistoryPage() {
       </div>
 
       <HistoryHero hero={hero} />
+      <HistoryPreface />
 
       <Container className="flex flex-wrap items-start gap-[clamp(28px,5vw,60px)] pb-[clamp(60px,9vw,120px)]">
         <aside className="sticky top-24 hidden basis-[220px] self-start lg:block" style={{ flex: "0 1 220px" }}>

@@ -39,6 +39,14 @@ export function Block({ block }: { block: HistoryBlock }) {
       );
 
     case "figure":
-      return <Figure src={block.src} alt={block.alt} caption={block.caption} className="my-8" />;
+      return (
+        <Figure
+          src={block.src}
+          alt={block.alt}
+          caption={block.caption}
+          className="my-8"
+          unoptimized={block.src.startsWith("/history/novik-pa-")}
+        />
+      );
   }
 }

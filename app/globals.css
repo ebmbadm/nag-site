@@ -296,6 +296,24 @@ details > summary::-webkit-details-marker {
   }
 }
 
+/* spec ticker — shift exactly one of the four copies per cycle.
+   Four copies (not two) so the remaining tail still covers viewports
+   wider than a single copy; with two, a gap opened past ~1400px. */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+.spec-ticker {
+  animation: ticker 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spec-ticker {
+    animation: none;
+  }
+}
+
 /* ============================================================
    Motion utilities
    ============================================================ */

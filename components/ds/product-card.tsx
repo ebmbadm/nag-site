@@ -8,7 +8,7 @@ import { formatPrice } from "@/lib/format";
 export type ProductCardProps = {
   slug: string;
   name: string;
-  eyebrow: string;
+  eyebrow?: string;
   image: { src: string; alt: string; width?: number; height?: number };
   price?: { amount?: number; onRequest?: boolean };
   badge?: string;
@@ -55,14 +55,14 @@ export function ProductCard({
           src={image.src}
           alt={image.alt}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain p-4"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+          className="object-contain p-4 transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       </div>
 
       {/* Content */}
       <div className="flex flex-1 flex-col gap-1.5 p-4">
-        <Eyebrow>{eyebrow}</Eyebrow>
+        {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <p
           className="font-display uppercase text-text"
           style={{

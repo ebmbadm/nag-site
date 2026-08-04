@@ -3,7 +3,7 @@ import type { BoutiqueAreaCard } from "@/lib/content/types";
 
 export function AreaCards({ cards }: { cards: BoutiqueAreaCard[] }) {
   return (
-    <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-3">
+    <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border lg:grid-cols-3">
       {cards.map((card) => (
         <Link
           key={card.href}
@@ -16,7 +16,9 @@ export function AreaCards({ cards }: { cards: BoutiqueAreaCard[] }) {
           <span className="mt-2 text-sm text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
             {card.text}
           </span>
-          <span className="mt-4 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Открыть →</span>
+          <span className="mt-4 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent transition-transform duration-[var(--dur-base)] ease-[var(--ease-out)] group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">
+            Открыть →
+          </span>
         </Link>
       ))}
     </div>

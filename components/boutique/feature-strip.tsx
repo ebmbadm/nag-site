@@ -1,4 +1,5 @@
 import { Container, Chip, Surface, Figure } from "@/components/ds";
+import { cn } from "@/lib/utils";
 import type { BoutiquePage } from "@/lib/content/types";
 
 export function FeatureStrip({
@@ -10,7 +11,7 @@ export function FeatureStrip({
 }) {
   return (
     <Surface mode="dark" className="py-16">
-      <Container className="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <Container className={cn("grid gap-10", image && "lg:grid-cols-2 lg:items-center")}>
         <div>
           <h2
             className="font-display uppercase text-text"

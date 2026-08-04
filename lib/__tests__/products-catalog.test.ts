@@ -14,7 +14,7 @@ describe("DSP BY NAG D-series", () => {
     const proc = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Сигнальный процессор");
     expect(proc?.value).toContain("96 кГц");
     expect(proc?.value).not.toContain("192");
-    expect(p.docs?.[0].href).toBe("https://disk.yandex.ru/d/EDKxSOM4s-4yfg");
+    expect(p.docs?.[0].href).toBe("/downloads/dsp-by-nag-d4-d8-manual-ru.pdf");
   });
 });
 
@@ -84,7 +84,7 @@ describe("Power amps — CX", () => {
     const p = getProduct("cx-series").frontmatter;
     expect(p.models?.map((m) => m.name)).toEqual(["CX-520", "CX-540"]);
     expect(p.software).toBeTruthy();
-    expect(p.docs?.[0].href).toBe("https://disk.yandex.ru/d/QI0coVnIuCc2Lw");
+    expect(p.docs?.[0].href).toBe("/downloads/amp-by-nag-cx-manual-ru.pdf");
     const mass = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Масса нетто");
     expect(mass?.value).toBe("11.9 кг");
   });

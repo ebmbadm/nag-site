@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function HistoryPage() {
   const { hero, chapters } = getHistory();
-  const tocItems = chapters.map((c) => ({ id: c.id, label: c.title, meta: c.year }));
+  const tocItems = chapters.map((chapter) => ({ id: chapter.id, label: chapter.title, meta: chapter.year }));
 
   return (
     <div>
@@ -37,8 +37,8 @@ export default function HistoryPage() {
             <Eyebrow accent>Хроника · 1976 — 2000</Eyebrow>
             <ExpandAllControl targetSelector="#history-article" />
           </div>
-          {chapters.map((chapter, i) => (
-            <Chapter key={chapter.id} chapter={chapter} first={i === 0} />
+          {chapters.map((chapter, index) => (
+            <Chapter key={chapter.id} chapter={chapter} first={index === 0} />
           ))}
         </article>
       </Container>

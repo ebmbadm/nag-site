@@ -62,8 +62,10 @@ const CSS = `
 .qm-ledcol{ display:flex; flex-direction:column; align-items:center; gap:3px; }
 .qm-led{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.07); }
 .qm-led.on{ box-shadow:0 0 5px currentColor, inset 0 0 1px rgba(255,255,255,.6); background:currentColor; }
-.qm-led.sig{ animation:qmSig 1.5s var(--d,0s) infinite; }
-.qm-led.clip{ animation:qmClip 3.2s var(--d,0s) infinite; }
+@media (prefers-reduced-motion: no-preference){
+  .qm-led.sig{ animation:qmSig 1.5s var(--d,0s) infinite; }
+  .qm-led.clip{ animation:qmClip 3.2s var(--d,0s) infinite; }
+}
 @keyframes qmSig{ 0%,100%{opacity:.3} 45%{opacity:1} }
 @keyframes qmClip{ 0%,90%,100%{opacity:.16} 94%{opacity:1} }
 .qm-knobs{ display:flex; align-items:center; justify-content:center; gap:11px; margin-top:6px; }
@@ -122,6 +124,9 @@ export default function QM400Amp({
   React.useEffect(() => {
     const el = sceneRef.current;
     if (!el) return;
+    // Reduced motion: no idle sway, no pointer tilt — the .qm CSS resting
+    // rotateX(8deg) rotateY(-22deg) stays as-is.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let t = 0;
     let curRY = -22;
@@ -169,7 +174,9 @@ export default function QM400Amp({
   return (
     <div className="qm-scene" ref={sceneRef}>
       <style>{CSS}</style>
-      <div className="qm-pivot" style={{ transform: `scale(${scale})` }}>
+      {/* `--qm-scale` lets an ancestor make the fixed 660px chassis
+          viewport-aware; the `scale` prop is the fallback. */}
+      <div className="qm-pivot" style={{ transform: `scale(var(--qm-scale, ${scale}))` }}>
         <div className="qm" ref={boxRef}>
           <div className="qm__f qm__back" />
           <div className="qm__f qm__left" />

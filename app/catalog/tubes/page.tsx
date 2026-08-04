@@ -5,6 +5,7 @@ import { TubesInquiryCta } from "./tubes-inquiry-cta";
 
 const CATEGORY = "Ламповые усилители";
 const ORDER = ["e12", "redbear", "black-fire", "n1202"];
+const FLAGSHIP = "e12";
 const CONTACT_TEL = "+79219372508";
 
 const LEDE =
@@ -30,7 +31,7 @@ export default function TubesPage() {
   );
 
   return (
-    <div className="py-6">
+    <div className="pt-10 pb-24">
       <Container>
         <Breadcrumb
           items={[
@@ -57,16 +58,16 @@ export default function TubesPage() {
           </p>
         </header>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        {/* 4 товара: сетка 2×2 — третья колонка оставляла бы одиночную карточку в ряду. */}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {products.map((p) => (
             <ProductCard
               key={p.slug}
               slug={p.slug}
               name={p.name}
-              eyebrow={p.line}
               image={{ src: p.gallery[0].src, alt: p.gallery[0].alt }}
               price={{ amount: p.price?.amount, onRequest: p.price?.onRequest }}
-              badge={p.badges[0]}
+              badge={p.slug === FLAGSHIP ? p.badges[0] : undefined}
             />
           ))}
         </div>

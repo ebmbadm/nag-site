@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { Container, Rule } from "@/components/ds";
+import { Container, Divider } from "@/components/ds";
 
 export type NavItem = { label: string; href: string };
 
@@ -105,8 +105,9 @@ export function MobileNav({ nav }: { nav: NavItem[] }) {
             {/* Header row */}
             <Container className="flex h-[58px] shrink-0 items-center justify-between">
               <Link href="/" onClick={() => setOpen(false)} aria-label="NAG — на главную">
+                {/* overlay is data-surface="dark" — the on-light mark is invisible here */}
                 <Image
-                  src="/brand/nag-logo-onlight.png"
+                  src="/brand/nag-logo-mono-white.png"
                   alt="NAG"
                   width={96}
                   height={20}
@@ -131,7 +132,7 @@ export function MobileNav({ nav }: { nav: NavItem[] }) {
               <Container className="py-8">
                 {nav.map((item, i) => (
                   <React.Fragment key={item.href}>
-                    {i > 0 && <Rule className="my-4 w-full" />}
+                    {i > 0 && <Divider className="my-4" />}
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}

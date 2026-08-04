@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
-import { Container } from "@/components/ds";
+import { Phone } from "lucide-react";
+import { Container, buttonVariants } from "@/components/ds";
 import { MobileNav } from "./mobile-nav";
+import { NavLinks } from "./nav-links";
 
 export const NAV = [
   { label: "Каталог", href: "/catalog" },
@@ -29,26 +30,17 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden flex-1 items-center gap-6 lg:flex" aria-label="Основная навигация">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)] focus-visible:rounded-[var(--radius-xs)]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <NavLinks items={NAV} />
 
         <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none">
-          <button
-            type="button"
-            aria-label="Корзина"
-            className="inline-flex size-9 items-center justify-center rounded-[var(--radius-md)] border border-border text-text-muted transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)]"
+          <a
+            href="tel:+79219372508"
+            aria-label="Позвонить: +7 921 937 25 08"
+            className={buttonVariants({ variant: "outline", size: "sm", className: "font-mono" })}
           >
-            <ShoppingCart className="size-4" aria-hidden />
-          </button>
+            <Phone className="size-4 lg:hidden" aria-hidden />
+            <span className="hidden lg:inline">+7 921 937 25 08</span>
+          </a>
           <MobileNav nav={NAV} />
         </div>
       </Container>

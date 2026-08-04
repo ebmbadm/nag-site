@@ -16,7 +16,7 @@ export function Textarea({ id, name, rows = 4, placeholder, required, error }: T
       placeholder={placeholder}
       required={required}
       aria-invalid={error ? true : undefined}
-      className="w-full rounded-[var(--radius-md)] border border-border bg-surface-2 px-3 py-2 text-sm text-text placeholder:text-text-faint focus:border-border-strong focus:outline-none aria-invalid:border-accent"
+      className="w-full rounded-[var(--radius-md)] border border-border bg-surface-2 px-3 py-2 text-sm text-text placeholder:text-text-faint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)] aria-invalid:border-accent"
     />
   );
 }

@@ -2,7 +2,7 @@ import type { GuaranteeContent } from "@/lib/content/types";
 
 export const garantiya: GuaranteeContent = {
   hero: {
-    eyebrow: "Гарантия и сервис",
+    eyebrow: "Сервис в Санкт-Петербурге",
     title: "Гарантия и сервис",
     lede: "Цены и качество обслуживания отделом сервиса NOVIK всегда были и остаются вне конкуренции.",
   },

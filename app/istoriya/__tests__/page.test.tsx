@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import HistoryPage from "../page";
 
 test("renders the approved Novik history introduction and photographs", () => {
@@ -26,4 +28,12 @@ test("renders the approved Novik history introduction and photographs", () => {
 
   expect(screen.getByAltText("NOVIK PA 602").getAttribute("src")).toBe("/history/novik-pa-602-1997.jpg");
   expect(screen.getByAltText("NOVIK PA 1202").getAttribute("src")).toBe("/history/novik-pa-1202-1999.jpg");
+});
+
+test("ships PA 602 and PA 1202 as browser-decodable JPEG files", () => {
+  for (const fileName of ["novik-pa-602-1997.jpg", "novik-pa-1202-1999.jpg"]) {
+    const header = readFileSync(resolve(process.cwd(), "public", "history", fileName)).subarray(0, 3);
+
+    expect([...header]).toEqual([0xff, 0xd8, 0xff]);
+  }
 });

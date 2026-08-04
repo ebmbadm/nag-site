@@ -12,6 +12,7 @@ export function Figure({
   className,
   imgClassName,
   priority,
+  unoptimized = false,
 }: {
   src: string;
   alt: string;
@@ -21,6 +22,7 @@ export function Figure({
   className?: string;
   imgClassName?: string;
   priority?: boolean;
+  unoptimized?: boolean;
 }) {
   return (
     <figure className={cn("m-0", className)}>
@@ -31,6 +33,7 @@ export function Figure({
           width={width}
           height={height}
           priority={priority}
+          unoptimized={unoptimized}
           className={cn("h-auto w-full object-cover", imgClassName)}
         />
       </div>

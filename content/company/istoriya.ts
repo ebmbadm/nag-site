@@ -206,8 +206,8 @@ export const istoriya: HistoryContent = {
     {
       id: "novik",
       year: "1992",
-      label: "SPETEL → NOVIK · рождение компании",
-      title: "Бренд NOVIK",
+      label: "SPETEL · первые усилители",
+      title: "SPETEL",
       blocks: [
         {
           type: "p",
@@ -233,7 +233,7 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "p",
-          text: "В конце 1992 года я неожиданно узнал, что Полющуковский не просто создал свой коллектив и усилитель «Петербург», но и начал продавать его в Германию. Тогда я впервые придумал и поставил на свой усилитель бренд **NOVIK**. От этого момента я отсчитываю создание компании НОВИК.",
+          text: "В конце 1992 года я неожиданно узнал, что Полющуковский не просто создал свой коллектив и усилитель «Петербург», но и начал продавать его в Германию. Тогда стало ясно: первый профессиональный усилитель SPETEL должен получить самостоятельное продолжение.",
         },
         {
           type: "p",
@@ -244,12 +244,12 @@ export const istoriya: HistoryContent = {
     {
       id: "gibson",
       year: "1993",
-      label: "Gibson · бренд RedBear",
-      title: "Gibson",
+      label: "NOVIK · RedBeaЯ",
+      title: "NOVIK и RedBeaЯ",
       blocks: [
         {
           type: "p",
-          text: "Целый год с кучей готовых усилителей я искал клиентов — серьёзное испытание для меня и коллектива: много красивых слов и нет денег. Образцы SPETEL отправлялись с лета 1992-го в Германию, Швецию, Финляндию, а с весны 1993-го под брендом NOVIK — и в США. В России продажи носили единичный характер: рынка на этот товар не было. Первый опыт самостоятельной выставочной работы — показ стека NOVIK в мае 1993-го в Петербурге на стенде HOHNER.",
+          text: "Целый год с кучей готовых усилителей я искал клиентов — серьёзное испытание для меня и коллектива: много красивых слов и нет денег. Образцы SPETEL отправлялись с лета 1992-го в Германию, Швецию, Финляндию, а с весны 1993-го под брендом NOVIK — и в США. В это же время появился RedBeaЯ. В России продажи носили единичный характер: рынка на этот товар не было. Первый опыт самостоятельной выставочной работы — показ стека NOVIK в мае 1993-го в Петербурге на стенде HOHNER.",
         },
         {
           type: "p",
@@ -271,13 +271,19 @@ export const istoriya: HistoryContent = {
           type: "p",
           text: "Реальное соотношение сил не давало мне шансов на продажу под собственным брендом — ещё одно неприятное открытие мирового бизнеса. Небольшое утешение: почти в таком же положении оказалась известная английская фирма Orange, работавшая по эксклюзивному контракту с Gibson в это же время — правда, под своим брендом.",
         },
+        {
+          type: "figure",
+          src: "/history/redbear-mk120-1993-dark-stack.jpg",
+          alt: "RedBeaЯ MK120/60 для Gibson",
+          caption: "1993 · RedBeaЯ MK120/60, изготовленный NOVIK для Gibson.",
+        },
       ],
     },
     {
       id: "redbear",
       year: "1994",
-      label: "RedBear MK120/60 · NAMM Show",
-      title: "RedBear",
+      label: "RedBeaЯ MKE 60 · NAMM Show",
+      title: "RedBeaЯ",
       blocks: [
         {
           type: "p",
@@ -289,9 +295,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/redbear-mk60.jpg",
-          alt: "RedBear MK60",
-          caption: "RedBear MK60 — стек, изготовленный NOVIK для Gibson.",
+          src: "/history/redbear-mke60-1994.jpg",
+          alt: "RedBeaЯ MKE 60",
+          caption: "1994 · RedBeaЯ MKE 60, изготовленный NOVIK для Gibson.",
         },
         {
           type: "p",
@@ -320,10 +326,24 @@ export const istoriya: HistoryContent = {
       ],
     },
     {
+      id: "mkx-cub-combo",
+      year: "1995",
+      label: "RedBeaЯ MKX CUB Combo · Gibson",
+      title: "RedBeaЯ MKX CUB Combo",
+      blocks: [
+        {
+          type: "figure",
+          src: "/history/redbear-mkx-cub-combo-1995-front.jpg",
+          alt: "RedBear MKX CUB Combo для Gibson",
+          caption: "1995 · RedBear MKX CUB Combo для Gibson.",
+        },
+      ],
+    },
+    {
       id: "pellarin",
       year: "1995",
-      label: "PELLARIN · N1202 / N602",
-      title: "PELLARIN",
+      label: "NOVIK N1202 / N602 · PELLARIN",
+      title: "NOVIK N1202 / N602",
       blocks: [
         {
           type: "p",
@@ -331,9 +351,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n1202-head.jpg",
-          alt: "NOVIK N1202",
-          caption: "NOVIK N1202 — голова, ставшая основой собственной линейки.",
+          src: "/history/novik-n1202-1995.jpg",
+          alt: "NOVIK N1202 / N602 для Pellarin",
+          caption: "1995 · NOVIK N1202 / N602 для Pellarin.",
         },
         {
           type: "p",
@@ -348,8 +368,8 @@ export const istoriya: HistoryContent = {
     {
       id: "ispytaniya",
       year: "1996",
-      label: "Колонки 4 × 12 · MK50/25 · оконечник 2 × 60",
-      title: "Испытания",
+      label: "NOVIK N1202C / N602C · комбо-версии",
+      title: "Комбо NOVIK",
       blocks: [
         {
           type: "p",
@@ -371,13 +391,19 @@ export const istoriya: HistoryContent = {
           type: "p",
           text: "Кроме того, для выставки 1997 года был разработан гитарный оконечник 2 × 60 Вт, который впоследствии практически спас фирму НОВИК. Весь 1996–1997 год велись переговоры с известной немецкой фирмой CAMAC; её директор Norbert Hoiser был хорошо знаком с продукцией NOVIK. Но в 1998-м Hoiser прекращает деятельность на музыкальном рынке Германии и уезжает в Америку. Победить Германию, как в 1945-м, пока не удаётся — однако жизнь продолжается, и Россия становится всё ближе.",
         },
+        {
+          type: "figure",
+          src: "/history/novik-n602c-1996.jpg",
+          alt: "NOVIK N1202C / N602C для Pellarin",
+          caption: "1996 · NOVIK N1202C / N602C для Pellarin.",
+        },
       ],
     },
     {
       id: "rossiya",
       year: "1997",
-      label: "Возвращение домой · рынок РА",
-      title: "Россия",
+      label: "PA 602 · возвращение домой",
+      title: "NOVIK 602",
       blocks: [
         {
           type: "p",
@@ -385,9 +411,9 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n602-stack.jpg",
-          alt: "NOVIK N602",
-          caption: "NOVIK N602 — гитарный оконечник, превратившийся в линейный усилитель мощности для рынка РА.",
+          src: "/history/novik-pa-602-1997.jpg",
+          alt: "NOVIK PA 602",
+          caption: "1997 · NOVIK 602 — ламповый оконечник для PA.",
         },
         {
           type: "p",
@@ -402,12 +428,18 @@ export const istoriya: HistoryContent = {
     {
       id: "mir",
       year: "1999",
-      label: "NAMM Show · Лос-Анджелес",
-      title: "Финал в мире",
+      label: "PA 1202 · NAMM Show · Лос-Анджелес",
+      title: "NOVIK 1202",
       blocks: [
         {
           type: "p",
           text: "Если в начале 1998-го показывать что-то во Франкфурте было уже бессмысленно, то дефолт августа 1998-го всё поставил с ног на голову. Весной 1999 года я с партнёром «Микс Арт» и компанией Mix Art USA участвую в NAMM Show в Лос-Анджелесе. Самостоятельно показывается весь предыдущий ассортимент NOVIK (включая модели RedBear) и новый, уже продающийся в России. Эта и следующая выставка NAMM Show 2000 стали последними попытками продвинуть бренд NOVIK на мировом рынке. Если раньше мои усилители представляли дистрибьюторы, то здесь я работал сам.",
+        },
+        {
+          type: "figure",
+          src: "/history/novik-pa-1202-1999.jpg",
+          alt: "NOVIK PA 1202",
+          caption: "1999 · NOVIK 1202 — ламповый оконечник для PA.",
         },
         {
           type: "p",
@@ -430,7 +462,7 @@ export const istoriya: HistoryContent = {
     {
       id: "liniya",
       year: "2000",
-      label: "1202 · E12 · линейка усилителей мощности",
+      label: "PA 202 · E12 · Black Fire",
       title: "Линейка PA",
       blocks: [
         {
@@ -439,15 +471,21 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n1202-combo.jpg",
-          alt: "NOVIK N1202C",
-          caption: "N1202C — комбо на оригинальном компактном шасси.",
+          src: "/history/novik-pa-202-2000.jpg",
+          alt: "NOVIK PA 202",
+          caption: "PA 202 — ламповый оконечник линейки NOVIK.",
         },
         {
           type: "figure",
-          src: "/history/novik-e12-combo.jpg",
+          src: "/history/novik-pa-e12-2000.jpg",
           alt: "NOVIK E12",
           caption: "E12 — двухканальный ламповый усилитель для РА, 2 × 480 Вт макс.",
+        },
+        {
+          type: "figure",
+          src: "/history/novik-pa-602-black-fire-2000.jpg",
+          alt: "NOVIK 602 Black Fire",
+          caption: "Black Fire — маркировка, которой в конце производства обозначали некоторые версии 602 и 1202.",
         },
         {
           type: "p",

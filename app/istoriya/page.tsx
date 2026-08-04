@@ -1,33 +1,47 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Surface, Breadcrumb } from "@/components/ds";
+import { Container, Eyebrow, Toc, ScrollProgress, ExpandAllControl } from "@/components/ds";
+import { HistoryHero } from "@/components/history/hero";
+import { Chapter } from "@/components/history/chapter";
+import { HistoryPreface } from "@/components/history/preface";
+import { getHistory } from "@/lib/content/company";
 
 export const metadata: Metadata = {
   title: "История компании NOVIK",
-  description: "Раздел «История» временно недоступен. Скоро вернёмся с хроникой компании.",
+  description:
+    "Мемуары основателя Сергея Новикова: от первых ламповых усилителей 1976 года и дебюта во Франкфурте до бренда NOVIK и линейки PA.",
 };
 
 export default function HistoryPage() {
+  const { hero, chapters } = getHistory();
+  const tocItems = chapters.map((chapter) => ({ id: chapter.id, label: chapter.title, meta: chapter.year }));
+
   return (
-    <Surface mode="dark" className="flex min-h-[60vh] items-start py-16">
-      <Container>
-        <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "История" }]} />
-        <div className="mt-6 max-w-prose">
-          <Eyebrow accent>Хроника · 1976 — 2000</Eyebrow>
-          <h1
-            className="mt-3 font-display uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            История NOVIK
-          </h1>
-          <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            Раздел будет доступен позже.
-          </p>
-        </div>
+    <div>
+      <div className="sticky top-[58px] z-30">
+        <ScrollProgress />
+      </div>
+
+      <HistoryHero hero={hero} />
+      <HistoryPreface />
+
+      <Container className="flex flex-wrap items-start gap-[clamp(28px,5vw,60px)] pb-[clamp(60px,9vw,120px)]">
+        <aside className="sticky top-24 hidden basis-[220px] self-start lg:block" style={{ flex: "0 1 220px" }}>
+          <div className="mb-3.5 ml-3.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+            Содержание
+          </div>
+          <Toc items={tocItems} />
+        </aside>
+
+        <article id="history-article" className="min-w-0 flex-1 basis-[560px] max-w-[760px]">
+          <div className="mb-2 flex items-center justify-between gap-4">
+            <Eyebrow accent>Хроника · 1976 — 2000</Eyebrow>
+            <ExpandAllControl targetSelector="#history-article" />
+          </div>
+          {chapters.map((chapter, index) => (
+            <Chapter key={chapter.id} chapter={chapter} first={index === 0} />
+          ))}
+        </article>
       </Container>
-    </Surface>
+    </div>
   );
 }

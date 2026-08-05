@@ -7,6 +7,7 @@ import { getBoutique } from "@/lib/content/boutique";
 const b = getBoutique();
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/catalog/boutique" },
   title: "Ламповый бутик NOVIK",
   description: b.lede,
 };

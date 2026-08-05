@@ -6,6 +6,7 @@ import { HistoryPreface } from "@/components/history/preface";
 import { getHistory } from "@/lib/content/company";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/istoriya" },
   title: "История компании NOVIK",
   description:
     "Мемуары основателя Сергея Новикова: от первых ламповых усилителей 1976 года и дебюта во Франкфурте до бренда NOVIK и линейки PA.",

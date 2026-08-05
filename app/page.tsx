@@ -97,13 +97,22 @@ const QM400_FEATURE_STATS = [
 ];
 
 export const metadata: Metadata = {
+  // Absolute: the default layout title leads with the brand, which almost nobody
+  // searches. Lead with the category words instead.
+  //
+  // Metadata here deliberately makes no claim about where the hardware is made.
+  // The gear is OEM, so "производство в Санкт-Петербурге" / "от производителя"
+  // would be a false origin claim — and this copy is what Yandex shows in the
+  // SERP snippet and in the Direct ad link preview. What is safe to state:
+  // "на рынке с 1992 года", the guarantee, and the service department in SPb.
+  title: { absolute: "Усилители мощности и DSP-процессоры NAG · NOVIK" },
   description:
-    "NAG · NOVIK — производитель профессионального звукового оборудования из Санкт-Петербурга: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. Производство и сервис с 1992 года.",
+    "Усилители мощности Class-TD и Class-D, DSP-процессоры и встраиваемые модули для активной акустики. NAG · NOVIK, на рынке с 1992 года. Гарантия 2 года.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "NAG · NOVIK — профессиональное звуковое оборудование",
     description:
-      "Производитель профессионального звукового оборудования из Санкт-Петербурга: DSP-процессоры, усилители Class-TD, ламповые усилители. С 1992 года.",
+      "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. На рынке с 1992 года.",
   },
 };
 

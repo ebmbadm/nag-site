@@ -7,6 +7,7 @@ import { getConverters } from "@/lib/content/boutique";
 const c = getConverters();
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/catalog/converters" },
   title: "Конвертеры для ламп · NOVIK",
   description: c.lede,
 };

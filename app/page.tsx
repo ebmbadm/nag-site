@@ -404,12 +404,12 @@ export default function HomePage() {
                 style={{ lineHeight: "var(--lh-relaxed)" }}
               >
                 От первых ламповых усилителей Сергея Новикова и серии RedBear для Gibson — до бренда
-                NOVIK и профессиональной линейки NAG. Сорок лет схемотехники, собранной в
-                Санкт-Петербурге.
+                NOVIK и профессиональной линейки NAG.
               </p>
-              <span className="font-mono text-xs uppercase tracking-[var(--ls-label)] text-text-faint">
-                Будет доступно позже
-              </span>
+              <Link href="/istoriya" className={buttonVariants({ variant: "outline" })}>
+                Читать историю
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
             </div>
           </div>
         </Container>

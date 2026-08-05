@@ -3,6 +3,7 @@ import { useRef, useEffect, useState, useTransition } from "react";
 import { X } from "lucide-react";
 import { buttonVariants, Field, Input, Textarea, FormStatus } from "@/components/ds";
 import { submitInquiry, type InquiryResult } from "@/app/actions/submit-inquiry";
+import { reachGoal } from "@/components/analytics/yandex-metrika";
 
 interface InquiryModalProps {
   open: boolean;
@@ -47,6 +48,7 @@ export function InquiryModal({
       });
       setResult(res);
       if (res.ok) {
+        reachGoal("lead", { kind, product: productSlug });
         setTimeout(onClose, 2000);
       }
     });

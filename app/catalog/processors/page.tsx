@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container, Eyebrow, Breadcrumb, ProductCard } from "@/components/ds";
 import { getProductsByCategory } from "@/lib/content/products";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema } from "@/lib/seo";
 
 const CATEGORY = "Процессоры";
 const ORDER = ["f-8-pro", "f-8", "d-8000", "the-rogue", "d-4", "d-8"];
@@ -9,11 +11,20 @@ const FLAGSHIP = "d-8000";
 const LEDE =
   "Цифровые корректоры-контроллеры акустических систем NAG. Шесть моделей: процессоры серии F с FIR и AES/EBU, флагман D-8000 Wi-Fi и доступная линейка DSP BY NAG с трансформаторным блоком питания.";
 
+const CRUMBS = [
+  { label: "Главная", href: "/" },
+  { label: "Каталог", href: "/catalog" },
+  { label: "Процессоры" },
+];
+
 export const metadata: Metadata = {
-  title: "Процессоры · NAG Pro Audio",
-  description: LEDE,
+  // Absolute — the layout template would otherwise append the brand a second time.
+  title: { absolute: "DSP-процессоры и контроллеры акустических систем NAG" },
+  description:
+    "DSP-процессоры NAG: цифровые контроллеры-корректоры АС от 2 × 4 до 4 × 8, FIR-фильтры, управление по Wi-Fi. От 34 900 ₽, производство СПб, гарантия 2 года.",
+  alternates: { canonical: "/catalog/processors" },
   openGraph: {
-    title: "Процессоры · NAG Pro Audio",
+    title: "DSP-процессоры и контроллеры акустических систем NAG",
     description: LEDE,
     images: ["/products/d-8000/nag-d8000-front-panel.jpg"],
   },
@@ -31,13 +42,8 @@ export default function ProcessorsPage() {
   return (
     <div className="pt-10 pb-24">
       <Container>
-        <Breadcrumb
-          items={[
-            { label: "Главная", href: "/" },
-            { label: "Каталог" },
-            { label: "Процессоры" },
-          ]}
-        />
+        <JsonLd data={breadcrumbSchema(CRUMBS)} />
+        <Breadcrumb items={CRUMBS} />
 
         <header className="mt-8 max-w-prose">
           <Eyebrow accent>NAG Pro Audio</Eyebrow>

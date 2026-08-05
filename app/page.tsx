@@ -97,8 +97,11 @@ const QM400_FEATURE_STATS = [
 ];
 
 export const metadata: Metadata = {
+  // Absolute: the default layout title leads with the brand, which almost nobody
+  // searches. Lead with the category words instead.
+  title: { absolute: "Усилители мощности и DSP-процессоры NAG · NOVIK — производство СПб" },
   description:
-    "NAG · NOVIK — производитель профессионального звукового оборудования из Санкт-Петербурга: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. Производство и сервис с 1992 года.",
+    "Производим усилители мощности Class-TD и Class-D, DSP-процессоры и встраиваемые модули для активной акустики. Санкт-Петербург, с 1992 года. Гарантия 2 года.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "NAG · NOVIK — профессиональное звуковое оборудование",

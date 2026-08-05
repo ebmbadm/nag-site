@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container, Eyebrow, Surface, Breadcrumb } from "@/components/ds";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/istoriya" },
   title: "История компании NOVIK",
   description: "Раздел «История» временно недоступен. Скоро вернёмся с хроникой компании.",
 };

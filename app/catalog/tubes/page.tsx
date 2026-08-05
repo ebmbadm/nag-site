@@ -12,6 +12,7 @@ const LEDE =
   "Компания НОВИК за свою историю создала десятки ламповых усилителей мощности. Здесь - лишь 4 модели из огромного ряда.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/catalog/tubes" },
   title: "Ламповые усилители · NOVIK",
   description: LEDE,
   openGraph: {

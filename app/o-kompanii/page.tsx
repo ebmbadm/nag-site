@@ -19,7 +19,8 @@ const MILESTONE_IDS: readonly string[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "О компании · NAG · NOVIK",
+  alternates: { canonical: "/o-kompanii" },
+  title: "О компании",
   description: hub.lede,
 };
 

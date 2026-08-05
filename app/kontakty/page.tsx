@@ -7,7 +7,8 @@ const c = getContacts();
 const mapHref = `https://yandex.ru/maps/?text=${encodeURIComponent(c.address.lines.join(", "))}`;
 
 export const metadata: Metadata = {
-  title: "Контакты · NAG · NOVIK",
+  alternates: { canonical: "/kontakty" },
+  title: "Контакты",
   description: "Телефон +7 921 937 25 08, почта novikamps@mail.ru, офис в Санкт-Петербурге. Свяжитесь с нами.",
 };
 

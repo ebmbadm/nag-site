@@ -4,6 +4,7 @@ import { getProductSlugs } from "@/lib/content/products";
 
 /** Static (non-product) routes. Keep in sync with app/ route folders. */
 const CATEGORY_ROUTES = [
+  "/catalog",
   "/catalog/amplifiers",
   "/catalog/processors",
   "/catalog/tubes",

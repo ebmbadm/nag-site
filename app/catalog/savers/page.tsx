@@ -7,6 +7,7 @@ import { getSavers } from "@/lib/content/boutique";
 const s = getSavers();
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/catalog/savers" },
   title: "Сейверы для винтажных радиоламп · NOVIK",
   description: s.lede,
 };

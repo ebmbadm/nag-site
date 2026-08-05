@@ -19,12 +19,12 @@ const CRUMBS = [
 
 export const metadata: Metadata = {
   // Absolute — the layout template would otherwise append the brand a second time.
-  title: { absolute: "Усилители мощности NAG — купить у производителя" },
+  title: { absolute: "Усилители мощности NAG — Class-TD и Class-D, купить" },
   description:
-    "Транзисторные усилители мощности NAG: флагман QM-400 4 × 2250 Вт, серии TD и CX, встраиваемые модули TDS/TDH и TDX. Производство СПб, гарантия 2 года.",
+    "Транзисторные усилители мощности NAG: флагман QM-400 4 × 2250 Вт, серии TD и CX, встраиваемые модули TDS/TDH и TDX. Гарантия 2 года, свой сервис.",
   alternates: { canonical: "/catalog/amplifiers" },
   openGraph: {
-    title: "Усилители мощности NAG — купить у производителя",
+    title: "Усилители мощности NAG — Class-TD и Class-D",
     description: LEDE,
     images: ["/products/qm-400/nag-qm400-front-panel.jpg"],
   },

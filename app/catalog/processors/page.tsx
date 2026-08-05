@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   // Absolute — the layout template would otherwise append the brand a second time.
   title: { absolute: "DSP-процессоры и контроллеры акустических систем NAG" },
   description:
-    "DSP-процессоры NAG: цифровые контроллеры-корректоры АС от 2 × 4 до 4 × 8, FIR-фильтры, управление по Wi-Fi. От 34 900 ₽, производство СПб, гарантия 2 года.",
+    "DSP-процессоры NAG: цифровые контроллеры-корректоры АС от 2 × 4 до 4 × 8, FIR-фильтры, управление по Wi-Fi. От 34 900 ₽, гарантия 2 года.",
   alternates: { canonical: "/catalog/processors" },
   openGraph: {
     title: "DSP-процессоры и контроллеры акустических систем NAG",

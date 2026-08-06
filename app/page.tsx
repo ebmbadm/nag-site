@@ -61,7 +61,7 @@ const CATEGORIES = [
     href: "/catalog/modules",
     price: "от 41 900 ₽",
     image: {
-      src: "/products/modules/nag-module-tds-rear-panel.png",
+      src: "/products/modules/nag-module-tds-rear-panel.jpg",
       alt: "NAG TDS — задняя панель модуля",
     },
   },

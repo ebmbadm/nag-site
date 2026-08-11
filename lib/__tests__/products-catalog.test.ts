@@ -75,6 +75,22 @@ describe("Power amps — series (matrix)", () => {
     const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
     expect(byName["TDS-20"]).toBe(44490);
     expect(byName["TDH-20"]).toBe(44900);
+    expect(p.specChips).toContain("до 2400 Вт (4 Ω)");
+    expect(p.models?.find((m) => m.name === "TDS-20")?.config).toBe("2400 Вт (4 Ω)");
+    expect(p.models?.find((m) => m.name === "TDH-20")?.config).toBe("2400 Вт (4 Ω)");
+    expect(p.specMatrix?.rows.find((r) => r.label === "4 Ω")?.values).toEqual([
+      "960 Вт",
+      "960 Вт",
+      "2400 Вт",
+      "2400 Вт",
+    ]);
+    expect(p.gallery.map((image) => image.src)).toContain(
+      "/products/modules/nag-tds-20-installed-in-subwoofer.jpg",
+    );
+    expect(p.gallery.map((image) => image.src)).toContain(
+      "/products/modules/nag-tds-20-interior-with-removed-pcb.jpg",
+    );
+    expect(p.tech?.image?.src).toBe("/products/modules/nag-tds-20-interior-with-removed-pcb.jpg");
     expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
   });
 });

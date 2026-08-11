@@ -5,11 +5,11 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
 
 const CATEGORY = "Усилители мощности";
-const ORDER = ["qm-400", "td-series", "cx-series", "modules", "tdx"];
+const ORDER = ["qm-400", "td-series", "cx-series", "tdx"];
 const FLAGSHIP = "qm-400";
 
 const LEDE =
-  "Транзисторные усилители мощности NAG. Класс TD и класс D: флагман QM-400 (4 × 2250 Вт), серии TD и CX, встраиваемые модули TDS/TDH и TDX.";
+  "Транзисторные усилители мощности NAG. Класс TD и класс D: флагман QM-400 (4 × 2250 Вт), серии TD и CX, а также TDX.";
 
 const CRUMBS = [
   { label: "Главная", href: "/" },

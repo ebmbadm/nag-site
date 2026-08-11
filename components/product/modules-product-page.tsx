@@ -22,7 +22,7 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
       <section className="border-b border-border py-12 lg:py-[68px]">
         <Container className="grid items-center gap-9 lg:grid-cols-2">
           <div>
-            <Eyebrow accent>Встраиваемые усилители мощности</Eyebrow>
+            <Eyebrow accent>Встраиваемые модули NAG</Eyebrow>
             <h1 className="mt-5 font-display text-5xl uppercase leading-[0.86] tracking-[var(--ls-tighter)] sm:text-7xl lg:text-8xl">
               TDS <span className="text-accent">/</span> TDH
             </h1>

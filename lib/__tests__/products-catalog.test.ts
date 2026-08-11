@@ -72,6 +72,8 @@ describe("Power amps — series (matrix)", () => {
 
   test("modules: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
     const p = getProduct("modules").frontmatter;
+    expect(p.category).toBe("Модули NAG");
+    expect(p.breadcrumb.map((item) => item.label)).toEqual(["Каталог", "Модули NAG", "TDS / TDH"]);
     const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
     expect(byName["TDS-20"]).toBe(44490);
     expect(byName["TDH-20"]).toBe(44900);

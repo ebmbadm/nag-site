@@ -22,8 +22,10 @@ describe("catalog coverage", () => {
     expect(getProductsByCategory("Процессоры")).toHaveLength(6);
   });
 
-  test("all five amplifiers are in the Усилители мощности category", () => {
-    expect(getProductsByCategory("Усилители мощности")).toHaveLength(5);
+  test("only power amplifiers are in the Усилители мощности category", () => {
+    const amplifiers = getProductsByCategory("Усилители мощности");
+    expect(amplifiers).toHaveLength(4);
+    expect(amplifiers.map((product) => product.slug)).not.toContain("modules");
   });
 
   test("all four tube amps are in the Ламповые усилители category", () => {

@@ -14,6 +14,9 @@ describe("ModulesProductPage", () => {
     render(<ModulesProductPage product={product} />);
 
     expect(screen.getByRole("heading", { name: "TDS / TDH" })).toBeInTheDocument();
+    expect(screen.getByAltText("NAG TDS — задняя панель модуля").parentElement).toHaveClass(
+      "bg-photo-backdrop",
+    );
     expect(screen.getAllByText("TDS-10")).not.toHaveLength(0);
     expect(screen.getAllByText("TDH-10")).not.toHaveLength(0);
     expect(screen.getAllByText("TDS-20")).not.toHaveLength(0);

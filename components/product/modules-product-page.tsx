@@ -32,7 +32,7 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
           </div>
 
           {rearPanel ? (
-            <div className="relative min-h-[340px] overflow-hidden bg-surface-inset lg:min-h-[420px]">
+            <div className="relative min-h-[340px] overflow-hidden bg-photo-backdrop lg:min-h-[420px]">
               <Image
                 src={rearPanel.src}
                 alt={rearPanel.alt}
@@ -41,7 +41,7 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-contain p-[4%] mix-blend-multiply"
               />
-              <span className="absolute bottom-4 left-4 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-inverse">
+              <span className="absolute bottom-4 left-4 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-ink">
                 TDS-20 · Rear panel
               </span>
             </div>

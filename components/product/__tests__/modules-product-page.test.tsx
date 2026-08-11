@@ -9,11 +9,15 @@ vi.mock("@/components/ds", async (orig) => ({
 }));
 
 describe("ModulesProductPage", () => {
-  test("renders the approved hero and two photographic content blocks", () => {
+  test("renders the approved dark-layout content and all module models", () => {
     const product = getProduct("modules").frontmatter;
     render(<ModulesProductPage product={product} />);
 
-    expect(screen.getByRole("heading", { name: "NAG TDS / TDH" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "TDS / TDH" })).toBeInTheDocument();
+    expect(screen.getAllByText("TDS-10")).not.toHaveLength(0);
+    expect(screen.getAllByText("TDH-10")).not.toHaveLength(0);
+    expect(screen.getAllByText("TDS-20")).not.toHaveLength(0);
+    expect(screen.getAllByText("TDH-20")).not.toHaveLength(0);
     expect(screen.getByText("Запас, который слышно.")).toBeInTheDocument();
     expect(screen.getByText("Рассчитан на реальную работу.")).toBeInTheDocument();
     expect(screen.getByAltText(/установленный в сабвуфер/i)).toBeInTheDocument();

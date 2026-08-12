@@ -52,6 +52,10 @@ describe("Power amps — single SKU", () => {
     const titles = p.specGroups.map((g) => g.title);
     expect(titles).toContain("Четырёхканальный режим");
     expect(titles).toContain("Мостовой режим (bridge)");
+    expect(p.specChips).toContain("4 × 2400 Вт (4 Ω)");
+    expect(p.specChips).not.toContain("4 × 2250 Вт (2 Ω)");
+    const rows = p.specGroups.flatMap((group) => group.rows);
+    expect(rows.find((row) => row.label === "Мощность 4 Ω (RMS, 1 кГц, 1% THD)")?.value).toBe("4 × 2400 Вт");
   });
 
   test("tdx: price 49900 + Class-D (not Class-TD)", () => {
@@ -63,9 +67,11 @@ describe("Power amps — single SKU", () => {
 });
 
 describe("Power amps — series (matrix)", () => {
-  test("td-series: models prices incl TD-40 80490 + matrix Цена row", () => {
+  test("td-series: TD-100 2400 W, prices incl TD-40 80490 + matrix Цена row", () => {
     const p = getProduct("td-series").frontmatter;
     expect(p.models?.find((m) => m.name === "TD-40")?.price).toBe(80490);
+    expect(p.models?.find((m) => m.name === "TD-100")?.config).toBe("2 × 2400 Вт (4 Ω)");
+    expect(p.specMatrix?.rows.find((row) => row.label === "4 Ω стерео")?.values[3]).toBe("2 × 2400 Вт");
     const priceRow = p.specMatrix?.rows.find((r) => r.label === "Цена");
     expect(priceRow?.values).toEqual(["70 000 ₽", "80 490 ₽", "110 900 ₽", "120 900 ₽"]);
   });

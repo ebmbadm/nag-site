@@ -71,13 +71,16 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
       <section className="py-16">
         <Container className="grid gap-px bg-border lg:grid-cols-2">
           <article className="bg-surface p-6 lg:p-8">
-            <Image src="/products/amplifiers/td-100-80.jpg" alt="Усилители NAG TD-100 и TD-80" width={1200} height={750} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[240px] w-full bg-photo-backdrop object-contain" />
+            <Image src="/products/amplifiers/td-100-80-panels.png" alt="Передняя и задняя панели усилителя NAG TD-100" width={1600} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[240px] w-full bg-photo-backdrop object-contain" />
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-100 / TD-80</h2>
-            <p className="mt-4 leading-relaxed text-text-muted">Двухканальные версии для задач, где нужна высокая мощность в компактном корпусе 1.5U. Два автономных канала сохраняют привычную для серии TD логику работы.</p>
+            <p className="mt-4 leading-relaxed text-text-muted">Двухканальные версии для задач, где нужна высокая мощность в компактном корпусе 1.5U. Общий блок питания и два канала сохраняют привычную для серии TD логику работы.</p>
             <span className="mt-6 block font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Серия TD · старшая</span>
           </article>
           <article className="bg-surface p-6 lg:p-8">
-            <Image src="/products/amplifiers/td-40-30.jpg" alt="Усилители NAG TD-40 и TD-30" width={1200} height={750} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[240px] w-full bg-photo-backdrop object-contain" />
+            <div className="grid gap-3 bg-photo-backdrop p-3">
+              <Image src="/products/td-series/nag-td40-front-panel.jpg" alt="Передняя панель усилителя NAG TD-40" width={1400} height={187} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[90px] w-full object-contain" />
+              <Image src="/products/td-series/nag-td40-front-rear-panels.png" alt="Передняя и задняя панели усилителя NAG TD-40" width={1680} height={841} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[145px] w-full object-contain" />
+            </div>
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-40 / TD-30</h2>
             <p className="mt-4 leading-relaxed text-text-muted">Самые лёгкие двухканальные усилители TD-класса в 1U-дизайне. Подходят для систем, где важны компактность, надёжность и понятная интеграция.</p>
             <span className="mt-6 block font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Серия TD · 1U</span>
@@ -98,7 +101,7 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
             <table aria-label="Характеристики и цены" className="w-full min-w-[760px] border-collapse text-left text-sm">
               <thead><tr className="border-b border-border"><th className="p-4 text-text-muted">Модель</th><th className="bg-accent-wash p-4">QM-400</th><th className="p-4">TD-100 / TD-80</th><th className="p-4">TD-40 / TD-30</th></tr></thead>
               <tbody>
-                <tr className="border-b border-border"><td className="p-4 text-text-muted">Каналы</td><td className="bg-accent-wash p-4">4 автономных</td><td className="p-4">2 автономных</td><td className="p-4">2 автономных</td></tr>
+                <tr className="border-b border-border"><td className="p-4 text-text-muted">Каналы</td><td className="bg-accent-wash p-4">4 автономных</td><td className="p-4">2</td><td className="p-4">2</td></tr>
                 <tr className="border-b border-border"><td className="p-4 text-text-muted">Класс</td><td className="bg-accent-wash p-4">Class-TD</td><td className="p-4">Class-TD</td><td className="p-4">Class-TD</td></tr>
                 <tr className="border-b border-border"><td className="p-4 text-text-muted">Мощность на 4 Ω</td><td className="bg-accent-wash p-4">{specValue(qm400, "4 Ω")}</td><td className="p-4">TD-100: {td100?.config}<br />TD-80: {td80?.config}</td><td className="p-4">TD-40: {td40?.config}<br />TD-30: {td30?.config}</td></tr>
                 <tr className="border-b border-border"><td className="p-4 text-text-muted">Корпус</td><td className="bg-accent-wash p-4">{specValue(qm400, "Габариты")}</td><td className="p-4">{tdSizes?.[3]}</td><td className="p-4">{tdSizes?.[1]}</td></tr>

@@ -8,10 +8,10 @@ const COLUMNS = [
     links: [
       { label: "Процессоры", href: "/catalog/processors" },
       { label: "Усилители мощности", href: "/catalog/amplifiers" },
+      { label: "Модули", href: "/catalog/modules" },
       { label: "Ламповые усилители", href: "/catalog/tubes" },
       { label: "Ламповый бутик", href: "/catalog/boutique" },
-      { label: "Конвертеры", href: "/catalog/converters" },
-      { label: "Сейверы", href: "/catalog/savers" },
+      { label: "Сейверы и конверторы", href: "/catalog/boutique" },
       { label: "Архив моделей", href: "/catalog/arhiv" },
     ],
   },

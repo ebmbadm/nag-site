@@ -13,4 +13,12 @@ describe("nav consistency", () => {
     expect(screen.getByText("EAC · Гарантия 1 год")).toBeInTheDocument();
     expect(screen.queryByText("EAC · Гарантия 2 года")).toBeNull();
   });
+
+  test("footer catalog includes Modules and combines savers with converters", () => {
+    render(<SiteFooter />);
+    expect(screen.getByRole("link", { name: "Модули" })).toHaveAttribute("href", "/catalog/modules");
+    expect(screen.getByRole("link", { name: "Сейверы и конверторы" })).toHaveAttribute("href", "/catalog/boutique");
+    expect(screen.queryByRole("link", { name: "Сейверы" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Конвертеры" })).toBeNull();
+  });
 });

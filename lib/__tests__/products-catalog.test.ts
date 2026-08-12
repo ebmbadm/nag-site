@@ -58,12 +58,6 @@ describe("Power amps — single SKU", () => {
     expect(rows.find((row) => row.label === "Мощность 4 Ω (RMS, 1 кГц, 1% THD)")?.value).toBe("4 × 2400 Вт");
   });
 
-  test("tdx: price 49900 + Class-D (not Class-TD)", () => {
-    const p = getProduct("tdx").frontmatter;
-    expect(p.price?.amount).toBe(49900);
-    const stage = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Тип выходного каскада");
-    expect(stage?.value).toBe("Class-D");
-  });
 });
 
 describe("Power amps — series (matrix)", () => {
@@ -100,17 +94,6 @@ describe("Power amps — series (matrix)", () => {
     );
     expect(p.tech?.image?.src).toBe("/products/modules/nag-tds-20-interior-with-removed-pcb.jpg");
     expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
-  });
-});
-
-describe("Power amps — CX", () => {
-  test("cx-series: 2 models, software present, 11.9 кг", () => {
-    const p = getProduct("cx-series").frontmatter;
-    expect(p.models?.map((m) => m.name)).toEqual(["CX-520", "CX-540"]);
-    expect(p.software).toBeTruthy();
-    expect(p.docs?.[0].href).toBe("/downloads/amp-by-nag-cx-manual-ru.pdf");
-    const mass = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Масса нетто");
-    expect(mass?.value).toBe("11.9 кг");
   });
 });
 

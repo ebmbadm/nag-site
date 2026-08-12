@@ -32,7 +32,7 @@ const GROUPS: ArchiveGroup[] = [
   {
     eyebrow: "Усилители мощности",
     title: "Архивные усилители мощности NAG",
-    note: "Сняты с производства. Актуальная замена — флагман QM-400 и серии Class-TD.",
+    note: "Сняты с производства. Актуальная замена — флагман QM-400 и серия Class-TD.",
     models: [
       "NAG QM-60",
       "NAG QM-40",
@@ -43,6 +43,8 @@ const GROUPS: ArchiveGroup[] = [
       "NAG RF-250",
       "NAG RD-1600",
       "NAG PS600",
+      "AMP By NAG CX-520",
+      "AMP By NAG CX-540",
     ],
     replacements: [
       { label: "NAG QM-400", href: "/catalog/qm-400" },
@@ -53,18 +55,17 @@ const GROUPS: ArchiveGroup[] = [
   {
     eyebrow: "Серия TD",
     title: "Архивные TD-усилители",
-    note: "TD-40 / TD-80 / TD-100 заменены актуальной серией TD и встраиваемым TDX.",
+    note: "TD-40 / TD-80 / TD-100 заменены актуальной серией TD.",
     models: ["NAG TD-40", "NAG TD-80", "NAG TD-100"],
     replacements: [
       { label: "NAG TD SERIES", href: "/catalog/td-series" },
-      { label: "NAG TDX", href: "/catalog/tdx" },
     ],
   },
   {
     eyebrow: "Встраиваемые модули",
     title: "Архивные модули для активной акустики",
-    note: "Модули MQ заменены модулями Class-TD серий TDS / TDH.",
-    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30"],
+    note: "Модули MQ и TDX сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
+    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30", "NAG TDX"],
     replacements: [{ label: "Модули TDS / TDH", href: "/catalog/modules" }],
   },
   {
@@ -92,7 +93,7 @@ const LEDE =
 export const metadata: Metadata = {
   title: "Архивные модели — сняты с производства",
   description:
-    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, TD-40/80/100, MQ-10/20/30, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
+    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, CX-520/540, TD-40/80/100, MQ-10/20/30, TDX, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
   alternates: { canonical: "/catalog/arhiv" },
   openGraph: {
     title: "Архивные модели NAG · NOVIK — сняты с производства",

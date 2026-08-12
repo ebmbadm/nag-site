@@ -2,11 +2,11 @@ import { describe, expect, test } from "vitest";
 import { getProductSlugs, getProduct, getProductsByCategory } from "@/lib/content/products";
 
 describe("catalog coverage", () => {
-  test("exactly the fifteen expected product slugs exist", () => {
+  test("lists only current products, excluding archived CX and TDX", () => {
     expect(new Set(getProductSlugs())).toEqual(
       new Set([
         "d-4", "d-8", "d-8000", "f-8", "f-8-pro", "the-rogue",
-        "qm-400", "td-series", "cx-series", "modules", "tdx",
+        "qm-400", "td-series", "modules",
         "e12", "black-fire", "redbear", "n1202",
       ]),
     );
@@ -22,10 +22,9 @@ describe("catalog coverage", () => {
     expect(getProductsByCategory("Процессоры")).toHaveLength(6);
   });
 
-  test("only power amplifiers are in the Усилители мощности category", () => {
+  test("only QM-400 and TD are active power amplifiers", () => {
     const amplifiers = getProductsByCategory("Усилители мощности");
-    expect(amplifiers).toHaveLength(4);
-    expect(amplifiers.map((product) => product.slug)).not.toContain("modules");
+    expect(amplifiers.map((product) => product.slug)).toEqual(["qm-400", "td-series"]);
   });
 
   test("all four tube amps are in the Ламповые усилители category", () => {

@@ -33,9 +33,9 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "QM-400 · TD · CX",
+    eyebrow: "QM-400 · TD",
     title: "Усилители",
-    text: "Транзисторные QM-400, серии TD и CX — 4 × 700 Вт с DSP.",
+    text: "Транзисторные усилители QM-400 и серия TD.",
     href: "/catalog/amplifiers",
     price: "от 41 900 ₽",
     image: {
@@ -55,9 +55,9 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "TDS / TDH · TDX",
+    eyebrow: "TDS / TDH · Class-TD",
     title: "Модули",
-    text: "Встраиваемые модули для активной акустики: TDS / TDH, TDX.",
+    text: "Встраиваемые модули для активной акустики: TDS / TDH.",
     href: "/catalog/modules",
     price: "от 41 900 ₽",
     image: {
@@ -91,7 +91,7 @@ const ADVANTAGES = [
 ];
 
 const QM400_FEATURE_STATS = [
-  { value: "4×2250", label: "Вт · 2 Ω", accent: true },
+  { value: "4×2400", label: "Вт · 4 Ω", accent: true },
   { value: "0.1 %", label: "КНИ · 8 Ω", accent: false },
   { value: "950", label: "Демпинг", accent: false },
 ];

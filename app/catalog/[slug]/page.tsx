@@ -10,6 +10,7 @@ import {
   DocsSection,
 } from "@/components/product/sections";
 import { ModulesProductPage } from "@/components/product/modules-product-page";
+import { Qm400ProductPage } from "@/components/product/qm400-product-page";
 import { Mdx } from "@/lib/content/mdx";
 import { getProduct, getProductSlugs } from "@/lib/content/products";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -85,6 +86,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </Container>
         </div>
         <ModulesProductPage product={p} />
+        {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
+      </article>
+    );
+  }
+
+  if (slug === "qm-400") {
+    return (
+      <article>
+        <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
+        <div className="pt-6">
+          <Container>
+            <Breadcrumb items={crumbs} />
+          </Container>
+        </div>
+        <Qm400ProductPage product={p} />
+        <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
         {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
       </article>
     );

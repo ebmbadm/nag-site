@@ -17,7 +17,7 @@ test("renders the approved Novik history introduction and photographs", () => {
     "/history/redbear-mke60-1994.jpg",
     "/history/redbear-mkx-cub-combo-1995-front.jpg",
     "/history/novik-n1202-1995.jpg",
-    "/history/novik-n602c-1996.jpg",
+    "/history/novik-n1202c-1996.jpg",
     "/history/novik-pa-602-1997.jpg",
     "/history/novik-pa-1202-1999.jpg",
     "/history/novik-pa-e12-2000.jpg",

@@ -393,7 +393,7 @@ export const istoriya: HistoryContent = {
         },
         {
           type: "figure",
-          src: "/history/novik-n602c-1996.jpg",
+          src: "/history/novik-n1202c-1996.jpg",
           alt: "NOVIK N1202C / N602C для Pellarin",
           caption: "1996 · NOVIK N1202C / N602C для Pellarin.",
         },

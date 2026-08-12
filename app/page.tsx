@@ -44,14 +44,14 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "E12 · RedBear",
+    eyebrow: "602 · E12 · RedBear",
     title: "Лампа",
     text: "Ламповые усилители — наследие NOVIK с 1976 года.",
     href: "/catalog/tubes",
     price: "Цена по запросу",
     image: {
-      src: "/products/e12/novik-e12-head-front.png",
-      alt: "NOVIK E12 — передняя панель",
+      src: "/products/redbear/novik-redbear-front.png",
+      alt: "NOVIK RedBear — передняя панель",
     },
   },
   {
@@ -385,14 +385,12 @@ export default function HomePage() {
         <Container>
           <div className="grid items-center gap-[clamp(28px,4vw,60px)] lg:grid-cols-[.85fr_1.15fr]">
             <div className="w-full max-w-[380px] overflow-hidden rounded-[var(--radius-lg)] bg-surface-2 shadow-[var(--shadow-3)] lg:max-w-none">
-              {/* Source is a 181×314 portrait scan — object-contain plus a width
-                  cap until a ≥1120px re-export lands; uncapped it upscales ~3×
-                  at tablet width, and object-cover cropped the MK60 head out. */}
+              {/* The archival N602 photograph is kept contained to preserve its original framing. */}
               <Image
-                src="/history/redbear-mk60.jpg"
-                alt="RedBear — ламповое наследие NOVIK"
-                width={181}
-                height={314}
+                src="/history/novik-n602-guitar-stack.jpg"
+                alt="NOVIK N602 с колонкой и гитарой"
+                width={400}
+                height={574}
                 className="aspect-[3/4] h-full w-full object-contain"
               />
             </div>

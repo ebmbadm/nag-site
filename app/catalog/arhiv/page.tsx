@@ -53,18 +53,17 @@ const GROUPS: ArchiveGroup[] = [
   {
     eyebrow: "Серия TD",
     title: "Архивные TD-усилители",
-    note: "TD-40 / TD-80 / TD-100 заменены актуальной серией TD и встраиваемым TDX.",
+    note: "TD-40 / TD-80 / TD-100 заменены актуальной серией TD.",
     models: ["NAG TD-40", "NAG TD-80", "NAG TD-100"],
     replacements: [
       { label: "NAG TD SERIES", href: "/catalog/td-series" },
-      { label: "NAG TDX", href: "/catalog/tdx" },
     ],
   },
   {
     eyebrow: "Встраиваемые модули",
     title: "Архивные модули для активной акустики",
-    note: "Модули MQ заменены модулями Class-TD серий TDS / TDH.",
-    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30"],
+    note: "Модули MQ и TDX сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
+    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30", "NAG TDX"],
     replacements: [{ label: "Модули TDS / TDH", href: "/catalog/modules" }],
   },
   {

@@ -54,12 +54,6 @@ describe("Power amps — single SKU", () => {
     expect(titles).toContain("Мостовой режим (bridge)");
   });
 
-  test("tdx: price 49900 + Class-D (not Class-TD)", () => {
-    const p = getProduct("tdx").frontmatter;
-    expect(p.price?.amount).toBe(49900);
-    const stage = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Тип выходного каскада");
-    expect(stage?.value).toBe("Class-D");
-  });
 });
 
 describe("Power amps — series (matrix)", () => {
@@ -70,8 +64,8 @@ describe("Power amps — series (matrix)", () => {
     expect(priceRow?.values).toEqual(["70 000 ₽", "80 490 ₽", "110 900 ₽", "120 900 ₽"]);
   });
 
-  test("modules: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
-    const p = getProduct("modules").frontmatter;
+  test("tds-tdh: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
+    const p = getProduct("tds-tdh").frontmatter;
     const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
     expect(byName["TDS-20"]).toBe(44490);
     expect(byName["TDH-20"]).toBe(44900);

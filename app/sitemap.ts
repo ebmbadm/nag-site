@@ -6,6 +6,7 @@ import { getProductSlugs } from "@/lib/content/products";
 const CATEGORY_ROUTES = [
   "/catalog",
   "/catalog/amplifiers",
+  "/catalog/modules",
   "/catalog/processors",
   "/catalog/tubes",
   "/catalog/boutique",

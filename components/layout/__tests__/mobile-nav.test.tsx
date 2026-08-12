@@ -2,22 +2,27 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MobileNav } from "../mobile-nav";
+import { NAV as SITE_NAV } from "../site-header";
 
-const NAV = [
+const TEST_NAV = [
   { label: "Каталог", href: "/catalog" },
   { label: "О компании", href: "/istoriya" },
 ];
 
 describe("MobileNav", () => {
+  it("includes a Modules link in the global navigation", () => {
+    expect(SITE_NAV).toContainEqual({ label: "Модули", href: "/catalog/modules" });
+  });
+
   it("renders hamburger button initially", () => {
-    render(<MobileNav nav={NAV} />);
+    render(<MobileNav nav={TEST_NAV} />);
     expect(screen.getByRole("button", { name: /открыть меню/i })).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("opens overlay on hamburger click", async () => {
     const user = userEvent.setup();
-    render(<MobileNav nav={NAV} />);
+    render(<MobileNav nav={TEST_NAV} />);
     await user.click(screen.getByRole("button", { name: /открыть меню/i }));
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     expect(screen.getByText("Каталог")).toBeInTheDocument();
@@ -25,7 +30,7 @@ describe("MobileNav", () => {
 
   it("closes overlay on close button click", async () => {
     const user = userEvent.setup();
-    render(<MobileNav nav={NAV} />);
+    render(<MobileNav nav={TEST_NAV} />);
     await user.click(screen.getByRole("button", { name: /открыть меню/i }));
     await user.click(screen.getByRole("button", { name: /закрыть меню/i }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -33,7 +38,7 @@ describe("MobileNav", () => {
 
   it("closes overlay on Escape key", async () => {
     const user = userEvent.setup();
-    render(<MobileNav nav={NAV} />);
+    render(<MobileNav nav={TEST_NAV} />);
     await user.click(screen.getByRole("button", { name: /открыть меню/i }));
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     await user.keyboard("{Escape}");
@@ -42,7 +47,7 @@ describe("MobileNav", () => {
 
   it("hamburger has aria-expanded=true when open", async () => {
     const user = userEvent.setup();
-    render(<MobileNav nav={NAV} />);
+    render(<MobileNav nav={TEST_NAV} />);
     const btn = screen.getByRole("button", { name: /открыть меню/i });
     expect(btn).toHaveAttribute("aria-expanded", "false");
     await user.click(btn);

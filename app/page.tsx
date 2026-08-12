@@ -55,9 +55,9 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "TDS / TDH · TDX",
+    eyebrow: "TDS / TDH · Class-TD",
     title: "Модули",
-    text: "Встраиваемые модули для активной акустики: TDS / TDH, TDX.",
+    text: "Встраиваемые модули для активной акустики: TDS / TDH.",
     href: "/catalog/modules",
     price: "от 41 900 ₽",
     image: {

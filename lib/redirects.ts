@@ -28,7 +28,8 @@ export const tildaRedirects: TildaRedirect[] = [
   { source: "/e12", destination: "/catalog/e12", statusCode: 301 },
   { source: "/black-fire", destination: "/catalog/black-fire", statusCode: 301 },
   { source: "/therogue", destination: "/catalog/the-rogue", statusCode: 301 },
-  { source: "/tdx", destination: "/catalog/tdx", statusCode: 301 },
+  { source: "/tdx", destination: "/catalog/arhiv", statusCode: 301 },
+  { source: "/catalog/tdx", destination: "/catalog/arhiv", statusCode: 301 },
   { source: "/redbear", destination: "/catalog/redbear", statusCode: 301 },
   { source: "/dspd8", destination: "/catalog/d-8", statusCode: 301 },
   { source: "/dspd4", destination: "/catalog/d-4", statusCode: 301 },
@@ -55,7 +56,7 @@ export const tildaRedirects: TildaRedirect[] = [
 
   // --- menu / variant duplicates ---
   { source: "/modules_menu", destination: "/catalog/modules", statusCode: 301 },
-  { source: "/moduli-dlja-akusticheskih-sistem-tds-tdh", destination: "/catalog/modules", statusCode: 301 },
+  { source: "/moduli-dlja-akusticheskih-sistem-tds-tdh", destination: "/catalog/tds-tdh", statusCode: 301 },
   { source: "/tdseries", destination: "/catalog/td-series", statusCode: 301 },
   { source: "/nag-td100", destination: "/catalog/td-series", statusCode: 301 },
   { source: "/novik-mkx50", destination: "/catalog/redbear", statusCode: 301 },
@@ -168,7 +169,7 @@ export const ruLegacyRedirects: HostRedirect[] = [
 
   ruRedirect("/nag-qm-400.html", "https://novikamps.com/catalog/qm-400"),
   ruRedirect("/d-8000-wi-fi.html", "https://novikamps.com/catalog/d-8000"),
-  ruRedirect("/usilitel/usiliteli/tranzistornye-usiliteli/nagtdhtds.html", "https://novikamps.com/catalog/modules"),
+  ruRedirect("/usilitel/usiliteli/tranzistornye-usiliteli/nagtdhtds.html", "https://novikamps.com/catalog/tds-tdh"),
 
   // --- DSP / processors category ---
   ruRedirect("/comp.html", "https://novikamps.com/catalog/processors"),

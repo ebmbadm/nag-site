@@ -57,8 +57,9 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | `/catalog/qm-400` | NAG QM-400 | product | ✅ P2 | `qm400/qm400.md` |
 | `/catalog/td-series` | NAG TD SERIES | product (series) | ✅ P2 | `td-series/td-series.md` |
 | `/catalog/cx-series` | CX / DSP SERIES | product (series) | ✅ P2 | `cx-series/cx-series.md` |
-| `/catalog/modules` | NAG TDS / TDH | product (series) | ✅ P2 | `modules/modules.md` |
-| `/catalog/tdx` | NAG TDX | product | ✅ P2 | `tdx/tdx.md` |
+| `/catalog/modules` | Модули NAG | category | ✅ P2 | `modules/modules.md` |
+| `/catalog/tds-tdh` | NAG TDS / TDH | product (series) | ✅ P2 | `modules/modules.md` |
+| `/catalog/tdx` | NAG TDX | archive redirect | ✅ P2 | `tdx/tdx.md` |
 | `/catalog/tubes` | Ламповые усилители НОВИК | category | ✅ P2 | `tubes/tubes.md` |
 | `/catalog/e12` | NOVIK E12 | product | ✅ P2 | `e12/e12.md` |
 | `/catalog/black-fire` | NOVIK BLACK FIRE | product | ✅ P2 | `black-fire/black-fire.md` |

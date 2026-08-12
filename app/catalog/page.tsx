@@ -4,9 +4,9 @@ import { HubCard } from "@/components/company/hub-card";
 import type { CompanyHubCard } from "@/lib/content/types";
 
 const LEDE =
-  "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, транзисторные и ламповые усилители мощности, ламповый бутик — сейверы и конвертеры для винтажных радиоламп.";
+  "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, усилители мощности, встраиваемые модули, ламповая техника и аксессуары для винтажных радиоламп.";
 
-/** Six live category landings + the archive. Keep in sync with app/catalog/*. */
+/** Seven catalog cards. Keep category links in sync with app/catalog/*. */
 const CATEGORIES: CompanyHubCard[] = [
   {
     kicker: "Процессоры · DSP",
@@ -17,8 +17,14 @@ const CATEGORIES: CompanyHubCard[] = [
   {
     kicker: "Транзисторные · Class-TD",
     title: "Усилители мощности",
-    text: "Флагман QM-400 (4 × 2250 Вт), серии TD и CX, встраиваемые модули TDS / TDH и TDX.",
+    text: "Флагман QM-400 (4 × 2250 Вт), серии TD и CX.",
     href: "/catalog/amplifiers",
+  },
+  {
+    kicker: "TDS / TDH · Class-TD",
+    title: "Модули",
+    text: "Встраиваемые модули для активной акустики: TDS-10, TDH-10, TDS-20 и TDH-20.",
+    href: "/catalog/modules",
   },
   {
     kicker: "Ламповые · NOVIK",
@@ -34,15 +40,9 @@ const CATEGORIES: CompanyHubCard[] = [
   },
   {
     kicker: "NOVIK Tubes Boutique",
-    title: "Конвертеры",
-    text: "Позволяют использовать разные лампы в одном усилителе — часть переходников не найти больше нигде.",
-    href: "/catalog/converters",
-  },
-  {
-    kicker: "NOVIK Tubes Boutique",
-    title: "Сейверы",
-    text: "Сохраняют оригинальные разъёмы усилителя и избавляют от дорогой замены панелек.",
-    href: "/catalog/savers",
+    title: "Сейверы и конвертеры",
+    text: "Аксессуары для винтажных ламп: сохраняют оригинальные разъёмы и расширяют выбор совместимых ламп.",
+    href: "/catalog/boutique",
   },
   {
     kicker: "Снято с производства",

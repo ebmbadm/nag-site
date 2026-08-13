@@ -31,3 +31,14 @@ test("uses the NOVIK RedBear photograph for the tube amplifiers category", () =>
     expect.stringContaining(encodeURIComponent("/products/redbear/novik-redbear-front.png")),
   );
 });
+
+test("places modules before tube amplifiers in the home catalogue", () => {
+  render(<HomePage />);
+
+  const modulesCard = screen.getByRole("heading", { name: "Модули" }).closest("a");
+  const tubesCard = screen.getByRole("heading", { name: "Лампа" }).closest("a");
+
+  expect(modulesCard).not.toBeNull();
+  expect(tubesCard).not.toBeNull();
+  expect(modulesCard?.compareDocumentPosition(tubesCard as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});

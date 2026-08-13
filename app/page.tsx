@@ -44,17 +44,6 @@ const CATEGORIES = [
     },
   },
   {
-    eyebrow: "602 · E12 · RedBear",
-    title: "Лампа",
-    text: "Ламповые усилители — наследие NOVIK с 1976 года.",
-    href: "/catalog/tubes",
-    price: "Цена по запросу",
-    image: {
-      src: "/products/redbear/novik-redbear-front.png",
-      alt: "NOVIK RedBear — передняя панель",
-    },
-  },
-  {
     eyebrow: "TDS / TDH · Class-TD",
     title: "Модули",
     text: "Встраиваемые модули для активной акустики: TDS / TDH.",
@@ -63,6 +52,17 @@ const CATEGORIES = [
     image: {
       src: "/products/modules/nag-module-tds-rear-panel.jpg",
       alt: "NAG TDS — задняя панель модуля",
+    },
+  },
+  {
+    eyebrow: "602 · E12 · RedBear",
+    title: "Лампа",
+    text: "Ламповые усилители — наследие NOVIK с 1976 года.",
+    href: "/catalog/tubes",
+    price: "Цена по запросу",
+    image: {
+      src: "/products/redbear/novik-redbear-front.png",
+      alt: "NOVIK RedBear — передняя панель",
     },
   },
 ];

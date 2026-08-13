@@ -1,0 +1,1108 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Паспорт сайта novikamps</title><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+
+<style>
+  :root {
+    --paper:      #FBFAF7;
+    --surface:    #FFFFFF;
+    --surface-2:  #F2EFE8;
+    --ink:        #17150F;
+    --ink-muted:  #6A6357;
+    --ink-faint:  #97907F;
+    --rule:       #E2DED2;
+    --rule-strong:#C6C0B0;
+    --accent:     #E11507;
+    --accent-soft:#F8E5E2;
+    --chassis:    #1A1815;
+    --chassis-ink:#EDE9E0;
+    --chassis-rule:#332F29;
+    --warn:       #9A6206;
+    --warn-soft:  #F6EBD6;
+    --good:       #47673A;
+    --good-soft:  #E7EEE1;
+    --bar:        #C9563F;
+    --bar-track:  #E7E2D6;
+
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --ls-label: 0.09em;
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #131210;
+      --surface:    #1A1815;
+      --surface-2:  #221F1A;
+      --ink:        #EDE9E0;
+      --ink-muted:  #A39B8C;
+      --ink-faint:  #79725F;
+      --rule:       #2C2822;
+      --rule-strong:#443E34;
+      --accent:     #FF4E3A;
+      --accent-soft:#331914;
+      --chassis:    #0B0A09;
+      --chassis-ink:#EDE9E0;
+      --chassis-rule:#2A2620;
+      --warn:       #D6A24A;
+      --warn-soft:  #2C2416;
+      --good:       #8CAE74;
+      --good-soft:  #1D2618;
+      --bar:        #D2604A;
+      --bar-track:  #2A2620;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #131210;
+    --surface:    #1A1815;
+    --surface-2:  #221F1A;
+    --ink:        #EDE9E0;
+    --ink-muted:  #A39B8C;
+    --ink-faint:  #79725F;
+    --rule:       #2C2822;
+    --rule-strong:#443E34;
+    --accent:     #FF4E3A;
+    --accent-soft:#331914;
+    --chassis:    #0B0A09;
+    --chassis-ink:#EDE9E0;
+    --chassis-rule:#2A2620;
+    --warn:       #D6A24A;
+    --warn-soft:  #2C2416;
+    --good:       #8CAE74;
+    --good-soft:  #1D2618;
+    --bar:        #D2604A;
+    --bar-track:  #2A2620;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px 120px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 56px 0 22px;
+    margin-bottom: 40px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(30px, 5.2vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-size: 18px;
+    color: var(--ink-muted);
+    max-width: var(--measure);
+    margin: 0 0 26px;
+  }
+  .colophon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 26px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--ink-faint);
+  }
+  .colophon b { color: var(--ink-muted); font-weight: 500; }
+
+  /* ---------- layout ---------- */
+
+  main { max-width: 100%; }
+
+  @media (min-width: 1040px) {
+    .wrap { grid-template-columns: 210px minmax(0, 1fr); column-gap: 56px; }
+    .masthead, .fullbleed-holder { grid-column: 1 / -1; }
+    nav.toc { grid-column: 1; }
+    main { grid-column: 2; }
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    height: max-content;
+    padding-top: 6px;
+    display: none;
+  }
+  @media (min-width: 1040px) { nav.toc { display: block; } }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  nav.toc a {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); }
+  nav.toc a span:first-child { color: var(--rule-strong); }
+
+  section { margin: 0 0 68px; scroll-margin-top: 20px; }
+
+  h2 {
+    font-size: clamp(20px, 2.6vw, 27px);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: var(--ls-label);
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .sec-head { border-top: 2px solid var(--ink); padding-top: 14px; margin-bottom: 26px; }
+  .sec-dek { color: var(--ink-muted); max-width: var(--measure); margin: 10px 0 0; }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    margin: 34px 0 10px;
+    text-wrap: balance;
+  }
+  h4 {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin: 26px 0 8px;
+  }
+
+  p { margin: 0 0 14px; max-width: var(--measure); }
+  ul, ol { margin: 0 0 16px; padding-left: 20px; max-width: var(--measure); }
+  li { margin-bottom: 7px; }
+  li::marker { color: var(--ink-faint); }
+  b, strong { font-weight: 700; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  code, .m { font-family: var(--mono); font-size: 0.88em; }
+  code {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.5px 4px;
+  }
+
+  /* ---------- spec rows ---------- */
+
+  .specrows { border-top: 1px solid var(--rule-strong); margin: 0 0 22px; }
+  .specrow {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 4px 22px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .specrow > dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+  }
+  .specrow > dd { margin: 0; }
+  @media (max-width: 620px) { .specrow { grid-template-columns: 1fr; } }
+
+  /* ---------- tables ---------- */
+
+  .tablewrap { overflow-x: auto; margin: 0 0 24px; border-bottom: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 520px; }
+  th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+  td.num { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ---------- coverage bars ---------- */
+
+  .bar-cell { width: 132px; }
+  .bar {
+    display: block;
+    position: relative;
+    height: 9px;
+    background: var(--bar-track);
+    border-radius: 0 2px 2px 0;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+  .bar > i {
+    display: block;
+    height: 100%;
+    background: var(--bar);
+    border-radius: 0 2px 2px 0;
+  }
+  .bar.zero > i { background: var(--rule-strong); }
+
+  /* ---------- chips ---------- */
+
+  .chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid;
+    white-space: nowrap;
+    line-height: 1.5;
+  }
+  .chip-red  { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .chip-amb  { color: var(--warn);   border-color: var(--warn);   background: var(--warn-soft); }
+  .chip-good { color: var(--good);   border-color: var(--good);   background: var(--good-soft); }
+  .chip-mute { color: var(--ink-muted); border-color: var(--rule-strong); background: var(--surface-2); }
+
+  /* ---------- callouts ---------- */
+
+  .note {
+    border-left: 3px solid var(--rule-strong);
+    background: var(--surface-2);
+    padding: 14px 18px;
+    margin: 0 0 22px;
+    max-width: var(--measure);
+  }
+  .note.warn { border-left-color: var(--accent); }
+  .note > :last-child { margin-bottom: 0; }
+  .note-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--ink-muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .note.warn .note-label { color: var(--accent); }
+
+  /* ---------- stat strip ---------- */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 0 0 24px;
+  }
+  .stat { background: var(--surface); padding: 14px 16px 16px; }
+  .stat b {
+    display: block;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .stat span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    display: block;
+  }
+  .stat small { display: block; font-size: 12px; color: var(--ink-faint); margin-top: 5px; line-height: 1.45; }
+
+  /* ---------- chassis band ---------- */
+
+  .chassis {
+    background: var(--chassis);
+    color: var(--chassis-ink);
+    padding: 34px 30px 30px;
+    margin: 0 0 24px;
+    border-top: 3px solid var(--accent);
+  }
+  .chassis h3 { color: var(--chassis-ink); margin-top: 0; }
+  .chassis p, .chassis li { color: #C9C3B6; }
+  .chassis .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--accent);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .banlist { list-style: none; padding: 0; margin: 0; max-width: 100%; }
+  .banlist li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 6px 26px;
+    padding: 11px 0;
+    border-top: 1px solid var(--chassis-rule);
+    margin: 0;
+  }
+  .banlist li:first-child { border-top: none; }
+  .banlist q {
+    color: var(--chassis-ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    quotes: "«" "»";
+  }
+  .banlist em { font-style: normal; color: #948C7C; font-size: 14px; }
+  @media (max-width: 700px) { .banlist li { grid-template-columns: 1fr; } }
+
+  /* ---------- question list ---------- */
+
+  .qgroup { margin-bottom: 26px; }
+  ol.q { list-style: none; padding: 0; counter-reset: q; max-width: 100%; }
+  ol.q > li {
+    counter-increment: q;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+    margin: 0;
+  }
+  ol.q > li::before {
+    content: counter(q, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent);
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  ol.q p { margin: 0; max-width: 100%; }
+  ol.q .why { color: var(--ink-muted); font-size: 14px; margin-top: 3px; }
+
+  /* ---------- wave cards ---------- */
+
+  .waves { display: flex; flex-direction: column; gap: 0; }
+  .wave { border-top: 2px solid var(--ink); padding: 18px 0 8px; }
+  .wave-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .wave-head h3 { margin: 0; font-size: 17px; text-transform: uppercase; letter-spacing: 0.01em; }
+  .wave-meta { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+
+  footer.end {
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--ink-faint);
+    max-width: 100%;
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Ревизия информационной части · 13 августа 2026</div>
+    <h1>Паспорт сайта novikamps</h1>
+    <p class="standfirst">Что сайт сегодня говорит о технике, чему из этого нельзя верить, чего просит рынок России и Казахстана — и в каком порядке перестраивать страницы под продажу усилителей мощности, DSP-процессоров и усилительных модулей.</p>
+    <div class="colophon">
+      <span><b>Объём разбора:</b> 13 карточек · 27 URL · 14 агентов</span>
+      <span><b>Ветка:</b> codex/preview-main-20260812</span>
+      <span><b>Вне скоупа:</b> дизайн · код · безопасность · магазин · тех. SEO</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Содержание">
+    <ol>
+      <li><a href="#s1"><span>01</span><span>Резюме</span></a></li>
+      <li><a href="#s2"><span>02</span><span>Развилка</span></a></li>
+      <li><a href="#s3"><span>03</span><span>Данные</span></a></li>
+      <li><a href="#s4"><span>04</span><span>Состояние</span></a></li>
+      <li><a href="#s5"><span>05</span><span>Неопубликованное</span></a></li>
+      <li><a href="#s6"><span>06</span><span>Рынок РФ</span></a></li>
+      <li><a href="#s7"><span>07</span><span>Казахстан</span></a></li>
+      <li><a href="#s8"><span>08</span><span>Планка</span></a></li>
+      <li><a href="#s9"><span>09</span><span>На чём стоять</span></a></li>
+      <li><a href="#s10"><span>10</span><span>Правила цифр</span></a></li>
+      <li><a href="#s11"><span>11</span><span>Красные линии</span></a></li>
+      <li><a href="#s12"><span>12</span><span>Карта страниц</span></a></li>
+      <li><a href="#s13"><span>13</span><span>План работ</span></a></li>
+      <li><a href="#s14"><span>14</span><span>Вопросы</span></a></li>
+      <li><a href="#s15"><span>15</span><span>Как мерить</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ============ 01 ============ -->
+    <section id="s1">
+      <div class="sec-head">
+        <span class="sec-num">§ 01</span>
+        <h2>Резюме</h2>
+        <p class="sec-dek">Пять выводов, из которых следует всё остальное.</p>
+      </div>
+
+      <dl class="specrows">
+        <div class="specrow">
+          <dt>Главная проблема</dt>
+          <dd>Не объём текста, а <b>противоречивость</b>. Гарантия названа тремя разными числами одновременно, мощность модулей на сайте не совпадает с собственным PDF, который скачивается с той же страницы, а в шапке и подвале всех 27 страниц стоит «Производим» при том, что сайт сам называет OEM-источники двух своих продуктов. Пока это не сведено, любое новое содержание строится на фундаменте, которому не верят.</dd>
+        </div>
+        <div class="specrow">
+          <dt>Пути обрываются</dt>
+          <dd>Из категории «Усилители мощности» физически нельзя перейти в QM-400 и TD SERIES — на странице нет ни одной ссылки на товар. На флагмане за 199 900 ₽ нет ни цены, ни кнопки. На странице модулей 11 строк характеристик записаны во frontmatter, но не выводятся вовсе.</dd>
+        </div>
+        <div class="specrow">
+          <dt>Спрос брендовый</dt>
+          <dd>67,7 % показов в поиске — по названиям NAG и NOVIK. Единственный заметный небрендовый кластер — <b>усилительные модули</b>, и у него худший CTR на сайте: 135 показов, 3 клика. Люди ищут «модуль усилителя для активной колонки», а страница открывается фразой «Встраиваемые модули Class-TD».</dd>
+        </div>
+        <div class="specrow">
+          <dt>Козыри лежат в письмах</dt>
+          <dd>Самые сильные аргументы не опубликованы нигде: съёмная входная плата с полным отключением фильтров, сабсоник 35 Гц, право заказчика перенастроить плату без потери гарантии, единая схемотехника QM-400 = четыре модуля TDS/TDH-20. Ни одного такого утверждения на сайте нет.</dd>
+        </div>
+        <div class="specrow">
+          <dt>Что делать</dt>
+          <dd>Три волны, около пятнадцати задач (§13). Первая — правка текста без единой новой страницы: убрать противоречия, вернуть цену и действие, развести TDS и TDH. Вторая — документы: даташит, спецификация для ТЗ, чертёж, декларации. Третья — измерения и объекты. Порядок не переставляется.</dd>
+        </div>
+      </dl>
+
+      <div class="note warn">
+        <span class="note-label">Дисциплина этого документа</span>
+        <p>Часть выводов агентов не пережила проверку и сюда не попала. Всё, что помечено <span class="chip chip-amb">не проверено</span>, требует подтверждения до публикации; всё, что помечено <span class="chip chip-red">вопрос</span>, вынесено в §14 и блокирует работу.</p>
+      </div>
+    </section>
+
+    <!-- ============ 02 ============ -->
+    <section id="s2">
+      <div class="sec-head">
+        <span class="sec-num">§ 02</span>
+        <h2>Развилка, которую закрываете вы</h2>
+        <p class="sec-dek">Три вопроса, на которые ни репозиторий, ни интернет ответа не дают. От них зависит вся приоритизация — и они честнее любого плана.</p>
+      </div>
+
+      <h3>Чем вообще должен быть сайт</h3>
+      <p>За квартал — 756 визитов и 474 посетителя. При профиле на площадке объявлений с 95 отзывами и брендовом характере спроса реальный канал продаж — объявления, телефон и повторные клиенты. Тогда сайт не источник заявок, а <b>подтверждение серьёзности</b> для сделок, которые начинаются в другом месте, и ссылка, которую менеджер отправляет в переписке.</p>
+      <p>Это меняет всё. Если сайт — подтверждение, приоритет отдаётся справочнику, документам и непротиворечивости, а страницы «под задачу» и лид-формы уходят вниз. Если сайт должен приносить заявки — наоборот. Выберите одно.</p>
+
+      <h3>Кто это пишет</h3>
+      <p>Полный разбор дал шестьдесят рекомендаций. Для компании без редактора реалистичный объём — пять-восемь задач за раз. План в §13 уже урезан до этого масштаба; если писать некому, режьте до первой волны и остановитесь — она даёт больше, чем половина остального.</p>
+
+      <h3>Что зарабатывает</h3>
+      <p>Приоритеты в этом документе выведены из показов, кликов и глубины страниц. Модуль за 41 900 ₽ и QM-400 за 199 900 ₽ приносят разные деньги, ламповые NOVIK продаются штучно, бутик может быть убыточным по времени. Как только вы назовёте маржинальность, порядок работ придётся пересобрать — и это будет правильный порядок.</p>
+
+      <div class="note">
+        <span class="note-label">Отдельно, до всего</span>
+        <p>Счётчик Метрики не собирал данные с 1 июля по 4 августа 2026 — месяц провала при переезде с Tilda на Next.js. Пока нет гарантии, что он пишет сейчас, эффект любой работы над содержанием будет неизмерим, и через квартал разговор начнётся с тех же нерепрезентативных цифр.</p>
+      </div>
+    </section>
+
+    <!-- ============ 03 ============ -->
+    <section id="s3">
+      <div class="sec-head">
+        <span class="sec-num">§ 03</span>
+        <h2>Что говорят данные</h2>
+        <p class="sec-dek">Яндекс.Метрика за 16.05–13.08.2026 и Яндекс.Вебмастер за 16.05–11.08.2026. Выборка не семплирована.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>756</b><span>визитов за 90 дней</span><small>474 посетителя, 1413 просмотров</small></div>
+        <div class="stat"><b>67,7 %</b><span>показов — бренд</span><small>CTR 11,0 % против 5,8 % у небрендовых</small></div>
+        <div class="stat"><b>2 690</b><span>показов в поиске</span><small>251 клик, CTR 9,3 %</small></div>
+        <div class="stat"><b>2</b><span>визита из Казахстана</span><small>за 90 дней, оба с отказом</small></div>
+      </div>
+
+      <h3>Откуда приходят</h3>
+      <p>Поиск — 468 визитов (61,9 %), отказы 8,8 %, глубина 1,96. Реклама — 136 визитов (18 %), и это один всплеск 6 августа: глубина 1,007 страницы, средняя длительность 5,6 секунды. Прямые заходы — 115. Яндекс и Google делят поиск примерно поровну (54 / 45). Десктоп 61 %, мобильные 38,9 %, и на мобильном время на странице вдвое ниже — 71 секунда против 133.</p>
+
+      <h3>Что ищут</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Кластер</th><th>Показы</th><th>Клики</th><th>CTR</th><th>Чтение</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Брендовые (NAG, NOVIK, Новикъ)</td><td class="num">1 821</td><td class="num">201</td><td class="num">11,0 %</td><td>Ядро. Люди ищут вас по имени и по индексу модели</td></tr>
+            <tr><td>Ламповое и бутик</td><td class="num">211</td><td class="num">17</td><td class="num">8,1 %</td><td>Лучший небрендовый CTR — содержание попадает в запрос</td></tr>
+            <tr><td>Усилители общего профиля</td><td class="num">155</td><td class="num">13</td><td class="num">8,4 %</td><td>Работает, но категорийная страница не удерживает</td></tr>
+            <tr><td><b>Усилительные модули</b></td><td class="num">135</td><td class="num">3</td><td class="num"><b>2,2 %</b></td><td>Крупнейший небрендовый кластер и худший CTR на сайте</td></tr>
+            <tr><td>DSP и процессоры</td><td class="num">131</td><td class="num">9</td><td class="num">6,9 %</td><td>За последние 2 недели: 22 показа, 0 кликов</td></tr>
+            <tr><td>Класс TD — «что это»</td><td class="num">≈20</td><td class="num">3</td><td class="num">—</td><td>Позиции 1,3–9,0. Бейдж стоит везде, объяснения нет нигде</td></tr>
+            <tr><td>Сейверы и переходники для радиоламп</td><td class="num">≈30</td><td class="num">0</td><td class="num">0 %</td><td>Позиции 3–10 при пустой странице. Пишут с ошибками: «цейвер», «сейвера»</td></tr>
+            <tr><td>Документы по снятым моделям</td><td class="num">≈40</td><td class="num">1</td><td class="num">—</td><td>«nag rf-250 схема», «qm40 уходит в защиту один канал»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Что уже работает</h3>
+      <p>Лучший CTR на сайте — у карточки D-8000: 32 показа, 8 кликов, 25 %. Тянут его запросы про программу и отстройку («nag d8000 софт», «приложение для отстройки»), а сама ссылка на ПО спрятана в <code>/zagruzki</code>, которую за девять дней открыли три раза. Вторая по показам страница сайта — <code>/catalog/arhiv</code>: 51 показ, CTR 13,7 %. Каркас для перехвата сервисного спроса уже стоит, содержания в нём нет.</p>
+
+      <div class="note">
+        <span class="note-label">Границы этих данных</span>
+        <p><b>Wordstat недоступен полностью</b> — все вызовы падают на обмене OAuth-токена на IAM. Абсолютной частотности нет ни по одному кластеру, поэтому <b>ни одно суждение о размере рынка здесь не сделано</b>. Показы Вебмастера считаются только по запросам, где сайт хотя бы раз показался: это нижняя граница спроса, а не его объём.</p>
+        <p>Поведение на новом сайте покрывает девять дней и содержит один рекламный всплеск. Страницы с двумя–семью визитами (в том числе <code>/catalog/processors</code>, <code>/garantiya</code>, ламповые карточки) статистически пусты — выводы по ним в этом документе не строятся.</p>
+      </div>
+    </section>
+
+    <!-- ============ 04 ============ -->
+    <section id="s4">
+      <div class="sec-head">
+        <span class="sec-num">§ 04</span>
+        <h2>Состояние информационной части</h2>
+        <p class="sec-dek">Три слоя: характеристики, пути по каталогу, доверие. Разбор по репозиторию и по живому сайту.</p>
+      </div>
+
+      <h3>Слой 1. Характеристики</h3>
+      <p>Тринадцать карточек делятся на три класса по глубине. Столбец «строк» — количество строк в таблице характеристик; за максимум взят D-8000.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Карточка</th><th class="bar-cell">Строк характеристик</th><th>Цена</th><th>Док.</th><th>Что критично отсутствует</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>D-8000</td><td class="bar-cell"><span class="m">28</span><span class="bar"><i style="width:100%"></i></span></td><td>122 900 ₽</td><td class="num">2</td><td>Габариты, масса, юниты, потребление, латентность. В стойку заложить нельзя</td></tr>
+            <tr><td>D-4 / D-8</td><td class="bar-cell"><span class="m">23</span><span class="bar"><i style="width:82%"></i></span></td><td>34 900 / 39 900 ₽</td><td class="num">2</td><td>21 из 23 строк совпадают дословно; перепутаны оси габаритов</td></tr>
+            <tr><td>THE ROGUE</td><td class="bar-cell"><span class="m">21</span><span class="bar"><i style="width:75%"></i></span></td><td>24 900 ₽</td><td class="num">2</td><td>Питание без диапазона сети</td></tr>
+            <tr><td>QM-400</td><td class="bar-cell"><span class="m">19</span><span class="bar"><i style="width:68%"></i></span></td><td>199 900 ₽</td><td class="num">1</td><td>Юниты, масса, охлаждение, тепло, потребление. Предохранитель выдан за питание</td></tr>
+            <tr><td>F-8 PRO</td><td class="bar-cell"><span class="m">16</span><span class="bar"><i style="width:57%"></i></span></td><td>139 900 ₽</td><td class="num">2</td><td>Бейдж AES/EBU без единой строки спецификации. Чем оправданы +60 000 ₽ — не сказано</td></tr>
+            <tr><td>F-8</td><td class="bar-cell"><span class="m">15</span><span class="bar"><i style="width:54%"></i></span></td><td>79 900 ₽</td><td class="num">2</td><td>Общий PDF серии вместо руководства</td></tr>
+            <tr><td>Модули TDS / TDH</td><td class="bar-cell"><span class="m">11</span><span class="bar"><i style="width:39%"></i></span></td><td>41 900 ₽</td><td class="num">2</td><td><b>Таблица не выводится на страницу вообще.</b> Ни фильтров, ни монтажа, ни тепла, ни разницы TDS/TDH</td></tr>
+            <tr><td>E12 · N1202</td><td class="bar-cell"><span class="m">10</span><span class="bar"><i style="width:36%"></i></span></td><td>по запросу</td><td class="num">0</td><td>Ни цены, ни срока, ни одного документа</td></tr>
+            <tr><td>REDBEAR</td><td class="bar-cell"><span class="m">9</span><span class="bar"><i style="width:32%"></i></span></td><td>по запросу</td><td class="num">0</td><td>То же</td></tr>
+            <tr><td>TD SERIES</td><td class="bar-cell"><span class="m">8</span><span class="bar"><i style="width:29%"></i></span></td><td>от 70 000 ₽</td><td class="num">2</td><td>Худшая карточка NAG: нет питания, потребления, разъёмов, охлаждения, условий мощности</td></tr>
+            <tr><td>BLACK FIRE</td><td class="bar-cell"><span class="m">6</span><span class="bar"><i style="width:21%"></i></span></td><td>по запросу</td><td class="num">0</td><td>Состав ламп противоречит сам себе в одной карточке</td></tr>
+            <tr><td>Сейверы и конверторы</td><td class="bar-cell"><span class="m">0</span><span class="bar zero"><i style="width:3%"></i></span></td><td>нет</td><td class="num">0</td><td>Ни ассортимента, ни цен, ни таблицы «цоколь → лампа» — единственного критерия выбора</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Противоречия, которые покупатель проверяет за минуту</h4>
+      <ul>
+        <li><b>Модули: 2400 Вт на сайте против 2200 Вт</b> в руководстве, которое скачивается с той же страницы. <span class="chip chip-red">вопрос</span></li>
+        <li><b>QM-400:</b> мощность на 4 Ω и на 2 Ω одинакова (4 × 2400 Вт), а мост на 8 Ω (2 × 3800) меньше удвоенного одноканального (4800). Физически объяснимо ограничением блока питания — но не объяснено ни словом.</li>
+        <li><b>TD-100:</b> на 2 Ω мощность ниже, чем на 4 Ω.</li>
+        <li><b>Родство не сходится:</b> при заявленном «QM-400 = четыре модуля TDS/TDH-20» шум расходится на 6 дБ (−99 против −105), демпинг-фактор 950 против «более 900». Либо одна таблица неверна, либо унификация — рекламный тезис.</li>
+        <li><b>BLACK FIRE:</b> «2 × 5881» в таблице и «4 × 6П6С на канал» в тексте той же карточки.</li>
+        <li><b>Гарантия:</b> 2 года на карточках и на главной, 1 год в подвале, «1 год / до 4 лет» на <code>/garantiya</code>. Всё это видно в одном скролле.</li>
+        <li><b>Цены на главной:</b> «Усилители от 41 900 ₽» при реальном минимуме 70 000 ₽ (41 900 — цена модуля); «процессоры от 34 900 ₽» при The Rogue за 24 900 ₽.</li>
+        <li><b>Архив против каталога:</b> TD-40, TD-80 и TD-100 объявлены снятыми и одновременно продаются по 80 490–120 900 ₽.</li>
+        <li><b>Наличие:</b> сроки поставки не названы человеку нигде, при этом все восемь позиций NAG декларируют <code>InStock</code> в микроразметке.</li>
+      </ul>
+
+      <h4>Разнобой, из-за которого модели несравнимы</h4>
+      <p>Шум внутри одного бренда называется четырьмя способами — «Динамический диапазон», «SNR», «S/N», «Уровень шума» — и измерен в четырёх системах отсчёта. Непонятно, F-8 PRO со 113 дБ лучше F-8 со 100 дБ на тринадцать децибел или на ноль. Искажения записаны то в процентах, то в децибелах, при разных уровнях. Отношение сигнал/шум местами записано отрицательным числом — это ошибка единицы. Единицы смешаны: <code>100 Ω</code> и <code>600 Ом</code> стоят в одной карточке.</p>
+      <p>Ни у одного из тринадцати товаров нет тепловыделения, КПД, потребления под нагрузкой, рабочих температур и сквозной латентности. Это ровно те четыре расчёта, ради которых интегратор пришёл: автомат, кабель, кондиционирование, компоновка в рэк. Без них техника не попадает в проект.</p>
+
+      <h3>Слой 2. Каталог и пути</h3>
+      <ul>
+        <li><code>/catalog/amplifiers</code>, <code>/catalog/qm-400</code> и <code>/catalog/modules</code> <b>не содержат ни одной ссылки и ни одной кнопки действия.</b> Из главного пункта меню «Усилители» в товар не перейти, на флагмане нет цены (она есть только в микроразметке для поисковика).</li>
+        <li>Во всех тринадцати карточках хлебная крошка «Каталог» идёт без ссылки. Обратного пути и блока соседних моделей нет.</li>
+        <li>Перелинковки между родственными изделиями нет ни одной, хотя родство прямо заявлено в тексте.</li>
+        <li><code>/zagruzki</code> и <code>/garantiya</code> — два сильнейших документа доверия — доступны только из подвала.</li>
+        <li>Форма на <code>/kontakty</code> работает, но подписана «Форма скоро заработает».</li>
+        <li>Два файла в <code>public/downloads</code> не слинкованы ниоткуда: руководство CX и ПО для TDX. Их владельцы — действующие клиенты и покупатели следующей техники.</li>
+      </ul>
+
+      <h4>Решения issue #8 выполнены наполовину</h4>
+      <p>Семь карточек каталога есть, CX и TDX переведены в архив с редиректами, QM-400 приведён к стилю нового блока. Но «Модули» — по-прежнему одна товарная страница, а не раздел; объединённой карточки «Сейверы и конверторы» не существует — обе ведут на <code>/catalog/boutique</code>, и это закреплено тестом <code>lib/__tests__/nav-consistency.test.tsx</code>.</p>
+      <p>По структуре модулей три разбора дали несовместимые схемы. При четырёх SKU, одной общей таблице характеристик в паспорте и примерно одном небрендовом показе в сутки <b>дробление на три страницы не окупается</b>. Оставить одну карточку с явным разведением TDS и TDH внутри.</p>
+
+      <h3>Слой 3. Доверие</h3>
+      <p>Доказательная база отсутствует: ноль реализованных объектов, ноль названных клиентов, ноль отзывов, ноль выложенных сертификатов — при том, что EAC заявлен как преимущество и стоит бейджем на карточках.</p>
+      <p>Возражения снабженца не закрыты вообще: нет юрлица, ИНН и ОГРН, нет упоминания работы по договору и счёту, цены помечены «Без НДС» без объяснения, что это значит для организации. Возражения инсталлятора закрыты наполовину: сервис в Петербурге заявлен, но нет адреса приёмки, порядка обращения, срока ремонта, подменного фонда и перечня исключений.</p>
+      <p>История обрывается на 2000 годе. Четыре тысячи слов про 1976–2000 и примерно сто двадцать содержательных слов про то, кто эта компания сегодня — при том, что двадцать шесть лет практики и есть главный актив.</p>
+    </section>
+
+    <!-- ============ 05 ============ -->
+    <section id="s5">
+      <div class="sec-head">
+        <span class="sec-num">§ 05</span>
+        <h2>Материал, который уже есть, но не опубликован</h2>
+        <p class="sec-dek">Три пласта в репозитории и в ветке agent/nag-modules. Один — золото, один — требует проверки, один нельзя трогать.</p>
+      </div>
+
+      <h3>Пласт 1. Ваши собственные формулировки <span class="chip chip-good">брать в работу</span></h3>
+      <p>Самое ценное, что нашлось за весь разбор, лежит в вашей почте и в черновике головного текста. Ни одного из этих фактов на сайте нет:</p>
+      <ul>
+        <li><b>Съёмная входная плата</b> — фильтры отключаются полностью, модуль работает линейно от 2–3 Гц. Прямой аргумент для того, у кого свой DSP.</li>
+        <li><b>Сабсоник 35 Гц со спадом 18 дБ на октаву</b>, возможность сдвига точки под заказ.</li>
+        <li><b>Правка параметров платы заказчиком не снимает изделие с гарантии.</b> Редчайшее преимущество в этой нише — и сейчас оно молчит.</li>
+        <li><b>Доработка обрезного фильтра на LINK</b> — позволяет строить связку саб + сателлит вообще без отдельного процессора.</li>
+        <li><b>TD-100 — это два модуля TDS-20 в одном корпусе</b>, QM-400 — четыре. Общая элементная база, общий ЗИП, общий ремонт.</li>
+        <li><b>Четыре опоры продавца</b> из вашего черновика: класс TD и уровень изготовления · надёжность и репутация · гибкость и подстройка под запрос клиента · техподдержка на местах, потому что страна большая и часто проще решить на месте.</li>
+      </ul>
+      <p>Последний пункт — готовое позиционирование. Он честный, он ваш, и он не касается происхождения.</p>
+
+      <h3>Пласт 2. Сырой массив <span class="chip chip-amb">проверять</span></h3>
+      <p>Отзывы с площадки объявлений (профиль 5,0 при 95 отзывах) и реальное внешнее применение TDS-20 в серийном сабвуфере стороннего производителя — материал легальный и сильный, но требует актуальной выгрузки с постоянной ссылкой и согласия на упоминание чужого бренда. Один из отзывов прямо непригоден: автор пишет, что работоспособность ещё не проверял.</p>
+
+      <h3>Пласт 3. Черновик D-8000 <span class="chip chip-red">не публиковать</span></h3>
+      <div class="note warn">
+        <span class="note-label">Разбор источника</span>
+        <p>Файл <code>reference/content-drafts/D8000_процессоры/D8000_сырой_материал.md</code> содержит «цитаты звукоинженеров» с форумов и из сообществ без единой прямой ссылки, а его техническая часть <b>противоречит вашей же карточке</b>: в черновике 24 бит / 96 кГц и RS485, в <code>d-8000.mdx</code> — 32 бит / 192 кГц, Burr-Brown PCM1798, Wi-Fi / USB / LAN. Это не новое знание, а ошибка сырья.</p>
+        <p>Из файла годится ровно одно: <b>предложенная структура карточки</b> — четыре тезиса (прозрачность тракта, защита динамиков, фазовая точность, готовность к гастролям). Её можно взять как каркас и наполнить проверяемыми числами. Цитаты — выбросить целиком.</p>
+      </div>
+      <p>В том же массиве лежит частная переписка с персональными данными, адресами почты третьих лиц и трек-номером отправления. На сайт это не переносится ни в каком виде, и до любого мержа файл надо обезличить.</p>
+
+      <h3>КОНТУР (автозвук)</h3>
+      <p>Материала хватает примерно на одну полноценную карточку A8 плюс страницу серии, изображения на месте. Но это чужая аудитория — двенадцать вольт и автоинсталляторы, — и на продажу профессионального звукоусиления она работает только косвенно. <b>Рекомендация:</b> выпускать как изолированную ветку каталога, не поднимая в верхнее меню наравне с четырьмя PA-направлениями, иначе размывается позиционирование перед интегратором.</p>
+    </section>
+
+    <!-- ============ 06 ============ -->
+    <section id="s6">
+      <div class="sec-head">
+        <span class="sec-num">§ 06</span>
+        <h2>Рынок России</h2>
+        <p class="sec-dek">Собрано из открытых источников. Цифры рынка перед публичным использованием сверить с первоисточником. <span class="chip chip-amb">не проверено вручную</span></p>
+      </div>
+
+      <h3>Два контура, а не один рынок</h3>
+      <p><b>Технический звук</b> — трансляция, оповещение, торговые центры, транспорт, муниципальные объекты. Решение принимает проектировщик или интегратор, выигрывает тот, у кого есть сертификаты, документация для проекта, склад и понятная сервисная схема. Здесь давно и спокойно работают азиатские бренды и «европейские с производством в КНР».</p>
+      <p><b>Райдерный звук</b> — прокат, концертные залы, театры. Там до последнего ищут остатки ушедших западных марок и ремонтируют их репликами; новичков пускают неохотно, и главный тормоз — непопадание в райдеры и в парки прокатчиков. Вход сюда не через сайт, а через демо и тест-драйв у прокатной компании.</p>
+      <p>Для NAG рабочий контур — первый. Он покупается документами, и именно документов сейчас нет.</p>
+
+      <h3>Числа</h3>
+      <dl class="specrows">
+        <div class="specrow"><dt>Объём 2022</dt><dd>66 млрд ₽ (−30 % к году), из них российское производство — 1,7 млрд ₽, импорт — 664 млн $. Доля отечественного оборудования менее 5 %.</dd></div>
+        <div class="specrow"><dt>Динамика 2025</dt><dd>Оптовые продажи звукового оборудования российского выпуска — 5,3 млрд ₽, рост в 2,4 раза к 2024 году.</dd></div>
+        <div class="specrow"><dt>Последствия ухода</dt><dd>Параллельный импорт поднял цены на западные микрофоны на 40–60 %, аренду техсопровождения — на 20–30 % за полгода. Вендоры ушли вместе с гарантийными обязательствами: мастера есть, запчастей нет.</dd></div>
+        <div class="specrow"><dt>Где стоит QM-400</dt><dd>199 900 ₽ — между Powersoft M50Q (≈170 000) и K3 (≈219 000), впятеро выше бюджетного слоя, на который ориентируется начальная цена контракта. Средний слой: Park Audio CF2400 ≈131 000, Crest Pro-Lite 5.0 ≈126 000, DAP CA-4500 DSP ≈119 000.</dd></div>
+      </dl>
+
+      <h3>Закупки: развилка, о которой честнее сказать прямо</h3>
+      <p>С 1 января 2025 года постановление № 1875 свело прежние акты в единый национальный режим. Звуковое оборудование попадает в позиции 241 и 242 приложения № 2 (ОКПД2 26.40.4 и 26.40.5). Действует правило «второй лишний»: если подана хотя бы одна заявка с реестровой записью, все иностранные отклоняются. Плюс пятнадцатипроцентное преимущество и минимальная доля закупок 70 % по усилителям звуковой частоты.</p>
+      <p>Для продукции без реестровой записи это значит: конкурентные процедуры по 44-ФЗ в этих кодах — зона высокого риска, а реальные каналы — 223-ФЗ, прямые контракты в пределах лимитов, коммерческий сектор и попадание в техническое задание там, где российского аналога с реестровой записью нет.</p>
+      <div class="note">
+        <span class="note-label">Что из этого идёт на сайт</span>
+        <p>Фактическая часть — да: реквизиты, договор и счёт, комплект отгрузочных документов, объяснение пометки «Без НДС», <b>шаблон характеристик для ТЗ</b>. Правовые выводы про национальный режим и реестровую запись — нет: это разговор менеджера с дилером, а не публичная страница. Она устареет при следующем постановлении и создаст претензию к вам.</p>
+      </div>
+
+      <h3>Что здесь считается доказательством</h3>
+      <p>Не происхождение. Четыре вещи: измеряемые параметры при заявленных условиях испытаний; документы для проекта и заявки; объекты с составом системы; <b>ремонтопригодность</b> — сервис в России, наличие ЗИП, унификация узлов между моделями, срок ремонта.</p>
+      <p>Последний пункт для NAG самый сильный и почти бесплатный: «QM-400 схемотехнически — четыре модуля TDS/TDH-20» это ровно тот аргумент, который прокатчик и директор ДК понимают после трёх лет жизни без запчастей. Сейчас он живёт одной фразой в описании товара и никуда не ведёт.</p>
+    </section>
+
+    <!-- ============ 07 ============ -->
+    <section id="s7">
+      <div class="sec-head">
+        <span class="sec-num">§ 07</span>
+        <h2>Казахстан</h2>
+        <p class="sec-dek">Рекомендация — держать в резерве. Но актив, который открывает этот рынок, у вас уже есть.</p>
+      </div>
+
+      <p><b>Два визита за девяносто дней, оба с отказом.</b> Строить страницу под Казахстан сейчас — работа впрок. Отдельная страница «Поставка в Казахстан» остаётся последним пунктом плана и делается тогда, когда появится первый реальный покупатель или партнёр-резидент.</p>
+
+      <h3>Почему это всё-таки стоит держать в виду</h3>
+      <p>Казахстан — не «ещё один регион России», а отдельный контур закупки внутри ЕАЭС. Таможни нет, но есть НДС на импорт 12 %, сопроводительные накладные, форма 328.00, статформа 1-ТС и обязательная регистрация товара в Национальном каталоге с 2026 года. Главный денежный поток бюджетный: программа «Комфортная школа» (198 школ введено в 2025 году при плане 217, у каждой актовый зал), «Ауыл — Ел бесігі» (73 млрд ₸ на 2025 год). Прямой вход российского юрлица в госзакупки РК тяжёл — нужны БИН, электронная подпись и налоговый учёт; работать реально через дилера-резидента.</p>
+      <div class="note">
+        <span class="note-label">Готовый актив</span>
+        <p>Декларации и сертификаты ЕАЭС, оформленные в России, <b>действуют в Казахстане без повторного признания</b>. Это главный аргумент для казахстанского покупателя — и сайт сейчас не показывает ни одного документа. То есть работа по §13, волна 2 (витрина документов) закрывает казахстанский вопрос на 80 % без отдельной страницы.</p>
+      </div>
+
+      <h3>Чего нельзя обещать</h3>
+      <p>Склад, сервисный центр или подменный фонд в РК, пока их нет. Цены в тенге и фиксацию курса. Участие в госзакупках РК. Пригодность для систем оповещения и эвакуации без действующего документа по ТР ЕАЭС 043/2017. Налоговое администрирование ввоза — на стороне импортёра, и публиковать чужое налоговое законодательство от своего лица не нужно: одна строка вместо чек-листа.</p>
+      <p>Язык: русского достаточно для переписки и тендеров. Казахский обязателен в трёх местах, и это не сайт — маркировка, руководство и карточка в Национальном каталоге.</p>
+    </section>
+
+    <!-- ============ 08 ============ -->
+    <section id="s8">
+      <div class="sec-head">
+        <span class="sec-num">§ 08</span>
+        <h2>Планка: как это делают сильные</h2>
+        <p class="sec-dek">Разобрано 13 сайтов с реальным открытием страниц и PDF. Главный вывод — лидеры продают не цифру мощности, а условия, при которых она получена.</p>
+      </div>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Кто</th><th>Что делает</th><th>Применимо вам</th></tr></thead>
+          <tbody>
+            <tr><td>Linea Research</td><td>Мощность строками по крест-фактору сигнала, шапка «все каналы, непрерывный программный материал, 40 °C», и прямым текстом: «это не burst и не peak, проверено независимо»</td><td>Честность измерения сделана торговым аргументом. Копируется бесплатно</td></tr>
+            <tr><td>Crown</td><td>«1 кГц, все каналы нагружены, искажения не более 0,5 %, длительность 0,5 с, 120–240 В» — единственный, кто пишет длительность теста и диапазон питания</td><td>Эталон формулировки. У вас уже есть половина этой строки</td></tr>
+            <tr><td>Dynacord</td><td>Ссылка на стандарт с точной скважностью burst-сигнала, глобальная шапка условий над таблицей</td><td>Так снимается вопрос «а это пиковые ватты?»</td></tr>
+            <tr><td>Powersoft</td><td>28 файлов на одной странице продукта, включая A&amp;E-спецификацию готовым абзацем для ТЗ. На странице модуля THD вообще нет — интегратору нужны габариты, тепло и бумаги</td><td>Скелет страницы модуля принципиально другой, чем у усилителя</td></tr>
+            <tr><td>Park&nbsp;Audio</td><td>Статическая «Таблица выбора усилителя»: строки — требуемая мощность при 8/4/2 Ω, ячейки — ссылки на модели. Плюс честная сноска, где выбор экономически неоправдан</td><td>Чистый HTML без бэкенда. Ближайший русскоязычный конкурент</td></tr>
+            <tr><td>ICEpower</td><td>Даташит на 43 страницы: кривые, чертёж с моментом затяжки, требования к теплоотводу. Двухуровневый прайс «образец / партия»</td><td>Планка для OEM-разговора. Двухуровневый прайс снимает вопрос «а дешевле, если возьму тридцать» до письма</td></tr>
+            <tr><td>Hypex</td><td>2D и 3D CAD в архиве прямо на карточке модуля</td><td>Самая дешёвая позиция и самая заметная для конструктора</td></tr>
+            <tr><td>Roxton · Inter-M</td><td>«Номинальная мощность 4 × 500 Вт», «THD &lt; 1 %» без единого условия</td><td>Слабый конец. Обойти его дешевле, чем догонять ICEpower</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">Где вы уже впереди</span>
+        <p>У QM-400 условия измерения частично указаны — RMS, 1 кГц, 1 % THD, а для моста EIA. <b>Это честнее, чем у Park Audio, Roxton и Inter-M.</b> Не хватает четырёх слов и двух цифр: «все каналы нагружены одновременно», длительность, напряжение сети. Самое дешёвое действие с самым большим эффектом во всём разборе.</p>
+      </div>
+
+      <p>Второй вывод разбора: у лидеров страница продукта — это <b>точка входа в пакет файлов</b>, а не текст. Третий: не наращивать объём прозы. Замер по выборке — от одного абзаца у Crown до шести у Linea Research, и то только потому, что она объясняет методику измерения. Текущий объём текста на страницах NAG близок к оптимуму. Проблема не в количестве слов, а в отсутствии данных, файлов и инструментов выбора.</p>
+    </section>
+
+    <!-- ============ 09 ============ -->
+    <section id="s9">
+      <div class="sec-head">
+        <span class="sec-num">§ 09</span>
+        <h2>На чём стоять вместо происхождения</h2>
+        <p class="sec-dek">Аргумент происхождения запрещён и всё равно нерабочий: сайт сам себя опровергает — The Rogue назван «процессором от компании D-Factory», D-8000 — «аналогичным Nova Craaft HD8000» — при одновременном «Производим» в шапке.</p>
+      </div>
+
+      <h3>Четыре опоры</h3>
+      <dl class="specrows">
+        <div class="specrow"><dt>1 · Проверяемые числа</dt><dd>Условия измерения у каждой цифры, непротиворечивая таблица, объяснение схемотехники. <b>Есть:</b> у QM-400 половина условий уже написана. <b>Надо:</b> дописать остальное, вычистить расхождения.</dd></div>
+        <div class="specrow"><dt>2 · Единая схемотехника</dt><dd>QM-400 = четыре модуля TDS/TDH-20, TD-100 = два. Один ЗИП закрывает и стойку, и колонку. <b>Есть:</b> сказано одной фразой. <b>Надо:</b> матрица общих узлов, перечень запчастей, срок ремонта, перелинковка трёх страниц.</dd></div>
+        <div class="specrow"><dt>3 · Сервис в Петербурге</dt><dd>Включая то, что снято с производства пятнадцать лет назад. <b>Есть:</b> практика описана на <code>/garantiya</code> — письма с рекомендациями, помощь местным мастерам, отправка ламп и комплектующих. <b>Надо:</b> один срок гарантии, адрес приёмки, регламент, сроки.</dd></div>
+        <div class="specrow"><dt>4 · Настройка под задачу</dt><dd>Съёмная плата, сдвиг сабсоника, правка параметров без потери гарантии. <b>Есть:</b> в ваших письмах. <b>Надо:</b> ваше подтверждение, что это официальные свойства продукта, а не частная договорённость.</dd></div>
+      </dl>
+
+      <h3>Формулировка</h3>
+      <div class="note">
+        <p style="font-size:17px"><b>Отбор, приёмка под нагрузкой, настройка и сервис профессионального звукоусиления. Усилители, DSP-процессоры и встраиваемые модули NAG поставляем и обслуживаем с 2005 года, ламповые NOVIK собираем сами с 1976-го. Санкт-Петербург.</b></p>
+        <p style="margin-top:10px">Годится для первого экрана, подвала и описания организации. Обратите внимание на разделение: «собираем сами» привязано только к NOVIK. Общей фразы на оба бренда быть не должно — для NAG она недостоверна.</p>
+      </div>
+      <p>Строка «с 2005 года NOVIK продаёт транзисторные усилители NAG» уже есть в <code>content/company/garantiya.ts</code> — это единственная корректная формулировка о происхождении на всём сайте. От неё и надо танцевать.</p>
+
+      <h3>Два бренда — два тона</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th></th><th>NAG</th><th>NOVIK</th></tr></thead>
+          <tbody>
+            <tr><th>Что это</th><td>инструмент для работы</td><td>ламповая мастерская и бутик</td></tr>
+            <tr><th>Покупатель</th><td>инсталлятор, прокатчик, снабженец, производитель акустики</td><td>музыкант, звукорежиссёр, владелец винтажа</td></tr>
+            <tr><th>Тон</th><td>паспорт изделия. Третье лицо, цифры, условия измерения, ноль прилагательных</td><td>рассказ мастера. Можно первое лицо, можно про звук</td></tr>
+            <tr><th>Доказательство</th><td>измерение, документ, чертёж, срок ремонта</td><td>фотография внутренностей, состав ламп, срок изготовления</td></tr>
+            <tr><th>Чего не делать</th><td>не рассказывать историю компании в карточке усилителя</td><td>не выдавать шесть строк характеристик за даташит</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Единственный мост между брендами — один сервис в Петербурге на обе линейки. Его надо называть с обеих сторон.</p>
+
+      <h3>Что говорить каждому сегменту</h3>
+      <dl class="specrows">
+        <div class="specrow"><dt>Интегратор</dt><dd><b>Страх:</b> заложу в проект, а оно не влезет в стойку, нагреет щитовую или не пройдёт по документам. <b>Ответ:</b> юниты, потребление, тепловыделение, схемы, декларация и готовый абзац для ТЗ. И прямо: если чего-то нет на сайте — этого нет и у нас.</dd></div>
+        <div class="specrow"><dt>Прокат</dt><dd><b>Страх:</b> сломается в туре — встану, чинить некому и нечем. <b>Ответ:</b> одна элементная база на стойку и на модуль, один комплект ЗИП, ремонт в Петербурге. Ежегодная чистка от пыли подаётся как платный регламент ТО с сохранением гарантии, а не как повод отказать.</dd></div>
+        <div class="specrow"><dt>Снабженец</dt><dd><b>Страх:</b> не пропустит контрактная служба. <b>Ответ:</b> договор, счёт, реквизиты, комплект документов, спецификация в редактируемом виде.</dd></div>
+        <div class="specrow"><dt>Производитель АС</dt><dd><b>Страх:</b> спроектирую корпус, а модуль снимут, перерисуют панель или он перегреется внутри кабинета. <b>Ответ:</b> чертёж посадочного места, тепловой бюджет и требования к продуву, съёмная плата, условия партии.</dd></div>
+        <div class="specrow"><dt>Музыкант (NOVIK)</dt><dd><b>Страх:</b> заплачу неизвестно сколько и буду ждать неизвестно сколько. <b>Ответ:</b> вилка цены и срок изготовления вместо «по запросу», фото внутренностей, состав ламп без противоречий.</dd></div>
+      </dl>
+    </section>
+
+    <!-- ============ 10 ============ -->
+    <section id="s10">
+      <div class="sec-head">
+        <span class="sec-num">§ 10</span>
+        <h2>Правила подачи характеристик</h2>
+        <p class="sec-dek">Один параметр — одно название — одна единица — одна методика на всех тринадцати карточках.</p>
+      </div>
+
+      <h3>Формат мощности</h3>
+      <p>Условия живут <b>в названии строки</b>, значение остаётся чистым числом:</p>
+      <div class="note">
+        <p class="m" style="font-size:14px"><b>Мощность 4 Ом</b> (RMS, 1 кГц, КНИ 1 %, все каналы нагружены, 230 В, 25 °C) &nbsp;→&nbsp; <b>4 × 2400 Вт</b></p>
+      </div>
+      <p>Шесть обязательных элементов условия: тип измерения (RMS / EIA / burst) · сигнал и частота · уровень искажений · нагружены ли все каналы одновременно · длительность · напряжение сети. Общие условия выносятся шапкой над группой, чтобы не удлинять каждую строку.</p>
+
+      <h4>Что делать, когда условий не знает даже поставщик</h4>
+      <div class="note warn">
+        <span class="note-label">Важная поправка</span>
+        <p>Дописать «все каналы, 0,5 с, 230 В, 25 °C» туда, где этого никто не измерял, — <b>не редактура, а выдумывание метрологии</b>. Заводские руководства TDS и TDH дают голую таблицу без единого условия.</p>
+        <p><b>Правило:</b> где условия известны из паспорта — публиковать дословно. Где неизвестны — не выдумывать, публиковать число как есть <b>и не выносить его в бейджи, чипы, заголовки и рекламу</b>. Бейдж — это утверждение без оговорок; непроверенному числу там не место.</p>
+      </div>
+      <p>Маркер источника данных (измерено / паспорт поставщика / расчёт) заводится <b>как внутреннее поле</b>, а не как публичная подпись. Публично показывается только положительный статус: «Измерено на стенде, дата, условия». Подпись «собственная проверка не проводилась» под большинством таблиц объявляет посетителю, что вы перепродаёте непроверенное железо, — это готовая цитата для конкурента.</p>
+
+      <h4>Конфликт сайта и собственного PDF</h4>
+      <p>Приоритет источников: <b>паспорт изделия &gt; руководство в загрузках &gt; текст сайта</b>. Сайт никогда не «выше» приложенного к нему документа. По модулям это значит: до измерения на стенде публиковать паспортные <b>2200 Вт</b> и снять 2400 из чипов, описания и таблицы сравнения. Какое число верное — вопрос к вам (§14), тем более что руководства выпускаете вы сами и можете перевыпустить паспорт.</p>
+
+      <h3>Минимум, без которого карточка не публикуется</h3>
+      <p>Цена или вилка с условиями · срок поставки или изготовления · гарантия числом · кнопка действия · кликабельная крошка · три кадра галереи, из них один — внутренности или задняя панель · мощность по всем нагрузкам · минимальный импеданс · чувствительность или усиление · THD, SNR и АЧХ по единой методике · питание и потребление · габариты, масса, юниты · разъёмы · защиты по-русски · руководство PDF.</p>
+      <p>Для модулей добавляется установочное отверстие, шаг крепежа, глубина за панелью и требования к продуву. Для процессоров — конфигурация входов-выходов, частота дискретизации, разрядность, модель DSP и сквозная латентность. Для ламповых — состав ламп по каналам и схемотехника.</p>
+      <p><b>Сегодня минимум не выполняет ни одна из тринадцати карточек.</b> Ближе всех D-8000 — но и он без габаритов, массы и юнитов, то есть в спецификацию стойки его внести нельзя.</p>
+
+      <h3>Документационный контур</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Файл</th><th>Есть сейчас</th><th>Приоритет</th></tr></thead>
+          <tbody>
+            <tr><td>Руководство пользователя</td><td>8 из 13 продуктов; у F-8 и F-8 PRO вместо руководства общее описание серии</td><td><span class="chip chip-amb">достроить</span></td></tr>
+            <tr><td>Одностраничный даташит</td><td>нет ни одного</td><td><span class="chip chip-red">волна 2</span></td></tr>
+            <tr><td>Спецификация для ТЗ закупки</td><td>нет ни одной</td><td><span class="chip chip-red">волна 2</span></td></tr>
+            <tr><td>Декларация или сертификат ЕАЭС</td><td>нет ни одного при заявленном EAC</td><td><span class="chip chip-red">вопрос §14</span></td></tr>
+            <tr><td>Механический чертёж модуля (PDF + DXF)</td><td>размеры есть на стр. 6 руководств; отдельного файла нет</td><td><span class="chip chip-amb">волна 2</span></td></tr>
+            <tr><td>ПО и прошивки</td><td>5 файлов; архив TDX не слинкован ниоткуда</td><td><span class="chip chip-good">волна 1</span></td></tr>
+            <tr><td>Фото в высоком разрешении для дилеров</td><td>нет</td><td><span class="chip chip-mute">волна 3</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Первые три-четыре спецификации для ТЗ (QM-400, TD SERIES, TDS/TDH, D-8000) написать руками в обычном документе. Генерация PDF из данных карточки — это отдельный инструмент со своей поддержкой; возвращаться к ней стоит, только когда документов станет больше десяти.</p>
+    </section>
+
+    <!-- ============ 11 ============ -->
+    <section id="s11">
+      <div class="sec-head">
+        <span class="sec-num">§ 11</span>
+        <h2>Красные линии</h2>
+        <p class="sec-dek">Формулировки, которые нельзя использовать, — и чем их заменить. Первые шесть строк сейчас на сайте есть.</p>
+      </div>
+
+      <div class="chassis">
+        <span class="lbl">Нельзя → надо</span>
+        <ul class="banlist">
+          <li><q>Производим, продаём и обслуживаем</q><em>→ Отбираем, принимаем под нагрузкой, настраиваем и обслуживаем. Стоит в первом экране главной, в подвале всех 27 страниц и в машиночитаемом описании организации</em></li>
+          <li><q>Производство, продажа и сервис</q><em>→ То же. Правится в пяти местах, включая мета-описание сайта</em></li>
+          <li><q>Более 40 лет ручной сборки усилителей</q><em>→ Привязать к NOVIK: «Ламповые усилители NOVIK собираем вручную с 1976 года»</em></li>
+          <li><q>Один из лучших на рынке</q><em>→ Убрать или заменить числом. Превосходная степень без числа не аргумент</em></li>
+          <li><q>Дизайн полностью разработан компанией Gibson</q><em>→ Не утверждать про третьи компании без документа. В истории есть контракт 1994–1995 годов — если он подтверждается, безопасная формулировка со ссылкой на собственную историю сильнее удаления</em></li>
+          <li><q>D-8000 аналогичен Nova Craaft HD8000</q><em>→ Не отправлять покупателя к источнику. Решить: нужна ли совместимость с чужими пресетами как публичный аргумент вообще</em></li>
+          <li><q>Выходной контроль</q><em>→ «Входной контроль и прогон под нагрузкой в Петербурге перед отправкой». Выходной контроль — термин ОТК изготовителя, то есть то же заявление о производстве другими словами</em></li>
+          <li><q>Разработка … Санкт-Петербург</q><em>→ Только про NOVIK. Отнести «разработку» ко всей линейке — замаскированное заявление об авторстве изделия</em></li>
+          <li><q>Модули делаем под ваш проект</q><em>→ «Модули настраиваем и комплектуем под ваш проект: точка раздела, чувствительность, набор входов, надпись на панели»</em></li>
+          <li><q>Российское производство · отечественный производитель · напрямую от производителя</q><em>→ Никогда. Спрос на это есть (≈30 показов за квартал), но обслуживать его надо смежным: что делается в Петербурге — инженерия, отбор, настройка, гарантия, сервис</em></li>
+          <li><q>Отзывы с форумов и из переписки</q><em>→ Только публичные, с датой и постоянной ссылкой. Частная переписка без письменного согласия автора не публикуется ни в каком виде</em></li>
+          <li><q>«В наличии» без склада</q><em>→ Одна честная формулировка на весь сайт: «Срок поставки подтверждаем в спецификации к договору»</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 12 ============ -->
+    <section id="s12">
+      <div class="sec-head">
+        <span class="sec-num">§ 12</span>
+        <h2>Карта страниц</h2>
+        <p class="sec-dek">Что переписать, что создать и — отдельно — чего не делать, хотя хочется.</p>
+      </div>
+
+      <h3>Переписать существующее</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Страница</th><th>Ключевой вопрос, на который она должна отвечать</th><th>Что меняется</th></tr></thead>
+          <tbody>
+            <tr><td><code>/catalog/modules</code></td><td>TDS или TDH, и какой мощности</td><td>Разведение серий, фильтровая часть, установочные размеры текстом, тепло и продув, гарантия при встраивании, бриф на партию. Вывести таблицу характеристик, которая уже написана</td></tr>
+            <tr><td><code>/catalog/amplifiers</code></td><td>Какой усилитель под мою акустику</td><td>Ссылки на товары (сейчас их нет вовсе), сводная таблица, объяснение класса TD</td></tr>
+            <tr><td><code>/catalog/qm-400</code></td><td>Потяну ли по питанию и теплу, что с сервисом</td><td>Вернуть цену и действие на страницу, достроить энергетику, развернуть родство с модулями</td></tr>
+            <tr><td><code>/catalog/processors</code></td><td>Какой процессор мне нужен и за что доплата</td><td>Сводная таблица шести моделей вместо плоской сетки. Честный диапазон цен</td></tr>
+            <tr><td><code>/catalog/d-8000</code></td><td>Хватит ли каналов и встанет ли в стойку</td><td>Габариты, юниты, масса, потребление, латентность. Поднять ПО и скриншоты интерфейса из загрузок на карточку — это то, за чем приходят</td></tr>
+            <tr><td><code>/catalog/arhiv</code></td><td>Что это было и чем заменить</td><td>Якорь на каждую модель, паспортные характеристики, документы, замена по мощности и каналам вместо одной общей на группу</td></tr>
+            <tr><td><code>/catalog/savers</code></td><td>Подойдёт ли к моему цоколю</td><td>Таблица «из цоколя в цоколь», перечень совместимых ламп, цена, срок. Плюс объяснение, что такое сейвер</td></tr>
+            <tr><td><code>/garantiya</code></td><td>Что будет, когда сломается</td><td>Регламент: один срок, что покрывает, порядок обращения, срок ремонта, адрес, ЗИП, условия при встраивании модуля</td></tr>
+            <tr><td><code>/o-kompanii</code></td><td>А сейчас-то вы кто</td><td>Кто эта компания в 2026 году, что делается в Петербурге, связка NAG ↔ NOVIK (расшифровка встречается на сайте ровно один раз, в бегущей строке)</td></tr>
+            <tr><td><code>/zagruzki</code></td><td>Где даташит и декларация</td><td>Группировка по типам файлов, размер и дата у каждого, раздел снятой с производства техники</td></tr>
+            <tr><td>4 карточки NOVIK</td><td>Сколько стоит, когда будет, как звучит</td><td>Вилка цены и срок вместо «по запросу», фото внутренностей, состав ламп без противоречий</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Создать</h3>
+      <ul>
+        <li><b>Таблица подбора усилителя.</b> Строки — требуемая мощность при 8 / 4 / 2 Ω, ячейки — ссылки на модели, включая мостовое включение. Данные для неё уже есть в карточках. День работы, чистый HTML. Обязательна честная сноска, где выбор экономически неоправдан — этот приём дороже любого маркетингового текста.</li>
+        <li><b>«Класс TD: что это и что даёт».</b> Бейдж стоит на всех продуктах, спрос подтверждён, позиции в выдаче уже высокие, ответа нет нигде. Заодно снимает путаницу с чужим брендом.</li>
+        <li><b>«Как подобрать усилитель под акустику».</b> Запас по мощности, работа на 2 Ω, согласование связки. Заканчивается не призывом купить, а таблицей, из которой видно, какая модель закрывает задачу.</li>
+        <li><b>«Замена усилительного модуля в активной колонке».</b> Прямо отвечает на запрос «купить сменный модуль для колонки активной» и приводит ремонтную аудиторию. С честным предупреждением: совпадение посадочного места не означает совпадения настройки.</li>
+        <li><b>«Юридическим лицам».</b> Реквизиты, договор, счёт, отгрузочные документы, объяснение пометки «Без НДС», шаблон характеристик для ТЗ. Без правовых заключений.</li>
+        <li><b>«Приёмка и сервис».</b> Что физически делается с аппаратом перед отправкой, фото стенда, адрес, сроки, ЗИП, взаимозаменяемость узлов.</li>
+      </ul>
+
+      <h3>Чего не делать</h3>
+      <div class="note warn">
+        <span class="note-label">Проверено и отклонено</span>
+        <ul style="margin-bottom:0">
+          <li><b>Раздел «готовых комплектов под тип объекта»</b> (актовый зал, ДК, клуб, спортзал…). Модель скопирована у компаний, у которых есть собственная акустика. В вашем каталоге акустики нет — «комплект под зал на 300 мест» без АС это половина системы и отправка покупателя к конкуренту за второй половиной. Работающая переформулировка: не «комплект под зал», а <b>«расчёт и подбор усиления и обработки под вашу акустику»</b>, и максимум две-три страницы под реальные сегменты.</li>
+          <li><b>Интерактивный калькулятор мощности.</b> Требует допущений, которые придётся защищать; при спорном результате бьёт по доверию сильнее, чем помогает. Заменяется страницей с методикой и таблицей подбора.</li>
+          <li><b>Фильтры и фасетный поиск каталога.</b> Тринадцать позиций фильтровать нечем.</li>
+          <li><b>Дробление раздела модулей на три страницы.</b> Не окупается при четырёх SKU и одной общей таблице в паспорте.</li>
+          <li><b>Публичное правовое заключение про 44-ФЗ.</b> Устареет и создаст претензию.</li>
+          <li><b>Налоговый чек-лист по Казахстану.</b> Консультация по чужому законодательству от лица продавца.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 13 ============ -->
+    <section id="s13">
+      <div class="sec-head">
+        <span class="sec-num">§ 13</span>
+        <h2>План работ</h2>
+        <p class="sec-dek">Пятнадцать задач в трёх волнах. Порядок не переставляется: строить новые страницы поверх сайта, который сам себе противоречит, бессмысленно — трафик придёт туда, где ему не верят.</p>
+      </div>
+
+      <div class="waves">
+
+        <div class="wave">
+          <div class="wave-head">
+            <h3>Волна 1 · Сайт перестаёт себе противоречить</h3>
+            <span class="wave-meta">правки текста · новых страниц ноль</span>
+          </div>
+          <ol>
+            <li><b>Один срок гарантии</b> во всех шести местах. Это не правка текста, а ваше коммерческое решение — что покрывается, каков порядок, сроки ремонта, есть ли подменный фонд. <b>Блокирует всё остальное.</b></li>
+            <li><b>Вычистить противоречия в числах</b> одним проходом: мощность модулей, состав ламп BLACK FIRE, чувствительность E12, оси габаритов D-4 и D-8, цены на главной, TD-серия в архиве и в продаже одновременно.</li>
+            <li><b>Убрать заявления о собственном производстве</b> — пять мест, включая подвал всех страниц и описание организации.</li>
+            <li><b>Вернуть цену и кнопку действия</b> на QM-400 и на страницу модулей; вывести таблицу характеристик модулей, которая уже написана; сделать крошку «Каталог» кликабельной; убрать надпись «Форма скоро заработает».</li>
+            <li><b>Добавить ссылки на товары</b> в категорию усилителей и перелинковать QM-400 ↔ TD SERIES ↔ модули.</li>
+            <li><b>Развести TDS и TDH</b> — по факту, а не по догадке: один усилитель, две входные платы, у TDS есть регулировка точки раздела 50–200 Гц. <span class="chip chip-red">после ответа §14</span></li>
+            <li><b>Слинковать два файла-сироты</b> — руководство CX и ПО TDX. Стоимость нулевая, канал сервисных обращений открывается сразу.</li>
+          </ol>
+        </div>
+
+        <div class="wave">
+          <div class="wave-head">
+            <h3>Волна 2 · Документы и словарь</h3>
+            <span class="wave-meta">карточка становится инженерным документом</span>
+          </div>
+          <ol start="8">
+            <li><b>Единый словарь параметров:</b> один термин на параметр, кириллические единицы, положительный SNR, предохранитель отдельной строкой от питания, габариты в порядке Ш × В × Г.</li>
+            <li><b>Дописать условия измерения</b> там, где они известны из паспорта. Где неизвестны — не выдумывать и не выносить число в бейджи.</li>
+            <li><b>Даташит и спецификация для ТЗ</b> — руками, для четырёх моделей: QM-400, TD SERIES, TDS/TDH, D-8000.</li>
+            <li><b>Монтажный пакет модулей:</b> установочные размеры текстом, требования к воздухообмену и запрет перекрывать воздухозаборник, распиновка, чертёж отдельным файлом.</li>
+            <li><b>Витрина документов соответствия</b> — после сверки каждого номера в реестре. Где документа нет — бейдж EAC снять, а не достраивать. <span class="chip chip-red">после ответа §14</span></li>
+            <li><b>Таблица подбора усилителя</b> и материал «Класс TD».</li>
+            <li><b>Архив помодельно:</b> якоря, паспортные характеристики, документы, замена по параметрам. Начать с пяти-семи позиций с подтверждённым спросом — RF-250, RF-400, QM-60, QM-40, CX, TDX. Остальным — статус и кнопка «запросить паспорт».</li>
+          </ol>
+        </div>
+
+        <div class="wave">
+          <div class="wave-head">
+            <h3>Волна 3 · Доказательства</h3>
+            <span class="wave-meta">то, что нельзя скопировать</span>
+          </div>
+          <ol start="15">
+            <li><b>Измерения на стенде</b> — но сначала выяснить, из чего стенд состоит (§14). Из измеримого дёшево: нагрев радиатора за тридцать минут и потребление. Кривые THD от мощности требуют аудиоанализатора; если его нет, рекомендация невыполнима в принципе, а не дорога.</li>
+            <li><b>Страница приёмки и сервиса</b>, объекты, публичные отзывы, ламповая линейка до минимума, сейверы с таблицей совместимости, Казахстан — по мере появления фактов.</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div class="note">
+        <span class="note-label">Дешёвая альтернатива всему плану</span>
+        <p>При брендовом спросе, тендерах и OEM-переговорах пакет из четырёх-пяти документов — даташит, спецификация для ТЗ, чертёж, регламент гарантии, прайс — может закрыть больше, чем восемнадцать новых страниц, и стоит на порядок дешевле. Если ресурса на сайт нет, начните с этого: волна 1 плюс документы из волны 2.</p>
+      </div>
+    </section>
+
+    <!-- ============ 14 ============ -->
+    <section id="s14">
+      <div class="sec-head">
+        <span class="sec-num">§ 14</span>
+        <h2>Вопросы, на которые отвечаете только вы</h2>
+        <p class="sec-dek">Ни репозиторий, ни интернет ответа не дают. Первые шесть блокируют волну 1.</p>
+      </div>
+
+      <div class="qgroup">
+        <h4>Блокирует волну 1</h4>
+        <ol class="q">
+          <li><p><b>Гарантия: один год или два?</b></p><p class="why">Что именно покрывается, порядок обращения, срок диагностики и ремонта, есть ли подменный фонд, действует ли гарантия на модуль, встроенный в изделие третьего лица.</p></li>
+          <li><p><b>Мощность TDS-20 / TDH-20: 2200 Вт или 2400?</b></p><p class="why">В вашем руководстве 2200, на сайте 2400. Откуда взято каждое число, есть ли протокол, и что правим — сайт или паспорт. Руководства выпускаете вы (в колонтитулах NOVIK и novikamps.com), значит перевыпуск паспорта — тоже вариант.</p></li>
+          <li><p><b>Разница TDS и TDH — серийная или частично разметочная?</b></p><p class="why">В руководствах таблица характеристик одна на обе серии, у TDS есть регулировка 50–200 Гц, у TDH её нет. В архиве переписки есть упоминание наклеек TDH поверх TDS. Что публиковать как правду.</p></li>
+          <li><p><b>Почему TDH-20 (44 900 ₽) дороже TDS-20 (44 490 ₽)</b> при меньшем числе органов управления и одинаковых характеристиках?</p><p class="why">Пока это не объяснено, разведение серий сделает прайс нелогичным: за меньшую функциональность просят больше.</p></li>
+          <li><p><b>Сабсоник 35 Гц / 18 дБ на октаву и линейная работа от 2–3 Гц — официальные характеристики или частное разъяснение в письме?</b></p><p class="why">В опубликованном руководстве их нет. Это один из сильнейших аргументов, и он должен стать официальным свойством продукта.</p></li>
+          <li><p><b>Правка параметров платы заказчиком без потери гарантии: где границы?</b></p><p class="why">На все ли модели, любые ли изменения, нужно ли письменное обращение, что считается нарушением условий эксплуатации. После публикации это становится публичной офертой, и исполнять придётся по любому вскрытому модулю.</p></li>
+        </ol>
+      </div>
+
+      <div class="qgroup">
+        <h4>Документы и измерения</h4>
+        <ol class="q" start="7">
+          <li><p><b>Декларации и сертификаты ЕАЭС существуют?</b></p><p class="why">На кого оформлены, на серию или на партию, до какой даты. Для OEM-продукции документ обычно оформлен на импортёра — публиковать чужой регистрационный номер как свой нельзя. Если заявитель не вы — бейджи EAC надо снимать, а не достраивать.</p></li>
+          <li><p><b>Из чего состоит измерительный стенд?</b></p><p class="why">Нагрузочные банки, ваттметр или анализатор мощности, средства измерения температуры и шума. От этого зависит, какие цифры вообще можно опубликовать, а какие придётся вычеркнуть из плана.</p></li>
+          <li><p><b>«100 % тестирование каждого аппарата» — что физически делается?</b></p><p class="why">На чём, сколько длится, формируется ли протокол, можно ли отдавать его покупателю. Пока это лозунг, а не проверяемый факт.</p></li>
+          <li><p><b>Паспорта изделий существуют отдельно от руководств?</b></p><p class="why">И есть ли хоть один документ по ламповым NOVIK.</p></li>
+          <li><p><b>Чертежи модулей в CAD (DXF / STEP) существуют</b> или есть только картинка и PDF из руководства?</p></li>
+        </ol>
+      </div>
+
+      <div class="qgroup">
+        <h4>Ассортимент и коммерция</h4>
+        <ol class="q" start="12">
+          <li><p><b>Все тринадцать позиций сейчас поставляются? Когда пересматривался прайс?</b></p><p class="why">В черновиках цены разошлись с текущими втрое. Строить систему страниц вокруг ассортимента, часть которого недоступна, — риск переписать всё заново.</p></li>
+          <li><p><b>Ламповые NOVIK: вилка цены и срок изготовления по каждой из четырёх моделей.</b></p><p class="why">Без этого «под заказ» — тупик, а не приглашение.</p></li>
+          <li><p><b>BLACK FIRE — 2 × 5881 или 4 × 6П6С на канал? E12 — 0,7 мВ или 0,7 В?</b></p></li>
+          <li><p><b>Сейверы и конверторы: есть реальная номенклатура?</b></p><p class="why">Какие цоколи «из → в», под какие лампы, цена, срок. Есть чем наполнить таблицу совместимости — или направление существует только на словах.</p></li>
+          <li><p><b>Юрлицо: наименование, ИНН, ОГРН, система налогообложения.</b></p><p class="why">Готовность публиковать реквизиты и объяснять пометку «Без НДС».</p></li>
+          <li><p><b>Наличие и сроки: есть ли склад?</b></p><p class="why">Что идёт под заказ, какой реальный срок от поставщика, можно ли называть его публично.</p></li>
+          <li><p><b>Какие позиции реально зарабатывают?</b></p><p class="why">С этого места приоритеты в §13 придётся пересобрать — и это будет правильный порядок.</p></li>
+        </ol>
+      </div>
+
+      <div class="qgroup">
+        <h4>Стратегические</h4>
+        <ol class="q" start="19">
+          <li><p><b>Роль сайта: приносить заявки или подтверждать серьёзность?</b></p><p class="why">Сколько заявок с сайта пришло за последний год и сколько закрылось.</p></li>
+          <li><p><b>Кто пишет и поддерживает тексты?</b></p><p class="why">Сколько часов в неделю, на какой горизонт.</p></li>
+          <li><p><b>Нужен ли OEM-канал для производителей акустики?</b></p><p class="why">Готовы ли к партиям, каков минимальный объём и срок, есть ли право менять настройку платы и брендировать панель, не конфликтует ли это с поставщиком платформы. Это самый маржинальный сегмент — и самый требовательный по пропускной способности.</p></li>
+          <li><p><b>Что запрещает публиковать поставщик платформы?</b></p><p class="why">Чертежи, распиновки, внутренние фотографии. И может ли меняться ревизия между партиями: если может, опубликованные измерения устареют при следующей поставке.</p></li>
+          <li><p><b>Объекты и клиенты: есть ли хоть один, кого можно описать?</b></p><p class="why">Хотя бы без имени — тип объекта, город, год, состав системы. И есть ли фотографии смонтированных систем.</p></li>
+          <li><p><b>Gibson и «немецкие инженеры» — есть документ или датируемый факт?</b></p><p class="why">В истории упоминается контракт 1994–1995 годов. Если он подтверждается, формулировка со ссылкой на собственную историю сильнее удаления.</p></li>
+          <li><p><b>Nova Craaft: нужна ли совместимость с их пресетами как публичный аргумент?</b></p><p class="why">Если это реальная ценность для покупателя — оставить и объяснить зачем. Если нет — убрать обе строки, потому что сейчас они отправляют инженера к источнику.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 15 ============ -->
+    <section id="s15">
+      <div class="sec-head">
+        <span class="sec-num">§ 15</span>
+        <h2>Как понять, что сработало</h2>
+        <p class="sec-dek">Ни один разбор не назвал критериев успеха. Вот они — и первый шаг не про контент.</p>
+      </div>
+
+      <p><b>Шаг ноль:</b> убедиться, что счётчик пишет, и накопить четыре-шесть недель чистой статистики без рекламных всплесков. До этого любые сравнения бессмысленны. Заодно разобраться, почему один посетитель дал 24 визита на старый адрес <code>/modules</code> — это шум, который завышает статистику.</p>
+
+      <h4>Что мерить через квартал</h4>
+      <ul>
+        <li><b>CTR кластера модулей</b> — сейчас 2,2 % при 135 показах. Это самая прямая проверка того, попал ли новый текст в язык запроса.</li>
+        <li><b>Число скачиваний документов</b> — даташитов, спецификаций для ТЗ, чертежа. Метрика цели на файлы. Если пакет документов никто не берёт, гипотеза «сайт как подтверждение серьёзности» не подтвердилась.</li>
+        <li><b>Доля обращений со ссылкой на документ с сайта</b> — считается вручную по входящим письмам. Самый честный показатель.</li>
+        <li><b>Глубина и время на карточках товаров</b> после возврата цены и действия — сравнивать с окном до правок.</li>
+        <li><b>Клики по архиву</b> — сейчас CTR 13,7 % при 51 показе. Тёплый сервисный трафик; после наполнения документами он должен конвертироваться в обращения.</li>
+      </ul>
+
+      <p>Чего мерить не надо: общую посещаемость. При брендовом спросе она вырастет от рекламы, а не от содержания, и ничего не скажет о том, стали ли вам верить.</p>
+    </section>
+
+    <footer class="end">
+      Разбор: 14 агентов · 27 URL живого сайта · 13 карточек · issue #8 · Яндекс.Метрика и Вебмастер · 13 сайтов конкурентов<br>
+      Не вошло: дизайн · архитектура кода · безопасность · интернет-магазин · техническое SEO
+    </footer>
+
+  </main>
+</div>
+
+</body></html>

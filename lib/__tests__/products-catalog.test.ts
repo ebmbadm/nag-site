@@ -104,7 +104,10 @@ describe("Power amps — series (matrix)", () => {
     const qm = getProduct("qm-400").frontmatter;
     const qmRows = qm.specGroups.flatMap((group) => group.rows);
     expect(qmRows.find((row) => row.label.includes("Мощность 2 Ω"))?.value).toBe("4 × 2400 Вт");
-    expect(qmRows.find((row) => row.label.includes("Мощность 8 Ω"))?.value).toBe("2 × 4800 Вт");
+    const qmBridge = qm.specGroups.find((group) => group.title === "Мостовой режим (bridge)");
+    expect(qmBridge?.rows).toEqual([
+      expect.objectContaining({ label: "Мощность 8 Ω (EIA, 1 кГц, 1% THD)", value: "2 × 4800 Вт" }),
+    ]);
     expect(qmRows.some((row) => row.label.includes("Мощность 4 Ω (EIA"))).toBe(false);
   });
 });

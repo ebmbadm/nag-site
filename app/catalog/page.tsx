@@ -17,7 +17,7 @@ const CATEGORIES: CompanyHubCard[] = [
   {
     kicker: "Транзисторные · Class-TD",
     title: "Усилители мощности",
-    text: "Флагман QM-400 (4 × 2250 Вт), серии TD и CX, встраиваемые модули TDS / TDH и TDX.",
+    text: "Флагман QM-400 (4 × 2400 Вт), серия TD и встраиваемые модули TDS / TDH.",
     href: "/catalog/amplifiers",
   },
   {

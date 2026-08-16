@@ -47,7 +47,7 @@ export function HeroAmp() {
           <div className="mb-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
             Флагман
           </div>
-          <div className="font-mono text-sm text-text">QM-400 · 4 × 2250 Вт</div>
+          <div className="font-mono text-sm text-text">QM-400 · 4 × 2400 Вт</div>
           <div className="mt-0.5 font-mono text-xs text-text-muted">Class-TD · КНИ 0.1 %</div>
         </div>
       </div>

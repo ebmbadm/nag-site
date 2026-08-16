@@ -22,8 +22,20 @@ describe("catalog coverage", () => {
     expect(getProductsByCategory("Процессоры")).toHaveLength(6);
   });
 
-  test("all five amplifiers are in the Усилители мощности category", () => {
-    expect(getProductsByCategory("Усилители мощности")).toHaveLength(5);
+  test("only current NAG models are in the Усилители мощности category", () => {
+    expect(getProductsByCategory("Усилители мощности").map((p) => p.slug)).toEqual([
+      "modules", "qm-400", "td-series",
+    ]);
+  });
+
+  test("CX and TDX are archived documentation pages, not current products", () => {
+    for (const slug of ["cx-series", "tdx"]) {
+      const product = getProduct(slug).frontmatter;
+      expect(product.archived).toBe(true);
+      expect(product.category).toBe("Архивные модели");
+      expect(product.price?.amount).toBeUndefined();
+      expect(product.docs?.length).toBeGreaterThan(0);
+    }
   });
 
   test("all four tube amps are in the Ламповые усилители category", () => {

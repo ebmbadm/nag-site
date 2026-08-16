@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Activity, ShieldHalf, Wrench } from "lucide-react";
+import { ArrowRight, Activity, ShieldHalf, Wrench } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 const HERO_STATS = [
   { value: "40+", label: "лет на рынке" },
   { value: "100 %", label: "тестирование" },
-  { value: "2 года", label: "гарантия · EAC" },
+  { value: "2 года", label: "гарантия" },
 ];
 
 const CATEGORIES = [
@@ -69,11 +69,6 @@ const CATEGORIES = [
 
 const ADVANTAGES = [
   {
-    Icon: ShieldCheck,
-    title: "EAC сертификация",
-    text: "Техника сертифицирована по требованиям ЕАЭС.",
-  },
-  {
     Icon: Activity,
     title: "100 % тестирование",
     text: "Каждый аппарат проходит полный тест под нагрузкой перед отгрузкой.",
@@ -91,7 +86,7 @@ const ADVANTAGES = [
 ];
 
 const QM400_FEATURE_STATS = [
-  { value: "4×2250", label: "Вт · 2 Ω", accent: true },
+  { value: "4×2400", label: "Вт · 2 Ω", accent: true },
   { value: "0.1 %", label: "КНИ · 8 Ω", accent: false },
   { value: "950", label: "Демпинг", accent: false },
 ];
@@ -145,8 +140,7 @@ export default function HomePage() {
               style={{ lineHeight: "var(--lh-relaxed)" }}
             >
               Производим, продаём и обслуживаем усилители мощности, DSP-процессоры и ламповые
-              усилители. Каждый аппарат проходит 100% тестирование, сертифицирован EAC и обеспечен
-              гарантией два года.
+              усилители. Каждый аппарат проходит 100% тестирование и обеспечен гарантией два года.
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <Link href="/catalog/amplifiers" className={buttonVariants({ variant: "primary", size: "lg" })}>
@@ -306,9 +300,6 @@ export default function HomePage() {
           <div>
             <div className="mb-[18px] flex gap-2">
               <Badge>Флагман</Badge>
-              <Badge className="border border-green bg-transparent text-text">
-                EAC
-              </Badge>
             </div>
             <Eyebrow className="mb-2.5 block">Усилитель мощности · Class-TD</Eyebrow>
             <h2
@@ -356,7 +347,7 @@ export default function HomePage() {
                   199 900 ₽
                 </div>
                 <div className="mt-1.5 font-mono text-xs text-text-faint">
-                  Без НДС · Гарантия 2 года · EAC
+                  Без НДС · Гарантия 2 года
                 </div>
               </div>
               <Link

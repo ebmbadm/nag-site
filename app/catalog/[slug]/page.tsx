@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <article>
-      <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
+      <JsonLd data={p.archived ? breadcrumbSchema(crumbs) : [productSchema(p, slug), breadcrumbSchema(crumbs)]} />
       <div className="pt-6">
         <Container>
           <Breadcrumb items={crumbs} />

@@ -1,5 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { getProduct } from "@/lib/content/products";
+import { getProduct, getProductSlugs } from "@/lib/content/products";
+
+test("product cards do not publish EAC certification claims", () => {
+  for (const slug of getProductSlugs()) {
+    expect(JSON.stringify(getProduct(slug).frontmatter)).not.toContain("EAC");
+  }
+});
 
 describe("DSP BY NAG D-series", () => {
   test("d-4: price + 2×6 config", () => {
@@ -54,9 +60,19 @@ describe("Power amps — single SKU", () => {
     expect(titles).toContain("Мостовой режим (bridge)");
   });
 
-  test("tdx: price 49900 + Class-D (not Class-TD)", () => {
+  test("qm-400: uses the approved 2400 W channel and 4800 W bridge ratings", () => {
+    const groups = getProduct("qm-400").frontmatter.specGroups;
+    const rows = groups.flatMap((g) => g.rows);
+    expect(rows.find((r) => r.label.includes("Мощность 4 Ω"))?.value).toBe("4 × 2400 Вт");
+    expect(rows.find((r) => r.label.includes("Мощность 2 Ω"))?.value).toBe("4 × 2400 Вт");
+    const bridge = groups.find((g) => g.title === "Мостовой режим (bridge)");
+    expect(bridge?.rows.map((r) => [r.label, r.value])).toEqual([["Мощность 8 Ω (EIA, 1 кГц, 1% THD)", "2 × 4800 Вт"]]);
+  });
+
+  test("tdx: archived Class-D documentation page", () => {
     const p = getProduct("tdx").frontmatter;
-    expect(p.price?.amount).toBe(49900);
+    expect(p.archived).toBe(true);
+    expect(p.price?.amount).toBeUndefined();
     const stage = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Тип выходного каскада");
     expect(stage?.value).toBe("Class-D");
   });
@@ -70,12 +86,27 @@ describe("Power amps — series (matrix)", () => {
     expect(priceRow?.values).toEqual(["70 000 ₽", "80 490 ₽", "110 900 ₽", "120 900 ₽"]);
   });
 
-  test("modules: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
+  test("modules: TDS-20 and TDH-20 use the approved 47900 price", () => {
     const p = getProduct("modules").frontmatter;
     const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
-    expect(byName["TDS-20"]).toBe(44490);
-    expect(byName["TDH-20"]).toBe(44900);
+    expect(byName["TDS-20"]).toBe(47900);
+    expect(byName["TDH-20"]).toBe(47900);
     expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
+  });
+
+  test("TD-100 and TDS/TDH-20 use the approved 2400 W ratings", () => {
+    const td = getProduct("td-series").frontmatter;
+    expect(td.models?.find((m) => m.name === "TD-100")?.config).toBe("2 × 2400 Вт (4 Ω)");
+    const tdPower = td.specMatrix?.rows.find((r) => r.label === "4 Ω стерео");
+    const tdBridge = td.specMatrix?.rows.filter((r) => r.label.includes("bridge"));
+    expect(tdPower?.values.at(-1)).toBe("2 × 2400 Вт");
+    expect(tdBridge?.map((r) => [r.label, r.values.at(-1)])).toEqual([["8 Ω bridge", "4800 Вт"]]);
+
+    const modules = getProduct("modules").frontmatter;
+    expect(modules.models?.find((m) => m.name === "TDS-20")?.config).toBe("2400 Вт (4 Ω)");
+    expect(modules.models?.find((m) => m.name === "TDH-20")?.config).toBe("2400 Вт (4 Ω)");
+    expect(modules.specMatrix?.rows.find((r) => r.label === "4 Ω")?.values.slice(-2)).toEqual(["2400 Вт", "2400 Вт"]);
+    expect(modules.specMatrix?.rows.find((r) => r.label === "2 Ω")?.values.slice(-2)).toEqual(["2400 Вт", "2400 Вт"]);
   });
 });
 

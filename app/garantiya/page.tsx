@@ -9,7 +9,7 @@ const g = getGuarantee();
 export const metadata: Metadata = {
   title: "Гарантия и сервис · NAG · NOVIK",
   description:
-    "Гарантия 1 год на каждый продукт, до 4 лет при заводском дефекте. Сервис и обслуживание ламповых и транзисторных усилителей NOVIK · NAG.",
+    "Гарантия 2 года на каждый продукт. Сервис и обслуживание ламповых и транзисторных усилителей NOVIK · NAG.",
 };
 
 export default function GuaranteePage() {

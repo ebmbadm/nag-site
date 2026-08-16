@@ -8,10 +8,11 @@ describe("nav consistency", () => {
     expect(NAV.find((i) => i.label === "О компании")?.href).toBe("/o-kompanii");
   });
 
-  test("footer warranty reads «1 год», not «2 года»", () => {
+  test("footer warranty reads the approved two-year term", () => {
     render(<SiteFooter />);
-    expect(screen.getByText("EAC · Гарантия 1 год")).toBeInTheDocument();
-    expect(screen.queryByText("EAC · Гарантия 2 года")).toBeNull();
+    expect(screen.getByText("Гарантия 2 года")).toBeInTheDocument();
+    expect(screen.queryByText(/EAC/)).toBeNull();
+    expect(screen.queryByText("EAC · Гарантия 1 год")).toBeNull();
   });
 
   test("footer catalog includes Modules and combines savers with converters", () => {

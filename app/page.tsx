@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Activity, ShieldHalf, Wrench } from "lucide-react";
+import { ArrowRight, Activity, ShieldHalf, Wrench } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 const HERO_STATS = [
   { value: "40+", label: "лет на рынке" },
   { value: "100 %", label: "тестирование" },
-  { value: "2 года", label: "гарантия · EAC" },
+  { value: "2 года", label: "гарантия" },
 ];
 
 const CATEGORIES = [
@@ -68,11 +68,6 @@ const CATEGORIES = [
 ];
 
 const ADVANTAGES = [
-  {
-    Icon: ShieldCheck,
-    title: "EAC сертификация",
-    text: "Техника сертифицирована по требованиям ЕАЭС.",
-  },
   {
     Icon: Activity,
     title: "100 % тестирование",

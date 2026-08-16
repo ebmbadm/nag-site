@@ -10,11 +10,10 @@ describe("company content loaders", () => {
     expect(c.form.disabled).toBe(true);
   });
 
-  test("guarantee: terms 1 год / до 4 лет, CTA → /kontakty", () => {
+  test("guarantee: approved 2-year term, CTA → /kontakty", () => {
     const g = getGuarantee();
-    expect(g.terms).toHaveLength(2);
-    expect(g.terms[0].value).toBe("1 год");
-    expect(g.terms[1].value).toBe("до 4 лет");
+    expect(g.terms).toHaveLength(1);
+    expect(g.terms[0].value).toBe("2 года");
     expect(g.cta.href).toBe("/kontakty");
     expect(g.service.blocks.length).toBeGreaterThan(0);
   });

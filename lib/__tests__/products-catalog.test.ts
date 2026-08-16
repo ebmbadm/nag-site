@@ -70,13 +70,13 @@ describe("Power amps — series (matrix)", () => {
     expect(priceRow?.values).toEqual(["70 000 ₽", "80 490 ₽", "110 900 ₽", "120 900 ₽"]);
   });
 
-  test("modules: TDS-20 44490 / TDH-20 44900 (prose, not table 44900)", () => {
+  test("modules: TDS-20 and TDH-20 use the approved 47900 price", () => {
     const p = getProduct("modules").frontmatter;
     expect(p.category).toBe("Модули NAG");
     expect(p.breadcrumb.map((item) => item.label)).toEqual(["Каталог", "Модули NAG", "TDS / TDH"]);
     const byName = Object.fromEntries((p.models ?? []).map((m) => [m.name, m.price]));
-    expect(byName["TDS-20"]).toBe(44490);
-    expect(byName["TDH-20"]).toBe(44900);
+    expect(byName["TDS-20"]).toBe(47900);
+    expect(byName["TDH-20"]).toBe(47900);
     expect(p.specChips).toContain("до 2400 Вт (4 Ω)");
     expect(p.models?.find((m) => m.name === "TDS-20")?.config).toBe("2400 Вт (4 Ω)");
     expect(p.models?.find((m) => m.name === "TDH-20")?.config).toBe("2400 Вт (4 Ω)");
@@ -94,6 +94,18 @@ describe("Power amps — series (matrix)", () => {
     );
     expect(p.tech?.image?.src).toBe("/products/modules/nag-tds-20-interior-with-removed-pcb.jpg");
     expect(p.specMatrix?.columns).toEqual(["TDS-10", "TDH-10", "TDS-20", "TDH-20"]);
+  });
+
+  test("TD-100 and QM-400 use the approved 2400 W ratings and 8 Ω bridge", () => {
+    const td = getProduct("td-series").frontmatter;
+    expect(td.specMatrix?.rows.find((row) => row.label === "2 Ω стерео")?.values.at(-1)).toBe("2 × 2400 Вт");
+    expect(td.specMatrix?.rows.filter((row) => row.label.includes("bridge")).map((row) => [row.label, row.values.at(-1)])).toEqual([["8 Ω bridge", "4800 Вт"]]);
+
+    const qm = getProduct("qm-400").frontmatter;
+    const qmRows = qm.specGroups.flatMap((group) => group.rows);
+    expect(qmRows.find((row) => row.label.includes("Мощность 2 Ω"))?.value).toBe("4 × 2400 Вт");
+    expect(qmRows.find((row) => row.label.includes("Мощность 8 Ω"))?.value).toBe("2 × 4800 Вт");
+    expect(qmRows.some((row) => row.label.includes("Мощность 4 Ω (EIA"))).toBe(false);
   });
 });
 

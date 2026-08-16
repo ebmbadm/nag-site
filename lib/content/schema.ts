@@ -12,6 +12,7 @@ export const productFrontmatterSchema = z.object({
   line: z.string(),
   subtitle: z.string().optional(),
   badges: z.array(z.string()).default([]),
+  archived: z.boolean().default(false),
   category: z.string(),
   breadcrumb: z
     .array(z.object({ label: z.string(), href: z.string().optional() }))

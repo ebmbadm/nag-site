@@ -43,8 +43,6 @@ const GROUPS: ArchiveGroup[] = [
       "NAG RF-250",
       "NAG RD-1600",
       "NAG PS600",
-      "AMP By NAG CX-520",
-      "AMP By NAG CX-540",
     ],
     replacements: [
       { label: "NAG QM-400", href: "/catalog/qm-400" },
@@ -53,20 +51,22 @@ const GROUPS: ArchiveGroup[] = [
     ],
   },
   {
-    eyebrow: "Серия TD",
-    title: "Архивные TD-усилители",
-    note: "TD-40 / TD-80 / TD-100 заменены актуальной серией TD.",
-    models: ["NAG TD-40", "NAG TD-80", "NAG TD-100"],
-    replacements: [
-      { label: "NAG TD SERIES", href: "/catalog/td-series" },
-    ],
-  },
-  {
     eyebrow: "Встраиваемые модули",
     title: "Архивные модули для активной акустики",
-    note: "Модули MQ и TDX сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
-    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30", "NAG TDX"],
+    note: "Модули MQ сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
+    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30"],
     replacements: [{ label: "Модули TDS / TDH", href: "/catalog/modules" }],
+  },
+  {
+    eyebrow: "Усилители и модули Class-D",
+    title: "Архивные CX и TDX",
+    note: "CX и TDX сняты с производства. Руководства и программное обеспечение сохранены в разделе «Загрузки».",
+    models: ["AMP By NAG CX-520", "AMP By NAG CX-540", "NAG TDX"],
+    replacements: [
+      { label: "NAG TD SERIES", href: "/catalog/td-series" },
+      { label: "Модули TDS / TDH", href: "/catalog/modules" },
+      { label: "Загрузки", href: "/zagruzki" },
+    ],
   },
   {
     eyebrow: "Ламповые NOVIK",
@@ -93,7 +93,7 @@ const LEDE =
 export const metadata: Metadata = {
   title: "Архивные модели — сняты с производства",
   description:
-    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, CX-520/540, TD-40/80/100, MQ-10/20/30, TDX, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
+    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, CX-520/540, MQ-10/20/30, TDX, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
   alternates: { canonical: "/catalog/arhiv" },
   openGraph: {
     title: "Архивные модели NAG · NOVIK — сняты с производства",

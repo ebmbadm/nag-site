@@ -13,7 +13,6 @@ import {
   AccordionItem,
   Figure,
   Gallery,
-  Breadcrumb,
   DownloadList,
   ExpandAllControl,
 } from "@/components/ds";
@@ -81,7 +80,7 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
         <Divider className="my-7" />
 
         {/* Price block */}
-        {(displayPrice || price?.onRequest) && (
+        {!product.archived && (displayPrice || price?.onRequest) && (
           <div>
             <Eyebrow className="block">
               {price?.onRequest
@@ -110,9 +109,11 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
         )}
 
         {/* CTAs */}
-        <div className="mt-6">
-          <ProductCtaButtons price={price} name={product.name} slug={slug} />
-        </div>
+        {!product.archived && (
+          <div className="mt-6">
+            <ProductCtaButtons price={price} name={product.name} slug={slug} />
+          </div>
+        )}
 
         {/* Quick-links — shown only when the sections exist */}
         {(software || specGroups.length > 0 || (docs && docs.length > 0)) && (

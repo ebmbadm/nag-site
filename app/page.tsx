@@ -205,24 +205,29 @@ export default function HomePage() {
       <SpecTicker />
 
       {/* ── CATEGORIES ── */}
-      <Container className="py-[clamp(52px,6vw,92px)]">
-        <div className="mb-[34px] flex flex-wrap items-end justify-between gap-5">
-          <SectionHeader eyebrow="Каталог" title="Четыре направления техники" />
-          <Link
-            href="/catalog/amplifiers"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent"
-          >
-            Весь каталог
-            <ArrowRight className="size-4" aria-hidden />
-          </Link>
-        </div>
-        <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((cat) => (
+      <Surface
+        mode="dark"
+        className="catalog-v5 border-y border-border"
+        style={{ backgroundColor: "var(--surface)" }}
+      >
+        <Container className="py-[clamp(52px,6vw,92px)]">
+          <div className="mb-[34px] flex flex-wrap items-end justify-between gap-5">
+            <SectionHeader eyebrow="Каталог" title="Четыре направления техники" />
             <Link
-              key={cat.href}
-              href={cat.href}
-              className="group flex min-h-[226px] flex-col bg-bg p-[26px] transition-colors hover:bg-surface-2"
+              href="/catalog/amplifiers"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent"
             >
+              Весь каталог
+              <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </div>
+          <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.href}
+                href={cat.href}
+                className="group flex min-h-[226px] flex-col bg-surface-2 p-[26px] transition-colors hover:bg-surface-inset"
+              >
               <div className="-mt-1 mb-4 overflow-hidden rounded-[var(--radius-sm)]">
                 <Image
                   src={cat.image.src}
@@ -254,13 +259,18 @@ export default function HomePage() {
                   aria-hidden
                 />
               </div>
-            </Link>
-          ))}
-        </div>
-      </Container>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </Surface>
 
       {/* ── TRUST BAND ── */}
-      <Surface mode="dark" className="relative overflow-hidden border-y border-border">
+      <Surface
+        mode="dark"
+        className="relative overflow-hidden border-y border-border"
+        style={{ backgroundColor: "var(--surface-2)" }}
+      >
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"

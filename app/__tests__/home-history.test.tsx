@@ -53,3 +53,14 @@ test("uses cautious NAG editorial copy without unverified claims", () => {
   expect(screen.queryByText("40+")).toBeNull();
   expect(screen.queryByText("EAC")).toBeNull();
 });
+
+test("steps catalogue and trust bands from graphite to a lighter chassis tone", () => {
+  const { container } = render(<HomePage />);
+
+  const catalogue = container.querySelector(".catalog-v5[data-surface='dark']");
+  expect(catalogue).toHaveStyle({ backgroundColor: "var(--surface)" });
+  expect(catalogue?.querySelectorAll("a.bg-surface-2")).toHaveLength(4);
+
+  const trustBand = screen.getByText("Инженерный подход").closest("[data-surface='dark']");
+  expect(trustBand).toHaveStyle({ backgroundColor: "var(--surface-2)" });
+});

@@ -306,8 +306,13 @@ export default function HomePage() {
       </Surface>
 
       {/* ── FEATURED QM-400 ── */}
-      <Container className="py-[clamp(52px,6vw,96px)]">
-        <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-2">
+      <Surface
+        mode="dark"
+        className="product-v6"
+        style={{ backgroundColor: "var(--surface-inset)" }}
+      >
+        <Container className="py-[clamp(52px,6vw,96px)]">
+          <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-2">
           <div className="rounded-[var(--radius-lg)] bg-surface-2 p-[30px] shadow-[var(--shadow-3)]">
             <Image
               src="/products/qm-400/nag-qm400-front-panel.jpg"
@@ -383,8 +388,9 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
-      </Container>
+          </div>
+        </Container>
+      </Surface>
 
       {/* ── HISTORY ── */}
       <section className="border-t border-border bg-surface py-[clamp(48px,5vw,84px)]">

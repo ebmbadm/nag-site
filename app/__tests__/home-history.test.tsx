@@ -64,3 +64,11 @@ test("steps catalogue and trust bands from graphite to a lighter chassis tone", 
   const trustBand = screen.getByText("Инженерный подход").closest("[data-surface='dark']");
   expect(trustBand).toHaveStyle({ backgroundColor: "var(--surface-2)" });
 });
+
+test("continues the graphite scale through the featured QM-400 block", () => {
+  render(<HomePage />);
+
+  const featuredBand = screen.getByRole("heading", { name: "NAG QM-400" }).closest(".product-v6");
+  expect(featuredBand).toHaveAttribute("data-surface", "dark");
+  expect(featuredBand).toHaveStyle({ backgroundColor: "var(--surface-inset)" });
+});

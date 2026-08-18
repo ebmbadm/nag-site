@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Activity, ShieldHalf, Wrench } from "lucide-react";
+import { ArrowRight, Activity, FileText, ShieldHalf, Wrench } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -16,7 +16,7 @@ import type { Metadata } from "next";
 
 const HERO_STATS = [
   { value: "40+", label: "лет на рынке" },
-  { value: "100 %", label: "тестирование" },
+  { value: "Полная", label: "мощность · активная нагрузка" },
   { value: "2 года", label: "гарантия" },
 ];
 
@@ -70,18 +70,23 @@ const CATEGORIES = [
 const ADVANTAGES = [
   {
     Icon: Activity,
-    title: "100 % тестирование",
-    text: "Каждый аппарат проходит полный тест под нагрузкой перед отгрузкой.",
-  },
-  {
-    Icon: ShieldHalf,
-    title: "Гарантия 2 года",
-    text: "Два года гарантии на всю технику NAG · NOVIK.",
+    title: "Прогон под нагрузкой",
+    text: "Перед отправкой каждый аппарат NAG проходит прогон на полной мощности на активной нагрузке.",
   },
   {
     Icon: Wrench,
-    title: "Сервис в Петербурге",
-    text: "Собственный отдел ремонта: гарантийное и постгарантийное обслуживание.",
+    title: "Настройка входной платы",
+    text: "Съёмная плата позволяет адаптировать модуль к системе до поставки и уже на объекте — в том числе изменить настройку сабсоника.",
+  },
+  {
+    Icon: ShieldHalf,
+    title: "Настройка без потери гарантии",
+    text: "Для согласованных изменений входной платы передаём техническую документацию; гарантия на модуль сохраняется.",
+  },
+  {
+    Icon: FileText,
+    title: "Поддержка после гарантии",
+    text: "Помогаем с диагностикой и допустимыми работами на месте — удалённо и через местного специалиста, когда логистика невыгодна.",
   },
 ];
 
@@ -148,9 +153,8 @@ export default function HomePage() {
               className="mt-6 max-w-[46ch] text-md text-text-muted"
               style={{ lineHeight: "var(--lh-relaxed)" }}
             >
-              Производим, продаём и обслуживаем усилители мощности, DSP-процессоры и ламповые
-              усилители. Каждый аппарат проходит 100% тестирование, сертифицирован EAC и обеспечен
-              гарантией два года.
+              Подбор, настройка и сервис усилителей мощности, DSP-процессоров и модулей NAG.
+              Гарантия 2 года.
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <Link href="/catalog/amplifiers" className={buttonVariants({ variant: "primary", size: "lg" })}>
@@ -266,8 +270,8 @@ export default function HomePage() {
         />
         <Container className="relative py-[clamp(48px,5vw,80px)]">
           <SectionHeader
-            eyebrow="Почему NOVIK"
-            title="Гарантия не на словах, а на стенде"
+            eyebrow="Почему NAG"
+            title="Техника должна работать и после отгрузки"
             className="mb-10"
           />
           <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">

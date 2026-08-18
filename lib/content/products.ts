@@ -44,5 +44,5 @@ export function getProduct(slug: string): ProductDoc {
 export function getProductsByCategory(category: string): ProductFrontmatter[] {
   return getProductSlugs()
     .map((slug) => getProduct(slug).frontmatter)
-    .filter((fm) => fm.category === category);
+    .filter((fm) => fm.category === category && !fm.archived);
 }

@@ -42,3 +42,14 @@ test("places modules before tube amplifiers in the home catalogue", () => {
   expect(tubesCard).not.toBeNull();
   expect(modulesCard?.compareDocumentPosition(tubesCard as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 });
+
+test("uses cautious NAG editorial copy without unverified claims", () => {
+  render(<HomePage />);
+
+  expect(
+    screen.getByText("Усилители мощности, DSP-процессоры и встраиваемые модули NAG."),
+  ).toBeInTheDocument();
+  expect(screen.getByText("Инженерный подход")).toBeInTheDocument();
+  expect(screen.queryByText("40+")).toBeNull();
+  expect(screen.queryByText("EAC")).toBeNull();
+});

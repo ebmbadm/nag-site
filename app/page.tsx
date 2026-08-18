@@ -15,9 +15,9 @@ import { HeroAmp } from "@/components/landing/hero-amp";
 import type { Metadata } from "next";
 
 const HERO_STATS = [
-  { value: "40+", label: "лет на рынке" },
-  { value: "Полная", label: "мощность · активная нагрузка" },
-  { value: "2 года", label: "гарантия" },
+  { value: "NAG", label: "усилители и DSP" },
+  { value: "Модули", label: "для активной акустики" },
+  { value: "Подбор", label: "под задачу проекта" },
 ];
 
 const CATEGORIES = [
@@ -70,23 +70,23 @@ const CATEGORIES = [
 const ADVANTAGES = [
   {
     Icon: Activity,
-    title: "Прогон под нагрузкой",
-    text: "Перед отправкой каждый аппарат NAG проходит прогон на полной мощности на активной нагрузке.",
+    title: "Подготовка к поставке",
+    text: "Параметры и состав оборудования проверяются перед поставкой в рамках согласованной конфигурации проекта.",
   },
   {
     Icon: Wrench,
-    title: "Настройка входной платы",
-    text: "Съёмная плата позволяет адаптировать модуль к системе до поставки и уже на объекте — в том числе изменить настройку сабсоника.",
+    title: "Настройка тракта",
+    text: "Для модулей можно согласовать параметры входного тракта под задачу системы и способ её дальнейшего управления.",
   },
   {
     Icon: ShieldHalf,
-    title: "Настройка без потери гарантии",
-    text: "Для согласованных изменений входной платы передаём техническую документацию; гарантия на модуль сохраняется.",
+    title: "Согласованные работы",
+    text: "Техническую документацию и порядок допустимых изменений обсуждаем до начала работ — для конкретной модели и проекта.",
   },
   {
     Icon: FileText,
-    title: "Поддержка после гарантии",
-    text: "Помогаем с диагностикой и допустимыми работами на месте — удалённо и через местного специалиста, когда логистика невыгодна.",
+    title: "Сервисный маршрут",
+    text: "Способ диагностики и обслуживания определяется по ситуации: с учётом модели, задачи и доступной логистики.",
   },
 ];
 
@@ -107,7 +107,7 @@ export const metadata: Metadata = {
   // "на рынке с 1992 года", the guarantee, and the service department in SPb.
   title: { absolute: "Усилители мощности и DSP-процессоры NAG · NOVIK" },
   description:
-    "Усилители мощности Class-TD и Class-D, DSP-процессоры и встраиваемые модули для активной акустики. NAG · NOVIK, на рынке с 1992 года. Гарантия 2 года.",
+    "Усилители мощности, DSP-процессоры и встраиваемые модули для активной акустики. NAG · NOVIK.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "NAG · NOVIK — профессиональное звуковое оборудование",
@@ -143,18 +143,18 @@ export default function HomePage() {
                 letterSpacing: "var(--ls-tight)",
               }}
             >
-              МОЩНОСТЬ,
+              МОЩНОСТЬ
               <br />
-              ПРОВЕРЕННАЯ
+              ДЛЯ
               <br />
-              <span className="text-accent">ГОДАМИ.</span>
+              <span className="text-accent">РЕАЛЬНОЙ РАБОТЫ.</span>
             </h1>
             <p
               className="mt-6 max-w-[46ch] text-md text-text-muted"
               style={{ lineHeight: "var(--lh-relaxed)" }}
             >
-              Подбор, настройка и сервис усилителей мощности, DSP-процессоров и модулей NAG.
-              Гарантия 2 года.
+              <span>Усилители мощности, DSP-процессоры и встраиваемые модули NAG.</span>{" "}
+              Подбор и инженерная адаптация под задачу проекта.
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <Link href="/catalog/amplifiers" className={buttonVariants({ variant: "primary", size: "lg" })}>
@@ -270,8 +270,8 @@ export default function HomePage() {
         />
         <Container className="relative py-[clamp(48px,5vw,80px)]">
           <SectionHeader
-            eyebrow="Почему NAG"
-            title="Техника должна работать и после отгрузки"
+            eyebrow="Инженерный подход"
+            title="Техника для задач, где важна предсказуемость"
             className="mb-10"
           />
           <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
@@ -314,9 +314,6 @@ export default function HomePage() {
           <div>
             <div className="mb-[18px] flex gap-2">
               <Badge>Флагман</Badge>
-              <Badge className="border border-green bg-transparent text-text">
-                EAC
-              </Badge>
             </div>
             <Eyebrow className="mb-2.5 block">Усилитель мощности · Class-TD</Eyebrow>
             <h2
@@ -364,7 +361,7 @@ export default function HomePage() {
                   199 900 ₽
                 </div>
                 <div className="mt-1.5 font-mono text-xs text-text-faint">
-                  Без НДС · Гарантия 2 года · EAC
+                  Без НДС · условия поставки уточняйте
                 </div>
               </div>
               <Link

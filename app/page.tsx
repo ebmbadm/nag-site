@@ -356,7 +356,7 @@ export default function HomePage() {
                 letterSpacing: "var(--ls-tight)",
               }}
             >
-              Подберём усилитель
+              Подберём оборудование
               <br />
               под вашу задачу
             </h2>

@@ -99,6 +99,12 @@ test("separates the hero catalogue link from the full catalogue link", () => {
   expect(screen.getByRole("link", { name: "Весь каталог" })).toHaveAttribute("href", "/catalog");
 });
 
+test("uses equipment, not amplifier, in the consultation block", () => {
+  render(<HomePage />);
+
+  expect(screen.getByRole("heading", { name: /Подберём оборудование.*под вашу задачу/ })).toBeInTheDocument();
+});
+
 test("uses the Vik 8 range, prices, and equipment label in the home catalogue", () => {
   render(<HomePage />);
 

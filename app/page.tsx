@@ -33,7 +33,7 @@ const CATEGORIES = [
   },
   {
     eyebrow: "QM400 · TD100/80 · TD40/30",
-    title: "Оборудование",
+    title: "Усилители",
     text: "QM400 и серия усилителей Class-TD.",
     href: "/catalog/amplifiers",
     price: "от 70 000 ₽",

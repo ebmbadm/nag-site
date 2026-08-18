@@ -105,10 +105,10 @@ test("uses equipment, not amplifier, in the consultation block", () => {
   expect(screen.getByRole("heading", { name: /Подберём оборудование.*под вашу задачу/ })).toBeInTheDocument();
 });
 
-test("uses the Vik 8 range, prices, and equipment label in the home catalogue", () => {
+test("uses the Vik 8 range, prices, and amplifiers label in the home catalogue", () => {
   render(<HomePage />);
 
-  const equipment = screen.getByRole("heading", { name: "Оборудование" }).closest("a");
+  const equipment = screen.getByRole("heading", { name: "Усилители" }).closest("a");
   const modules = screen.getByRole("heading", { name: "Модули" }).closest("a");
   const processors = screen.getByRole("heading", { name: "Процессоры" }).closest("a");
 

@@ -18,8 +18,8 @@ describe("catalog coverage", () => {
     }
   });
 
-  test("all six are in the Процессоры category", () => {
-    expect(getProductsByCategory("Процессоры")).toHaveLength(6);
+  test("keeps only three current processors after DSP BY NAG moves to the archive", () => {
+    expect(getProductsByCategory("Процессоры")).toHaveLength(3);
   });
 
   test("only QM-400 and TD are active power amplifiers", () => {

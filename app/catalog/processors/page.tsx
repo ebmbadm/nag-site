@@ -9,7 +9,7 @@ const ORDER = ["f-8-pro", "f-8", "d-8000", "the-rogue", "d-4", "d-8"];
 const FLAGSHIP = "d-8000";
 
 const LEDE =
-  "Цифровые корректоры-контроллеры акустических систем NAG. Шесть моделей: процессоры серии F с FIR и AES/EBU, флагман D-8000 Wi-Fi и доступная линейка DSP BY NAG с трансформаторным блоком питания.";
+  "Цифровые корректоры-контроллеры акустических систем NAG: процессоры серии F с FIR и AES/EBU и флагман D-8000 Wi-Fi.";
 
 const CRUMBS = [
   { label: "Главная", href: "/" },
@@ -60,9 +60,10 @@ export default function ProcessorsPage() {
           <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
             {LEDE}
           </p>
+          <p className="mt-4 font-mono text-xs text-text-faint">от 72 000 ₽</p>
         </header>
 
-        {/* 6 товаров: 2 и 3 колонки делятся нацело — одиночных карточек нет ни на одном брейкпоинте. */}
+        {/* В каталоге остаются только актуальные модели; снятые с производства перенесены в архив. */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard

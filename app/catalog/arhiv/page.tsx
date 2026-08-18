@@ -7,10 +7,12 @@ import {
   SectionHeader,
   Breadcrumb,
   Chip,
+  ProductCard,
   buttonVariants,
 } from "@/components/ds";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
+import { getProduct } from "@/lib/content/products";
 
 /**
  * Archive page — snято с производства. These models still get search demand
@@ -25,10 +27,19 @@ type ArchiveGroup = {
   title: string;
   note: string;
   models: string[];
+  slugs?: string[];
   replacements: Replacement[];
 };
 
 const GROUPS: ArchiveGroup[] = [
+  {
+    eyebrow: "DSP BY NAG",
+    title: "Архивные процессоры NAG",
+    note: "Эти модели сняты с актуального каталога и сохранены в архиве с карточками и документацией.",
+    models: [],
+    slugs: ["the-rogue", "d-4", "d-8"],
+    replacements: [{ label: "Актуальные процессоры", href: "/catalog/processors" }],
+  },
   {
     eyebrow: "Усилители мощности",
     title: "Архивные усилители мощности NAG",
@@ -140,6 +151,15 @@ export default function ArchivePage() {
                   <Chip key={model}>{model}</Chip>
                 ))}
               </div>
+
+              {group.slugs && (
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                  {group.slugs.map((slug) => {
+                    const product = getProduct(slug).frontmatter;
+                    return <ProductCard key={slug} slug={slug} name={product.name} eyebrow={product.line} image={{ src: product.gallery[0].src, alt: product.gallery[0].alt }} price={{ amount: product.price?.amount, onRequest: product.price?.onRequest }} />;
+                  })}
+                </div>
+              )}
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">

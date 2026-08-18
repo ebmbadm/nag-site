@@ -43,12 +43,18 @@ test("places modules before tube amplifiers in the home catalogue", () => {
   expect(modulesCard?.compareDocumentPosition(tubesCard as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 });
 
-test("uses cautious NAG editorial copy without unverified claims", () => {
+test("introduces all four NAG directions without unverified claims", () => {
   render(<HomePage />);
 
   expect(
-    screen.getByText("Усилители мощности, DSP-процессоры и встраиваемые модули NAG."),
+    screen.getByText(
+      "DSP-процессоры, усилители мощности и встраиваемые модули NAG. Ламповая техника NOVIK.",
+    ),
   ).toBeInTheDocument();
+  const heroHeading = screen.getByRole("heading", {
+    name: "ВСЁ ДЛЯ РЕАЛЬНОЙ РАБОТЫ СО ЗВУКОМ.",
+  });
+  expect(heroHeading).toHaveClass("text-[clamp(34px,3.5vw,50px)]");
   expect(screen.getByText("Инженерный подход")).toBeInTheDocument();
   expect(screen.queryByText("40+")).toBeNull();
   expect(screen.queryByText("EAC")).toBeNull();
@@ -65,10 +71,44 @@ test("steps catalogue and trust bands from graphite to a lighter chassis tone", 
   expect(trustBand).toHaveStyle({ backgroundColor: "var(--surface-2)" });
 });
 
-test("continues the graphite scale through the featured QM-400 block", () => {
+test("does not give QM-400 a standalone featured block on the home page", () => {
+  const { container } = render(<HomePage />);
+
+  expect(screen.queryByRole("heading", { name: "NAG QM-400" })).toBeNull();
+  expect(container.querySelector(".product-v6")).toBeNull();
+});
+
+test("uses three sales principles instead of duplicating the catalogue in the hero", () => {
   render(<HomePage />);
 
-  const featuredBand = screen.getByRole("heading", { name: "NAG QM-400" }).closest(".product-v6");
-  expect(featuredBand).toHaveAttribute("data-surface", "dark");
-  expect(featuredBand).toHaveStyle({ backgroundColor: "var(--surface-inset)" });
+  const principles = screen.getByTestId("hero-principles");
+
+  expect(principles).toHaveTextContent("CLASS-TD");
+  expect(principles).toHaveTextContent("качество звука");
+  expect(principles).toHaveTextContent("длительная эксплуатация");
+  expect(principles).toHaveTextContent("до и после гарантии");
+  expect(principles.children).toHaveLength(3);
+});
+
+test("separates the hero catalogue link from the full catalogue link", () => {
+  render(<HomePage />);
+
+  const catalogueLinks = screen.getAllByRole("link", { name: "Смотреть каталог" });
+
+  expect(catalogueLinks[0]).toHaveAttribute("href", "#catalog");
+  expect(screen.getByRole("link", { name: "Весь каталог" })).toHaveAttribute("href", "/catalog");
+});
+
+test("uses the Vik 8 range, prices, and equipment label in the home catalogue", () => {
+  render(<HomePage />);
+
+  const equipment = screen.getByRole("heading", { name: "Оборудование" }).closest("a");
+  const modules = screen.getByRole("heading", { name: "Модули" }).closest("a");
+  const processors = screen.getByRole("heading", { name: "Процессоры" }).closest("a");
+
+  expect(equipment).toHaveTextContent("QM400 · TD100/80 · TD40/30");
+  expect(equipment).toHaveTextContent("от 70 000 ₽");
+  expect(modules).toHaveTextContent("TDS20/10 · TDH20/10");
+  expect(modules).toHaveTextContent("от 41 900 ₽");
+  expect(processors).toHaveTextContent("от 72 000 ₽");
 });

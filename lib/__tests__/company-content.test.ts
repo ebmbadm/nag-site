@@ -18,10 +18,14 @@ describe("company content loaders", () => {
     expect(g.service.blocks.length).toBeGreaterThan(0);
   });
 
-  test("hub: 3 cards to real routes, sourced stat (not 700+)", () => {
+  test("hub: 3 cards to real routes and a reserved history continuation", () => {
     const h = getCompanyHub();
     expect(h.cards.map((c) => c.href)).toEqual(["/istoriya", "/garantiya", "/kontakty"]);
-    expect(h.stat.value).toBe("Более 40 лет");
+    expect(h.historyPeriods).toEqual([
+      { range: "1976–1992", label: "личная история" },
+      { range: "1992–2026", label: "компания NOVIK" },
+    ]);
+    expect(h.historyContinuation.range).toBe("2000–2026");
     expect(JSON.stringify(h)).not.toContain("700+");
   });
 });

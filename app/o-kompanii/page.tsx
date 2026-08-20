@@ -6,10 +6,11 @@ import { getCompanyHub, getHistory } from "@/lib/content/company";
 
 const hub = getCompanyHub();
 
-/** Curated founding-to-today arc — 8 nodes so the strip grid never leaves dead cells. */
+/** Curated first part of the timeline; the next period has a dedicated reserved panel. */
 const MILESTONE_IDS: readonly string[] = [
   "nachalo",
   "ps600",
+  "aerobus",
   "prokat",
   "novik",
   "gibson",
@@ -53,7 +54,7 @@ export default function CompanyHubPage() {
         </div>
       </Container>
 
-      <MilestoneStrip chapters={milestones} stat={hub.stat} />
+      <MilestoneStrip chapters={milestones} periods={hub.historyPeriods} continuation={hub.historyContinuation} />
     </div>
   );
 }

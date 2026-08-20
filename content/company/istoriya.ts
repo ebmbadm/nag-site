@@ -91,9 +91,9 @@ export const istoriya: HistoryContent = {
     },
     {
       id: "aerobus",
-      year: "1983",
-      label: "ВИА «Аэробус» · Юрий Антонов",
-      title: "Аэробус",
+      year: "1983–1986",
+      label: "Группа Юрия Антонова · звукооператор и постановщик аппаратуры",
+      title: "Работа в группе Юрия Антонова",
       blocks: [
         {
           type: "p",
@@ -115,7 +115,7 @@ export const istoriya: HistoryContent = {
     },
     {
       id: "prokat",
-      year: "1985",
+      year: "1987–1990",
       label: "Прокат · «Наутилус» · ДДТ · Цой",
       title: "Прокат",
       blocks: [

@@ -56,7 +56,7 @@ const CATEGORIES = [
   {
     eyebrow: "602 · E12 · RedBear",
     title: "Лампа",
-    text: "Ламповые усилители — наследие NOVIK с 1976 года.",
+    text: "Ламповые усилители — часть истории Александра Новикова с 1976 года.",
     href: "/catalog/tubes",
     price: "Цена по запросу",
     image: {
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NAG · NOVIK — профессиональное звуковое оборудование",
     description:
-      "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. На рынке с 1992 года.",
+      "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, усилители мощности Class-TD, ламповые усилители. Компания NOVIK создана в 1992 году; NAG — её бренд.",
   },
 };
 
@@ -310,7 +310,7 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <Eyebrow className="mb-3.5 block">Компания · с 1976</Eyebrow>
+              <Eyebrow className="mb-3.5 block">История · 1976–2000</Eyebrow>
               <h2
                 className="mb-[18px] font-display font-bold uppercase text-text"
                 style={{
@@ -325,8 +325,8 @@ export default function HomePage() {
                 className="mb-7 max-w-[52ch] text-md text-text-muted"
                 style={{ lineHeight: "var(--lh-relaxed)" }}
               >
-                От первых ламповых усилителей Сергея Новикова и серии RedBear для Gibson — до бренда
-                NOVIK и профессиональной линейки NAG.
+                Опубликованная часть истории: от первых ламповых усилителей Сергея Новикова до
+                2000 года. Продолжение о периоде 2000–2026 готовится к публикации.
               </p>
               <Link href="/istoriya" className={buttonVariants({ variant: "outline" })}>
                 Читать историю

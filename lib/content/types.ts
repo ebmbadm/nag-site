@@ -65,7 +65,8 @@ export interface CompanyHubContent {
   title: string;
   lede: string;
   cards: CompanyHubCard[];
-  stat: { value: string; label: string };
+  historyPeriods: { range: string; label: string }[];
+  historyContinuation: { range: string; title: string; text: string };
 }
 
 /* ---- Tubes boutique (P3) ---- */

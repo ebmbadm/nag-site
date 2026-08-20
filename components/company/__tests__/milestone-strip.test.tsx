@@ -14,7 +14,7 @@ describe("MilestoneStrip", () => {
       chapters={chapters}
       periods={[
         { range: "1976–1992", label: "личная история" },
-        { range: "1992–2026", label: "компания NAG" },
+        { range: "1992–2026", label: "компания NOVIK" },
       ]}
       continuation={{ range: "2000–2026", title: "Продолжение", text: "Модели и даты будут добавлены здесь." }}
     />);

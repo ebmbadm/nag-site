@@ -41,7 +41,7 @@ export function SiteFooter() {
             className="h-6 w-auto"
           />
           <p className="mt-4 max-w-xs text-sm text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            Профессиональное звуковое оборудование NAG · NOVIK. Компания NAG создана в 1992 году.
+            Профессиональное звуковое оборудование NAG · NOVIK. Компания NOVIK создана в 1992 году; NAG — её бренд.
           </p>
           <div className="mt-5 space-y-1 font-mono text-sm text-text">
             <a href="tel:+79219372508" className="block transition-colors hover:text-accent">

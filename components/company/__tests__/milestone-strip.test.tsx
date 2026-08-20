@@ -9,11 +9,19 @@ const chapters: HistoryChapter[] = [
 ];
 
 describe("MilestoneStrip", () => {
-  test("renders one node per chapter + a link to /istoriya + the stat", () => {
-    render(<MilestoneStrip chapters={chapters} stat={{ value: "Более 40 лет", label: "ручной сборки" }} />);
+  test("renders dated periods and a reserved continuation section", () => {
+    render(<MilestoneStrip
+      chapters={chapters}
+      periods={[
+        { range: "1976–1992", label: "личная история" },
+        { range: "1992–2026", label: "компания NAG" },
+      ]}
+      continuation={{ range: "2000–2026", title: "Продолжение", text: "Модели и даты будут добавлены здесь." }}
+    />);
     expect(screen.getByText("1976")).toBeInTheDocument();
     expect(screen.getByText("1992")).toBeInTheDocument();
-    expect(screen.getByText("Более 40 лет")).toBeInTheDocument();
+    expect(screen.getByText("личная история")).toBeInTheDocument();
+    expect(screen.getByText("Модели и даты будут добавлены здесь.")).toBeInTheDocument();
     const link = screen.getByRole("link", { name: /историю/i });
     expect(link).toHaveAttribute("href", "/istoriya");
   });

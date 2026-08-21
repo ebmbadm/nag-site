@@ -32,6 +32,17 @@ test("uses the NOVIK RedBear photograph for the tube amplifiers category", () =>
   );
 });
 
+test("credits Sergei Novikov in the tube amplifiers category", () => {
+  render(<HomePage />);
+
+  const tubesCard = screen.getByRole("heading", { name: "Лампа" }).closest("a");
+
+  expect(tubesCard).toHaveTextContent(
+    "Ламповые усилители — часть истории Сергея Новикова с 1976 года.",
+  );
+  expect(tubesCard).not.toHaveTextContent("Александра Новикова");
+});
+
 test("places modules before tube amplifiers in the home catalogue", () => {
   render(<HomePage />);
 

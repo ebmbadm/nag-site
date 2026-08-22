@@ -26,4 +26,9 @@ docker run -d --name nag-site --restart unless-stopped \
 echo "==> Connecting to supabase_default network..."
 docker network connect supabase_default nag-site >/dev/null 2>&1 || true
 
+echo "==> Pruning Docker build cache..."
+# Keeps the VDS disk from filling up (hit 80%+ once already). -f drops only
+# dangling cache, so the next build still reuses recent layers.
+docker builder prune -f >/dev/null
+
 echo "==> Done."

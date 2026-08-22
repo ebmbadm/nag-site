@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    // Google Search Console, ресурс с префиксом https://novikamps.com/.
+    // Google требует, чтобы подтверждение оставалось на месте — удаление тега
+    // снимает права на ресурс и обнуляет доступ к отчётам по запросам.
+    google: "Xue7X11JvGiZwTUnbTOEvhGSFNuTwHcxJCyk8SFRuoU",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

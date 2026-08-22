@@ -69,7 +69,7 @@ export default function CatalogIndexPage() {
       <Container>
         <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
 
-        <header className="mt-8 max-w-prose">
+        <header className="enter mt-8 max-w-prose">
           <Eyebrow accent>NAG · NOVIK</Eyebrow>
           <h1
             className="mt-3 font-display uppercase text-text"
@@ -90,7 +90,7 @@ export default function CatalogIndexPage() {
           7 cards: the archive spans the trailing row so no cell is orphaned.
           The wrapper is `grid` so each card stretches to its row height.
         */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {CATEGORIES.map((card) => (
             <div
               key={card.href}

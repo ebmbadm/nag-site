@@ -35,7 +35,7 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
   return (
     <Surface mode="dark">
       <section className="border-b border-border py-12 lg:py-20">
-        <Container className="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+        <Container className="enter-stagger grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
           <div>
             <Eyebrow accent>Флагман серии</Eyebrow>
             <h1 className="mt-5 font-display text-6xl uppercase leading-[0.82] tracking-[var(--ls-tighter)] sm:text-7xl lg:text-8xl">
@@ -58,8 +58,8 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
       </section>
 
       <section className="border-b border-border">
-        <Container className="grid lg:grid-cols-[1.1fr_0.9fr]">
-          <Image src="/products/amplifiers/qm-400-top-open.jpg" alt="QM-400 со снятой верхней крышкой" width={1200} height={800} sizes="(min-width: 1024px) 55vw, 100vw" className="h-[300px] w-full object-cover lg:h-[380px]" />
+        <Container className="reveal-stagger grid lg:grid-cols-[1.1fr_0.9fr]">
+          <Image src="/products/amplifiers/qm-400-top-open.jpg" alt="QM-400 со снятой верхней крышкой" width={1680} height={945} sizes="(min-width: 1024px) 55vw, 100vw" className="h-auto w-full bg-photo-backdrop object-contain" />
           <div className="flex flex-col justify-center border-x border-border p-8 lg:p-12">
             <Eyebrow accent>Конструкция</Eyebrow>
             <h2 className="mt-4 font-display text-4xl uppercase leading-[0.9] tracking-[var(--ls-tight)]">Четыре канала в одном шасси.</h2>
@@ -69,17 +69,17 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
       </section>
 
       <section className="py-16">
-        <Container className="grid gap-px bg-border lg:grid-cols-2">
+        <Container className="reveal-fade-stagger grid gap-px bg-border lg:grid-cols-2">
           <article className="bg-surface p-6 lg:p-8">
-            <Image src="/products/amplifiers/td-100-80-panels.png" alt="Передняя и задняя панели усилителя NAG TD-100" width={1600} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[240px] w-full bg-photo-backdrop object-contain" />
+            <div className="bg-photo-backdrop"><Image src="/products/amplifiers/td-100-80-panels.png" alt="Передняя и задняя панели усилителя NAG TD-100" width={1600} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[240px] w-full object-contain mix-blend-multiply" /></div>
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-100 / TD-80</h2>
             <p className="mt-4 leading-relaxed text-text-muted">Двухканальные версии для задач, где нужна высокая мощность в компактном корпусе 1.5U. Общий блок питания и два канала сохраняют привычную для серии TD логику работы.</p>
             <span className="mt-6 block font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Серия TD · старшая</span>
           </article>
           <article className="bg-surface p-6 lg:p-8">
             <div className="grid gap-3 bg-photo-backdrop p-3">
-              <Image src="/products/td-series/nag-td40-front-panel.jpg" alt="Передняя панель усилителя NAG TD-40" width={1400} height={187} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[90px] w-full object-contain" />
-              <Image src="/products/td-series/nag-td40-front-rear-panels.png" alt="Передняя и задняя панели усилителя NAG TD-40" width={1680} height={841} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[145px] w-full object-contain" />
+              <Image src="/products/td-series/nag-td40-front-panel.jpg" alt="Передняя панель усилителя NAG TD-40" width={1400} height={187} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[90px] w-full object-contain mix-blend-multiply" />
+              <Image src="/products/td-series/nag-td40-front-rear-panels.png" alt="Передняя и задняя панели усилителя NAG TD-40" width={1680} height={841} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[145px] w-full object-contain mix-blend-multiply" />
             </div>
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-40 / TD-30</h2>
             <p className="mt-4 leading-relaxed text-text-muted">Самые лёгкие двухканальные усилители TD-класса в 1U-дизайне. Подходят для систем, где важны компактность, надёжность и понятная интеграция.</p>
@@ -90,14 +90,14 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
 
       <section className="pb-20">
         <Container>
-          <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div className="reveal mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <Eyebrow accent>Техническая карта</Eyebrow>
               <h2 className="mt-4 font-display text-4xl uppercase leading-[0.9] tracking-[var(--ls-tight)]">Характеристики и цены</h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-text-muted">Сравнение флагмана QM‑400 и двухканальной серии TD для подбора системы.</p>
           </div>
-          <div className="overflow-x-auto border border-border">
+          <div className="reveal overflow-x-auto border border-border">
             <table aria-label="Характеристики и цены" className="w-full min-w-[760px] border-collapse text-left text-sm">
               <thead><tr className="border-b border-border"><th className="p-4 text-text-muted">Модель</th><th className="bg-accent-wash p-4">QM-400</th><th className="p-4">TD-100 / TD-80</th><th className="p-4">TD-40 / TD-30</th></tr></thead>
               <tbody>

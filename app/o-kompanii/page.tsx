@@ -33,7 +33,7 @@ export default function CompanyHubPage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "О компании" }]} />
-          <header className="mt-6 max-w-prose">
+          <header className="enter mt-6 max-w-prose">
             <Eyebrow accent>{hub.eyebrow}</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -47,7 +47,7 @@ export default function CompanyHubPage() {
       </Surface>
 
       <Container className="py-12">
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="reveal-stagger grid gap-4 sm:grid-cols-3">
           {hub.cards.map((card) => (
             <HubCard key={card.href} card={card} />
           ))}

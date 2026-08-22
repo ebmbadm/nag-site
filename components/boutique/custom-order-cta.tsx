@@ -10,7 +10,7 @@ export function CustomOrderCta({ custom }: { custom: BoutiqueCustom }) {
   return (
     <section id="custom" className="scroll-mt-20 border-t border-border bg-surface-2 py-16">
       <Container>
-        <div className="max-w-prose">
+        <div className="reveal max-w-prose">
           <h2
             className="font-display uppercase text-text"
             style={{

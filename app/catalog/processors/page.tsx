@@ -45,7 +45,7 @@ export default function ProcessorsPage() {
         <JsonLd data={breadcrumbSchema(CRUMBS)} />
         <Breadcrumb items={CRUMBS} />
 
-        <header className="mt-8 max-w-prose">
+        <header className="enter mt-8 max-w-prose">
           <Eyebrow accent>NAG Pro Audio</Eyebrow>
           <h1
             className="mt-3 font-display uppercase text-text"
@@ -64,7 +64,7 @@ export default function ProcessorsPage() {
         </header>
 
         {/* В каталоге остаются только актуальные модели; снятые с производства перенесены в архив. */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard
               key={p.slug}

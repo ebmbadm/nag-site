@@ -17,7 +17,7 @@ export default function BoutiqueLandingPage() {
     <div>
       <Container className="py-10">
         <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }, { label: "Бутик ламп" }]} />
-        <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="enter-stagger mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="max-w-prose">
             <Eyebrow accent>{b.eyebrow}</Eyebrow>
             <h1

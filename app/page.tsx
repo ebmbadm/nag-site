@@ -125,9 +125,13 @@ export default function HomePage() {
         <Container className="relative grid items-center gap-[clamp(24px,3vw,48px)] py-[clamp(48px,6vw,84px)] lg:grid-cols-[1.04fr_.96fr]">
           <div>
             <div className="mb-[22px] flex items-center gap-3">
-              <Rule className="w-[38px]" />
-              <Eyebrow>NOVIK Amplifiers Group · Pro Audio · с 1992</Eyebrow>
+              <Rule className="power-rule w-[38px]" />
+              <Eyebrow className="power-fade" style={{ ["--pd" as string]: "160ms" }}>
+                NOVIK Amplifiers Group · Pro Audio · с 1992
+              </Eyebrow>
             </div>
+            {/* Три строки — три отдельных элемента: последовательность включения
+                читается построчно, а последняя строка «зажигается» красным. */}
             <h1
               className="font-display font-bold uppercase text-text text-[clamp(34px,3.5vw,50px)]"
               aria-label="ВСЁ ДЛЯ РЕАЛЬНОЙ РАБОТЫ СО ЗВУКОМ."
@@ -136,20 +140,30 @@ export default function HomePage() {
                 letterSpacing: "var(--ls-tight)",
               }}
             >
-              ВСЁ
-              <br />
-              ДЛЯ РЕАЛЬНОЙ
-              <br />
-              <span className="text-accent">РАБОТЫ СО ЗВУКОМ.</span>
+              <span className="power-rise block" style={{ ["--pd" as string]: "120ms" }}>
+                ВСЁ
+              </span>
+              <span className="power-rise block" style={{ ["--pd" as string]: "190ms" }}>
+                ДЛЯ РЕАЛЬНОЙ
+              </span>
+              <span
+                className="power-ignite block text-accent"
+                style={{ ["--pd" as string]: "260ms" }}
+              >
+                РАБОТЫ СО ЗВУКОМ.
+              </span>
             </h1>
             <p
-              className="mt-6 max-w-[46ch] text-md text-text-muted"
-              style={{ lineHeight: "var(--lh-relaxed)" }}
+              className="power-rise mt-6 max-w-[46ch] text-md text-text-muted"
+              style={{ lineHeight: "var(--lh-relaxed)", ["--pd" as string]: "420ms" }}
             >
               <span>DSP-процессоры, усилители мощности и встраиваемые модули NAG. Ламповая техника NOVIK.</span>{" "}
               Подбор и инженерная адаптация под задачу проекта.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3.5">
+            <div
+              className="power-rise mt-8 flex flex-wrap gap-3.5"
+              style={{ ["--pd" as string]: "520ms" }}
+            >
               <Link href="#catalog" className={buttonVariants({ variant: "primary", size: "lg" })}>
                 Смотреть каталог
                 <ArrowRight className="size-4" aria-hidden />
@@ -161,12 +175,23 @@ export default function HomePage() {
                 О компании
               </Link>
             </div>
+            {/* Линейка — отдельный элемент, а не border-top: её можно прочертить
+                трансформом, и тест на три ячейки в hero-principles не ломается. */}
+            <div
+              aria-hidden
+              className="power-hairline mt-[38px] h-px w-full bg-border"
+              style={{ ["--pd" as string]: "600ms" }}
+            />
             <div
               data-testid="hero-principles"
-              className="mt-[38px] grid grid-cols-1 gap-x-[clamp(12px,3vw,28px)] gap-y-5 border-t border-border pt-6 sm:grid-cols-3 sm:gap-x-3"
+              className="grid grid-cols-1 gap-x-[clamp(12px,3vw,28px)] gap-y-5 pt-6 sm:grid-cols-3 sm:gap-x-3"
             >
-              {HERO_STATS.map((s) => (
-                <div key={s.label}>
+              {HERO_STATS.map((s, i) => (
+                <div
+                  key={s.label}
+                  className="power-rise"
+                  style={{ ["--pd" as string]: `${660 + i * 60}ms` }}
+                >
                   <div
                     className="font-display font-bold uppercase tabular-nums text-text"
                     style={{
@@ -211,20 +236,22 @@ export default function HomePage() {
               <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>
-          <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal-fade-stagger grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {CATEGORIES.map((cat) => (
               <Link
                 key={cat.href}
                 href={cat.href}
                 className="group flex min-h-[226px] flex-col bg-surface-2 p-[26px] transition-colors hover:bg-surface-inset"
               >
-              <div className="-mt-1 mb-4 overflow-hidden rounded-[var(--radius-sm)]">
+              {/* Panels, a square module shot and a tube chassis share this frame —
+                  contained on the photo backdrop so every device stays whole. */}
+              <div className="-mt-1 mb-4 overflow-hidden rounded-[var(--radius-sm)] bg-photo-backdrop">
                 <Image
                   src={cat.image.src}
                   alt={cat.image.alt}
                   width={320}
                   height={160}
-                  className="h-[120px] w-full object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  className="h-[120px] w-full object-contain p-2 mix-blend-multiply transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                 />
               </div>
               <Eyebrow accent className="mb-3.5 block">
@@ -274,7 +301,7 @@ export default function HomePage() {
             title="Техника для задач, где важна предсказуемость"
             className="mb-10"
           />
-          <div className="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal-stagger grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
             {ADVANTAGES.map(({ Icon, title, text }) => (
               <div key={title}>
                 <div className="mb-4 inline-flex size-[46px] items-center justify-center rounded-[var(--radius-md)] bg-accent text-on-accent">
@@ -298,7 +325,7 @@ export default function HomePage() {
       {/* ── HISTORY ── */}
       <section className="border-t border-border bg-surface py-[clamp(48px,5vw,84px)]">
         <Container>
-          <div className="grid items-center gap-[clamp(28px,4vw,60px)] lg:grid-cols-[.85fr_1.15fr]">
+          <div className="reveal-stagger grid items-center gap-[clamp(28px,4vw,60px)] lg:grid-cols-[.85fr_1.15fr]">
             <div className="w-full max-w-[380px] overflow-hidden rounded-[var(--radius-lg)] bg-surface-2 shadow-[var(--shadow-3)] lg:max-w-none">
               {/* The archival N602 photograph is kept contained to preserve its original framing. */}
               <Image
@@ -346,7 +373,7 @@ export default function HomePage() {
             background: "radial-gradient(90% 130% at 18% 0%, rgba(225,21,7,.14), transparent 58%)",
           }}
         />
-        <Container className="relative grid items-center gap-[clamp(28px,4vw,56px)] py-[clamp(52px,6vw,92px)] lg:grid-cols-[1.1fr_.9fr]">
+        <Container className="reveal-stagger relative grid items-center gap-[clamp(28px,4vw,56px)] py-[clamp(52px,6vw,92px)] lg:grid-cols-[1.1fr_.9fr]">
           <div>
             <h2
               className="mb-[18px] font-display font-bold uppercase text-text"

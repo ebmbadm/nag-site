@@ -18,7 +18,7 @@ export default function DownloadsPage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Загрузки" }]} />
-          <div className="mt-6 max-w-prose">
+          <div className="enter mt-6 max-w-prose">
             <Eyebrow accent>Документация и ПО</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -39,10 +39,10 @@ export default function DownloadsPage() {
       </Surface>
 
       <Container className="py-14">
-        <div className="space-y-12">
+        <div className="reveal-stagger space-y-12">
           {groups.map((group) => (
             <section key={group.slug}>
-              <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-3">
+              <div className="reveal flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-3">
                 <h2
                   className="font-display text-xl uppercase text-text"
                   style={{ letterSpacing: "var(--ls-tight)" }}

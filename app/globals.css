@@ -247,8 +247,13 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Smooth anchor scrolling is motion too: the history TOC and the product
+   quick-links (#specs / #docs / #software) must jump for anyone who asked
+   the OS for less movement. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -297,6 +302,217 @@ details > summary::-webkit-details-marker {
   }
 }
 
+/* ── Hero power-on ───────────────────────────────────────────
+   The landing's one authored sequence, played once on load: the rule
+   draws, the headline lines rise, the last line ignites red like a lamp
+   coming up, then the chassis lights and its meters run a self-test.
+   Every class below lives inside the no-preference guard, so with reduced
+   motion the hero simply renders in its final state — including
+   `.power-hairline`, which only borrows the border colour while it draws. */
+@keyframes powerRule {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes powerRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes powerIgnite {
+  0%   { opacity: 0; transform: translateY(14px); color: var(--text-faint); text-shadow: none; }
+  55%  { opacity: 1; transform: none; color: var(--accent); text-shadow: 0 0 26px rgba(225, 21, 7, 0.55); }
+  100% { opacity: 1; transform: none; color: var(--accent); text-shadow: none; }
+}
+
+@keyframes powerFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .power-rule {
+    transform-origin: left center;
+    animation: powerRule var(--dur-slow) var(--ease-out) var(--pd, 0ms) both;
+  }
+  .power-hairline {
+    transform-origin: left center;
+    animation: powerRule 520ms var(--ease-out) var(--pd, 0ms) both;
+  }
+  .power-rise {
+    animation: powerRise 460ms var(--ease-out) var(--pd, 0ms) both;
+  }
+  .power-ignite {
+    animation: powerIgnite 620ms var(--ease-out) var(--pd, 0ms) both;
+  }
+  .power-fade {
+    animation: powerFade 500ms var(--ease-out) var(--pd, 0ms) both;
+  }
+}
+
+/* ── Reveal on entry ─────────────────────────────────────────
+   Scroll-driven: the animation is bound to the element's own progress
+   through the viewport, so there is no observer and no JS. The range
+   `entry 10% → cover 32%` matters — anything already on screen at load
+   has passed it and renders finished, so nothing can sit half faded
+   waiting for a scroll that never comes. Browsers without scroll-driven
+   animations skip the block entirely and just show the content.
+
+   `reveal-fade` (and its stagger) is the opacity-only variant for the
+   gap-px grids, where a sliding card would drag the seam colour with it. */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes revealIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal,
+    .reveal-stagger > * {
+      animation: revealUp 460ms var(--ease-out) both;
+    }
+
+    .reveal-fade,
+    .reveal-fade-stagger > * {
+      animation: revealIn 460ms var(--ease-out) both;
+    }
+
+    .reveal,
+    .reveal-fade,
+    .reveal-stagger > *,
+    .reveal-fade-stagger > * {
+      animation-timeline: view();
+      animation-range: entry 10% cover 32%;
+    }
+
+    /* Siblings arrive as a list: each child's range opens a little later, so
+       the stagger is measured in scroll distance rather than in seconds. */
+    .reveal-stagger > *:nth-child(2),
+    .reveal-fade-stagger > *:nth-child(2) {
+      animation-range: entry 15% cover 37%;
+    }
+    .reveal-stagger > *:nth-child(3),
+    .reveal-fade-stagger > *:nth-child(3) {
+      animation-range: entry 20% cover 42%;
+    }
+    .reveal-stagger > *:nth-child(4),
+    .reveal-fade-stagger > *:nth-child(4) {
+      animation-range: entry 25% cover 47%;
+    }
+    .reveal-stagger > *:nth-child(n + 5),
+    .reveal-fade-stagger > *:nth-child(n + 5) {
+      animation-range: entry 30% cover 52%;
+    }
+  }
+}
+
+/* ── Entrance on load ────────────────────────────────────────
+   The scroll-driven reveal above cannot play for anything already on
+   screen when the page opens — its range is behind the scroll position by
+   then. So the first screen of every page uses a plain timed entrance
+   instead: the intro block, the hero media, the first grid. Everything
+   further down stays on `.reveal`. Total stagger is capped so the page is
+   never waiting on itself. */
+@media (prefers-reduced-motion: no-preference) {
+  .enter,
+  .enter-stagger > * {
+    animation: revealUp 460ms var(--ease-out) both;
+  }
+  .enter {
+    animation-delay: var(--pd, 0ms);
+  }
+  .enter-stagger > *:nth-child(1) { animation-delay: 60ms; }
+  .enter-stagger > *:nth-child(2) { animation-delay: 130ms; }
+  .enter-stagger > *:nth-child(3) { animation-delay: 200ms; }
+  .enter-stagger > *:nth-child(4) { animation-delay: 270ms; }
+  .enter-stagger > *:nth-child(5) { animation-delay: 340ms; }
+  .enter-stagger > *:nth-child(n + 6) { animation-delay: 400ms; }
+}
+
+/* ── Route change ────────────────────────────────────────────
+   app/template.tsx remounts on every navigation, so this plays once per
+   page. Short on purpose: a slow page transition reads as latency. */
+@keyframes routeEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .route-enter {
+    animation: routeEnter 260ms var(--ease-out) both;
+  }
+}
+
+/* ── Dialogs (photo lightbox, inquiry modal) ─────────────────
+   Transitions rather than keyframes, so the close is animated too:
+   `allow-discrete` keeps display/overlay alive for the exit. The base
+   hidden state lives inside the guard — with reduced motion the dialog
+   must appear instantly, not stay at opacity 0. */
+@media (prefers-reduced-motion: no-preference) {
+  dialog {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out),
+      overlay var(--dur-base) allow-discrete,
+      display var(--dur-base) allow-discrete;
+  }
+  dialog[open] {
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+  }
+
+  dialog::backdrop {
+    background-color: rgb(0 0 0 / 0);
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      overlay var(--dur-base) allow-discrete,
+      display var(--dur-base) allow-discrete;
+  }
+  dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0.55);
+  }
+  @starting-style {
+    dialog[open]::backdrop {
+      background-color: rgb(0 0 0 / 0);
+    }
+  }
+}
+
+/* ── Disclosure ──────────────────────────────────────────────
+   Spec groups and history chapters stop popping open. `interpolate-size`
+   is what makes height animate to `auto`; without support the disclosure
+   keeps its instant behaviour. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    details::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition:
+        block-size var(--dur-slow) var(--ease-out),
+        content-visibility var(--dur-slow) allow-discrete;
+    }
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+}
+
 /* spec ticker — shift exactly one of the four copies per cycle.
    Four copies (not two) so the remaining tail still covers viewports
    wider than a single copy; with two, a gap opened past ~1400px. */
@@ -307,6 +523,13 @@ details > summary::-webkit-details-marker {
 
 .spec-ticker {
   animation: ticker 28s linear infinite;
+}
+
+/* Hold the strip still so a spec can actually be read, and stop paying for
+   the loop once it is off screen (the component toggles [data-paused]). */
+.spec-rail:hover .spec-ticker,
+.spec-rail[data-paused] .spec-ticker {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

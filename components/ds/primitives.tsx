@@ -111,7 +111,7 @@ export function SectionHeader({
   align?: "left" | "center";
 }) {
   return (
-    <header className={cn(align === "center" && "text-center", className)}>
+    <header className={cn("reveal", align === "center" && "text-center", className)}>
       {eyebrow ? (
         <Eyebrow accent className="mb-3 inline-block">
           {eyebrow}

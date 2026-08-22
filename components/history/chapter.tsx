@@ -7,7 +7,7 @@ export function Chapter({ chapter, first }: { chapter: HistoryChapter; first?: b
   return (
     <section
       id={chapter.id}
-      className="scroll-mt-24"
+      className="reveal scroll-mt-24"
       style={{ borderTop: first ? "2px solid var(--text)" : "1px solid var(--border)" }}
     >
       <details open className="group">

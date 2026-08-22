@@ -8,10 +8,10 @@ const COLUMNS = [
     links: [
       { label: "Процессоры", href: "/catalog/processors" },
       { label: "Усилители мощности", href: "/catalog/amplifiers" },
+      { label: "Модули", href: "/catalog/modules" },
       { label: "Ламповые усилители", href: "/catalog/tubes" },
       { label: "Ламповый бутик", href: "/catalog/boutique" },
-      { label: "Конвертеры", href: "/catalog/converters" },
-      { label: "Сейверы", href: "/catalog/savers" },
+      { label: "Сейверы и конверторы", href: "/catalog/boutique" },
       { label: "Архив моделей", href: "/catalog/arhiv" },
     ],
   },
@@ -41,7 +41,7 @@ export function SiteFooter() {
             className="h-6 w-auto"
           />
           <p className="mt-4 max-w-xs text-sm text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            Производство, продажа и сервис профессионального звукового оборудования. На рынке с 1992 года.
+            Профессиональное звуковое оборудование NAG · NOVIK. Компания NOVIK создана в 1992 году; NAG — её бренд.
           </p>
           <div className="mt-5 space-y-1 font-mono text-sm text-text">
             <a href="tel:+79219372508" className="block transition-colors hover:text-accent">

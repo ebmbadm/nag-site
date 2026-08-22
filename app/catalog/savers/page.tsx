@@ -7,6 +7,7 @@ import { getSavers } from "@/lib/content/boutique";
 const s = getSavers();
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/catalog/savers" },
   title: "Сейверы для винтажных радиоламп · NOVIK",
   description: s.lede,
 };
@@ -23,7 +24,7 @@ export default function SaversPage() {
             { label: "Сейверы" },
           ]}
         />
-        <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="enter-stagger mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="max-w-prose">
             <Eyebrow accent>{s.eyebrow}</Eyebrow>
             <h1

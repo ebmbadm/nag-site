@@ -9,6 +9,7 @@ export const NAV = [
   { label: "Каталог", href: "/catalog" },
   { label: "Процессоры", href: "/catalog/processors" },
   { label: "Усилители", href: "/catalog/amplifiers" },
+  { label: "Модули", href: "/catalog/modules" },
   { label: "Лампы", href: "/catalog/tubes" },
   { label: "О компании", href: "/o-kompanii" },
   { label: "Контакты", href: "/kontakty" },

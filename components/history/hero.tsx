@@ -4,7 +4,7 @@ import type { HistoryHero } from "@/lib/content/types";
 /** History longread hero — title, dropcap lead, founder portrait. */
 export function HistoryHero({ hero }: { hero: HistoryHero }) {
   return (
-    <Container className="pt-[clamp(36px,7vw,72px)] pb-[clamp(24px,4vw,40px)]">
+    <Container className="enter-stagger pt-[clamp(36px,7vw,72px)] pb-[clamp(24px,4vw,40px)]">
       <Eyebrow accent className="mb-5 block">
         {hero.kicker}
       </Eyebrow>

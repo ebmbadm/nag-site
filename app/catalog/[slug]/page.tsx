@@ -9,10 +9,13 @@ import {
   SpecsSection,
   DocsSection,
 } from "@/components/product/sections";
+import { ModulesProductPage } from "@/components/product/modules-product-page";
+import { Qm400ProductPage } from "@/components/product/qm400-product-page";
 import { Mdx } from "@/lib/content/mdx";
 import { getProduct, getProductSlugs } from "@/lib/content/products";
 import { JsonLd } from "@/components/seo/json-ld";
 import { productSchema, breadcrumbSchema } from "@/lib/seo";
+import { formatPrice } from "@/lib/format";
 
 export const dynamicParams = false;
 
@@ -32,12 +35,29 @@ export async function generateMetadata({
   } catch {
     return {};
   }
+  // Model name alone ranks only for brand+part-number queries. The subtitle carries
+  // the category words people actually search ("усилитель мощности", "процессор").
+  const title = product.subtitle ? `${product.name} — ${product.subtitle}` : product.name;
+  const price =
+    typeof product.price?.amount === "number"
+      ? ` Цена ${formatPrice(product.price.amount)}.`
+      : product.price?.onRequest
+        ? " Цена по запросу."
+        : "";
+  const room = 155 - price.length;
+  const lede =
+    product.summary.length > room
+      ? `${product.summary.slice(0, room).replace(/[\s,.;:—-]+$/, "")}…`
+      : product.summary;
+
   return {
-    title: product.name,
-    description: product.summary,
+    // Absolute — the model name already carries the brand; the layout template
+    // would only push the useful words past the SERP cutoff.
+    title: { absolute: title },
+    description: `${lede}${price}`,
     alternates: { canonical: `/catalog/${slug}` },
     openGraph: {
-      title: product.name,
+      title,
       description: product.summary,
       images: [product.gallery[0]?.src].filter(Boolean) as string[],
     },
@@ -55,6 +75,37 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const { frontmatter: p, body } = doc;
   const crumbs = [{ label: "Главная", href: "/" }, ...p.breadcrumb];
+
+  if (slug === "modules") {
+    return (
+      <article>
+        <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
+        <div className="pt-6">
+          <Container>
+            <Breadcrumb items={crumbs} />
+          </Container>
+        </div>
+        <ModulesProductPage product={p} />
+        {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
+      </article>
+    );
+  }
+
+  if (slug === "qm-400") {
+    return (
+      <article>
+        <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
+        <div className="pt-6">
+          <Container>
+            <Breadcrumb items={crumbs} />
+          </Container>
+        </div>
+        <Qm400ProductPage product={p} />
+        <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
+        {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
+      </article>
+    );
+  }
 
   return (
     <article>

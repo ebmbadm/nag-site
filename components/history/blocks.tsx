@@ -14,7 +14,7 @@ export function Block({ block }: { block: HistoryBlock }) {
 
     case "quote":
       return (
-        <blockquote className="my-8 border-l-[var(--border-w-rule)] border-accent pl-6">
+        <blockquote className="reveal my-8 border-l-[var(--border-w-rule)] border-accent pl-6">
           <p
             className="font-display uppercase text-text"
             style={{ fontSize: "clamp(var(--text-lg), 3vw, var(--text-xl))", lineHeight: 1.24, letterSpacing: "-0.01em" }}
@@ -26,7 +26,7 @@ export function Block({ block }: { block: HistoryBlock }) {
 
     case "stats":
       return (
-        <div className="my-7 flex flex-wrap gap-x-8 gap-y-4 border-y border-border py-4 font-mono">
+        <div className="reveal my-7 flex flex-wrap gap-x-8 gap-y-4 border-y border-border py-4 font-mono">
           {block.items.map((item, i) => (
             <span key={i} className="flex flex-col gap-1">
               <b className="font-medium text-text tabular" style={{ fontSize: "var(--text-lg)" }}>

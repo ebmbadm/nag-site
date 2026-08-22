@@ -33,15 +33,15 @@ describe("ProductHero price branch", () => {
     expect(screen.getByText("Цена по запросу")).toBeInTheDocument();
     expect(screen.getByText("Запросить расчёт")).toBeInTheDocument();
     expect(screen.queryByText("Розничная цена")).toBeNull();
-    expect(screen.queryByText("В корзину")).toBeNull();
+    expect(screen.queryByText("Оставить заявку")).toBeNull();
   });
 
-  test("priced product still shows «Розничная цена» + «В корзину» (no regression)", () => {
+  test("priced product still shows «Розничная цена» + «Оставить заявку» (no regression)", () => {
     render(
       <ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} slug="x" />,
     );
     expect(screen.getByText("Розничная цена")).toBeInTheDocument();
-    expect(screen.getByText("В корзину")).toBeInTheDocument();
+    expect(screen.getByText("Оставить заявку")).toBeInTheDocument();
     expect(screen.queryByText("Цена по запросу")).toBeNull();
   });
 });

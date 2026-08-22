@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MobileNav } from "../mobile-nav";
+import { NAV as SITE_NAV } from "../site-header";
 
 const NAV = [
   { label: "Каталог", href: "/catalog" },
@@ -9,6 +10,10 @@ const NAV = [
 ];
 
 describe("MobileNav", () => {
+  it("includes the Modules category in the global navigation", () => {
+    expect(SITE_NAV).toContainEqual({ label: "Модули", href: "/catalog/modules" });
+  });
+
   it("renders hamburger button initially", () => {
     render(<MobileNav nav={NAV} />);
     expect(screen.getByRole("button", { name: /открыть меню/i })).toBeInTheDocument();

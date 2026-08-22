@@ -2,6 +2,7 @@
 import { useState, useTransition } from "react";
 import { buttonVariants, Field, Input, Textarea, FormStatus } from "@/components/ds";
 import { submitInquiry, type InquiryResult } from "@/app/actions/submit-inquiry";
+import { reachGoal } from "@/components/analytics/yandex-metrika";
 import type { ContactsContent } from "@/lib/content/types";
 
 export function ContactForm({ form }: { form: ContactsContent["form"] }) {
@@ -21,7 +22,10 @@ export function ContactForm({ form }: { form: ContactsContent["form"] }) {
         website: fd.get("website") as string,
       });
       setResult(res);
-      if (res.ok) (e.target as HTMLFormElement).reset();
+      if (res.ok) {
+        reachGoal("lead", { kind: "contact" });
+        (e.target as HTMLFormElement).reset();
+      }
     });
   }
 

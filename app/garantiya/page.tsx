@@ -7,7 +7,8 @@ import { getGuarantee } from "@/lib/content/company";
 const g = getGuarantee();
 
 export const metadata: Metadata = {
-  title: "Гарантия и сервис · NAG · NOVIK",
+  alternates: { canonical: "/garantiya" },
+  title: "Гарантия и сервис",
   description:
     "Гарантия 2 года на каждый продукт. Сервис и обслуживание ламповых и транзисторных усилителей NOVIK · NAG.",
 };
@@ -18,7 +19,7 @@ export default function GuaranteePage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Гарантия и сервис" }]} />
-          <div className="mt-6 max-w-prose">
+          <div className="enter mt-6 max-w-prose">
             <Eyebrow accent>{g.hero.eyebrow}</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -34,7 +35,7 @@ export default function GuaranteePage() {
       </Surface>
 
       <Container className="py-12">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="reveal-stagger grid gap-4 sm:grid-cols-2">
           {g.terms.map((t) => (
             <div key={t.value} className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 shadow-[var(--shadow-1)]">
               <div className="font-display text-4xl uppercase text-accent" style={{ letterSpacing: "var(--ls-tight)" }}>
@@ -49,12 +50,12 @@ export default function GuaranteePage() {
       <section className="border-t border-border bg-surface-2 py-16">
         <Container>
           <SectionHeader eyebrow={g.service.eyebrow} title={g.service.title} className="mb-8" />
-          <div className="max-w-[66ch]">
+          <div className="reveal max-w-[66ch]">
             {g.service.blocks.map((b, i) => (
               <Block key={i} block={b} />
             ))}
           </div>
-          <div className="mt-10">
+          <div className="reveal mt-10">
             <p className="mb-4 font-display text-xl uppercase text-text" style={{ letterSpacing: "var(--ls-tight)" }}>
               {g.cta.text}
             </p>

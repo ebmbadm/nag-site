@@ -4,7 +4,7 @@ import { HubCard } from "@/components/company/hub-card";
 import type { CompanyHubCard } from "@/lib/content/types";
 
 const LEDE =
-  "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, транзисторные и ламповые усилители мощности, ламповый бутик — сейверы и конвертеры для винтажных радиоламп.";
+  "Профессиональное звуковое оборудование NAG и NOVIK: DSP-процессоры, усилители мощности, встраиваемые модули, ламповая техника и аксессуары для винтажных радиоламп.";
 
 /** Six live category landings + the archive. Keep in sync with app/catalog/*. */
 const CATEGORIES: CompanyHubCard[] = [
@@ -17,8 +17,14 @@ const CATEGORIES: CompanyHubCard[] = [
   {
     kicker: "Транзисторные · Class-TD",
     title: "Усилители мощности",
-    text: "Флагман QM-400 (4 × 2400 Вт), серия TD и встраиваемые модули TDS / TDH.",
+    text: "Флагман QM-400 (4 × 2400 Вт) и серия TD.",
     href: "/catalog/amplifiers",
+  },
+  {
+    kicker: "TDS / TDH · Class-TD",
+    title: "Модули",
+    text: "Встраиваемые модули для активной акустики: TDS-10, TDH-10, TDS-20 и TDH-20.",
+    href: "/catalog/modules",
   },
   {
     kicker: "Ламповые · NOVIK",
@@ -34,15 +40,9 @@ const CATEGORIES: CompanyHubCard[] = [
   },
   {
     kicker: "NOVIK Tubes Boutique",
-    title: "Конвертеры",
-    text: "Позволяют использовать разные лампы в одном усилителе — часть переходников не найти больше нигде.",
-    href: "/catalog/converters",
-  },
-  {
-    kicker: "NOVIK Tubes Boutique",
-    title: "Сейверы",
-    text: "Сохраняют оригинальные разъёмы усилителя и избавляют от дорогой замены панелек.",
-    href: "/catalog/savers",
+    title: "Сейверы и конверторы",
+    text: "Аксессуары для винтажных ламп: сохраняют оригинальные разъёмы и расширяют выбор совместимых ламп.",
+    href: "/catalog/boutique",
   },
   {
     kicker: "Снято с производства",
@@ -69,7 +69,7 @@ export default function CatalogIndexPage() {
       <Container>
         <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
 
-        <header className="mt-8 max-w-prose">
+        <header className="enter mt-8 max-w-prose">
           <Eyebrow accent>NAG · NOVIK</Eyebrow>
           <h1
             className="mt-3 font-display uppercase text-text"
@@ -90,7 +90,7 @@ export default function CatalogIndexPage() {
           7 cards: the archive spans the trailing row so no cell is orphaned.
           The wrapper is `grid` so each card stretches to its row height.
         */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {CATEGORIES.map((card) => (
             <div
               key={card.href}

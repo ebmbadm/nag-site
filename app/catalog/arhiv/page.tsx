@@ -7,10 +7,12 @@ import {
   SectionHeader,
   Breadcrumb,
   Chip,
+  ProductCard,
   buttonVariants,
 } from "@/components/ds";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
+import { getProduct } from "@/lib/content/products";
 
 /**
  * Archive page — snято с производства. These models still get search demand
@@ -25,14 +27,23 @@ type ArchiveGroup = {
   title: string;
   note: string;
   models: string[];
+  slugs?: string[];
   replacements: Replacement[];
 };
 
 const GROUPS: ArchiveGroup[] = [
   {
+    eyebrow: "DSP BY NAG",
+    title: "Архивные процессоры NAG",
+    note: "Эти модели сняты с актуального каталога и сохранены в архиве с карточками и документацией.",
+    models: [],
+    slugs: ["the-rogue", "d-4", "d-8"],
+    replacements: [{ label: "Актуальные процессоры", href: "/catalog/processors" }],
+  },
+  {
     eyebrow: "Усилители мощности",
     title: "Архивные усилители мощности NAG",
-    note: "Сняты с производства. Актуальная замена — флагман QM-400 и серии Class-TD.",
+    note: "Сняты с производства. Актуальная замена — флагман QM-400 и серия Class-TD.",
     models: [
       "NAG QM-60",
       "NAG QM-40",
@@ -53,7 +64,7 @@ const GROUPS: ArchiveGroup[] = [
   {
     eyebrow: "Встраиваемые модули",
     title: "Архивные модули для активной акустики",
-    note: "Модули MQ заменены модулями Class-TD серий TDS / TDH.",
+    note: "Модули MQ сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
     models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30"],
     replacements: [{ label: "Модули TDS / TDH", href: "/catalog/modules" }],
   },
@@ -93,7 +104,7 @@ const LEDE =
 export const metadata: Metadata = {
   title: "Архивные модели — сняты с производства",
   description:
-    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, TD-40/80/100, MQ-10/20/30, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
+    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, CX-520/540, MQ-10/20/30, TDX, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
   alternates: { canonical: "/catalog/arhiv" },
   openGraph: {
     title: "Архивные модели NAG · NOVIK — сняты с производства",
@@ -110,7 +121,7 @@ export default function ArchivePage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={CRUMBS} />
-          <div className="mt-6 max-w-prose">
+          <div className="enter mt-6 max-w-prose">
             <Eyebrow accent>Сняты с производства</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -141,6 +152,15 @@ export default function ArchivePage() {
                 ))}
               </div>
 
+              {group.slugs && (
+                <div className="reveal-stagger mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                  {group.slugs.map((slug) => {
+                    const product = getProduct(slug).frontmatter;
+                    return <ProductCard key={slug} slug={slug} name={product.name} eyebrow={product.line} image={{ src: product.gallery[0].src, alt: product.gallery[0].alt }} price={{ amount: product.price?.amount, onRequest: product.price?.onRequest }} />;
+                  })}
+                </div>
+              )}
+
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
                   Актуальная замена
@@ -158,7 +178,7 @@ export default function ArchivePage() {
 
       <section className="border-t border-border bg-surface-2 py-16">
         <Container>
-          <div className="max-w-prose">
+          <div className="reveal max-w-prose">
             <Eyebrow accent>Сервис и подбор</Eyebrow>
             <p
               className="mt-3 font-display text-xl uppercase text-text"

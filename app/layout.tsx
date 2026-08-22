@@ -3,6 +3,7 @@ import { fontVariables } from "@/lib/fonts";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { JsonLd } from "@/components/seo/json-ld";
+import { YandexMetrika } from "@/components/analytics/yandex-metrika";
 import { organizationSchema, webSiteSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s — NAG · NOVIK",
   },
   description:
-    "Производство, продажа и сервис профессионального звукового оборудования: DSP-процессоры, усилители мощности, ламповые усилители. На рынке с 1992 года.",
+    "Профессиональное звуковое оборудование NAG · NOVIK: DSP-процессоры, усилители мощности, ламповые усилители. Компания NOVIK создана в 1992 году; NAG — её бренд.",
   openGraph: {
     type: "website",
     locale: "ru_RU",
@@ -26,12 +27,19 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    // Google Search Console, ресурс с префиксом https://novikamps.com/.
+    // Google требует, чтобы подтверждение оставалось на месте — удаление тега
+    // снимает права на ресурс и обнуляет доступ к отчётам по запросам.
+    google: "Xue7X11JvGiZwTUnbTOEvhGSFNuTwHcxJCyk8SFRuoU",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className={fontVariables}>
       <body className="bg-noise flex min-h-screen flex-col">
+        <YandexMetrika />
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
         <SiteHeader />
         <main className="flex-1">{children}</main>

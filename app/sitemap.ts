@@ -4,6 +4,7 @@ import { getProductSlugs } from "@/lib/content/products";
 
 /** Static (non-product) routes. Keep in sync with app/ route folders. */
 const CATEGORY_ROUTES = [
+  "/catalog",
   "/catalog/amplifiers",
   "/catalog/processors",
   "/catalog/tubes",
@@ -13,7 +14,7 @@ const CATEGORY_ROUTES = [
   "/catalog/arhiv",
 ];
 
-const INFO_ROUTES = ["/o-kompanii", "/istoriya", "/kontakty", "/garantiya", "/zagruzki"];
+const INFO_ROUTES = ["/o-kompanii", "/istoriya", "/kontakty", "/garantiya", "/zagruzki", "/class-td"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

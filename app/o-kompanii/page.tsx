@@ -6,10 +6,11 @@ import { getCompanyHub, getHistory } from "@/lib/content/company";
 
 const hub = getCompanyHub();
 
-/** Curated founding-to-today arc — 8 nodes so the strip grid never leaves dead cells. */
+/** Curated first part of the timeline; the next period has a dedicated reserved panel. */
 const MILESTONE_IDS: readonly string[] = [
   "nachalo",
   "ps600",
+  "aerobus",
   "prokat",
   "novik",
   "gibson",
@@ -19,7 +20,8 @@ const MILESTONE_IDS: readonly string[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "О компании · NAG · NOVIK",
+  alternates: { canonical: "/o-kompanii" },
+  title: "О компании",
   description: hub.lede,
 };
 
@@ -31,7 +33,7 @@ export default function CompanyHubPage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "О компании" }]} />
-          <header className="mt-6 max-w-prose">
+          <header className="enter mt-6 max-w-prose">
             <Eyebrow accent>{hub.eyebrow}</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -45,14 +47,14 @@ export default function CompanyHubPage() {
       </Surface>
 
       <Container className="py-12">
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="reveal-stagger grid gap-4 sm:grid-cols-3">
           {hub.cards.map((card) => (
             <HubCard key={card.href} card={card} />
           ))}
         </div>
       </Container>
 
-      <MilestoneStrip chapters={milestones} stat={hub.stat} />
+      <MilestoneStrip chapters={milestones} periods={hub.historyPeriods} continuation={hub.historyContinuation} />
     </div>
   );
 }

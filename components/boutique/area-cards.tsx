@@ -3,7 +3,7 @@ import type { BoutiqueAreaCard } from "@/lib/content/types";
 
 export function AreaCards({ cards }: { cards: BoutiqueAreaCard[] }) {
   return (
-    <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border lg:grid-cols-3">
+    <div className="reveal-fade-stagger grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border lg:grid-cols-3">
       {cards.map((card) => (
         <Link
           key={card.href}

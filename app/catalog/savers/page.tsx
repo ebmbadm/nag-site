@@ -24,7 +24,7 @@ export default function SaversPage() {
             { label: "Сейверы" },
           ]}
         />
-        <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="enter-stagger mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="max-w-prose">
             <Eyebrow accent>{s.eyebrow}</Eyebrow>
             <h1

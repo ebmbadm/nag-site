@@ -26,4 +26,17 @@ describe("ModulesProductPage", () => {
     expect(screen.getByAltText(/установленный в сабвуфер/i)).toBeInTheDocument();
     expect(screen.getByAltText(/со снятой платой/i)).toBeInTheDocument();
   });
+
+  test("общие характеристики выводятся текстом, а не скриншотом таблицы", () => {
+    const product = getProduct("modules").frontmatter;
+    render(<ModulesProductPage product={product} />);
+
+    expect(screen.getByText("Общие характеристики")).toBeInTheDocument();
+    expect(screen.getByText("Демпинг-фактор")).toBeInTheDocument();
+    expect(screen.getByText(">900")).toBeInTheDocument();
+    expect(screen.getByText("376 × 132 × 78 мм")).toBeInTheDocument();
+    // «Защита» распадается на отдельные чипы, а не на одну строку в 130 символов
+    expect(screen.getByText("active inrush limiting")).toBeInTheDocument();
+    expect(screen.queryByAltText(/Сводные характеристики/)).toBeNull();
+  });
 });

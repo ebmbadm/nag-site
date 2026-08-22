@@ -42,7 +42,7 @@ export default function TubesPage() {
           ]}
         />
 
-        <header className="mt-8 max-w-prose">
+        <header className="enter mt-8 max-w-prose">
           <Eyebrow accent>NOVIK</Eyebrow>
           <h1
             className="mt-3 font-display uppercase text-text"
@@ -60,7 +60,7 @@ export default function TubesPage() {
         </header>
 
         {/* 4 товара: сетка 2×2 — третья колонка оставляла бы одиночную карточку в ряду. */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {products.map((p) => (
             <ProductCard
               key={p.slug}

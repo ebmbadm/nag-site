@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useActiveInView, usePrefersReducedMotion } from "@/lib/motion";
 
 const W = 660;
 const H = 158;
@@ -14,7 +15,7 @@ const CSS = `
   display:flex; align-items:center; justify-content:center; padding:34px 0 18px; }
 .qm-pivot{ position:relative; transform-style:preserve-3d; }
 .qm{ position:relative; width:${W}px; height:${H}px; transform-style:preserve-3d;
-  transform:rotateX(8deg) rotateY(-22deg); will-change:transform; }
+  transform:rotateX(8deg) rotateY(-22deg); }
 .qm__f{ position:absolute; top:50%; left:50%; }
 .qm__front{ width:${W}px; height:${H}px; transform:translate(-50%,-50%) translateZ(${hZ}px);
   border-radius:6px; overflow:hidden; border:1px solid #000;
@@ -65,7 +66,11 @@ const CSS = `
 @media (prefers-reduced-motion: no-preference){
   .qm-led.sig{ animation:qmSig 1.5s var(--d,0s) infinite; }
   .qm-led.clip{ animation:qmClip 3.2s var(--d,0s) infinite; }
+  /* Power-on: the four channels light in order. Column opacity multiplies the
+     per-LED blink underneath, so the two animations never fight. */
+  .qm-ledcol{ animation:qmLedBoot .3s var(--boot,0s) var(--ease-out,ease-out) both; }
 }
+@keyframes qmLedBoot{ from{opacity:0} to{opacity:1} }
 @keyframes qmSig{ 0%,100%{opacity:.3} 45%{opacity:1} }
 @keyframes qmClip{ 0%,90%,100%{opacity:.16} 94%{opacity:1} }
 .qm-knobs{ display:flex; align-items:center; justify-content:center; gap:11px; margin-top:6px; }
@@ -92,7 +97,7 @@ const KNOB_ROT = [-34, 18, -12, 30];
 function LedStack({ ch, accent, live }: { ch: number; accent: string; live: boolean }) {
   const d = `${ch * 0.4}s`;
   return (
-    <div className="qm-ledcol">
+    <div className="qm-ledcol" style={{ ["--boot" as string]: `${0.32 + ch * 0.09}s` }}>
       <span className="qm-led on" style={{ color: "var(--nag-red-300)", opacity: 0.35 }} />
       <span
         className={`qm-led clip${live ? "" : " on"}`}
@@ -120,13 +125,18 @@ export default function QM400Amp({
 }) {
   const boxRef = React.useRef<HTMLDivElement>(null);
   const sceneRef = React.useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
+  const active = useActiveInView(sceneRef);
 
   React.useEffect(() => {
     const el = sceneRef.current;
     if (!el) return;
     // Reduced motion: no idle sway, no pointer tilt — the .qm CSS resting
-    // rotateX(8deg) rotateY(-22deg) stays as-is.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // rotateX(8deg) rotateY(-22deg) stays as-is. Same when the amp is off
+    // screen or the tab is in the background.
+    if (reduced || !active) return;
+    const box = boxRef.current;
+    if (box) box.style.willChange = "transform";
     let raf = 0;
     let t = 0;
     let curRY = -22;
@@ -166,10 +176,11 @@ export default function QM400Amp({
 
     return () => {
       cancelAnimationFrame(raf);
+      if (box) box.style.willChange = "";
       el.removeEventListener("mousemove", onMove);
       el.removeEventListener("mouseleave", onLeave);
     };
-  }, []);
+  }, [reduced, active]);
 
   return (
     <div className="qm-scene" ref={sceneRef}>

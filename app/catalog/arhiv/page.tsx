@@ -121,7 +121,7 @@ export default function ArchivePage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={CRUMBS} />
-          <div className="mt-6 max-w-prose">
+          <div className="enter mt-6 max-w-prose">
             <Eyebrow accent>Сняты с производства</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -153,7 +153,7 @@ export default function ArchivePage() {
               </div>
 
               {group.slugs && (
-                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                <div className="reveal-stagger mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
                   {group.slugs.map((slug) => {
                     const product = getProduct(slug).frontmatter;
                     return <ProductCard key={slug} slug={slug} name={product.name} eyebrow={product.line} image={{ src: product.gallery[0].src, alt: product.gallery[0].alt }} price={{ amount: product.price?.amount, onRequest: product.price?.onRequest }} />;
@@ -178,7 +178,7 @@ export default function ArchivePage() {
 
       <section className="border-t border-border bg-surface-2 py-16">
         <Container>
-          <div className="max-w-prose">
+          <div className="reveal max-w-prose">
             <Eyebrow accent>Сервис и подбор</Eyebrow>
             <p
               className="mt-3 font-display text-xl uppercase text-text"

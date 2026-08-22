@@ -11,7 +11,7 @@ export function FeatureStrip({
 }) {
   return (
     <Surface mode="dark" className="py-16">
-      <Container className={cn("grid gap-10", image && "lg:grid-cols-2 lg:items-center")}>
+      <Container className={cn("reveal-stagger grid gap-10", image && "lg:grid-cols-2 lg:items-center")}>
         <div>
           <h2
             className="font-display uppercase text-text"

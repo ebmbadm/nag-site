@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Container, Eyebrow, Surface } from "@/components/ds";
+import { Chip, Container, Eyebrow, Surface } from "@/components/ds";
 import type { ProductFrontmatter } from "@/lib/content/schema";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +11,69 @@ function findImage(product: ProductFrontmatter, pathPart: string) {
   return product.gallery.find((image) => image.src.includes(pathPart));
 }
 
+type SpecRow = { label: string; value: string };
+
+/** Glue a number to its unit so a value never breaks as "20 / кГц" on a phone. */
+function keepUnits(value: string) {
+  return value.replace(/(\d)\s(?=[A-Za-zА-Яа-я%°])/g, "$1\u00a0");
+}
+
+/**
+ * Datasheet plate for the parameters shared by every module in the series.
+ * Leader dots run label → value the way the printed manual sets them; the
+ * protection list is too long for a leader row, so it breaks out into chips.
+ */
+function SpecPlate({ rows }: { rows: SpecRow[] }) {
+  if (rows.length === 0) return null;
+
+  const protection = rows.find((row) => row.label === "Защита");
+  const leaderRows = rows.filter((row) => row !== protection);
+
+  return (
+    <div className="mt-12 border border-border bg-surface lg:mt-[54px]">
+      <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-border px-6 pb-4 pt-5">
+        <Eyebrow accent>Общие характеристики</Eyebrow>
+        <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+          Едины для TDS-10 · TDH-10 · TDS-20 · TDH-20
+        </span>
+      </header>
+
+      <dl className="px-6 py-4 lg:columns-2 lg:gap-x-14">
+        {leaderRows.map((row) => (
+          <div
+            key={row.label}
+            className="flex break-inside-avoid items-baseline gap-3 py-3"
+          >
+            <dt className="shrink-0 text-sm text-text-muted">{row.label}</dt>
+            <span
+              aria-hidden
+              className="h-px min-w-8 flex-1 text-border-strong"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 5px)",
+              }}
+            />
+            <dd className="text-right font-mono text-sm tabular text-text">{keepUnits(row.value)}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {protection ? (
+        <dl className="border-t border-border px-6 py-5">
+          <dt className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+            {protection.label}
+          </dt>
+          <dd className="mt-3 flex flex-wrap gap-2">
+            {protection.value.split(",").map((item) => (
+              <Chip key={item}>{item.trim()}</Chip>
+            ))}
+          </dd>
+        </dl>
+      ) : null}
+    </div>
+  );
+}
+
 export function ModulesProductPage({ product }: ModulesProductPageProps) {
   const rearPanel = findImage(product, "nag-module-tds-rear-panel");
   const subwoofer = findImage(product, "nag-tds-20-installed-in-subwoofer");
@@ -20,7 +83,7 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
   return (
     <Surface mode="dark">
       <section className="border-b border-border py-12 lg:py-[68px]">
-        <Container className="grid items-center gap-9 lg:grid-cols-2">
+        <Container className="enter-stagger grid items-center gap-9 lg:grid-cols-2">
           <div>
             <Eyebrow accent>Встраиваемые модули NAG</Eyebrow>
             <h1 className="mt-5 font-display text-5xl uppercase leading-[0.86] tracking-[var(--ls-tighter)] sm:text-7xl lg:text-8xl">
@@ -50,17 +113,19 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
       </section>
 
       <section className="border-b border-border">
-        <Container className="grid gap-0 lg:grid-cols-2">
+        <Container className="reveal-stagger grid gap-0 lg:grid-cols-2">
           <article className="border-x border-border p-6 lg:min-h-[390px]">
             {subwoofer ? (
-              <Image
-                src={subwoofer.src}
-                alt={subwoofer.alt}
-                width={1200}
-                height={750}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-[200px] w-full object-cover"
-              />
+              <div className="bg-photo-backdrop">
+                <Image
+                  src={subwoofer.src}
+                  alt={subwoofer.alt}
+                  width={1600}
+                  height={1200}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="h-[240px] w-full object-contain p-3 mix-blend-multiply"
+                />
+              </div>
             ) : null}
             <Eyebrow accent className="mt-6">
               Практика применения
@@ -78,14 +143,16 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
 
           <article className="border-x border-b border-border p-6 lg:min-h-[390px] lg:border-b-0">
             {interior ? (
-              <Image
-                src={interior.src}
-                alt={interior.alt}
-                width={1200}
-                height={750}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-[200px] w-full object-cover"
-              />
+              <div className="bg-photo-backdrop">
+                <Image
+                  src={interior.src}
+                  alt={interior.alt}
+                  width={1600}
+                  height={1200}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="h-[240px] w-full object-contain p-3 mix-blend-multiply"
+                />
+              </div>
             ) : null}
             <Eyebrow accent className="mt-6">
               Конструкция и сервис
@@ -105,7 +172,7 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
 
       {product.models && product.models.length > 0 ? (
         <section className="pb-[66px]">
-          <Container className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <Container className="reveal-fade-stagger grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
             {product.models.map((model) => {
               const isSelected = model.name === "TDS-20";
 
@@ -142,78 +209,76 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
 
       {product.specMatrix ? (
         <section className="pb-20">
-          <Container className="grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-[54px]">
-            <aside>
-              <Eyebrow accent>Техническая карта</Eyebrow>
-              <h2 className="mt-4 font-display text-3xl leading-none tracking-[var(--ls-tight)]">
-                Вся серия — одним взглядом.
-              </h2>
-              <p className="mt-4 text-text-muted">
-                Параметры для подбора модуля без длинного рекламного текста: мощность, габариты,
-                подключение и общая сервисная логика.
-              </p>
-              <Image
-                src="/products/modules/nag-module-tds-tdh-specifications-2400.png"
-                alt="Сводные характеристики NAG TDS и TDH"
-                width={1400}
-                height={1135}
-                sizes="(min-width: 1024px) 32vw, 100vw"
-                className="mt-6 w-full bg-surface-2"
-              />
-            </aside>
+          <Container className="reveal-stagger">
+            <div className="grid items-start gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-[54px]">
+              <aside>
+                <Eyebrow accent>Техническая карта</Eyebrow>
+                <h2 className="mt-4 font-display text-3xl leading-none tracking-[var(--ls-tight)]">
+                  Вся серия — одним взглядом.
+                </h2>
+                <p className="mt-4 text-text-muted">
+                  Параметры для подбора модуля без длинного рекламного текста: мощность, габариты,
+                  подключение и общая сервисная логика.
+                </p>
+              </aside>
 
-            <div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[560px] border-collapse text-sm">
-                  <caption className="mb-3 text-left font-mono text-xs font-bold uppercase tracking-[var(--ls-label)] text-accent">
-                    Сравнение моделей
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th className="pb-3 pr-3 text-left font-mono text-xs text-text-muted">Нагрузка</th>
-                      {product.specMatrix.columns.map((column) => (
-                        <th key={column} className="px-2 pb-3 text-right font-mono text-xs text-text">
-                          {column}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {product.specMatrix.rows.map((row) => (
-                      <tr key={row.label} className="border-t border-border">
-                        <td className="py-4 pr-3 text-text-muted">{row.label}</td>
-                        {row.values.map((value, index) => (
-                          <td
-                            key={`${row.label}-${index}`}
-                            className={cn(
-                              "px-2 py-4 text-right",
-                              index >= 2 && "font-bold text-accent",
-                            )}
-                          >
-                            {value}
-                          </td>
+              {/* min-w-0: the comparison table has a 560px floor and would otherwise
+                  stretch the grid column past the viewport on phones. */}
+              <div className="min-w-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[560px] border-collapse text-sm">
+                    <caption className="mb-3 text-left font-mono text-xs font-bold uppercase tracking-[var(--ls-label)] text-accent">
+                      Сравнение моделей
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th className="pb-3 pr-3 text-left font-mono text-xs text-text-muted">Нагрузка</th>
+                        {product.specMatrix.columns.map((column) => (
+                          <th key={column} className="px-2 pb-3 text-right font-mono text-xs text-text">
+                            {column}
+                          </th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {product.specMatrix.rows.map((row) => (
+                        <tr key={row.label} className="border-t border-border">
+                          <td className="py-4 pr-3 text-text-muted">{row.label}</td>
+                          {row.values.map((value, index) => (
+                            <td
+                              key={`${row.label}-${index}`}
+                              className={cn(
+                                "px-2 py-4 text-right",
+                                index >= 2 && "font-bold text-accent",
+                              )}
+                            >
+                              {value}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-7 border border-border p-5 text-sm leading-relaxed text-text-muted">
+                  <strong className="text-text">Подключение:</strong> XLR M/F с LINK, питание
+                  POWERCON и последовательное подключение AC LINK. Изображение габаритов служит
+                  дополнительным техническим материалом.
+                </p>
+                {dimensions ? (
+                  <Image
+                    src={dimensions.src}
+                    alt={dimensions.alt}
+                    width={1200}
+                    height={750}
+                    sizes="(min-width: 1024px) 52vw, 100vw"
+                    className="mt-6 w-full bg-surface-2"
+                  />
+                ) : null}
               </div>
-              <p className="mt-7 border border-border p-5 text-sm leading-relaxed text-text-muted">
-                <strong className="text-text">Подключение:</strong> XLR M/F с LINK, питание
-                POWERCON и последовательное подключение AC LINK. Изображение габаритов служит
-                дополнительным техническим материалом.
-              </p>
-              {dimensions ? (
-                <Image
-                  src={dimensions.src}
-                  alt={dimensions.alt}
-                  width={1200}
-                  height={750}
-                  sizes="(min-width: 1024px) 52vw, 100vw"
-                  className="mt-6 w-full bg-surface-2"
-                />
-              ) : null}
             </div>
+
+            <SpecPlate rows={product.specGroups[0]?.rows ?? []} />
           </Container>
         </section>
       ) : null}

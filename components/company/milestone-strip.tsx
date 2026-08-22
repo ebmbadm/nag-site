@@ -22,7 +22,7 @@ export function MilestoneStrip({
           </div>
         </div>
 
-        <ol className="mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="reveal-fade-stagger mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {chapters.map((c) => (
             <li key={c.id} className="bg-bg p-5" style={{ borderTop: "var(--border-w-rule) solid var(--accent)" }}>
               <div className="font-display text-xl text-text tabular" style={{ letterSpacing: "var(--ls-tight)" }}>{c.year}</div>

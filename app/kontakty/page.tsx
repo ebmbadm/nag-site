@@ -18,7 +18,7 @@ export default function ContactsPage() {
       <Surface mode="dark" className="py-16">
         <Container>
           <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Контакты" }]} />
-          <header className="mt-6 max-w-prose">
+          <header className="enter mt-6 max-w-prose">
             <Eyebrow accent>{c.eyebrow}</Eyebrow>
             <h1
               className="mt-3 font-display uppercase text-text"
@@ -32,7 +32,7 @@ export default function ContactsPage() {
       </Surface>
 
       <Container className="py-12">
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="enter-stagger grid gap-8 lg:grid-cols-2">
           <div className="space-y-6">
             <div>
               <Eyebrow>Телефон</Eyebrow>

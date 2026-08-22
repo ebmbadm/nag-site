@@ -1,5 +1,8 @@
 "use client";
 
+import * as React from "react";
+import { useActiveInView } from "@/lib/motion";
+
 const ITEMS = [
   "QM-400",
   "4 × 2400 Вт (4 Ω)",
@@ -15,10 +18,14 @@ const ITEMS = [
 
 export function SpecTicker() {
   const ticker = ITEMS.join(" · ");
+  const railRef = React.useRef<HTMLDivElement>(null);
+  const active = useActiveInView(railRef);
 
   return (
     <div
-      className="overflow-hidden border-y border-border-strong bg-surface-inset py-2.5"
+      ref={railRef}
+      data-paused={active ? undefined : ""}
+      className="spec-rail overflow-hidden border-y border-border-strong bg-surface-inset py-2.5"
       aria-hidden="true"
     >
       <div className="spec-ticker flex w-max whitespace-nowrap">

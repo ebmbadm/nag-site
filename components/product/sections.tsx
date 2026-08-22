@@ -39,7 +39,7 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
         : null;
 
   return (
-    <Container className="grid gap-10 py-10 lg:grid-cols-2 lg:gap-14">
+    <Container className="enter-stagger grid gap-10 py-10 lg:grid-cols-2 lg:gap-14">
       <Gallery images={product.gallery} />
 
       <div className="flex flex-col">
@@ -183,7 +183,7 @@ export function FeatureBand({ features }: { features: NonNullable<ProductFrontma
         >
           {features.title}
         </h2>
-        <div className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="reveal-fade-stagger grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {features.cards.map((card) => (
             <div key={card.title} className="bg-bg p-6">
               <div className="mb-4 inline-flex size-10 items-center justify-center rounded-[var(--radius-md)] bg-accent text-on-accent">
@@ -206,7 +206,7 @@ export function FeatureBand({ features }: { features: NonNullable<ProductFrontma
 export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"]> }) {
   return (
     <Surface mode="dark" className="border-t border-border bg-surface py-24">
-      <Container className={cn("grid gap-10", tech.image && "lg:grid-cols-2 lg:items-center")}>
+      <Container className={cn("reveal-stagger grid gap-10", tech.image && "lg:grid-cols-2 lg:items-center")}>
         <div>
           <Eyebrow accent className="mb-3 block">
             {tech.eyebrow}
@@ -222,7 +222,7 @@ export function TechBand({ tech }: { tech: NonNullable<ProductFrontmatter["tech"
               {tech.lede}
             </p>
           ) : null}
-          <div className="space-y-3">
+          <div className="reveal-stagger space-y-3">
             {tech.cards.map((card) => (
               <div
                 key={card.label}
@@ -268,7 +268,7 @@ export function DocsSection({ docs }: { docs: NonNullable<ProductFrontmatter["do
         >
           Документы и ПО
         </h2>
-        <DownloadList className="mt-8" links={docs.map(describeDownload)} />
+        <DownloadList className="reveal mt-8" links={docs.map(describeDownload)} />
       </Container>
     </section>
   );
@@ -318,7 +318,7 @@ export function SoftwareSection({
           className="mt-8"
         />
 
-        <div className={cn("mt-8 grid gap-5", SOFTWARE_COLS[Math.min(Math.max(software.items.length, 1), 4)])}>
+        <div className={cn("reveal-stagger mt-8 grid gap-5", SOFTWARE_COLS[Math.min(Math.max(software.items.length, 1), 4)])}>
           {software.items.map((item) => (
             <div key={item.title}>
               {/* contain, не cover: скриншоты ПО бывают квадратными, и cover
@@ -378,7 +378,7 @@ export function SpecsSection({
             />
           </div>
         ) : null}
-        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-bg">
+        <div className="reveal overflow-hidden rounded-[var(--radius-lg)] border border-border bg-bg">
           {groups.map((group) => (
             <AccordionItem
               key={group.title}

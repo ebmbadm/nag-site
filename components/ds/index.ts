@@ -12,6 +12,7 @@ export {
 export { SpecTable, type SpecRow } from "./spec-table";
 export { AccordionItem } from "./accordion";
 export { Figure } from "./figure";
+export { Lightbox } from "./lightbox";
 export { ScrollProgress } from "./scroll-progress";
 export { Toc, type TocItem } from "./toc";
 export { Gallery, type GalleryImage } from "./gallery";

@@ -16,6 +16,29 @@ The full roadmap for everything not yet built lives in **`docs/MASTER-PLAN.md`**
 source of truth for remaining work. The original design spec is in
 `docs/superpowers/specs/2026-06-28-nag-site-foundation-design.md`.
 
+## Mandatory editorial review: site passport
+
+The current site (except the model and power-amplifier block revisions) was made by a previous
+developer and has been audited. The audit document is the **site passport**:
+`docs/pasport-sayta-novikamps.html`.
+
+- Before planning, implementing, reviewing, or publishing **any** site change, open and check
+  the relevant findings and requirements in the site passport.
+- The passport is a mandatory constraint alongside `docs/MASTER-PLAN.md`; do not silently
+  reintroduce risks, unsupported claims, inconsistent product data, or design/content problems
+  identified by the audit.
+- In the task handoff, PR/commit description, or final work report, record which passport
+  requirements were checked and how the change complies with them. If a requested change conflicts
+  with the passport, stop and obtain the owner's explicit decision before implementing it.
+
+### History is a separately governed editorial project
+
+The existing `История` section is intentionally preserved as-is. Findings in the site passport
+about its historical claims, and the continuation of the narrative to the present day, belong to a
+separate future project: **«История, часть II»**. Do not revise, expand, shorten, or otherwise
+change factual/editorial history content while delivering unrelated site work. A narrowly scoped
+technical repair that does not alter content requires the owner's explicit approval.
+
 ## Commands
 
 ```bash

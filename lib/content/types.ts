@@ -34,6 +34,24 @@ export interface HistoryContent {
   chapters: HistoryChapter[];
 }
 
+/* ---- Technical article (typed data module pattern) ---- */
+
+export interface ArticleSection {
+  id: string;
+  label: string; // mono eyebrow
+  title: string;
+  blocks: HistoryBlock[];
+}
+
+export interface ArticleContent {
+  slug: string;
+  hero: { eyebrow: string; title: string; lede: string };
+  answer: { title: string; text: string };
+  sections: ArticleSection[];
+  faq: { q: string; a: string }[];
+  cta: { title: string; text: string; links: { label: string; href: string }[] };
+}
+
 /* ---- Company & legal (P3) ---- */
 
 export interface ContactsContent {

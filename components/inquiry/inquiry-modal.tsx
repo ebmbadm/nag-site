@@ -28,10 +28,14 @@ export function InquiryModal({
     if (open) {
       setResult(null);
       ref.current?.showModal();
+      // Micro-conversion. Opening the form is ~10-20x more frequent than sending
+      // it, which is what Direct's auto-strategies need to learn on: six leads a
+      // quarter is not enough signal for them.
+      reachGoal("inquiry_open", { kind, product: productSlug });
     } else {
       ref.current?.close();
     }
-  }, [open]);
+  }, [open, kind, productSlug]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

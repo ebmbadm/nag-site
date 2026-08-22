@@ -114,3 +114,32 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
     })),
   };
 }
+
+/** Article + FAQPage schema for a technical explainer page. */
+export function articleSchema(a: {
+  path: string;
+  headline: string;
+  description: string;
+  faq: { q: string; a: string }[];
+}) {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: a.headline,
+      description: a.description,
+      inLanguage: "ru-RU",
+      mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(a.path) },
+      publisher: { "@type": "Organization", name: ORGANIZATION.name, url: SITE_URL },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: a.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ];
+}

@@ -31,7 +31,7 @@ export function ProductCtaButtons({ price, name, slug }: ProductCtaButtonsProps)
               onClick={() => setOpen(true)}
               className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
             >
-              В корзину
+              Оставить заявку
             </button>
             <button
               type="button"

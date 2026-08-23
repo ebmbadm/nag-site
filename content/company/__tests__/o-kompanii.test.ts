@@ -19,8 +19,10 @@ describe("oKompanii", () => {
 
     expect(milestones).toEqual(expect.arrayContaining([
       expect.objectContaining({ year: "2006", label: expect.stringContaining("Q15") }),
+      expect.objectContaining({ year: "2010", label: expect.stringContaining("QM1") }),
       expect.objectContaining({ year: "2019", label: expect.stringContaining("QM400") }),
     ]));
+    expect(JSON.stringify(milestones)).not.toMatch(/\bQ1\b/);
     expect(JSON.stringify(milestones)).not.toContain("AODA");
   });
 });

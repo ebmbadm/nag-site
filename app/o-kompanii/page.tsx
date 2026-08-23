@@ -2,22 +2,9 @@ import type { Metadata } from "next";
 import { Container, Eyebrow, Surface, Breadcrumb } from "@/components/ds";
 import { HubCard } from "@/components/company/hub-card";
 import { MilestoneStrip } from "@/components/company/milestone-strip";
-import { getCompanyHub, getHistory } from "@/lib/content/company";
+import { getCompanyHub } from "@/lib/content/company";
 
 const hub = getCompanyHub();
-
-/** Curated first part of the timeline; the next period has a dedicated reserved panel. */
-const MILESTONE_IDS: readonly string[] = [
-  "nachalo",
-  "ps600",
-  "aerobus",
-  "prokat",
-  "novik",
-  "gibson",
-  "redbear",
-  "rossiya",
-  "liniya",
-];
 
 export const metadata: Metadata = {
   alternates: { canonical: "/o-kompanii" },
@@ -26,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function CompanyHubPage() {
-  const { chapters } = getHistory();
-  const milestones = chapters.filter((c) => MILESTONE_IDS.includes(c.id));
   return (
     <div>
       <Surface mode="dark" className="py-16">
@@ -54,7 +39,7 @@ export default function CompanyHubPage() {
         </div>
       </Container>
 
-      <MilestoneStrip chapters={milestones} periods={hub.historyPeriods} continuation={hub.historyContinuation} />
+      <MilestoneStrip milestones={hub.historyMilestones} periods={hub.historyPeriods} continuation={hub.historyContinuation} />
     </div>
   );
 }

@@ -31,7 +31,7 @@ export const oKompanii: CompanyHubContent = {
     { year: "2007", label: "RF160 · RF250 · RF400", text: "RF400 — самая удачная AB-модель, 1U. MQ10 · MQ20 · MQ30 — компактные AB-усилители, 2U." },
     { year: "2008", label: "RA2600 · RA3200 · RD1200 · RD1600 · RD2000", text: "Тяжёлые модели, 2U, 26/32 кг. RA и RD — один модельный ряд, отличающийся только мощностью; ориентир — Crest Audio." },
     { year: "2009", label: "QM15 · QM25 · QM35 · QM40", text: "Линейка QM." },
-    { year: "2010", label: "QM60 · QM80 · Q1", text: "Развитие линейки QM и модель Q1." },
+    { year: "2010", label: "QM60 · QM80 · QM1", text: "Развитие линейки QM и модель QM1." },
     { year: "2013", label: "D8000 · QM400 old", text: "Первая четырёхканальная версия QM400." },
     { year: "2014", label: "A2 · A3 · A4", text: "D-класс." },
     { year: "2016", label: "B2 · B3 · B4", text: "D-класс." },

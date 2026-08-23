@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Container, Eyebrow, Surface } from "@/components/ds";
-import type { HistoryChapter } from "@/lib/content/types";
+import type { CompanyMilestone } from "@/lib/content/types";
 
-/** Compact dark milestone strip derived from history chapters; links to /istoriya. */
+/** Compact history and model timeline; links to the long-form company history. */
 export function MilestoneStrip({
-  chapters,
+  milestones,
   periods,
   continuation,
 }: {
-  chapters: HistoryChapter[];
+  milestones: CompanyMilestone[];
   periods: { range: string; label: string }[];
   continuation: { range: string; title: string; text: string };
 }) {
@@ -23,10 +23,12 @@ export function MilestoneStrip({
         </div>
 
         <ol className="reveal-fade-stagger mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {chapters.map((c) => (
-            <li key={c.id} className="bg-bg p-5" style={{ borderTop: "var(--border-w-rule) solid var(--accent)" }}>
-              <div className="font-display text-xl text-text tabular" style={{ letterSpacing: "var(--ls-tight)" }}>{c.year}</div>
-              <div className="mt-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{c.label}</div>
+          {milestones.map((milestone) => (
+            <li key={`${milestone.year}-${milestone.label}`} className="bg-bg p-5" style={{ borderTop: "var(--border-w-rule) solid var(--accent)" }}>
+              <div className="font-display text-xl text-text tabular" style={{ letterSpacing: "var(--ls-tight)" }}>{milestone.year}</div>
+              {milestone.accentLabel && <div className="mt-2 inline-block bg-accent px-2 py-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-on-accent">{milestone.accentLabel}</div>}
+              <div className="mt-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{milestone.label}</div>
+              {milestone.text && <p className="mt-4 text-sm leading-relaxed text-text-muted">{milestone.text}</p>}
             </li>
           ))}
         </ol>

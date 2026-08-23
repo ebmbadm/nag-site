@@ -13,4 +13,14 @@ describe("oKompanii", () => {
       { range: "1992–2026", label: "компания NOVIK" },
     ]);
   });
+
+  test("adds the NAG model timeline without exposing internal supplier references", () => {
+    const milestones = Reflect.get(oKompanii, "historyMilestones");
+
+    expect(milestones).toEqual(expect.arrayContaining([
+      expect.objectContaining({ year: "2006", label: expect.stringContaining("Q15") }),
+      expect.objectContaining({ year: "2019", label: expect.stringContaining("QM400") }),
+    ]));
+    expect(JSON.stringify(milestones)).not.toContain("AODA");
+  });
 });

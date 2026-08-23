@@ -78,12 +78,20 @@ export interface CompanyHubCard {
   href: string;
 }
 
+export interface CompanyMilestone {
+  year: string;
+  label: string;
+  text?: string;
+  accentLabel?: string;
+}
+
 export interface CompanyHubContent {
   eyebrow: string;
   title: string;
   lede: string;
   cards: CompanyHubCard[];
   historyPeriods: { range: string; label: string }[];
+  historyMilestones: CompanyMilestone[];
   historyContinuation: { range: string; title: string; text: string };
 }
 

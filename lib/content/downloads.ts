@@ -37,9 +37,24 @@ export function describeDownload(doc: { label: string; href: string }): Download
   return { ...doc, ext, size };
 }
 
+/**
+ * Discontinued equipment whose product page was retired. The files stayed in /public and
+ * were linked from nowhere, while /catalog/arhiv told visitors to look for them here.
+ * Listed under the archive hub so the claim on that page is true.
+ */
+const RETIRED_DOCS: Omit<DownloadGroup, "links"> & { docs: { label: string; href: string }[] } = {
+  slug: "arhiv",
+  name: "AMP By NAG CX · NAG TDX",
+  category: "Архив",
+  docs: [
+    { label: "AMP By NAG CX — руководство пользователя", href: "/downloads/amp-by-nag-cx-manual-ru.pdf" },
+    { label: "NAG TDX — DSP Control ADF v3.3.8", href: "/downloads/nag-tdx-dsp-control-adf-v3.3.8.zip" },
+  ],
+};
+
 /** Every product that has downloads, for the /zagruzki page. */
 export function getDownloadGroups(): DownloadGroup[] {
-  return getProductSlugs()
+  const fromProducts = getProductSlugs()
     .map((slug) => getProduct(slug).frontmatter)
     .filter((p) => p.docs && p.docs.length > 0)
     .map((p) => ({
@@ -49,4 +64,8 @@ export function getDownloadGroups(): DownloadGroup[] {
       links: p.docs!.map(describeDownload),
     }))
     .sort((a, b) => a.category.localeCompare(b.category, "ru") || a.name.localeCompare(b.name, "ru"));
+
+  // Archive last, after the live catalogue.
+  const { docs, ...group } = RETIRED_DOCS;
+  return [...fromProducts, { ...group, links: docs.map(describeDownload) }];
 }

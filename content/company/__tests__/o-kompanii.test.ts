@@ -25,4 +25,16 @@ describe("oKompanii", () => {
     expect(JSON.stringify(milestones)).not.toMatch(/\bQ1\b/);
     expect(JSON.stringify(milestones)).not.toContain("AODA");
   });
+
+  test("uses the corrected NOVIK model list in the company timeline", () => {
+    const milestones = Reflect.get(oKompanii, "historyMilestones") as Array<Record<string, string>>;
+
+    expect(milestones.find((item) => item.year === "1997")).not.toHaveProperty("text");
+    expect(milestones).toEqual(expect.arrayContaining([
+      expect.objectContaining({ year: "2002", label: expect.stringContaining("АК1512"), text: expect.stringContaining("ламповым модулем мощности") }),
+      expect.objectContaining({ year: "2003", label: expect.stringContaining("SW10025") }),
+      expect.objectContaining({ year: "2009", label: expect.stringContaining("NG-1") }),
+      expect.objectContaining({ year: "2010", text: expect.stringContaining("CAMCO") }),
+    ]));
+  });
 });

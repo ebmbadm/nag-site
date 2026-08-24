@@ -28,6 +28,8 @@ type ArchiveGroup = {
   note: string;
   models: string[];
   slugs?: string[];
+  /** Label above the buttons. Not every group is offering a replacement. */
+  ctaLabel?: string;
   replacements: Replacement[];
 };
 
@@ -43,18 +45,9 @@ const GROUPS: ArchiveGroup[] = [
   {
     eyebrow: "Усилители мощности",
     title: "Архивные усилители мощности NAG",
-    note: "Сняты с производства. Актуальная замена — флагман QM-400 и серия Class-TD.",
-    models: [
-      "NAG QM-60",
-      "NAG QM-40",
-      "NAG QM-25",
-      "NAG QM-1",
-      "NAG Q40",
-      "NAG RF-400",
-      "NAG RF-250",
-      "NAG RD-1600",
-      "NAG PS600",
-    ],
+    note: "Транзисторные серии QM, RF и MQ сняты с производства. На карточках — характеристики, коммутация и актуальные замены по мощности.",
+    models: [],
+    slugs: ["qm-series", "rf-series", "mq-series"],
     replacements: [
       { label: "NAG QM-400", href: "/catalog/qm-400" },
       { label: "NAG TD SERIES", href: "/catalog/td-series" },
@@ -62,11 +55,30 @@ const GROUPS: ArchiveGroup[] = [
     ],
   },
   {
-    eyebrow: "Встраиваемые модули",
-    title: "Архивные модули для активной акустики",
-    note: "Модули MQ сняты с производства. Актуальная замена — модули Class-TD серий TDS / TDH.",
-    models: ["NAG MQ-10", "NAG MQ-20", "NAG MQ-30"],
-    replacements: [{ label: "Модули TDS / TDH", href: "/catalog/modules" }],
+    eyebrow: "Без опубликованных характеристик",
+    title: "Другие архивные обозначения NAG",
+    note: "Эти модели выпускались раньше и отдельных страниц не имеют. Паспорт или схему на любую из них запросим и пришлём.",
+    models: [
+      "NAG Q-150",
+      "NAG Q-250",
+      "NAG Q-350",
+      "NAG Q-400",
+      "NAG Q40",
+      "NAG RF-300",
+      "NAG RN-250",
+      "NAG RN-400",
+      "NAG RA-1800",
+      "NAG RA-2600",
+      "NAG RA-3200",
+      "NAG RD-1200",
+      "NAG RD-1600",
+      "NAG RD-2000",
+      "NAG MX-250",
+      "NAG MX-400",
+      "NAG PS600",
+    ],
+    ctaLabel: "Документы по запросу",
+    replacements: [{ label: "Запросить паспорт", href: "/kontakty" }],
   },
   {
     eyebrow: "Усилители и модули Class-D",
@@ -99,17 +111,17 @@ const CRUMBS = [
 ];
 
 const LEDE =
-  "Снятые с производства усилители мощности и модули NAG и ламповые усилители NOVIK. Этих моделей больше нет в продаже — ниже актуальные замены. По ремонту и обслуживанию архивной техники свяжитесь с нами.";
+  "Снятые с производства усилители мощности, процессоры и модули NAG и ламповые усилители NOVIK. Этих моделей больше нет в продаже — ниже актуальные замены. По ремонту и обслуживанию архивной техники свяжитесь с нами.";
 
 export const metadata: Metadata = {
   title: "Архивные модели — сняты с производства",
   description:
-    "Снятые с производства NAG / NOVIK: QM-60/40/25, Q40, RF-400/250, RD-1600, CX-520/540, MQ-10/20/30, TDX, ламповые NOVIK 602 / MKE120. Актуальные замены и сервис.",
+    "Снятые с производства NAG / NOVIK: серии QM-25/35/40/60/80, RF-160/250/400, MQ-10/20/30, а также CX-520/540, TDX, ламповые NOVIK 602 / MKE120. Характеристики, коммутация, актуальные замены и сервис.",
   alternates: { canonical: "/catalog/arhiv" },
   openGraph: {
     title: "Архивные модели NAG · NOVIK — сняты с производства",
     description:
-      "Старые модели NAG / NOVIK и их актуальные замены: усилители мощности, встраиваемые модули, ламповые усилители.",
+      "Старые модели NAG / NOVIK и их актуальные замены: транзисторные серии QM, RF и MQ, процессоры, встраиваемые модули, ламповые усилители.",
   },
 };
 
@@ -163,7 +175,7 @@ export default function ArchivePage() {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-                  Актуальная замена
+                  {group.ctaLabel ?? "Актуальная замена"}
                 </span>
                 {group.replacements.map((r) => (
                   <Link key={r.href} href={r.href} className={buttonVariants({ variant: "outline", size: "sm" })}>

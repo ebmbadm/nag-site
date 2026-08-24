@@ -14,9 +14,24 @@ test("shows archived DSP BY NAG models as product cards", () => {
 test("shows the archived transistor series as product cards", () => {
   render(<ArchivePage />);
 
-  expect(screen.getByText("NAG QM SERIES")).toBeInTheDocument();
-  expect(screen.getByText("NAG RF SERIES")).toBeInTheDocument();
-  expect(screen.getByText("NAG MQ SERIES")).toBeInTheDocument();
+  for (const name of [
+    "NAG QM SERIES",
+    "NAG MA SERIES",
+    "NAG RA SERIES",
+    "NAG RD SERIES",
+    "NAG Q SERIES",
+    "NAG RF SERIES",
+    "NAG MQ SERIES",
+  ]) {
+    expect(screen.getByText(name)).toBeInTheDocument();
+  }
+});
+
+test("shows the archived NOVIK tube amps and speakers as product cards", () => {
+  render(<ArchivePage />);
+
+  expect(screen.getByText("АРХИВ ЛАМПОВЫХ NOVIK")).toBeInTheDocument();
+  expect(screen.getByText("АРХИВ АКУСТИКИ NOVIK")).toBeInTheDocument();
 });
 
 test("designations without a spec table stay chips, not cards", () => {
@@ -25,6 +40,6 @@ test("designations without a spec table stay chips, not cards", () => {
   expect(
     screen.getByRole("heading", { name: "Другие архивные обозначения NAG" }),
   ).toBeInTheDocument();
-  expect(screen.getByText("NAG RD-1600")).toBeInTheDocument();
-  expect(screen.queryByRole("link", { name: /NAG RD-1600/ })).not.toBeInTheDocument();
+  expect(screen.getByText("NAG RD-2000")).toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /NAG RD-2000/ })).not.toBeInTheDocument();
 });

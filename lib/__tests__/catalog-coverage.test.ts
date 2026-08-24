@@ -8,6 +8,8 @@ describe("catalog coverage", () => {
         "d-4", "d-8", "d-8000", "f-8", "f-8-pro", "the-rogue",
         "qm-400", "td-series", "modules",
         "mq-series", "rf-series", "qm-series",
+        "q-series", "rd-series", "ra-series", "ma-series",
+        "novik-tube-archive", "novik-acoustics",
         "e12", "black-fire", "redbear", "n1202",
       ]),
     );

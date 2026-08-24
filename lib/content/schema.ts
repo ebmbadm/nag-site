@@ -124,6 +124,13 @@ export const productFrontmatterSchema = z.object({
       rows: z.array(z.object({ label: z.string(), value: z.string() })),
     }),
   ),
-});
+})
+  // A discontinued model has no purchasable price. Leaving one in frontmatter leaks it
+  // into the meta description and the archive card while the page itself hides the price
+  // and the buy CTA — the snippet then promises what the landing page refuses to show.
+  .refine((p) => !(p.archived && (typeof p.price?.amount === "number" || p.price?.onRequest)), {
+    message: "archived product must not carry a price (amount or onRequest)",
+    path: ["price"],
+  });
 
 export type ProductFrontmatter = z.infer<typeof productFrontmatterSchema>;

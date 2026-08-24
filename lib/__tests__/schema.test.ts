@@ -36,6 +36,21 @@ describe("productFrontmatterSchema", () => {
     if (result.success) expect(result.data.price?.amount).toBe(122900);
   });
 
+  it("rejects an archived product that still carries a price", () => {
+    expect(
+      productFrontmatterSchema.safeParse({ ...BASE, archived: true, price: { amount: 34900 } })
+        .success,
+    ).toBe(false);
+    expect(
+      productFrontmatterSchema.safeParse({ ...BASE, archived: true, price: { onRequest: true } })
+        .success,
+    ).toBe(false);
+  });
+
+  it("accepts an archived product with no price", () => {
+    expect(productFrontmatterSchema.safeParse({ ...BASE, archived: true }).success).toBe(true);
+  });
+
   it("accepts partnerLogos array", () => {
     const result = productFrontmatterSchema.safeParse({
       ...BASE,

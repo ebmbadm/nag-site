@@ -2,15 +2,18 @@ import { describe, expect, test } from "vitest";
 import { getProduct } from "@/lib/content/products";
 
 describe("DSP BY NAG D-series", () => {
-  test("d-4: price + 2×6 config", () => {
+  test("d-4: archived, no price + 2×6 config", () => {
     const p = getProduct("d-4").frontmatter;
-    expect(p.price?.amount).toBe(34900);
+    // Discontinued — a price here leaks into the meta description and the archive card.
+    expect(p.archived).toBe(true);
+    expect(p.price).toBeUndefined();
     expect(p.specChips).toContain("2 вх. XLR");
   });
 
-  test("d-8: price + 96 kHz (NOT 192) + docs", () => {
+  test("d-8: archived, no price + 96 kHz (NOT 192) + docs", () => {
     const p = getProduct("d-8").frontmatter;
-    expect(p.price?.amount).toBe(39900);
+    expect(p.archived).toBe(true);
+    expect(p.price).toBeUndefined();
     const proc = p.specGroups.flatMap((g) => g.rows).find((r) => r.label === "Сигнальный процессор");
     expect(proc?.value).toContain("96 кГц");
     expect(proc?.value).not.toContain("192");
@@ -35,9 +38,10 @@ describe("F-series products", () => {
 });
 
 describe("THE ROGUE", () => {
-  test("price + pink noise + 40 ms total delay + USB-B", () => {
+  test("archived, no price + pink noise + 40 ms total delay + USB-B", () => {
     const p = getProduct("the-rogue").frontmatter;
-    expect(p.price?.amount).toBe(24900);
+    expect(p.archived).toBe(true);
+    expect(p.price).toBeUndefined();
     expect(p.specChips).toContain("Розовый шум");
     const rows = p.specGroups.flatMap((g) => g.rows);
     expect(rows.find((r) => r.label === "Задержка")?.value).toContain("40 мс");

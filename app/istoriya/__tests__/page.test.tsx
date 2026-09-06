@@ -18,6 +18,7 @@ test("renders the approved Novik history introduction and photographs", () => {
     "/history/redbear-mkx-cub-combo-1995-front.jpg",
     "/history/novik-n1202-1995.jpg",
     "/history/novik-n1202c-1996.jpg",
+    "/history/novik-mk50-combo-1997-1998-front.jpg",
     "/history/novik-pa-602-1997.jpg",
     "/history/novik-pa-1202-1999.jpg",
     "/history/novik-pa-e12-2000.jpg",
@@ -27,6 +28,7 @@ test("renders the approved Novik history introduction and photographs", () => {
   }
 
   expect(screen.getByAltText("NOVIK PA 602").getAttribute("src")).toBe("/history/novik-pa-602-1997.jpg");
+  expect(screen.getByRole("button", { name: "Открыть фото: NOVIK MK50/25" })).toBeInTheDocument();
   expect(screen.getByAltText("NOVIK PA 1202").getAttribute("src")).toBe("/history/novik-pa-1202-1999.jpg");
 });
 
@@ -57,4 +59,20 @@ test("uses the standard history photo viewer for the continuation", () => {
     }),
   ).toBeInTheDocument();
   expect(screen.getByAltText("NOVIK K1512 — акустика начального периода второй части истории.")).toBeInTheDocument();
+});
+
+test("keeps low-resolution and portrait equipment photos at a natural reading size", () => {
+  render(<HistoryPage />);
+
+  expect(screen.getByRole("button", { name: "Открыть фото: PS600" }).closest("figure")).toHaveClass("max-w-[320px]");
+  expect(
+    screen.getByRole("button", {
+      name: "Открыть фото: АК2512 — активная система с ламповым модулем; в хронологии VIK9 эта линия отнесена к 2002 году.",
+    }).closest("figure"),
+  ).toHaveClass("max-w-[360px]");
+  expect(
+    screen.getByRole("button", {
+      name: "Открыть фото: SW6025 — сабвуфер собственной акустической линейки; в VIK9 и VK10 указан в группе 2001 года.",
+    }).closest("figure"),
+  ).toHaveClass("max-w-[360px]");
 });

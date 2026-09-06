@@ -121,6 +121,9 @@ export function history2ToChapters(document: History2Document): HistoryChapter[]
           src: publicImagePath(block.src),
           alt: block.alt,
           ...dimensions,
+          ...(block.src === "novik_v7_assets/05_AK2512_фронт.jpg" || block.src === "novik_v7_assets/05_SW-6025.jpg"
+            ? { displaySize: "compact" as const }
+            : {}),
         };
       }),
     };

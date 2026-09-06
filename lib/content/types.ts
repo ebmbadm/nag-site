@@ -8,7 +8,15 @@ export type HistoryBlock =
   | { type: "p"; text: string } // supports **bold** inline
   | { type: "quote"; text: string }
   | { type: "stats"; items: { value: string; label: string }[] }
-  | { type: "figure"; src: string; alt: string; caption?: string };
+  | {
+      type: "figure";
+      src: string;
+      alt: string;
+      caption?: string;
+      width?: number;
+      height?: number;
+      displaySize?: "native" | "compact" | "reduced";
+    };
 
 export interface HistoryChapter {
   id: string;

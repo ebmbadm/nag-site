@@ -17,7 +17,6 @@ const CATEGORY_ROUTES = [
 const INFO_ROUTES = [
   "/o-kompanii",
   "/istoriya",
-  "/istoriya-2",
   "/kontakty",
   "/garantiya",
   "/zagruzki",

@@ -19,7 +19,7 @@ const COLUMNS = [
     title: "Компания",
     links: [
       { label: "О компании", href: "/o-kompanii" },
-      { label: "История", href: "/istoriya" },
+      { label: "История", href: "/istoriya#history-top" },
       { label: "Загрузки", href: "/zagruzki" },
       { label: "Гарантия и сервис", href: "/garantiya" },
       { label: "Контакты", href: "/kontakty" },

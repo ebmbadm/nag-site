@@ -1,17 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { MilestoneStrip } from "../milestone-strip";
-import type { HistoryChapter } from "@/lib/content/types";
+import type { CompanyMilestone } from "@/lib/content/types";
 
-const chapters: HistoryChapter[] = [
-  { id: "a", year: "1976", label: "Начало", title: "Начало деятельности", blocks: [] },
-  { id: "b", year: "1992", label: "Бренд", title: "NOVIK", blocks: [] },
+const milestones: CompanyMilestone[] = [
+  { year: "1976", label: "Начало деятельности" },
+  { year: "1992", label: "NOVIK", accentLabel: "Бренд" },
 ];
 
 describe("MilestoneStrip", () => {
   test("renders dated periods and a reserved continuation section", () => {
     render(<MilestoneStrip
-      chapters={chapters}
+      milestones={milestones}
       periods={[
         { range: "1976–1992", label: "личная история" },
         { range: "1992–2026", label: "компания NOVIK" },

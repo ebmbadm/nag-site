@@ -83,3 +83,12 @@ test("provides a stable top target for same-page history navigation", () => {
 
   expect(container.querySelector("#history-top")).toBeInTheDocument();
 });
+
+test("shows the 1996 N1202C combo before the later MK50/25", () => {
+  render(<HistoryPage />);
+
+  const n1202c = screen.getByRole("button", { name: "Открыть фото: NOVIK N1202C / N602C для Pellarin" });
+  const mk5025 = screen.getByRole("button", { name: "Открыть фото: NOVIK MK50/25" });
+
+  expect(n1202c.compareDocumentPosition(mk5025) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});

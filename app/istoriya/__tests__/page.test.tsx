@@ -37,3 +37,12 @@ test("ships PA 602 and PA 1202 as browser-decodable JPEG files", () => {
     expect([...header]).toEqual([0xff, 0xd8, 0xff]);
   }
 });
+
+test("links the first history to the approved 2000–2019 continuation", () => {
+  render(<HistoryPage />);
+
+  expect(screen.getByRole("link", { name: "Продолжение: 2000–2019" })).toHaveAttribute(
+    "href",
+    "/istoriya-2",
+  );
+});

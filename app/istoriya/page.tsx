@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Toc, ScrollProgress, ExpandAllControl } from "@/components/ds";
+import Link from "next/link";
+import { Container, Eyebrow, Toc, ScrollProgress, ExpandAllControl, buttonVariants } from "@/components/ds";
 import { HistoryHero } from "@/components/history/hero";
 import { Chapter } from "@/components/history/chapter";
 import { HistoryPreface } from "@/components/history/preface";
@@ -41,6 +42,11 @@ export default function HistoryPage() {
           {chapters.map((chapter, index) => (
             <Chapter key={chapter.id} chapter={chapter} first={index === 0} />
           ))}
+          <div className="mt-10 border-t border-border pt-8">
+            <Link href="/istoriya-2" className={buttonVariants({ variant: "outline", size: "lg" })}>
+              Продолжение: 2000–2019
+            </Link>
+          </div>
         </article>
       </Container>
     </div>

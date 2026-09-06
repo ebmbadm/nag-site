@@ -25,7 +25,7 @@ describe("company content loaders", () => {
       { range: "1976–1992", label: "личная история" },
       { range: "1992–2026", label: "компания NOVIK" },
     ]);
-    expect(h.historyContinuation.range).toBe("2000–2026");
+    expect(h.historyContinuation.range).toBe("2000–2019");
     expect(JSON.stringify(h)).not.toContain("700+");
   });
 });

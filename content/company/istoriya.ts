@@ -2,7 +2,7 @@ import type { HistoryContent } from "@/lib/content/types";
 
 export const istoriya: HistoryContent = {
   hero: {
-    kicker: "Мемуары основателя · 1976 — 2000",
+    kicker: "Мемуары основателя · 1976 — 2019",
     titleLead: "История компании",
     titleAccent: "Novik",
     dropcap: "Д",

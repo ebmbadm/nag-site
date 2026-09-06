@@ -2,6 +2,8 @@ type History2Image = { type: "image"; alt: string; src: string };
 type History2Paragraph = { type: "paragraph"; text: string };
 type History2Block = History2Image | History2Paragraph;
 
+import type { HistoryChapter } from "@/lib/content/types";
+
 export type History2Document = {
   title: string;
   subtitle: string;
@@ -80,6 +82,49 @@ function escapeHtml(value: string) {
 
 function publicImagePath(relativePath: string) {
   return `/history-2/${relativePath.split("/").map(encodeURIComponent).join("/")}`;
+}
+
+const imageDimensions: Record<string, { width: number; height: number }> = {
+  "Комплекты_слегка_светлее.png": { width: 1500, height: 1219 },
+  "novik_v7_assets/01_K1512.jpg": { width: 1328, height: 1584 },
+  "novik_v7_assets/05_AK2512_фронт.jpg": { width: 1336, height: 1724 },
+  "novik_v7_assets/05_SW-6025.jpg": { width: 1593, height: 2450 },
+  "novik_v7_assets/06_RF400_открытый_корпус_2011.jpg": { width: 1000, height: 522 },
+  "novik_v7_assets/06_RF400_фронт_2011.jpg": { width: 1000, height: 91 },
+  "novik_v7_assets/07_QM1_внутренний_вид.jpg": { width: 2850, height: 538 },
+  "novik_v7_assets/08_QM400_OLD_из_мануала_2014.png": { width: 1818, height: 338 },
+  "novik_v7_assets/09_QM40_передняя_панель_2012.jpg": { width: 2850, height: 540 },
+  "novik_v7_assets/10_серия_A_фронт_из_техпаспорта_2014.jpg": { width: 1645, height: 235 },
+  "novik_v7_assets/11_серия_B_эскиз_из_техпаспорта_2016.jpg": { width: 2190, height: 245 },
+  "novik_v7_assets/12_MQ10_открытый_корпус.jpg": { width: 1000, height: 416 },
+  "novik_v7_assets/Листовка_NAG_светлый_фон.png": { width: 1325, height: 1187 },
+  "novik_v7_assets/nag-qm400-front-panel.jpg": { width: 1680, height: 494 },
+};
+
+export function history2ToChapters(document: History2Document): HistoryChapter[] {
+  return document.chapters.map((chapter, index) => {
+    const datedTitle = chapter.title.match(/^(\d{4}(?:–\d{4})?)\.\s*(.+)$/);
+    const fallback = chapter.title === "В Гуанчжоу с Виктором"
+      ? { year: "2017–2019", label: "Семейная история" }
+      : { year: "2019", label: "Эпилог" };
+
+    return {
+      id: `history-2-${index + 1}`,
+      year: datedTitle?.[1] ?? fallback.year,
+      label: datedTitle ? "История NOVIK" : fallback.label,
+      title: datedTitle?.[2] ?? chapter.title,
+      blocks: chapter.blocks.map((block) => {
+        if (block.type === "paragraph") return { type: "p" as const, text: block.text };
+        const dimensions = imageDimensions[block.src] ?? { width: 1200, height: 750 };
+        return {
+          type: "figure" as const,
+          src: publicImagePath(block.src),
+          alt: block.alt,
+          ...dimensions,
+        };
+      }),
+    };
+  });
 }
 
 function renderImage(image: History2Image, index: number) {

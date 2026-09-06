@@ -10,9 +10,10 @@ describe("sitemap", () => {
     expect(urls).not.toContain("https://novikamps.com/catalog/tdx");
   });
 
-  test("publishes the approved History 2.0 route", () => {
+  test("publishes only the unified history route", () => {
     const urls = sitemap().map((entry) => entry.url);
 
-    expect(urls).toContain("https://novikamps.com/istoriya-2");
+    expect(urls).toContain("https://novikamps.com/istoriya");
+    expect(urls).not.toContain("https://novikamps.com/istoriya-2");
   });
 });

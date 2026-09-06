@@ -337,7 +337,7 @@ export default function HomePage() {
               />
             </div>
             <div>
-              <Eyebrow className="mb-3.5 block">История · 1976–2000</Eyebrow>
+              <Eyebrow className="mb-3.5 block">История · 1976–2019</Eyebrow>
               <h2
                 className="mb-[18px] font-display font-bold uppercase text-text"
                 style={{
@@ -352,8 +352,8 @@ export default function HomePage() {
                 className="mb-7 max-w-[52ch] text-md text-text-muted"
                 style={{ lineHeight: "var(--lh-relaxed)" }}
               >
-                Опубликованная часть истории: от первых ламповых усилителей Сергея Новикова до
-                2000 года. Продолжение о периоде 2000–2026 готовится к публикации.
+                Единая история: от первых ламповых усилителей Сергея Новикова до развития
+                компании NOVIK и марки NAG в 2019 году.
               </p>
               <Link href="/istoriya" className={buttonVariants({ variant: "outline" })}>
                 Читать историю

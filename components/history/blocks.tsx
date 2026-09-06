@@ -44,6 +44,8 @@ export function Block({ block }: { block: HistoryBlock }) {
           src={block.src}
           alt={block.alt}
           caption={block.caption}
+          width={block.width}
+          height={block.height}
           className="my-8"
           unoptimized={block.src.startsWith("/history/novik-pa-")}
         />

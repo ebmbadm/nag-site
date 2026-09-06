@@ -7,7 +7,7 @@ test("renders the approved Novik history introduction and photographs", () => {
   render(<HistoryPage />);
 
   expect(screen.getByRole("heading", { name: /история компании novik/i })).toBeInTheDocument();
-  expect(screen.getByText(/Этот текст был написан мной более 20 лет назад/i)).toBeInTheDocument();
+  expect(screen.getByText(/Первая часть этого текста была написана мной более 20 лет назад/i)).toBeInTheDocument();
 
   const imageSources = Array.from(document.querySelectorAll("img")).map((image) => image.getAttribute("src"));
 
@@ -38,11 +38,23 @@ test("ships PA 602 and PA 1202 as browser-decodable JPEG files", () => {
   }
 });
 
-test("links the first history to the approved 2000–2019 continuation", () => {
+test("continues directly through 2019 without a second-page link", () => {
   render(<HistoryPage />);
 
-  expect(screen.getByRole("link", { name: "Продолжение: 2000–2019" })).toHaveAttribute(
-    "href",
-    "/istoriya-2",
-  );
+  expect(screen.queryByRole("link", { name: "Продолжение: 2000–2019" })).not.toBeInTheDocument();
+  expect(screen.getAllByText("Китай изнутри")).toHaveLength(2);
+  expect(screen.getAllByText("Меньше случайного в ассортименте")).toHaveLength(2);
+  expect(screen.getByText("Продолжение ещё пишется.")).toBeInTheDocument();
+  expect(screen.getByText("Хроника · 1976 — 2019")).toBeInTheDocument();
+});
+
+test("uses the standard history photo viewer for the continuation", () => {
+  render(<HistoryPage />);
+
+  expect(
+    screen.getByRole("button", {
+      name: "Открыть фото: Готовые комплекты NOVIK: усилитель и пара акустических систем",
+    }),
+  ).toBeInTheDocument();
+  expect(screen.getByAltText("NOVIK K1512 — акустика начального периода второй части истории.")).toBeInTheDocument();
 });

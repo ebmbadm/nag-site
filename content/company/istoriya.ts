@@ -395,6 +395,7 @@ export const istoriya: HistoryContent = {
           caption: "1997–1998 · NOVIK MK50/25 — полностью ламповый гитарный комбо.",
           width: 198,
           height: 200,
+          displaySize: "reduced",
         },
         {
           type: "p",

@@ -64,7 +64,8 @@ test("uses the standard history photo viewer for the continuation", () => {
 test("keeps low-resolution and portrait equipment photos at a natural reading size", () => {
   render(<HistoryPage />);
 
-  expect(screen.getByRole("button", { name: "Открыть фото: PS600" }).closest("figure")).toHaveClass("max-w-[320px]");
+  expect(screen.getByRole("button", { name: "Открыть фото: PS600" }).closest("figure")).toHaveClass("max-w-[384px]");
+  expect(screen.getByRole("button", { name: "Открыть фото: NOVIK MK50/25" }).closest("figure")).toHaveClass("w-4/5");
   expect(
     screen.getByRole("button", {
       name: "Открыть фото: АК2512 — активная система с ламповым модулем; в хронологии VIK9 эта линия отнесена к 2002 году.",
@@ -75,4 +76,10 @@ test("keeps low-resolution and portrait equipment photos at a natural reading si
       name: "Открыть фото: SW6025 — сабвуфер собственной акустической линейки; в VIK9 и VK10 указан в группе 2001 года.",
     }).closest("figure"),
   ).toHaveClass("max-w-[360px]");
+});
+
+test("provides a stable top target for same-page history navigation", () => {
+  const { container } = render(<HistoryPage />);
+
+  expect(container.querySelector("#history-top")).toBeInTheDocument();
 });

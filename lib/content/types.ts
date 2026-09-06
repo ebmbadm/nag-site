@@ -15,7 +15,7 @@ export type HistoryBlock =
       caption?: string;
       width?: number;
       height?: number;
-      displaySize?: "native" | "compact";
+      displaySize?: "native" | "compact" | "reduced";
     };
 
 export interface HistoryChapter {

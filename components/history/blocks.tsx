@@ -48,9 +48,11 @@ export function Block({ block }: { block: HistoryBlock }) {
           height={block.height}
           className={
             block.displaySize === "native"
-              ? "mx-auto my-8 max-w-[320px]"
+              ? "mx-auto my-8 max-w-[384px]"
               : block.displaySize === "compact"
                 ? "mx-auto my-8 max-w-[360px]"
+                : block.displaySize === "reduced"
+                  ? "mx-auto my-8 w-4/5"
                 : "my-8"
           }
           unoptimized={block.src.startsWith("/history/novik-pa-")}

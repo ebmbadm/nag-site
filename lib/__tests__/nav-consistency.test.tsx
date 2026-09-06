@@ -22,4 +22,9 @@ describe("nav consistency", () => {
     expect(screen.queryByRole("link", { name: "Сейверы" })).toBeNull();
     expect(screen.queryByRole("link", { name: "Конвертеры" })).toBeNull();
   });
+
+  test("footer history link returns to the top of the history page", () => {
+    render(<SiteFooter />);
+    expect(screen.getByRole("link", { name: "История" })).toHaveAttribute("href", "/istoriya#history-top");
+  });
 });

@@ -23,7 +23,7 @@ export default function HistoryPage() {
   const tocItems = allChapters.map((chapter) => ({ id: chapter.id, label: chapter.title, meta: chapter.year }));
 
   return (
-    <div>
+    <div id="history-top">
       <div className="sticky top-[58px] z-30">
         <ScrollProgress />
       </div>

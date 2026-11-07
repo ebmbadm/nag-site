@@ -27,6 +27,13 @@ describe("ModulesProductPage", () => {
     expect(screen.getByAltText(/со снятой платой/i)).toBeInTheDocument();
   });
 
+  test("показывает цену от младшей модели и кнопку заявки", () => {
+    render(<ModulesProductPage product={getProduct("modules").frontmatter} />);
+
+    expect(screen.getByText(/от 41\s900\s₽/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Оставить заявку" })).toBeInTheDocument();
+  });
+
   test("общие характеристики выводятся текстом, а не скриншотом таблицы", () => {
     const product = getProduct("modules").frontmatter;
     render(<ModulesProductPage product={product} />);

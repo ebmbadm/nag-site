@@ -11,6 +11,7 @@ interface InquiryModalProps {
   kind: "product" | "boutique";
   productName?: string;
   productSlug?: string;
+  messagePlaceholder?: string;
 }
 
 export function InquiryModal({
@@ -19,6 +20,7 @@ export function InquiryModal({
   kind,
   productName,
   productSlug,
+  messagePlaceholder = "Дополнительная информация",
 }: InquiryModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const [result, setResult] = useState<InquiryResult | null>(null);
@@ -116,7 +118,7 @@ export function InquiryModal({
             id="modal-message"
             name="message"
             rows={3}
-            placeholder="Дополнительная информация"
+            placeholder={messagePlaceholder}
           />
         </Field>
         <button

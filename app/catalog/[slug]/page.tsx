@@ -115,7 +115,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <Breadcrumb items={crumbs} />
         </Container>
       </div>
-      <ProductHero product={p} slug={slug} />
+      <ProductHero product={p} />
 
       {body.trim() ? (
         <section className="border-t border-border py-16">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container, Eyebrow, Surface } from "@/components/ds";
 import type { ProductFrontmatter } from "@/lib/content/schema";
+import { ProductBuyBox } from "./sections";
 
 type Qm400ProductPageProps = {
   product: ProductFrontmatter;
@@ -33,6 +34,9 @@ export function Qm400ProductPage({ product }: Qm400ProductPageProps) {
                   {chip}
                 </span>
               ))}
+            </div>
+            <div className="mt-8">
+              <ProductBuyBox product={product} />
             </div>
           </div>
           <div className="relative min-h-[340px] bg-photo-backdrop lg:min-h-[410px]">

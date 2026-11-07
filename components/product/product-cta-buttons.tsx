@@ -6,23 +6,24 @@ import type { ProductFrontmatter } from "@/lib/content/schema";
 
 interface ProductCtaButtonsProps {
   price: ProductFrontmatter["price"];
+  archived?: boolean;
   name: string;
   slug: string;
 }
 
-export function ProductCtaButtons({ price, name, slug }: ProductCtaButtonsProps) {
+export function ProductCtaButtons({ price, archived, name, slug }: ProductCtaButtonsProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <div className="flex flex-wrap gap-3">
-        {price?.onRequest ? (
+        {archived || price?.onRequest ? (
           <button
             type="button"
             onClick={() => setOpen(true)}
             className={buttonVariants({ variant: "primary", size: "lg", className: "min-w-40" })}
           >
-            Запросить расчёт
+            {archived ? "Обмен и ремонт" : "Запросить расчёт"}
           </button>
         ) : (
           <>
@@ -49,6 +50,7 @@ export function ProductCtaButtons({ price, name, slug }: ProductCtaButtonsProps)
         kind="product"
         productName={name}
         productSlug={slug}
+        messagePlaceholder={archived ? "Модель и что нужно: ремонт, схема или обмен" : undefined}
       />
     </>
   );

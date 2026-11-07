@@ -27,7 +27,6 @@ describe("ProductHero price branch", () => {
     render(
       <ProductHero
         product={{ ...base, price: { onRequest: true, note: "Изготавливается под заказ" } }}
-        slug="x"
       />,
     );
     expect(screen.getByText("Цена по запросу")).toBeInTheDocument();
@@ -37,11 +36,17 @@ describe("ProductHero price branch", () => {
   });
 
   test("priced product still shows «Розничная цена» + «Оставить заявку» (no regression)", () => {
-    render(
-      <ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} slug="x" />,
-    );
+    render(<ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} />);
     expect(screen.getByText("Розничная цена")).toBeInTheDocument();
     expect(screen.getByText("Оставить заявку")).toBeInTheDocument();
     expect(screen.queryByText("Цена по запросу")).toBeNull();
+  });
+
+  test("archived model offers trade-in and repair instead of a price", () => {
+    render(<ProductHero product={{ ...base, archived: true }} />);
+
+    expect(screen.getByRole("button", { name: "Обмен и ремонт" })).toBeInTheDocument();
+    expect(screen.queryByText("Оставить заявку")).toBeNull();
+    expect(screen.queryByText("Розничная цена")).toBeNull();
   });
 });

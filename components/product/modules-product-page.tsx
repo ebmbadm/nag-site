@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Chip, Container, Eyebrow, Surface } from "@/components/ds";
 import type { ProductFrontmatter } from "@/lib/content/schema";
 import { cn } from "@/lib/utils";
+import { ProductBuyBox } from "./sections";
 
 type ModulesProductPageProps = {
   product: ProductFrontmatter;
@@ -92,6 +93,9 @@ export function ModulesProductPage({ product }: ModulesProductPageProps) {
             <p className="mt-7 max-w-[470px] text-lg leading-relaxed text-text-muted">
               {product.summary}
             </p>
+            <div className="mt-8">
+              <ProductBuyBox product={product} />
+            </div>
           </div>
 
           {rearPanel ? (

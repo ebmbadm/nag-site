@@ -36,9 +36,22 @@ export function YandexMetrika() {
   );
 }
 
-/** Fire a Metrika goal. No-op when the counter has not loaded (adblock, SSR). */
-export function reachGoal(goal: string, params?: Record<string, unknown>) {
+/** No-op when the counter has not loaded (adblock, SSR). */
+function ym(...args: unknown[]) {
   if (typeof window === "undefined") return;
-  const ym = (window as unknown as { ym?: (...a: unknown[]) => void }).ym;
-  ym?.(METRIKA_ID, "reachGoal", goal, params);
+  (window as unknown as { ym?: (...a: unknown[]) => void }).ym?.(METRIKA_ID, ...args);
+}
+
+/** Fire a Metrika goal. */
+export function reachGoal(goal: string, params?: Record<string, unknown>) {
+  ym("reachGoal", goal, params);
+}
+
+/**
+ * Count a page opened without a reload. `referer` is required in practice: left
+ * out, Metrika reuses document.referrer and every click looks like a new arrival
+ * from the original source.
+ */
+export function hit(url: string, referer: string) {
+  ym("hit", url, { referer });
 }

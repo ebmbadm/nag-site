@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { YandexMetrika } from "@/components/analytics/yandex-metrika";
+import { MetrikaPageviews } from "@/components/analytics/metrika-pageviews";
 import { organizationSchema, webSiteSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru" className={fontVariables}>
       <body className="bg-noise flex min-h-screen flex-col">
         <YandexMetrika />
+        <MetrikaPageviews />
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
         <SiteHeader />
         <main className="flex-1">{children}</main>

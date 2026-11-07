@@ -37,11 +37,30 @@ export function formatTelegram(data: NotifyPayload): string {
     .join("\n");
 }
 
+/**
+ * Prod reaches Telegram through one pinned IP and that path drops the odd
+ * connection, so give each send a second try and leave a trace in the logs.
+ * Logs carry the status only: the Telegram URL contains the bot token.
+ */
+async function send(channel: string, url: string, init: RequestInit): Promise<void> {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(url, { ...init, signal: AbortSignal.timeout(5000) });
+      if (res.ok) return;
+      console.error(`notify ${channel}: HTTP ${res.status}, attempt ${attempt}`);
+      if (res.status < 500) return; // bad token or chat id: a retry cannot help
+    } catch (error) {
+      const reason = error instanceof Error ? error.name : "unknown";
+      console.error(`notify ${channel}: ${reason}, attempt ${attempt}`);
+    }
+  }
+}
+
 export async function notifyEmail(data: NotifyPayload): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return;
   const subject = `Новая заявка: ${kindLabel(data.kind)}${data.product_slug ? ` — ${data.product_slug}` : ""}`;
-  await fetch("https://api.resend.com/emails", {
+  await send("email", "https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -57,7 +76,7 @@ export async function notifyTelegram(data: NotifyPayload): Promise<void> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
-  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+  await send("telegram", `https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

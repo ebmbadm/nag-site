@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   // Absolute — the layout template would otherwise append the brand a second time.
   title: { absolute: "DSP-процессоры и контроллеры акустических систем NAG" },
   description:
-    "DSP-процессоры NAG: цифровые контроллеры-корректоры АС от 2 × 4 до 4 × 8, FIR-фильтры, управление по Wi-Fi. От 34 900 ₽, гарантия 2 года.",
+    "DSP-процессоры NAG: цифровые контроллеры-корректоры АС 4 × 8, FIR-фильтры, управление по Wi-Fi. От 79 900 ₽, гарантия 2 года.",
   alternates: { canonical: "/catalog/processors" },
   openGraph: {
     title: "DSP-процессоры и контроллеры акустических систем NAG",
@@ -60,7 +60,7 @@ export default function ProcessorsPage() {
           <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
             {LEDE}
           </p>
-          <p className="mt-4 font-mono text-xs text-text-faint">от 72 000 ₽</p>
+          <p className="mt-4 font-mono text-xs text-text-faint">от 79 900 ₽</p>
         </header>
 
         {/* В каталоге остаются только актуальные модели; снятые с производства перенесены в архив. */}

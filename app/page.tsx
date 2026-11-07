@@ -25,7 +25,7 @@ const CATEGORIES = [
     title: "Процессоры",
     text: "DSP-процессоры NAG: D-8000 Wi-Fi, F-8, F-8 PRO.",
     href: "/catalog/processors",
-    price: "от 72 000 ₽",
+    price: "от 79 900 ₽",
     image: {
       src: "/products/d-8000/nag-d8000-front-panel.jpg",
       alt: "NAG D-8000 — передняя панель",

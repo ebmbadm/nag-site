@@ -34,6 +34,12 @@ test("shows the archived NOVIK tube amps and speakers as product cards", () => {
   expect(screen.getByText("АРХИВ АКУСТИКИ NOVIK")).toBeInTheDocument();
 });
 
+test("offers trade-in and repair for archived gear", () => {
+  render(<ArchivePage />);
+
+  expect(screen.getByRole("link", { name: "Обмен и ремонт" })).toHaveAttribute("href", "/kontakty");
+});
+
 test("designations without a spec table stay chips, not cards", () => {
   render(<ArchivePage />);
 

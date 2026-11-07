@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Container, Eyebrow, Surface } from "@/components/ds";
+import Link from "next/link";
+import { Container, Eyebrow, Surface, buttonVariants } from "@/components/ds";
 import type { ProductFrontmatter } from "@/lib/content/schema";
 
 type AmplifiersCategoryPageProps = {
@@ -49,6 +50,12 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
                 </span>
               ))}
             </div>
+            <Link
+              href="/catalog/qm-400"
+              className={buttonVariants({ variant: "primary", size: "lg", className: "mt-8" })}
+            >
+              QM-400: цена и заявка
+            </Link>
           </div>
           <div className="relative min-h-[340px] bg-photo-backdrop lg:min-h-[410px]">
             <Image src={qmFront.src} alt={qmFront.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain p-8 mix-blend-multiply" />
@@ -75,6 +82,12 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-100 / TD-80</h2>
             <p className="mt-4 leading-relaxed text-text-muted">Двухканальные версии для задач, где нужна высокая мощность в компактном корпусе 1.5U. Общий блок питания и два канала сохраняют привычную для серии TD логику работы.</p>
             <span className="mt-6 block font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Серия TD · старшая</span>
+            <Link
+              href="/catalog/td-series"
+              className={buttonVariants({ variant: "outline", size: "sm", className: "mt-5" })}
+            >
+              TD-100 / TD-80: цена и заявка
+            </Link>
           </article>
           <article className="bg-surface p-6 lg:p-8">
             <div className="grid gap-3 bg-photo-backdrop p-3">
@@ -84,6 +97,12 @@ export function AmplifiersCategoryPage({ qm400, tdSeries }: AmplifiersCategoryPa
             <h2 className="mt-7 font-display text-4xl tracking-[var(--ls-tight)]">TD-40 / TD-30</h2>
             <p className="mt-4 leading-relaxed text-text-muted">Самые лёгкие двухканальные усилители TD-класса в 1U-дизайне. Подходят для систем, где важны компактность, надёжность и понятная интеграция.</p>
             <span className="mt-6 block font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent">Серия TD · 1U</span>
+            <Link
+              href="/catalog/td-series"
+              className={buttonVariants({ variant: "outline", size: "sm", className: "mt-5" })}
+            >
+              TD-40 / TD-30: цена и заявка
+            </Link>
           </article>
         </Container>
       </section>

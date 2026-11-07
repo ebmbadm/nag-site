@@ -199,13 +199,13 @@ export default function ArchivePage() {
               className="mt-3 font-display text-xl uppercase text-text"
               style={{ letterSpacing: "var(--ls-tight)" }}
             >
-              Нужна замена или ремонт архивной модели?
+              Нужна замена, обмен или ремонт архивной модели?
             </p>
             <p className="mt-3 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              Подберём актуальный аналог под вашу задачу и обслужим снятую с производства технику NAG · NOVIK.
+              Подберём актуальный аналог под вашу задачу, обсудим обмен старого аппарата и обслужим снятую с производства технику NAG · NOVIK.
             </p>
             <Link href="/kontakty" className={`mt-6 ${buttonVariants({ variant: "primary", size: "lg" })}`}>
-              Связаться с нами
+              Обмен и ремонт
             </Link>
           </div>
         </Container>

@@ -15,4 +15,11 @@ describe("Qm400ProductPage", () => {
     expect(screen.getByText("4 × 2400 Вт")).toBeInTheDocument();
     expect(screen.getByText("Четыре канала в одном шасси.")).toBeInTheDocument();
   });
+
+  test("shows the price and a way to order the flagship", () => {
+    render(<Qm400ProductPage product={getProduct("qm-400").frontmatter} />);
+
+    expect(screen.getByText(/199\s900\s₽/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Оставить заявку" })).toBeInTheDocument();
+  });
 });

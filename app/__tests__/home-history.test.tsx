@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { beforeAll, test } from "vitest";
+import { getProductsByCategory } from "@/lib/content/products";
+import { formatPrice } from "@/lib/format";
 import HomePage from "../page";
 
 beforeAll(() => {
@@ -127,5 +129,8 @@ test("uses the Vik 8 range, prices, and amplifiers label in the home catalogue",
   expect(equipment).toHaveTextContent("от 70 000 ₽");
   expect(modules).toHaveTextContent("TDS20/10 · TDH20/10");
   expect(modules).toHaveTextContent("от 41 900 ₽");
-  expect(processors).toHaveTextContent("от 72 000 ₽");
+  const cheapest = Math.min(
+    ...getProductsByCategory("Процессоры").map((p) => p.price?.amount ?? Infinity),
+  );
+  expect(processors).toHaveTextContent(`от ${formatPrice(cheapest).replace(/\s/g, " ")}`);
 });

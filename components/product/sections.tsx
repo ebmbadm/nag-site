@@ -23,8 +23,13 @@ import { describeDownload } from "@/lib/content/downloads";
 import type { ProductFrontmatter } from "@/lib/content/schema";
 import { ProductCtaButtons } from "./product-cta-buttons";
 
-export function ProductHero({ product, slug }: { product: ProductFrontmatter; slug: string }) {
-  const { price, models, partnerLogos, software, specGroups, docs } = product;
+/**
+ * Price, its note and the inquiry buttons. Shared with the bespoke QM-400 and
+ * modules pages, which used to render neither. Archived models have no price,
+ * only a repair and trade-in request.
+ */
+export function ProductBuyBox({ product }: { product: ProductFrontmatter }) {
+  const { price, models, archived } = product;
 
   // Derived price display
   const minModelPrice =
@@ -37,6 +42,51 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
       : price?.amount != null
         ? formatPrice(price.amount, price.currency ?? "₽")
         : null;
+
+  return (
+    <>
+      {!archived && (displayPrice || price?.onRequest) && (
+        <div>
+          <Eyebrow className="block">
+            {price?.onRequest
+              ? "Цена по запросу"
+              : models && minModelPrice.length > 0
+                ? "Цена от"
+                : "Розничная цена"}
+          </Eyebrow>
+          {displayPrice ? (
+            <div
+              className="mt-1 font-display text-text tabular"
+              style={{
+                fontSize: "clamp(var(--text-xl), 3.4vw, var(--text-3xl))",
+                lineHeight: "var(--lh-tight)",
+              }}
+            >
+              {displayPrice}
+            </div>
+          ) : null}
+          {price?.note ? (
+            <p className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
+              {price.note}
+            </p>
+          ) : null}
+        </div>
+      )}
+
+      <div className={cn(!archived && "mt-6")}>
+        <ProductCtaButtons
+          price={price}
+          archived={archived}
+          name={product.name}
+          slug={product.slug}
+        />
+      </div>
+    </>
+  );
+}
+
+export function ProductHero({ product }: { product: ProductFrontmatter }) {
+  const { partnerLogos, software, specGroups, docs } = product;
 
   return (
     <Container className="enter-stagger grid gap-10 py-10 lg:grid-cols-2 lg:gap-14">
@@ -79,41 +129,7 @@ export function ProductHero({ product, slug }: { product: ProductFrontmatter; sl
 
         <Divider className="my-7" />
 
-        {/* Price block */}
-        {!product.archived && (displayPrice || price?.onRequest) && (
-          <div>
-            <Eyebrow className="block">
-              {price?.onRequest
-                ? "Цена по запросу"
-                : models && minModelPrice.length > 0
-                  ? "Цена от"
-                  : "Розничная цена"}
-            </Eyebrow>
-            {displayPrice ? (
-              <div
-                className="mt-1 font-display text-text tabular"
-                style={{
-                  fontSize: "clamp(var(--text-xl), 3.4vw, var(--text-3xl))",
-                  lineHeight: "var(--lh-tight)",
-                }}
-              >
-                {displayPrice}
-              </div>
-            ) : null}
-            {price?.note ? (
-              <p className="mt-1.5 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-                {price.note}
-              </p>
-            ) : null}
-          </div>
-        )}
-
-        {/* CTAs */}
-        {!product.archived && (
-          <div className="mt-6">
-            <ProductCtaButtons price={price} name={product.name} slug={slug} />
-          </div>
-        )}
+        <ProductBuyBox product={product} />
 
         {/* Quick-links — shown only when the sections exist */}
         {(software || specGroups.length > 0 || (docs && docs.length > 0)) && (

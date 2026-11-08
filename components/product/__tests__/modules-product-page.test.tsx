@@ -1,49 +1,40 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 import { getProduct } from "@/lib/content/products";
-import { ModulesProductPage } from "../modules-product-page";
+import { ProductPageView } from "../sections";
 
-vi.mock("@/components/ds", async (orig) => ({
-  ...(await orig<typeof import("@/components/ds")>()),
-  Figure: ({ alt }: { alt: string }) => <img alt={alt} />,
-}));
+const product = getProduct("modules").frontmatter;
 
-describe("ModulesProductPage", () => {
-  test("renders the approved dark-layout content and all module models", () => {
-    const product = getProduct("modules").frontmatter;
-    render(<ModulesProductPage product={product} />);
+describe("Modules product card", () => {
+  test("renders the module photos, all models and the practice text", () => {
+    render(<ProductPageView product={product} />);
 
-    expect(screen.getByRole("heading", { name: "TDS / TDH" })).toBeInTheDocument();
-    expect(screen.getByAltText("NAG TDS — задняя панель модуля").parentElement).toHaveClass(
-      "bg-photo-backdrop",
-    );
-    expect(screen.getAllByText("TDS-10")).not.toHaveLength(0);
-    expect(screen.getAllByText("TDH-10")).not.toHaveLength(0);
-    expect(screen.getAllByText("TDS-20")).not.toHaveLength(0);
-    expect(screen.getAllByText("TDH-20")).not.toHaveLength(0);
-    expect(screen.getByText("Запас, который слышно.")).toBeInTheDocument();
-    expect(screen.getByText("Рассчитан на реальную работу.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "NAG TDS / TDH SERIES" })).toBeInTheDocument();
+    expect(screen.getByAltText("NAG TDS / TDH SERIES, вид модуля")).toBeInTheDocument();
+    for (const name of ["TDS-10", "TDH-10", "TDS-20", "TDH-20"]) {
+      expect(screen.getAllByText(name)).not.toHaveLength(0);
+    }
+    expect(screen.getByRole("heading", { name: "Запас, который слышно" })).toBeInTheDocument();
     expect(screen.getByAltText(/установленный в сабвуфер/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/со снятой платой/i)).toBeInTheDocument();
+    expect(screen.getAllByAltText(/со снятой платой/i)).not.toHaveLength(0);
   });
 
   test("показывает цену от младшей модели и кнопку заявки", () => {
-    render(<ModulesProductPage product={getProduct("modules").frontmatter} />);
+    render(<ProductPageView product={product} />);
 
     expect(screen.getByText(/от 41\s900\s₽/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Оставить заявку" })).toBeInTheDocument();
   });
 
   test("общие характеристики выводятся текстом, а не скриншотом таблицы", () => {
-    const product = getProduct("modules").frontmatter;
-    render(<ModulesProductPage product={product} />);
+    render(<ProductPageView product={product} />);
 
     expect(screen.getByText("Общие характеристики")).toBeInTheDocument();
-    expect(screen.getByText("Демпинг-фактор")).toBeInTheDocument();
-    expect(screen.getByText(">900")).toBeInTheDocument();
+    expect(screen.getByText(/едины для TDS-10, TDH-10, TDS-20 и TDH-20/)).toBeInTheDocument();
+    expect(screen.getAllByText("Демпинг-фактор")).not.toHaveLength(0);
+    expect(screen.getAllByText(">900")).not.toHaveLength(0);
     expect(screen.getByText("376 × 132 × 78 мм")).toBeInTheDocument();
-    // «Защита» распадается на отдельные чипы, а не на одну строку в 130 символов
-    expect(screen.getByText("active inrush limiting")).toBeInTheDocument();
+    expect(screen.getByText(/active inrush limiting/)).toBeInTheDocument();
     expect(screen.queryByAltText(/Сводные характеристики/)).toBeNull();
   });
 });

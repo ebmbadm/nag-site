@@ -1,0 +1,58 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>NAG · NOVIK</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .deep { fill: var(--ink); }
+  .brand { fill: var(--accent); }
+  .tint { fill: var(--line-strong); }
+  .mid { fill: var(--ink-2); }
+  .blk { rx: var(--radius-sm); }
+  .cut { fill: var(--bg); rx: var(--radius-sm); }
+  .words { position: absolute; left: var(--space-6); right: var(--space-6); bottom: var(--space-6); max-width: 440px; }
+  .name { margin: 0; font-size: 104px; line-height: .95; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+  .tag { margin: var(--space-2) 0 0 4px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      ink 432×80 (2U) · accent 432×40 (1U) · line-strong 432×40 (1U) · ink-2 432×80 (2U) — ≈38% of 960×288
+  arrangement four rack units stacked like a 19-inch rack: one width, heights 1U = 40, 2U = 80 (482.6 : 44.45 ≈ 10.9 : 1), the red unit second from the top
+  pattern     rack-ear slots: pills 16×8 cut out of each unit in bg, one per ear on 1U and two on 2U — from "рэковые приборы одной ширины: высота сама показывает 1U и 2U" (photo-rack)
+  scales      gaps space-2; margins space-6 left and right, space-2 top, space-4 bottom; slots inset space-3; corners radius-sm; slot rx radius-sm (half of space-2)
+-->
+<rect class="deep blk" x="24" y="8" width="432" height="80" rx="4"/>
+<rect class="brand blk" x="24" y="96" width="432" height="40" rx="4"/>
+<rect class="tint blk" x="24" y="144" width="432" height="40" rx="4"/>
+<rect class="mid blk" x="24" y="192" width="432" height="80" rx="4"/>
+<rect class="cut" x="36" y="24" width="16" height="8" rx="4"/>
+<rect class="cut" x="36" y="64" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="24" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="64" width="16" height="8" rx="4"/>
+<rect class="cut" x="36" y="112" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="112" width="16" height="8" rx="4"/>
+<rect class="cut" x="36" y="160" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="160" width="16" height="8" rx="4"/>
+<rect class="cut" x="36" y="208" width="16" height="8" rx="4"/>
+<rect class="cut" x="36" y="248" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="208" width="16" height="8" rx="4"/>
+<rect class="cut" x="428" y="248" width="16" height="8" rx="4"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">NAG ·<br>NOVIK</h1>
+<p class="tag">Профессиональный звук. Санкт-Петербург, с 1992 года.</p>
+</div>
+</div>
+</body>
+</html>

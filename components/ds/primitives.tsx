@@ -1,137 +1,201 @@
 import * as React from "react";
+import type { LucideIcon } from "lucide-react";
+import { Info, TriangleAlert, CircleX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** Page width container with fluid gutter. */
-export function Container({
+/** Page width (container 1200px) with page margins from 16px (phone) to 40px (desktop). */
+export function Container({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn("mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10", className)} {...props} />;
+}
+
+/**
+ * Theme scope. `dark` is for the one dark band on a page: every role flips,
+ * the components stay the same.
+ */
+export function Theme({
+  dark,
   className,
-  wide,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> & { wide?: boolean }) {
-  return (
-    <div
-      className={cn("mx-auto w-full px-[var(--gutter)]", className)}
-      style={{ maxWidth: wide ? "var(--container-wide)" : "var(--container)" }}
-      {...props}
-    />
-  );
+}: React.HTMLAttributes<HTMLDivElement> & { dark?: boolean }) {
+  return <div data-theme={dark ? "dark" : "light"} className={cn("bg-bg text-ink", className)} {...props} />;
 }
 
-/** Mono uppercase label — eyebrows, kickers, instrument labels. */
-export function Eyebrow({
+/** Lucide icon at the system size: 20 on the site, stroke 1.75, colour of the text next to it. */
+export function Icon({
+  as: Glyph,
+  size = 20,
+  label,
   className,
-  accent,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement> & { accent?: boolean }) {
+}: {
+  as: LucideIcon;
+  size?: number;
+  label?: string;
+  className?: string;
+}) {
   return (
-    <span
-      className={cn(
-        "font-mono text-xs uppercase tracking-[var(--ls-label)]",
-        accent ? "text-accent" : "text-text-faint",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-/** Solid signal badge — BEST SELLER, NEW, etc. */
-export function Badge({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-[var(--radius-sm)] bg-accent px-2 py-1 font-mono text-[10px] font-bold uppercase leading-none tracking-[var(--ls-wide)] text-on-accent",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-/** Spec chip — small bordered mono token (e.g. "32 bit DSP"). */
-export function Chip({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-[var(--radius-sm)] border border-border bg-surface-2 px-2.5 py-1 font-mono text-xs tracking-[var(--ls-mono)] text-text-muted tabular",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-/** Hairline divider. */
-export function Divider({ className, ...props }: React.HTMLAttributes<HTMLHRElement>) {
-  return <hr className={cn("border-0 border-t border-border", className)} {...props} />;
-}
-
-/** 3px signal-red accent rule. */
-export function Rule({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn("h-[var(--border-w-rule)] w-10 bg-accent", className)}
-      role="presentation"
-      {...props}
+    <Glyph
+      size={size}
+      strokeWidth={1.75}
+      className={cn("shrink-0", className)}
+      aria-hidden={label ? undefined : true}
+      aria-label={label}
+      role={label ? "img" : undefined}
     />
   );
 }
 
 /**
- * Surface scope — flips semantic tokens to dark.
- * Wrap any band that should render on the dark chassis palette.
+ * Page section: title column (1 part) and content (3 parts), 48px apart, a
+ * line-strong rule above. Columns stack on a phone.
  */
-export function Surface({
-  mode = "light",
+export function Section({
+  title,
+  description,
+  aside,
+  id,
+  as: Heading = "h2",
   className,
-  style,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { mode?: "light" | "dark" }) {
+  children,
+}: {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  /** Extra content under the description: a link to the full list, a note. */
+  aside?: React.ReactNode;
+  id?: string;
+  as?: "h2" | "h3";
+  className?: string;
+  children?: React.ReactNode;
+}) {
   return (
-    <div
-      data-surface={mode}
-      className={cn("bg-bg text-text", className)}
-      style={style}
+    <section
+      id={id}
+      className={cn(
+        "flex scroll-mt-6 flex-wrap gap-x-12 gap-y-6 border-t border-line-strong pt-6",
+        className,
+      )}
+    >
+      <div className="reveal flex min-w-0 flex-[1_1_240px] flex-col items-start gap-2">
+        <Heading className="m-0 text-site-section">{title}</Heading>
+        {description ? <div className="text-site-small text-ink-2">{description}</div> : null}
+        {aside ? <div className="mt-2 text-site-small">{aside}</div> : null}
+      </div>
+      <div className="reveal-children min-w-0 flex-[3_1_640px]">{children}</div>
+    </section>
+  );
+}
+
+/** Page heading: one per page, site-display, with an optional site-lead under it. */
+export function PageHeader({
+  title,
+  lead,
+  className,
+  children,
+}: {
+  title: React.ReactNode;
+  lead?: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <header className={cn("enter max-w-3xl", className)}>
+      <h1 className="m-0 text-site-section sm:text-site-display">{title}</h1>
+      {lead ? <p className="mt-4 mb-0 text-site-lead text-ink-2">{lead}</p> : null}
+      {children}
+    </header>
+  );
+}
+
+/** Small outlined label: a series member, a connector, a channel count. */
+export function Tag({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
+  return (
+    <span
+      className={cn(
+        "inline-flex h-7 items-center whitespace-nowrap rounded-sm border border-line-strong px-2 text-site-caption text-ink-2",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-/** Section header — eyebrow + display title (+ optional lede). */
-export function SectionHeader({
-  eyebrow,
-  title,
-  lede,
+/** Status: a dot and a word. Colour never stands without the word. */
+export function Status({
+  tone = "ok",
   className,
-  align = "left",
+  children,
 }: {
-  eyebrow?: string;
-  title: React.ReactNode;
-  lede?: React.ReactNode;
+  tone?: "ok" | "warn" | "danger" | "off";
   className?: string;
-  align?: "left" | "center";
+  children: React.ReactNode;
 }) {
   return (
-    <header className={cn("reveal", align === "center" && "text-center", className)}>
-      {eyebrow ? (
-        <Eyebrow accent className="mb-3 inline-block">
-          {eyebrow}
-        </Eyebrow>
-      ) : null}
-      <h2
-        className="font-display uppercase text-text"
-        style={{
-          fontSize: "clamp(var(--text-2xl), 4vw, var(--text-4xl))",
-          lineHeight: "var(--lh-tight)",
-          letterSpacing: "var(--ls-tight)",
-        }}
-      >
-        {title}
-      </h2>
-      {lede ? (
-        <p className="mt-4 max-w-prose text-md text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-          {lede}
-        </p>
-      ) : null}
-    </header>
+    <span
+      className={cn(
+        "inline-flex items-center gap-2 text-site-small",
+        tone === "off" ? "text-ink-2" : "text-ink",
+        className,
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "size-2 shrink-0 rounded-full",
+          tone === "ok" && "bg-ok",
+          tone === "warn" && "bg-warn",
+          tone === "danger" && "bg-danger",
+          tone === "off" && "border border-ink-3",
+        )}
+      />
+      {children}
+    </span>
+  );
+}
+
+const NOTICE_ICON = { info: Info, warn: TriangleAlert, error: CircleX } as const;
+
+/** Notice: a short message on a soft fill. Title in the tone colour, text in ink. */
+export function Notice({
+  tone = "info",
+  title,
+  className,
+  children,
+  role,
+}: {
+  tone?: "info" | "warn" | "error";
+  title?: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
+  role?: "status" | "alert";
+}) {
+  return (
+    <div
+      role={role}
+      className={cn(
+        "flex gap-3 rounded-md p-4 text-site-small text-ink",
+        tone === "info" && "bg-surface",
+        tone === "warn" && "bg-warn-soft",
+        tone === "error" && "bg-danger-soft",
+        className,
+      )}
+    >
+      <Icon
+        as={NOTICE_ICON[tone]}
+        className={cn("mt-px", tone === "warn" && "text-warn", tone === "error" && "text-danger")}
+      />
+      <div className="min-w-0">
+        {title ? (
+          <p
+            className={cn(
+              "m-0 font-semibold",
+              tone === "warn" && "text-warn",
+              tone === "error" && "text-danger",
+            )}
+          >
+            {title}
+          </p>
+        ) : null}
+        {children ? <div className={cn(title && "mt-1")}>{children}</div> : null}
+      </div>
+    </div>
   );
 }

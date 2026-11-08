@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Breadcrumb } from "@/components/ds";
+import { Container, Breadcrumb, PageHeader } from "@/components/ds";
 import { getProduct } from "@/lib/content/products";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -32,12 +32,13 @@ export default function AmplifiersPage() {
   const tdSeries = getProduct("td-series").frontmatter;
 
   return (
-    <div className="pt-6">
-      <Container>
+    <>
+      <Container className="pt-6">
         <JsonLd data={breadcrumbSchema(CRUMBS)} />
         <Breadcrumb items={CRUMBS} />
+        <PageHeader className="mt-12" title="Усилители мощности" lead={LEDE} />
       </Container>
-      <div className="mt-6"><AmplifiersCategoryPage qm400={qm400} tdSeries={tdSeries} /></div>
-    </div>
+      <AmplifiersCategoryPage qm400={qm400} tdSeries={tdSeries} />
+    </>
   );
 }

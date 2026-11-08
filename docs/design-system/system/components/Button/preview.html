@@ -1,0 +1,23 @@
+<!-- @dsCard group="Действия" height=168 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Button</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '12px 16px', alignItems: 'center' } },
+      h(N.Button, { variant: 'primary' }, 'Запросить счёт'),
+      h(N.Button, { icon: 'download' }, 'Скачать PDF'),
+      h(N.Button, { variant: 'quiet' }, 'О компании'),
+      h(N.Button, { variant: 'link' }, 'Все усилители'),
+      h(N.Button, { variant: 'primary', disabled: true }, 'Нет в наличии')),
+    h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' } },
+      h(N.Button, { variant: 'primary', size: 'sm' }, 'Записать в процессор'),
+      h(N.Button, { size: 'sm' }, 'Отменить'),
+      h(N.Button, { size: 'sm', icon: 'search' }, 'Найти в сети'),
+      h(N.Button, { size: 'md' }, 'Копировать на другой канал'))));
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-08T12:00:00Z"},
+  "title": "NAG · NOVIK — направления редизайна",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1240, "title": "Шрифты: шесть гарнитур"},
+    "A-Plex.dc.html": {"x": 0, "y": 1700, "w": 1440, "h": 3200, "expand": "fill", "title": "A · Техдокументация — IBM Plex"},
+    "B-Geist.dc.html": {"x": 1520, "y": 1700, "w": 1440, "h": 3200, "expand": "fill", "title": "B · Чистый продукт — Geist"},
+    "C-Golos.dc.html": {"x": 3040, "y": 1700, "w": 1440, "h": 3200, "expand": "fill", "title": "C · Тёплая бумага — Golos"},
+    "D-Inter.dc.html": {"x": 4560, "y": 1700, "w": 1440, "h": 3200, "expand": "fill", "title": "D · Графит — Inter"},
+    "C2-Home.dc.html": {"x": 0, "y": 5500, "w": 1440, "h": 3300, "expand": "fill", "title": "C2 · Главная на белом"},
+    "C2-Product.dc.html": {"x": 1520, "y": 5500, "w": 1440, "h": 3700, "expand": "fill", "title": "C2 · Карточка QM-400"},
+    "C2-Elements.dc.html": {"x": 0, "y": 9600, "w": 1440, "h": 4600, "expand": "fill", "title": "Элементы системы"},
+    "C2-Manual-Cover.dc.html": {"x": 1520, "y": 9600, "w": 794, "h": 1123, "paper": "a4", "title": "Мануал QM-400 · обложка"},
+    "C2-Manual-Safety.dc.html": {"x": 2394, "y": 9600, "w": 794, "h": 1123, "paper": "a4", "title": "Мануал QM-400 · с. 3"},
+    "C2-Manual-Specs.dc.html": {"x": 3268, "y": 9600, "w": 794, "h": 1123, "paper": "a4", "title": "Мануал QM-400 · с. 5"},
+    "C2-Warranty.dc.html": {"x": 4142, "y": 9600, "w": 794, "h": 1123, "paper": "a4", "title": "Гарантийный талон"},
+    "C2-App.dc.html": {"x": 1520, "y": 11200, "w": 1440, "h": 980, "is_interactive": true, "title": "ПО процессора · D-8000"}
+  },
+  "order": ["Main.dc.html", "A-Plex.dc.html", "B-Geist.dc.html", "C-Golos.dc.html", "D-Inter.dc.html", "C2-Home.dc.html", "C2-Product.dc.html", "C2-Elements.dc.html", "C2-Manual-Cover.dc.html", "C2-Manual-Safety.dc.html", "C2-Manual-Specs.dc.html", "C2-Warranty.dc.html", "C2-App.dc.html"],
+  "notes": {
+    "fonts": {"x": 0, "y": -300, "text": "Шрифты", "kind": "title1", "maxW": 1440},
+    "dirs": {"x": 0, "y": 1400, "text": "Четыре направления: одна и та же главная", "kind": "title1", "maxW": 6000},
+    "c2": {"x": 0, "y": 5200, "text": "C на белом: вторая итерация без шаблонов", "kind": "title1", "maxW": 2960},
+    "sys": {"x": 0, "y": 9300, "text": "Элементы системы", "kind": "title1", "maxW": 1440},
+    "docs": {"x": 1520, "y": 9300, "text": "Мануал QM-400 и гарантийный талон", "kind": "title1", "maxW": 3416},
+    "app": {"x": 1520, "y": 10920, "text": "Программа управления процессором", "kind": "title1", "maxW": 1440}
+  },
+  "designSystems": []
+}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Breadcrumb, Figure } from "@/components/ds";
+import { Container, Breadcrumb, Figure, PageHeader, Section } from "@/components/ds";
 import { AreaCards } from "@/components/boutique/area-cards";
 import { CustomOrderCta } from "@/components/boutique/custom-order-cta";
 import { getBoutique } from "@/lib/content/boutique";
@@ -14,31 +14,21 @@ export const metadata: Metadata = {
 
 export default function BoutiqueLandingPage() {
   return (
-    <div>
-      <Container className="py-10">
+    <>
+      <Container className="pt-6">
         <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }, { label: "Бутик ламп" }]} />
-        <div className="enter-stagger mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div className="max-w-prose">
-            <Eyebrow accent>{b.eyebrow}</Eyebrow>
-            <h1
-              className="mt-3 font-display uppercase text-text"
-              style={{ fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))", lineHeight: "var(--lh-tight)", letterSpacing: "var(--ls-tight)" }}
-            >
-              {b.title}
-            </h1>
-            <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>{b.lede}</p>
-          </div>
-          {b.hero ? <Figure src={b.hero.src} alt={b.hero.alt} caption={b.hero.caption} /> : null}
-        </div>
+        <PageHeader className="mt-12" title={b.title} lead={b.lede} />
+        {b.hero ? <Figure src={b.hero.src} alt={b.hero.alt} caption={b.hero.caption} priority className="mt-12 max-w-3xl" /> : null}
       </Container>
 
-      {b.areaCards ? (
-        <Container className="pb-12">
-          <AreaCards cards={b.areaCards} />
-        </Container>
-      ) : null}
-
-      {b.custom ? <CustomOrderCta custom={b.custom} /> : null}
-    </div>
+      <Container className="flex flex-col gap-24 pt-24 pb-24">
+        {b.areaCards ? (
+          <Section title="Разделы бутика">
+            <AreaCards cards={b.areaCards} />
+          </Section>
+        ) : null}
+        {b.custom ? <CustomOrderCta custom={b.custom} /> : null}
+      </Container>
+    </>
   );
 }

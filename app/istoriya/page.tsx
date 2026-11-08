@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { Container, Eyebrow, Toc, ScrollProgress, ExpandAllControl } from "@/components/ds";
+import { Container, Eyebrow } from "@/components/history/legacy/primitives";
+import { Toc } from "@/components/history/legacy/toc";
+import { ScrollProgress } from "@/components/history/legacy/scroll-progress";
+import { ExpandAllControl } from "@/components/history/legacy/expand-all-control";
 import { HistoryHero } from "@/components/history/hero";
 import { Chapter } from "@/components/history/chapter";
 import { HistoryPreface } from "@/components/history/preface";
@@ -24,7 +27,7 @@ export default function HistoryPage() {
 
   return (
     <div id="history-top">
-      <div className="sticky top-[58px] z-30">
+      <div className="sticky top-0 z-30">
         <ScrollProgress />
       </div>
 

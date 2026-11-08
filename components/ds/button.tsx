@@ -2,35 +2,38 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+/**
+ * primary — the one red action per screen. secondary — outlined.
+ * quiet — on surface. link — underlined text.
+ */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-md)] font-medium select-none transition-colors duration-[var(--dur-base)] focus-visible:outline-none focus-visible:shadow-[0_0_0_2px_var(--bg),0_0_0_4px_var(--focus-ring)] disabled:opacity-50 disabled:pointer-events-none",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-transparent font-medium no-underline select-none transition-quick active:translate-y-px disabled:cursor-not-allowed disabled:border-transparent disabled:bg-surface disabled:text-ink-3 aria-disabled:cursor-not-allowed aria-disabled:bg-surface aria-disabled:text-ink-3",
   {
     variants: {
       variant: {
-        primary: "bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-press",
-        outline:
-          "border border-border-strong bg-transparent text-text hover:border-accent hover:text-accent",
-        ghost: "bg-transparent text-text-muted hover:text-text hover:bg-surface-2",
+        primary: "bg-accent text-on-accent hover:bg-accent-hover hover:text-on-accent",
+        secondary: "border-line-control bg-transparent text-ink hover:bg-surface hover:text-ink",
+        quiet: "bg-surface text-ink hover:border-line-control hover:text-ink",
+        link: "h-auto border-0 p-0 text-ink underline hover:text-danger",
       },
       size: {
-        sm: "h-8 px-3 text-sm",
-        md: "h-10 px-5 text-sm",
-        lg: "h-12 px-6 text-base",
+        lg: "h-12 px-6 text-site-body",
+        md: "h-10 px-4 text-site-small",
+        sm: "h-8 px-3 text-site-caption",
       },
     },
-    defaultVariants: { variant: "primary", size: "md" },
+    compoundVariants: [{ variant: "link", className: "h-auto px-0" }],
+    defaultVariants: { variant: "secondary", size: "lg" },
   },
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
+    VariantProps<typeof buttonVariants> {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => (
-    <button ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props} />
+  ({ className, variant, size, type = "button", ...props }, ref) => (
+    <button ref={ref} type={type} className={cn(buttonVariants({ variant, size, className }))} {...props} />
   ),
 );
 Button.displayName = "Button";

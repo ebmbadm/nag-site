@@ -1,136 +1,55 @@
-import { render, screen } from "@testing-library/react";
-import { beforeAll, test } from "vitest";
-import { getProductsByCategory } from "@/lib/content/products";
-import { formatPrice } from "@/lib/format";
+import { render, screen, within } from "@testing-library/react";
+import { expect, test } from "vitest";
 import HomePage from "../page";
 
-beforeAll(() => {
-  window.matchMedia = (query: string) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    addListener: () => {},
-    removeListener: () => {},
-    dispatchEvent: () => false,
-  });
-});
-
-test("uses the NOVIK N602 guitar stack for the history feature", () => {
-  render(<HomePage />);
-
-  expect(screen.getByAltText("NOVIK N602 с колонкой и гитарой")).toBeInTheDocument();
-  expect(screen.queryByAltText("RedBear — ламповое наследие NOVIK")).toBeNull();
-});
-
-test("uses the NOVIK RedBear photograph for the tube amplifiers category", () => {
-  render(<HomePage />);
-
-  expect(screen.getByText("602 · E12 · RedBear")).toBeInTheDocument();
-  expect(screen.getByAltText("NOVIK RedBear — передняя панель")).toHaveAttribute(
-    "src",
-    expect.stringContaining(encodeURIComponent("/products/redbear/novik-redbear-front.png")),
-  );
-});
-
-test("credits Sergei Novikov in the tube amplifiers category", () => {
-  render(<HomePage />);
-
-  const tubesCard = screen.getByRole("heading", { name: "Лампа" }).closest("a");
-
-  expect(tubesCard).toHaveTextContent(
-    "Ламповые усилители — часть истории Сергея Новикова с 1976 года.",
-  );
-  expect(tubesCard).not.toHaveTextContent("Александра Новикова");
-});
-
-test("places modules before tube amplifiers in the home catalogue", () => {
-  render(<HomePage />);
-
-  const modulesCard = screen.getByRole("heading", { name: "Модули" }).closest("a");
-  const tubesCard = screen.getByRole("heading", { name: "Лампа" }).closest("a");
-
-  expect(modulesCard).not.toBeNull();
-  expect(tubesCard).not.toBeNull();
-  expect(modulesCard?.compareDocumentPosition(tubesCard as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-});
-
-test("introduces all four NAG directions without unverified claims", () => {
-  render(<HomePage />);
+test("first screen states what we do, with one red action and the phone", () => {
+  const { container } = render(<HomePage />);
 
   expect(
-    screen.getByText(
-      "DSP-процессоры, усилители мощности и встраиваемые модули NAG. Ламповая техника NOVIK.",
-    ),
+    screen.getByRole("heading", {
+      level: 1,
+      name: "Усилители мощности, DSP-процессоры и модули NAG. Ламповые усилители NOVIK.",
+    }),
   ).toBeInTheDocument();
-  const heroHeading = screen.getByRole("heading", {
-    name: "ВСЁ ДЛЯ РЕАЛЬНОЙ РАБОТЫ СО ЗВУКОМ.",
-  });
-  expect(heroHeading).toHaveClass("text-[clamp(34px,3.5vw,50px)]");
-  expect(screen.getByText("Инженерный подход")).toBeInTheDocument();
-  expect(screen.queryByText("40+")).toBeNull();
-  expect(screen.queryByText("EAC")).toBeNull();
+  expect(screen.getAllByRole("button", { name: "Подобрать оборудование" }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: "+7 921 937 25 08" })[0]).toHaveAttribute("href", "tel:+79219372508");
+  // No hero metric row and no photo on the first screen.
+  expect(container.querySelector("[data-testid='hero-principles']")).toBeNull();
 });
 
-test("steps catalogue and trust bands from graphite to a lighter chassis tone", () => {
-  const { container } = render(<HomePage />);
-
-  const catalogue = container.querySelector(".catalog-v5[data-surface='dark']");
-  expect(catalogue).toHaveStyle({ backgroundColor: "var(--surface)" });
-  expect(catalogue?.querySelectorAll("a.bg-surface-2")).toHaveLength(4);
-
-  const trustBand = screen.getByText("Инженерный подход").closest("[data-surface='dark']");
-  expect(trustBand).toHaveStyle({ backgroundColor: "var(--surface-2)" });
-});
-
-test("does not give QM-400 a standalone featured block on the home page", () => {
-  const { container } = render(<HomePage />);
-
-  expect(screen.queryByRole("heading", { name: "NAG QM-400" })).toBeNull();
-  expect(container.querySelector(".product-v6")).toBeNull();
-});
-
-test("uses three sales principles instead of duplicating the catalogue in the hero", () => {
+test("catalog sections run amplifiers, processors, modules, NOVIK — as rows, not cards", () => {
   render(<HomePage />);
 
-  const principles = screen.getByTestId("hero-principles");
+  const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+  expect(titles.slice(0, 4)).toEqual([
+    "Усилители мощности",
+    "DSP-процессоры",
+    "Встраиваемые модули",
+    "Ламповые усилители NOVIK",
+  ]);
 
-  expect(principles).toHaveTextContent("CLASS-TD");
-  expect(principles).toHaveTextContent("качество звука");
-  expect(principles).toHaveTextContent("длительная эксплуатация");
-  expect(principles).toHaveTextContent("до и после гарантии");
-  expect(principles.children).toHaveLength(3);
-});
+  const amps = screen.getByRole("heading", { name: "Усилители мощности" }).closest("section")!;
+  expect(within(amps).getByRole("link", { name: /NAG QM-400/ })).toHaveAttribute("href", "/catalog/qm-400");
+  expect(within(amps).getByRole("link", { name: /NAG TD SERIES/ })).toHaveTextContent("от 70 000 ₽");
 
-test("separates the hero catalogue link from the full catalogue link", () => {
-  render(<HomePage />);
-
-  const catalogueLinks = screen.getAllByRole("link", { name: "Смотреть каталог" });
-
-  expect(catalogueLinks[0]).toHaveAttribute("href", "#catalog");
-  expect(screen.getByRole("link", { name: "Весь каталог" })).toHaveAttribute("href", "/catalog");
-});
-
-test("uses equipment, not amplifier, in the consultation block", () => {
-  render(<HomePage />);
-
-  expect(screen.getByRole("heading", { name: /Подберём оборудование.*под вашу задачу/ })).toBeInTheDocument();
-});
-
-test("uses the Vik 8 range, prices, and amplifiers label in the home catalogue", () => {
-  render(<HomePage />);
-
-  const equipment = screen.getByRole("heading", { name: "Усилители" }).closest("a");
-  const modules = screen.getByRole("heading", { name: "Модули" }).closest("a");
-  const processors = screen.getByRole("heading", { name: "Процессоры" }).closest("a");
-
-  expect(equipment).toHaveTextContent("QM400 · TD100/80 · TD40/30");
-  expect(equipment).toHaveTextContent("от 70 000 ₽");
-  expect(modules).toHaveTextContent("TDS20/10 · TDH20/10");
+  const modules = screen.getByRole("heading", { name: "Встраиваемые модули" }).closest("section")!;
   expect(modules).toHaveTextContent("от 41 900 ₽");
-  const cheapest = Math.min(
-    ...getProductsByCategory("Процессоры").map((p) => p.price?.amount ?? Infinity),
-  );
-  expect(processors).toHaveTextContent(`от ${formatPrice(cheapest).replace(/\s/g, " ")}`);
+});
+
+test("NOVIK tube amplifiers credit Sergei Novikov and show «По запросу»", () => {
+  render(<HomePage />);
+
+  const novik = screen.getByRole("heading", { name: "Ламповые усилители NOVIK" }).closest("section")!;
+  expect(novik).toHaveTextContent("Ламповые усилители — часть истории Сергея Новикова с 1976 года.");
+  expect(novik).not.toHaveTextContent("Александра Новикова");
+  expect(within(novik).getAllByText("По запросу").length).toBeGreaterThan(0);
+});
+
+test("one dark band — «Подбор под задачу проекта» — and no unverified claims", () => {
+  const { container } = render(<HomePage />);
+
+  const dark = container.querySelectorAll("[data-theme='dark']");
+  expect(dark).toHaveLength(1);
+  expect(dark[0]).toHaveTextContent("Подбор под задачу проекта");
+  expect(container).not.toHaveTextContent(/российск|от производителя|EAC|40\+/i);
 });

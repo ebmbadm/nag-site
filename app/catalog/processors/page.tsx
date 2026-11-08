@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Breadcrumb, ProductCard } from "@/components/ds";
+import Link from "next/link";
+import { Container, Breadcrumb, PageHeader, Section, ProductRow } from "@/components/ds";
 import { getProductsByCategory } from "@/lib/content/products";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
+import { productRow } from "@/lib/content/catalog";
 
 const CATEGORY = "Процессоры";
 const ORDER = ["f-8-pro", "f-8", "d-8000", "the-rogue", "d-4", "d-8"];
-const FLAGSHIP = "d-8000";
 
 const LEDE =
   "Цифровые корректоры-контроллеры акустических систем NAG: процессоры серии F с FIR и AES/EBU и флагман D-8000 Wi-Fi.";
@@ -40,44 +41,31 @@ export default function ProcessorsPage() {
   );
 
   return (
-    <div className="pt-10 pb-24">
-      <Container>
+    <>
+      <Container className="pt-6">
         <JsonLd data={breadcrumbSchema(CRUMBS)} />
         <Breadcrumb items={CRUMBS} />
-
-        <header className="enter mt-8 max-w-prose">
-          <Eyebrow accent>NAG Pro Audio</Eyebrow>
-          <h1
-            className="mt-3 font-display uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            Процессоры
-          </h1>
-          <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            {LEDE}
-          </p>
-          <p className="mt-4 font-mono text-xs text-text-faint">от 79 900 ₽</p>
-        </header>
-
-        {/* В каталоге остаются только актуальные модели; снятые с производства перенесены в архив. */}
-        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {products.map((p) => (
-            <ProductCard
-              key={p.slug}
-              slug={p.slug}
-              name={p.name}
-              eyebrow={p.line}
-              image={{ src: p.gallery[0].src, alt: p.gallery[0].alt }}
-              price={{ amount: p.price?.amount, onRequest: p.price?.onRequest }}
-              badge={p.slug === FLAGSHIP ? "Флагман" : undefined}
-            />
-          ))}
-        </div>
+        <PageHeader className="mt-12" title="Процессоры" lead={LEDE}>
+          <p className="mt-2 mb-0 text-site-small text-ink-2">от 79 900 ₽</p>
+        </PageHeader>
       </Container>
-    </div>
+
+      {/* В каталоге остаются только актуальные модели; снятые с производства перенесены в архив. */}
+      <Container className="flex flex-col gap-24 pt-24 pb-24">
+        <Section
+          id="models"
+          title="Модели"
+          aside={
+            <Link href="/catalog/arhiv" className="text-ink">
+              Снятые с производства — в архиве
+            </Link>
+          }
+        >
+          {products.map((p) => (
+            <ProductRow key={p.slug} {...productRow(p)} />
+          ))}
+        </Section>
+      </Container>
+    </>
   );
 }

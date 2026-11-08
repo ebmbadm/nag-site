@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Breadcrumb } from "@/components/ds";
+import { Container, Breadcrumb, PageHeader } from "@/components/ds";
 import { HubCard } from "@/components/company/hub-card";
 import type { CompanyHubCard } from "@/lib/content/types";
 
@@ -65,46 +65,14 @@ export const metadata: Metadata = {
 
 export default function CatalogIndexPage() {
   return (
-    <div className="py-6">
-      <Container>
-        <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
-
-        <header className="enter mt-8 max-w-prose">
-          <Eyebrow accent>NAG · NOVIK</Eyebrow>
-          <h1
-            className="mt-3 font-display uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            Каталог
-          </h1>
-          <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            {LEDE}
-          </p>
-        </header>
-
-        {/*
-          7 cards: the archive spans the trailing row so no cell is orphaned.
-          The wrapper is `grid` so each card stretches to its row height.
-        */}
-        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {CATEGORIES.map((card) => (
-            <div
-              key={card.href}
-              className={
-                card.href === "/catalog/arhiv"
-                  ? "grid sm:col-span-2 lg:col-span-3"
-                  : "grid"
-              }
-            >
-              <HubCard card={card} />
-            </div>
-          ))}
-        </div>
-      </Container>
-    </div>
+    <Container className="pt-6 pb-24">
+      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
+      <PageHeader className="mt-12" title="Каталог" lead={LEDE} />
+      <nav aria-label="Разделы каталога" className="mt-16 max-w-3xl border-t border-line-strong pt-6">
+        {CATEGORIES.map((card) => (
+          <HubCard key={card.title} card={card} />
+        ))}
+      </nav>
+    </Container>
   );
 }

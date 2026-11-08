@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Container, Eyebrow, Surface } from "@/components/ds";
+import { Section, Tag } from "@/components/ds";
 import type { CompanyMilestone } from "@/lib/content/types";
 
-/** Compact history and model timeline; links to the long-form company history. */
+/** History and model timeline as a plain list year → event; links to the long-form history. */
 export function MilestoneStrip({
   milestones,
   periods,
@@ -13,37 +13,45 @@ export function MilestoneStrip({
   continuation: { range: string; title: string; text: string };
 }) {
   return (
-    <Surface mode="dark" className="py-14">
-      <Container>
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <Eyebrow accent>История и компания в датах</Eyebrow>
-          <div className="flex flex-wrap justify-end gap-x-5 gap-y-2 text-right">
-            {periods.map((period) => <span key={period.range} className="flex flex-col"><b className="font-display text-xl uppercase text-text" style={{ letterSpacing: "var(--ls-tight)" }}>{period.range}</b><span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{period.label}</span></span>)}
-          </div>
-        </div>
-
-        <ol className="reveal-fade-stagger mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {milestones.map((milestone) => (
-            <li key={`${milestone.year}-${milestone.label}`} className="bg-bg p-5" style={{ borderTop: "var(--border-w-rule) solid var(--accent)" }}>
-              <div className="font-display text-xl text-text tabular" style={{ letterSpacing: "var(--ls-tight)" }}>{milestone.year}</div>
-              {milestone.accentLabel && <div className="mt-2 inline-block bg-accent px-2 py-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-on-accent">{milestone.accentLabel}</div>}
-              <div className="mt-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-muted">{milestone.label}</div>
-              {milestone.text && <p className="mt-4 text-sm leading-relaxed text-text-muted">{milestone.text}</p>}
+    <Section
+      id="daty"
+      title="История и компания в датах"
+      description={
+        <ul className="m-0 list-none p-0">
+          {periods.map((period) => (
+            <li key={period.range}>
+              {period.range} — <span>{period.label}</span>
             </li>
           ))}
-        </ol>
-
-        <div className="mt-4 border border-border bg-bg px-5 py-4 sm:flex sm:items-baseline sm:gap-4">
-          <div className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-accent">{continuation.range}</div>
-          <div className="mt-2 sm:mt-0"><b className="font-display text-xl uppercase text-text" style={{ letterSpacing: "var(--ls-tight)" }}>{continuation.title}</b><p className="mt-1 text-sm text-text-muted">{continuation.text}</p></div>
-        </div>
-
-        <div className="mt-6">
-          <Link href="/istoriya" className="font-mono text-xs uppercase tracking-[var(--ls-label)] text-accent hover:underline">
-            Читать историю целиком →
-          </Link>
-        </div>
-      </Container>
-    </Surface>
+        </ul>
+      }
+      aside={
+        <Link href="/istoriya" className="text-ink">
+          Читать историю целиком
+        </Link>
+      }
+    >
+      <dl className="m-0">
+        {milestones.map((milestone) => (
+          <div
+            key={`${milestone.year}-${milestone.label}`}
+            className="flex flex-wrap gap-x-8 gap-y-1 border-t border-line py-4 last:border-b"
+          >
+            <dt className="w-28 shrink-0 font-semibold">{milestone.year}</dt>
+            <dd className="m-0 min-w-0 flex-[1_1_320px]">
+              {milestone.label}
+              {milestone.accentLabel ? <Tag className="ml-3">{milestone.accentLabel}</Tag> : null}
+              {milestone.text ? <p className="mt-1 mb-0 text-site-small text-ink-2">{milestone.text}</p> : null}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-6 mb-0 max-w-2xl text-site-small text-ink-2">
+        <span className="font-semibold text-ink">
+          {continuation.title}, {continuation.range}.
+        </span>{" "}
+        {continuation.text}
+      </p>
+    </Section>
   );
 }

@@ -1,3 +1,6 @@
+import { cn } from "@/lib/utils";
+import { controlClass } from "./field";
+
 interface InputProps {
   id: string;
   name: string;
@@ -5,9 +8,10 @@ interface InputProps {
   placeholder?: string;
   required?: boolean;
   error?: boolean;
+  autoComplete?: string;
 }
 
-export function Input({ id, name, type = "text", placeholder, required, error }: InputProps) {
+export function Input({ id, name, type = "text", placeholder, required, error, autoComplete }: InputProps) {
   return (
     <input
       id={id}
@@ -15,8 +19,9 @@ export function Input({ id, name, type = "text", placeholder, required, error }:
       type={type}
       placeholder={placeholder}
       required={required}
+      autoComplete={autoComplete}
       aria-invalid={error ? true : undefined}
-      className="h-11 w-full rounded-[var(--radius-md)] border border-border bg-surface-2 px-3 text-sm text-text placeholder:text-text-faint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)] aria-invalid:border-accent"
+      className={cn(controlClass, "h-12 px-4")}
     />
   );
 }

@@ -1,65 +1,26 @@
-"use client";
-
 import * as React from "react";
-import { PillGroup } from "./pill-group";
+import { cn } from "@/lib/utils";
 
-export type TabItem = {
-  value: string;
-  label: string;
-  content: React.ReactNode;
-};
+export type TabItem = { label: string; href: string; current?: boolean };
+export type TabsProps = { items: TabItem[]; label?: string; className?: string };
 
-export type TabsProps = {
-  items: TabItem[];
-  defaultValue?: string;
-  value?: string;
-  onChange?: (value: string) => void;
-};
-
-/** Tabbed panel — uncontrolled (defaultValue) or controlled (value + onChange). */
-export function Tabs({ items, defaultValue, value, onChange }: TabsProps) {
-  const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = React.useState(
-    defaultValue ?? items[0]?.value ?? "",
-  );
-  const active = isControlled ? value : internalValue;
-
-  function handleChange(v: string) {
-    if (!isControlled) setInternalValue(v);
-    onChange?.(v);
-  }
-
-  const tabOptions = items.map((item) => ({
-    value: item.value,
-    label: item.label,
-  }));
-
+/** In-page links (Характеристики · Фото · Документы). Current item: 2px ink underline, never red. */
+export function Tabs({ items, label = "Разделы страницы", className }: TabsProps) {
   return (
-    <div>
-      <PillGroup
-        options={tabOptions}
-        value={active}
-        onChange={handleChange}
-        tabRole
-        className="mb-6"
-      />
-      {items.map((item) => {
-        const panelId = `tabpanel-${item.value}`;
-        const tabId = `tab-${item.value}`;
-        const isActive = item.value === active;
-        return (
-          <div
-            key={item.value}
-            id={panelId}
-            role="tabpanel"
-            aria-labelledby={tabId}
-            aria-label={item.label}
-            hidden={!isActive || undefined}
-          >
-            {item.content}
-          </div>
-        );
-      })}
-    </div>
+    <nav aria-label={label} className={cn("flex flex-wrap gap-x-8 gap-y-1 border-b border-line text-base", className)}>
+      {items.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          aria-current={item.current ? "page" : undefined}
+          className={cn(
+            "-mb-px border-b-2 py-3 no-underline transition-quick hover:text-ink",
+            item.current ? "border-ink font-medium text-ink" : "border-transparent text-ink-2",
+          )}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
   );
 }

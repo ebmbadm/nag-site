@@ -1,0 +1,14 @@
+<!-- @dsCard group="Формы" height=120 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Segmented</title></head>
+<body>
+<div id="root" class="nag-demo"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(N.Segmented, { label: 'Режим', options: [{ value: 'st', label: 'Стерео' }, { value: 'par', label: 'Параллель' }, { value: 'br', label: 'Мост' }] }),
+    h(N.Segmented, { label: 'Источник', size: 'sm', defaultValue: 'A', options: [{ value: 'A', label: 'A' }, { value: 'B', label: 'B' }, { value: 'C', label: 'C' }, { value: 'D', label: 'D' }, { value: null, label: 'Нет' }] })));
+</script>
+</body>
+</html>

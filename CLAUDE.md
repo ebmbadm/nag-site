@@ -50,34 +50,51 @@ npm run lint     # ESLint
 
 ## Design system — non-negotiable rules
 
-The design system (`nag-novik-design-system`) is ported into `app/globals.css`.
-Aesthetic: warm paper `#FBFAF7` + signal red `#E11507`, industrial/rack feel; dark "chassis"
-bands for technical sections. Fonts: **Oswald** (display/headings), **Golos Text** (body),
-**JetBrains Mono** (specs, labels, part numbers).
+The NAG · NOVIK design system (approved by the owner 2026-11-08, issue #81) is ported into
+`app/globals.css`. Source of truth: `docs/design-system/system/` (brand book `README.md`, site rules
+`1-site.md`, `tokens.json`, component specs). Character: calm engineering catalog — plain white,
+one font, equipment on photos, numbers in tables. Red `#D41406` only for the one main action per
+screen and for alarms/errors.
 
-- **Never hardcode hex/rgb in components.** Use the tokens: Tailwind utilities backed by
-  `@theme` (`bg-bg`, `bg-surface`, `bg-surface-2`, `text-text`, `text-text-muted`,
-  `text-text-faint`, `text-accent`, `bg-accent`, `text-on-accent`, `border-border`,
-  `border-border-strong`, …) or raw CSS vars via arbitrary values
-  (`tracking-[var(--ls-label)]`, `rounded-[var(--radius-md)]`, `shadow-[var(--shadow-2)]`).
-- **Dark bands:** wrap in `<Surface mode="dark">` (sets `data-surface="dark"`, which flips every
-  semantic token). Never build a dark section by hand-picking dark hex values.
-- **Type scale** is on `--text-2xs … --text-7xl` (utilities `text-2xs`, `text-md`, `text-4xl`, …).
-  Display headings: `font-display uppercase`, `letterSpacing: var(--ls-tight)`,
-  `lineHeight: var(--lh-tight)`. Eyebrows/labels: `font-mono uppercase`,
-  `tracking-[var(--ls-label)]`.
-- **Reuse DS primitives** from `components/ds/` — don't re-implement buttons, chips, accordions,
-  spec tables, galleries, etc. The primitive set is the contract; extend it there if something is
-  missing. Public API is `components/ds/index.ts`.
+- **Tokens only — no hex/rgb, no `clamp()`, no arbitrary `[NNpx]` in components.** Colour roles:
+  `bg`, `surface`, `surface-raised`, `photo`, `line`, `line-strong`, `line-control`, `ink`,
+  `ink-2`, `ink-3`, `accent`, `accent-hover`, `on-accent`, `danger(-soft)`, `warn(-soft)`, `ok`,
+  `novik`, `focus` → utilities `bg-bg`, `text-ink-2`, `border-line-strong`, … Spacing is the
+  Tailwind numeric scale on a 4px grid. Radii `rounded-sm` 4 / `rounded-md` 6 / `rounded-lg` 8.
+  Width `max-w-page` (1200). One shadow, `shadow-raised` (active segment only).
+- **One font, Golos Text 400/500/600, sentence case.** Type scale `text-site-display`,
+  `-section`, `-title`, `-lead`, `-body`, `-small`, `-caption`. No Oswald, no monospace, no caps
+  eyebrows/kickers, no section numbers 01/02, no hero metric rows, no grids of identical cards, no
+  grey photo wells, no gradients, no red-filled blocks or icons.
+- **Dark:** `<Theme dark>` (sets `data-theme="dark"`, flips every role) — one dark band per page at
+  most, only where it carries meaning (home: «Подбор под задачу проекта»).
+- **Motion — light (owner, 2026-11-08):** hover/press feedback in 120 ms (`transition-quick`;
+  underlines fade via `decoration-transparent` → `decoration-current`), dialogs and accordions
+  open in 240 ms, first screen uses `.enter` (`[--delay:80ms]` to stagger), content below fades in
+  on scroll via `.reveal` / `.reveal-children` (CSS scroll timeline, opacity + max 8px). `Section`
+  already applies them. Nothing loops; all of it is off under `prefers-reduced-motion`.
+- **Catalog = rows** (`ProductRow`): clean front-panel photo on white, rack units at one width
+  (`photo-rack`, 400px), name, essence, 1–2 key numbers, price on the right. Clean cut-outs live in
+  `lib/content/catalog.ts` (`FRONT_PHOTO`); no marketing badges on photos.
+- **Reuse DS primitives** from `components/ds/` (public API `components/ds/index.ts`); extend
+  there if something is missing.
 
 ### DS primitives (`components/ds/`)
 
-`Button` (+`buttonVariants`) · `Container` · `Eyebrow` · `Badge` · `Chip` · `Divider` · `Rule` ·
-`Surface` · `SectionHeader` · `SpecTable` · `AccordionItem` (native `<details>`) · `Figure` ·
-`Gallery` (embla, client) · `Toc` (scroll-spy, client) · `ScrollProgress` (client) ·
-`ExpandAllControl` (client).
+`Button` (+`buttonVariants`: primary · secondary · quiet · link) · `Container` · `Theme` · `Icon` ·
+`Section` · `PageHeader` · `Breadcrumb` · `Tabs` (in-page links) · `ProductRow` · `SpecTable` /
+`SpecGroups` · `SpecMatrixTable` · `Status` · `Tag` · `Notice` · `Field` / `Input` / `Textarea` ·
+`Select` · `Checkbox` · `Switch` · `Segmented` · `FormStatus` · `AccordionItem` (native
+`<details>`) · `Figure` · `Lightbox` · `Prose` · `DownloadList`. Showcase: `/_ds`.
 
 Server components by default. Only the interactive ones are `"use client"`.
+
+### Frozen: «История»
+
+`/istoriya` keeps its pre-redesign look by the owner's decision (2026-11-08) until «История,
+часть II». Its old tokens, Oswald/JetBrains Mono and animations live only in `app/legacy.css`
+(scoped to `.legacy`, set by `app/istoriya/layout.tsx`) and `components/history/legacy/`. Nothing
+else may use them.
 
 ## Content pipeline
 

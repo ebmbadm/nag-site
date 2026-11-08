@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Container,
-  Eyebrow,
-  Surface,
-  SectionHeader,
-  Breadcrumb,
-  Chip,
-  ProductCard,
-  buttonVariants,
-} from "@/components/ds";
+import { Container, Breadcrumb, PageHeader, Section, ProductRow, Tag, buttonVariants } from "@/components/ds";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
 import { getProduct } from "@/lib/content/products";
+import { productRow } from "@/lib/content/catalog";
 
 /**
  * Archive page — snято с производства. These models still get search demand
@@ -23,7 +15,6 @@ import { getProduct } from "@/lib/content/products";
 
 type Replacement = { label: string; href: string };
 type ArchiveGroup = {
-  eyebrow: string;
   title: string;
   note: string;
   models: string[];
@@ -35,7 +26,6 @@ type ArchiveGroup = {
 
 const GROUPS: ArchiveGroup[] = [
   {
-    eyebrow: "DSP BY NAG",
     title: "Архивные процессоры NAG",
     note: "Эти модели сняты с актуального каталога и сохранены в архиве с карточками и документацией.",
     models: [],
@@ -43,7 +33,6 @@ const GROUPS: ArchiveGroup[] = [
     replacements: [{ label: "Актуальные процессоры", href: "/catalog/processors" }],
   },
   {
-    eyebrow: "Усилители мощности",
     title: "Архивные усилители мощности NAG",
     note: "Транзисторные серии QM, MA, RA, RD, Q, RF и MQ сняты с производства. На карточках — характеристики с условиями измерения, коммутация и актуальные замены по мощности.",
     models: [],
@@ -63,7 +52,6 @@ const GROUPS: ArchiveGroup[] = [
     ],
   },
   {
-    eyebrow: "Без опубликованных характеристик",
     title: "Другие архивные обозначения NAG",
     note: "Эти модели выпускались раньше и отдельных страниц не имеют. Паспорт или схему на любую из них запросим и пришлём.",
     models: [
@@ -83,7 +71,6 @@ const GROUPS: ArchiveGroup[] = [
     replacements: [{ label: "Запросить паспорт", href: "/kontakty" }],
   },
   {
-    eyebrow: "Усилители и модули Class-D",
     title: "Архивные CX и TDX",
     note: "CX и TDX сняты с производства. Руководства и программное обеспечение сохранены в разделе «Загрузки».",
     models: ["AMP By NAG CX-520", "AMP By NAG CX-540", "NAG TDX"],
@@ -94,7 +81,6 @@ const GROUPS: ArchiveGroup[] = [
     ],
   },
   {
-    eyebrow: "Ламповые NOVIK",
     title: "Архивные ламповые усилители и акустика NOVIK",
     note: "Ламповые усилители мощности 602, 1202, 202, серий C, E и VIK PRO, а также акустические системы K, B, SW, AK и AB сняты с производства. На карточках — мощность, комплект ламп, габариты и вес по каждой модели.",
     models: [],
@@ -130,86 +116,57 @@ export const metadata: Metadata = {
 
 export default function ArchivePage() {
   return (
-    <div>
+    <>
       <JsonLd data={breadcrumbSchema(CRUMBS)} />
-
-      <Surface mode="dark" className="py-16">
-        <Container>
-          <Breadcrumb items={CRUMBS} />
-          <div className="enter mt-6 max-w-prose">
-            <Eyebrow accent>Сняты с производства</Eyebrow>
-            <h1
-              className="mt-3 font-display uppercase text-text"
-              style={{
-                fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-                lineHeight: "var(--lh-tight)",
-                letterSpacing: "var(--ls-tight)",
-              }}
-            >
-              Архивные модели
-            </h1>
-            <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              {LEDE}
-            </p>
-          </div>
-        </Container>
-      </Surface>
-
-      <Container className="py-12">
-        <div className="space-y-12">
-          {GROUPS.map((group) => (
-            <section key={group.title}>
-              <SectionHeader eyebrow={group.eyebrow} title={group.title} lede={group.note} className="mb-6" />
-
-              <div className="flex flex-wrap gap-2">
-                {group.models.map((model) => (
-                  <Chip key={model}>{model}</Chip>
-                ))}
-              </div>
-
-              {group.slugs && (
-                <div className="reveal-stagger mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-                  {group.slugs.map((slug) => {
-                    const product = getProduct(slug).frontmatter;
-                    return <ProductCard key={slug} slug={slug} name={product.name} eyebrow={product.line} image={{ src: product.gallery[0].src, alt: product.gallery[0].alt }} price={{ amount: product.price?.amount, onRequest: product.price?.onRequest }} />;
-                  })}
-                </div>
-              )}
-
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <span className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-                  {group.ctaLabel ?? "Актуальная замена"}
-                </span>
-                {group.replacements.map((r) => (
-                  <Link key={r.href} href={r.href} className={buttonVariants({ variant: "outline", size: "sm" })}>
-                    {r.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+      <Container className="pt-6">
+        <Breadcrumb items={CRUMBS} />
+        <PageHeader className="mt-12" title="Архивные модели" lead={LEDE} />
       </Container>
 
-      <section className="border-t border-border bg-surface-2 py-16">
-        <Container>
-          <div className="reveal max-w-prose">
-            <Eyebrow accent>Сервис и подбор</Eyebrow>
-            <p
-              className="mt-3 font-display text-xl uppercase text-text"
-              style={{ letterSpacing: "var(--ls-tight)" }}
-            >
-              Нужна замена, обмен или ремонт архивной модели?
-            </p>
-            <p className="mt-3 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              Подберём актуальный аналог под вашу задачу, обсудим обмен старого аппарата и обслужим снятую с производства технику NAG · NOVIK.
-            </p>
-            <Link href="/kontakty" className={`mt-6 ${buttonVariants({ variant: "primary", size: "lg" })}`}>
-              Обмен и ремонт
-            </Link>
-          </div>
-        </Container>
-      </section>
-    </div>
+      <Container className="flex flex-col gap-24 pt-24 pb-24">
+        {GROUPS.map((group) => (
+          <Section
+            key={group.title}
+            title={group.title}
+            description={group.note}
+            aside={
+              <>
+                <p className="m-0 text-ink-2">{group.ctaLabel ?? "Актуальная замена"}</p>
+                <ul role="list" className="mt-2 mb-0 flex list-none flex-col gap-2 p-0">
+                  {group.replacements.map((r) => (
+                    <li key={r.href}>
+                      <Link href={r.href} className="text-ink">
+                        {r.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            }
+          >
+            {group.models.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {group.models.map((model) => (
+                  <Tag key={model}>{model}</Tag>
+                ))}
+              </div>
+            )}
+            {/* Archived models are not sold: the price slot says so instead of «По запросу». */}
+            {group.slugs?.map((slug) => (
+              <ProductRow key={slug} {...productRow(getProduct(slug).frontmatter, { price: "Нет в продаже" })} />
+            ))}
+          </Section>
+        ))}
+
+        <Section id="service" title="Нужна замена, обмен или ремонт архивной модели?">
+          <p className="mt-0 mb-0 max-w-2xl text-ink-2">
+            Подберём актуальный аналог под вашу задачу, обсудим обмен старого аппарата и обслужим снятую с производства технику NAG · NOVIK.
+          </p>
+          <Link href="/kontakty" className={buttonVariants({ variant: "primary", className: "mt-6" })}>
+            Обмен и ремонт
+          </Link>
+        </Section>
+      </Container>
+    </>
   );
 }

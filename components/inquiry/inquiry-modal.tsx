@@ -73,26 +73,22 @@ export function InquiryModal({
       onClose={onClose}
       aria-modal="true"
       aria-labelledby="inquiry-modal-title"
-      className="m-auto max-w-lg w-full rounded-[var(--radius-lg)] border border-border bg-bg p-6 shadow-[var(--shadow-3)] backdrop:bg-[rgb(0_0_0/0.5)]"
+      className="m-auto w-full max-w-lg rounded-lg border-0 bg-bg p-6 text-ink"
     >
-      <div className="mb-5 flex items-start justify-between gap-4">
-        <h2
-          id="inquiry-modal-title"
-          className="font-display text-lg uppercase text-text"
-          style={{ letterSpacing: "var(--ls-tight)" }}
-        >
+      <div className="mb-6 flex items-start justify-between gap-4">
+        <h2 id="inquiry-modal-title" className="m-0 text-site-title">
           {title}
         </h2>
         <button
           type="button"
           onClick={onClose}
           aria-label="Закрыть"
-          className="shrink-0 text-text-faint hover:text-text"
+          className="inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-md border-0 bg-transparent text-ink-2 transition-quick hover:bg-surface hover:text-ink"
         >
-          <X size={20} />
+          <X size={20} strokeWidth={1.75} aria-hidden />
         </button>
       </div>
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
           type="text"
           name="website"

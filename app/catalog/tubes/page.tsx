@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Breadcrumb, ProductCard, buttonVariants } from "@/components/ds";
+import { Container, Breadcrumb, PageHeader, Section, ProductRow, buttonVariants } from "@/components/ds";
 import { getProductsByCategory } from "@/lib/content/products";
+import { productRow } from "@/lib/content/catalog";
 import { TubesInquiryCta } from "./tubes-inquiry-cta";
 
 const CATEGORY = "Ламповые усилители";
 const ORDER = ["e12", "redbear", "black-fire", "n1202"];
-const FLAGSHIP = "e12";
+/**
+ * RedBear's subtitle carries «дизайн Gibson», a claim the site passport rules out;
+ * the category row keeps only what the product is.
+ */
+const SUMMARY: Record<string, string> = { redbear: "Гитарный комбо" };
 const CONTACT_TEL = "+79219372508";
 
 const LEDE =
@@ -32,8 +37,8 @@ export default function TubesPage() {
   );
 
   return (
-    <div className="pt-10 pb-24">
-      <Container>
+    <>
+      <Container className="pt-6">
         <Breadcrumb
           items={[
             { label: "Главная", href: "/" },
@@ -41,51 +46,36 @@ export default function TubesPage() {
             { label: "Ламповые усилители" },
           ]}
         />
+        <PageHeader className="mt-12" title="Ламповые усилители" lead={LEDE} />
+      </Container>
 
-        <header className="enter mt-8 max-w-prose">
-          <Eyebrow accent>NOVIK</Eyebrow>
-          <h1
-            className="mt-3 font-display uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            Ламповые усилители
-          </h1>
-          <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            {LEDE}
-          </p>
-        </header>
-
-        {/* 4 товара: сетка 2×2 — третья колонка оставляла бы одиночную карточку в ряду. */}
-        <div className="enter-stagger mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+      <Container className="flex flex-col gap-24 pt-24 pb-24">
+        <Section
+          id="models"
+          title={
+            <>
+              Модели <span className="text-novik">NOVIK</span>
+            </>
+          }
+        >
           {products.map((p) => (
-            <ProductCard
-              key={p.slug}
-              slug={p.slug}
-              name={p.name}
-              image={{ src: p.gallery[0].src, alt: p.gallery[0].alt }}
-              price={{ amount: p.price?.amount, onRequest: p.price?.onRequest }}
-              badge={p.slug === FLAGSHIP ? p.badges[0] : undefined}
-            />
+            <ProductRow key={p.slug} {...productRow(p, SUMMARY[p.slug] ? { summary: SUMMARY[p.slug] } : {})} />
           ))}
-        </div>
+        </Section>
 
-        <div className="mt-12 rounded-[var(--radius-lg)] border border-border bg-surface p-6 sm:p-8">
-          <p className="max-w-prose text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
+        <Section id="other" title="Другие модели">
+          <p className="mt-0 mb-0 max-w-2xl text-ink-2">
             По остальным моделям свяжитесь с нами - подберём конфигурацию и рассчитаем срок
             изготовления под заказ.
           </p>
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <TubesInquiryCta />
-            <a href={`tel:${CONTACT_TEL}`} className={buttonVariants({ variant: "outline", size: "lg" })}>
+            <a href={`tel:${CONTACT_TEL}`} className={buttonVariants({ variant: "secondary" })}>
               Позвонить
             </a>
           </div>
-        </div>
+        </Section>
       </Container>
-    </div>
+    </>
   );
 }

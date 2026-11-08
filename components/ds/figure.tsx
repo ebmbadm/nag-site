@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Lightbox } from "./lightbox";
 
-/** Framed image with mono caption — equipment photos, screenshots. */
+/** Photo on white, no frame or rounding, caption in site-caption. Click opens it full screen. */
 export function Figure({
   src,
   alt,
@@ -30,9 +30,7 @@ export function Figure({
   zoomable?: boolean;
 }) {
   const [zoomed, setZoomed] = React.useState(false);
-  // Mounted only after the first open: the dialog would otherwise put a second
-  // copy of every figure in the DOM. Once mounted it stays, so closing keeps
-  // its exit transition.
+  // The dialog mounts on first open so every figure isn't duplicated in the DOM.
   const [mounted, setMounted] = React.useState(false);
 
   const image = (
@@ -43,18 +41,13 @@ export function Figure({
       height={height}
       priority={priority}
       unoptimized={unoptimized}
-      className={cn(
-        "h-auto w-full object-cover",
-        zoomable &&
-          "transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover/fig:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/fig:scale-100",
-        imgClassName,
-      )}
+      className={cn("block h-auto w-full", imgClassName)}
     />
   );
 
   return (
-    <figure className={cn("reveal m-0", className)}>
-      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-2 shadow-[var(--shadow-2)]">
+    <figure className={cn("m-0", className)}>
+      <div className="bg-photo">
         {zoomable ? (
           <button
             type="button"
@@ -63,7 +56,7 @@ export function Figure({
               setZoomed(true);
             }}
             aria-label={`Открыть фото: ${alt}`}
-            className="group/fig block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[color:var(--focus-ring)]"
+            className="block w-full cursor-zoom-in border-0 bg-transparent p-0"
           >
             {image}
           </button>
@@ -71,19 +64,9 @@ export function Figure({
           image
         )}
       </div>
-      {caption ? (
-        <figcaption className="mt-3 font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-          {caption}
-        </figcaption>
-      ) : null}
+      {caption ? <figcaption className="mt-2 text-site-caption text-ink-3">{caption}</figcaption> : null}
       {zoomable && mounted ? (
-        <Lightbox
-          src={src}
-          alt={alt}
-          caption={caption}
-          open={zoomed}
-          onClose={() => setZoomed(false)}
-        />
+        <Lightbox src={src} alt={alt} caption={caption} open={zoomed} onClose={() => setZoomed(false)} />
       ) : null}
     </figure>
   );

@@ -1,30 +1,17 @@
 export { Button, buttonVariants, type ButtonProps } from "./button";
-export {
-  Container,
-  Eyebrow,
-  Badge,
-  Chip,
-  Divider,
-  Rule,
-  Surface,
-  SectionHeader,
-} from "./primitives";
-export { SpecTable, type SpecRow } from "./spec-table";
+export { Container, Theme, Icon, Section, PageHeader, Tag, Status, Notice } from "./primitives";
+export { Breadcrumb, type BreadcrumbItem } from "./breadcrumb";
+export { Tabs, type TabsProps, type TabItem } from "./tabs";
+export { SpecTable, SpecGroups, type SpecRow } from "./spec-table";
+export { SpecMatrixTable, type SpecMatrixProps } from "./spec-matrix-table";
+export { ProductRow, type ProductRowProps } from "./product-row";
 export { AccordionItem } from "./accordion";
 export { Figure } from "./figure";
 export { Lightbox } from "./lightbox";
-export { ScrollProgress } from "./scroll-progress";
-export { Toc, type TocItem } from "./toc";
-export { Gallery, type GalleryImage } from "./gallery";
-export { ExpandAllControl } from "./expand-all-control";
-export { Breadcrumb, type BreadcrumbItem } from "./breadcrumb";
 export { Prose } from "./prose";
-export { SpecMatrixTable, type SpecMatrixProps } from "./spec-matrix-table";
-export { ProductCard, type ProductCardProps } from "./product-card";
-export { PillGroup, type PillGroupProps, type PillGroupOption } from "./pill-group";
-export { Tabs, type TabsProps, type TabItem } from "./tabs";
+export { Field } from "./field";
 export { Input } from "./input";
 export { Textarea } from "./textarea";
-export { Field } from "./field";
+export { Select, Checkbox, Switch, Segmented, type SegmentedOption } from "./controls";
 export { FormStatus } from "./form-status";
 export { DownloadList } from "./download-list";

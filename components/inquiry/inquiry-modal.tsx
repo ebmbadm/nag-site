@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect, useState, useTransition } from "react";
+import { useId, useRef, useEffect, useState, useTransition } from "react";
 import { X } from "lucide-react";
 import { buttonVariants, Field, Input, Textarea, FormStatus } from "@/components/ds";
 import { submitInquiry, type InquiryResult } from "@/app/actions/submit-inquiry";
@@ -23,6 +23,8 @@ export function InquiryModal({
   messagePlaceholder = "Дополнительная информация",
 }: InquiryModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  // Several modals can share a page (home has two inquiry buttons): ids must be unique.
+  const uid = useId();
   const [result, setResult] = useState<InquiryResult | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -72,11 +74,11 @@ export function InquiryModal({
       ref={ref}
       onClose={onClose}
       aria-modal="true"
-      aria-labelledby="inquiry-modal-title"
+      aria-labelledby={`${uid}-inquiry-modal-title`}
       className="m-auto w-full max-w-lg rounded-lg border-0 bg-bg p-6 text-ink"
     >
       <div className="mb-6 flex items-start justify-between gap-4">
-        <h2 id="inquiry-modal-title" className="m-0 text-site-title">
+        <h2 id={`${uid}-inquiry-modal-title`} className="m-0 text-site-title">
           {title}
         </h2>
         <button
@@ -97,21 +99,21 @@ export function InquiryModal({
           tabIndex={-1}
           aria-hidden="true"
         />
-        <Field label="Имя" htmlFor="modal-name">
-          <Input id="modal-name" name="name" type="text" placeholder="Ваше имя" required />
+        <Field label="Имя" htmlFor={`${uid}-modal-name`}>
+          <Input id={`${uid}-modal-name`} name="name" type="text" placeholder="Ваше имя" required />
         </Field>
-        <Field label="Телефон или e-mail" htmlFor="modal-contact">
+        <Field label="Телефон или e-mail" htmlFor={`${uid}-modal-contact`}>
           <Input
-            id="modal-contact"
+            id={`${uid}-modal-contact`}
             name="contact"
             type="text"
             placeholder="+7 900 000 00 00 или mail@example.com"
             required
           />
         </Field>
-        <Field label="Комментарий" htmlFor="modal-message">
+        <Field label="Комментарий" htmlFor={`${uid}-modal-message`}>
           <Textarea
-            id="modal-message"
+            id={`${uid}-modal-message`}
             name="message"
             rows={3}
             placeholder={messagePlaceholder}

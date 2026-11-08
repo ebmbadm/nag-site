@@ -1,0 +1,17 @@
+<!-- @dsCard group="Данные" height=380 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>SpecTable</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '48px' } },
+    h('div', { style: { flex: '1 1 380px' } }, h(N.SpecTable, { groups: [
+      { title: 'Четырёхканальный режим', rows: [{ label: 'Мощность на 8 Ом, RMS, 1 кГц, 1 % THD', value: '4 × 1200 Вт' }] },
+      { title: 'Общие', rows: [{ label: 'Уровень шума', value: '−99 дБ' }, { label: 'Демпинг-фактор', value: '950' }, { label: 'Габариты', value: '483 × 463 × 88 мм' }] }] })),
+    h('div', { style: { flex: '1 1 300px' } }, h(N.SpecTable, { density: 'print', caption: 'Питание и габариты', rows: [
+      { label: 'Сетевой шнур, 200–240 В, 50 Гц', value: '15 А / 250 В' }, { label: 'Габариты', value: '483 × 463 × 88 мм' }, { label: 'Масса нетто / брутто', value: '13,8 кг / 17,3 кг' }] }))));
+</script>
+</body>
+</html>

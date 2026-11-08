@@ -1,0 +1,39 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {"v": 1, "at": "2026-11-08T12:40:00Z"},
+  "title": "NAG · NOVIK",
+  "namespace": "Nag",
+  "libraries": [
+    {"name": "react", "version": "18"},
+    {"name": "react-dom", "version": "18"}
+  ],
+  "sections": {},
+  "groups": ["Logos", "Photos"],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "m",
+      "order": ["nag-logo-onlight.png", "nag-logo-mono-white.png", "nag-mark-red.png", "nag-mark-white.png"],
+      "files": {
+        "nag-logo-onlight.png": {"name": "nag-logo-onlight.png", "blob": "6a055819cb33b19c1bb2763e6066045b", "size": 20379, "type": "image/png"},
+        "nag-logo-mono-white.png": {"name": "nag-logo-mono-white.png", "blob": "e34c4f2bda7c479b839c5bfc124a0795", "size": 18845, "type": "image/png"},
+        "nag-mark-red.png": {"name": "nag-mark-red.png", "blob": "1608026e4d1fb0e82fdefe268c458c67", "size": 9886, "type": "image/png"},
+        "nag-mark-white.png": {"name": "nag-mark-white.png", "blob": "d0b76bf9593e2f3ead354246b29d54fe", "size": 9872, "type": "image/png"}
+      }
+    },
+    "Photos": {
+      "name": "Photos",
+      "tile": "l",
+      "order": ["qm400-front.jpg", "td40-front.jpg", "f8-front.jpg"],
+      "files": {
+        "qm400-front.jpg": {"name": "qm400-front.jpg", "blob": "91e3b915faceccee900fb4b1cd987880", "size": 164830, "type": "image/jpeg"},
+        "td40-front.jpg": {"name": "td40-front.jpg", "blob": "ff66cafa5e17fc75f1dd9e0ab350542b", "size": 25461, "type": "image/jpeg"},
+        "f8-front.jpg": {"name": "f8-front.jpg", "blob": "a2b6844f983dbc0d767171312b65ccd6", "size": 71087, "type": "image/jpeg"}
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {"sections": []},
+  "lastChange": {"by": "Claude", "via": "Claude Code", "at": "2026-11-08T12:40:00Z", "note": "Первая версия: токены, брендбук, разделы для сайта, печати и программы, 18 компонентов"}
+}

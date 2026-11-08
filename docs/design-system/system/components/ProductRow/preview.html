@@ -1,0 +1,15 @@
+<!-- @dsCard group="Каталог" height=420 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>ProductRow</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', null,
+    h(N.ProductRow, { name: 'NAG QM-400', image: '/_blob/91e3b915faceccee900fb4b1cd987880', imageAlt: 'NAG QM-400, передняя панель', summary: 'Четыре канала, Class-TD', spec: '4 × 2400 Вт на 4 Ом · 2U', price: '199 900 ₽' }),
+    h(N.ProductRow, { name: 'NAG TD, серия', image: '/_blob/ff66cafa5e17fc75f1dd9e0ab350542b', imageAlt: 'NAG TD40, передняя панель', summary: 'Два канала, Class-TD, стабильно на 2 Ом', spec: 'до 2 × 2400 Вт на 4 Ом · 1U и 1,5U', price: 'от 70 000 ₽' }),
+    h(N.ProductRow, { name: 'NAG F-8', image: '/_blob/a2b6844f983dbc0d767171312b65ccd6', imageAlt: 'NAG F-8, передняя панель', summary: '4 × 8, FIR и Wi-Fi', spec: 'FIR 512 taps · Wi-Fi, LAN, USB', price: '79 900 ₽' })));
+</script>
+</body>
+</html>

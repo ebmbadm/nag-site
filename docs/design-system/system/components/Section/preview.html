@@ -1,0 +1,14 @@
+<!-- @dsCard group="Раскладка" height=300 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Section</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h(N.Section, { title: 'Усилители мощности', description: 'Class-TD, два и четыре канала, высота 1U–2U.', aside: h(N.Button, { variant: 'link' }, 'Все усилители') },
+      h(N.ProductRow, { name: 'NAG QM-400', image: '/_blob/91e3b915faceccee900fb4b1cd987880', imageAlt: 'NAG QM-400, передняя панель', summary: 'Четыре канала, Class-TD', spec: '4 × 2400 Вт на 4 Ом · 2U', price: '199 900 ₽' })));
+</script>
+</body>
+</html>

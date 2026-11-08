@@ -1,0 +1,20 @@
+<!-- @dsCard group="Действия" height=96 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>ToggleButton</title></head>
+<body>
+<div id="root" class="nag-demo"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  function Demo() {
+    var _m = React.useState(true), _p = React.useState(false);
+    return h(React.Fragment, null,
+      h(N.ToggleButton, { tone: 'alarm', pressed: _m[0], label: 'Без звука, выход 8', onClick: function () { _m[1](!_m[0]); } }, 'M'),
+      h(N.ToggleButton, { tone: 'alarm', pressed: false, label: 'Без звука, выход 3' }, 'M'),
+      h(N.ToggleButton, { tone: 'ink', pressed: _p[0], label: 'Инвертировать полярность, выход 3', onClick: function () { _p[1](!_p[0]); } }, 'Ø'),
+      h('span', { style: { fontSize: '13px', color: 'var(--ink-3)' } }, 'M включена — красная: это тревога, а не действие.'));
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

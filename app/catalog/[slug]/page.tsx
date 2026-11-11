@@ -1,18 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Container, Breadcrumb, Prose } from "@/components/ds";
-import {
-  ProductHero,
-  FeatureBand,
-  TechBand,
-  SoftwareSection,
-  SpecsSection,
-  DocsSection,
-} from "@/components/product/sections";
-import { ModulesProductPage } from "@/components/product/modules-product-page";
-import { Qm400ProductPage } from "@/components/product/qm400-product-page";
+import { ProductPageView } from "@/components/product/sections";
 import { Mdx } from "@/lib/content/mdx";
-import { getProduct, getProductSlugs } from "@/lib/content/products";
+import { getProduct, getProductSlugs, getProductsByCategory } from "@/lib/content/products";
 import { JsonLd } from "@/components/seo/json-ld";
 import { productSchema, breadcrumbSchema } from "@/lib/seo";
 import { formatPrice } from "@/lib/format";
@@ -76,62 +66,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { frontmatter: p, body } = doc;
   const crumbs = [{ label: "Главная", href: "/" }, ...p.breadcrumb];
 
-  if (slug === "modules") {
-    return (
-      <article>
-        <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
-        <div className="pt-6">
-          <Container>
-            <Breadcrumb items={crumbs} />
-          </Container>
-        </div>
-        <ModulesProductPage product={p} />
-        {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
-      </article>
-    );
-  }
-
-  if (slug === "qm-400") {
-    return (
-      <article>
-        <JsonLd data={[productSchema(p, slug), breadcrumbSchema(crumbs)]} />
-        <div className="pt-6">
-          <Container>
-            <Breadcrumb items={crumbs} />
-          </Container>
-        </div>
-        <Qm400ProductPage product={p} />
-        <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
-        {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
-      </article>
-    );
-  }
+  const related = getProductsByCategory(p.category)
+    .filter((r) => r.slug !== slug)
+    .slice(0, 3);
 
   return (
     <article>
       <JsonLd data={p.archived ? breadcrumbSchema(crumbs) : [productSchema(p, slug), breadcrumbSchema(crumbs)]} />
-      <div className="pt-6">
-        <Container>
-          <Breadcrumb items={crumbs} />
-        </Container>
-      </div>
-      <ProductHero product={p} />
-
-      {body.trim() ? (
-        <section className="border-t border-border py-16">
-          <Container>
-            <Prose>
-              <Mdx source={body} />
-            </Prose>
-          </Container>
-        </section>
-      ) : null}
-
-      {p.features ? <FeatureBand features={p.features} /> : null}
-      {p.tech ? <TechBand tech={p.tech} /> : null}
-      {p.software ? <SoftwareSection software={p.software} /> : null}
-      <SpecsSection groups={p.specGroups} specMatrix={p.specMatrix} />
-      {p.docs && p.docs.length > 0 ? <DocsSection docs={p.docs} /> : null}
+      <ProductPageView product={p} body={body.trim() ? <Mdx source={body} /> : null} related={related} />
     </article>
   );
 }

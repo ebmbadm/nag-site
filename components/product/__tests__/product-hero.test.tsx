@@ -1,19 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
-import { ProductHero } from "../sections";
+import { describe, expect, test } from "vitest";
+import { ProductBuyBox } from "../sections";
 import type { ProductFrontmatter } from "@/lib/content/schema";
-
-// Gallery uses embla (client carousel); stub it so jsdom renders the hero cleanly.
-vi.mock("@/components/ds", async (orig) => ({
-  ...(await orig<typeof import("@/components/ds")>()),
-  Gallery: () => null,
-}));
 
 const base: ProductFrontmatter = {
   slug: "x",
   name: "TEST",
   line: "Ламповый усилитель · NOVIK",
-  badges: [],
+  badges: ["HI-END"],
+  archived: false,
   category: "Ламповые усилители",
   breadcrumb: [],
   summary: "summary",
@@ -22,31 +17,29 @@ const base: ProductFrontmatter = {
   specGroups: [{ title: "Характеристики", rows: [{ label: "Вес", value: "12 кг" }] }],
 };
 
-describe("ProductHero price branch", () => {
-  test("on-request product shows «Цена по запросу» + «Запросить расчёт», no cart", () => {
-    render(
-      <ProductHero
-        product={{ ...base, price: { onRequest: true, note: "Изготавливается под заказ" } }}
-      />,
-    );
-    expect(screen.getByText("Цена по запросу")).toBeInTheDocument();
-    expect(screen.getByText("Запросить расчёт")).toBeInTheDocument();
-    expect(screen.queryByText("Розничная цена")).toBeNull();
+describe("ProductBuyBox price branch", () => {
+  test("on-request product shows «По запросу» + «Запросить расчёт», no order button", () => {
+    render(<ProductBuyBox product={{ ...base, price: { onRequest: true, currency: "₽", note: "Изготавливается под заказ" } }} />);
+    expect(screen.getByText("По запросу")).toBeInTheDocument();
+    expect(screen.getByText("Изготавливается под заказ")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Запросить расчёт" })).toBeInTheDocument();
     expect(screen.queryByText("Оставить заявку")).toBeNull();
   });
 
-  test("priced product still shows «Розничная цена» + «Оставить заявку» (no regression)", () => {
-    render(<ProductHero product={{ ...base, price: { amount: 100000, currency: "₽" } }} />);
-    expect(screen.getByText("Розничная цена")).toBeInTheDocument();
-    expect(screen.getByText("Оставить заявку")).toBeInTheDocument();
-    expect(screen.queryByText("Цена по запросу")).toBeNull();
+  test("priced product shows the price, the phone and «Оставить заявку»", () => {
+    render(<ProductBuyBox product={{ ...base, price: { amount: 100000, currency: "₽" } }} />);
+    expect(screen.getByText(/100\s000\s₽/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Оставить заявку" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "+7 921 937 25 08" })).toHaveAttribute("href", "tel:+79219372508");
+    expect(screen.getByText("12 кг")).toBeInTheDocument();
+    expect(screen.queryByText("По запросу")).toBeNull();
+    expect(screen.queryByText("HI-END")).toBeNull();
   });
 
   test("archived model offers trade-in and repair instead of a price", () => {
-    render(<ProductHero product={{ ...base, archived: true }} />);
-
+    render(<ProductBuyBox product={{ ...base, archived: true }} />);
     expect(screen.getByRole("button", { name: "Обмен и ремонт" })).toBeInTheDocument();
     expect(screen.queryByText("Оставить заявку")).toBeNull();
-    expect(screen.queryByText("Розничная цена")).toBeNull();
+    expect(screen.queryByText(/₽/)).toBeNull();
   });
 });

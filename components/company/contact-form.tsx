@@ -30,48 +30,25 @@ export function ContactForm({ form }: { form: ContactsContent["form"] }) {
   }
 
   return (
-    <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 sm:p-8">
-      <h2
-        className="font-display text-lg uppercase text-text"
-        style={{ letterSpacing: "var(--ls-tight)" }}
-      >
-        {form.title}
-      </h2>
-      <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-        {/* Honeypot — bots fill it, humans don't */}
-        <input
-          type="text"
-          name="website"
-          defaultValue=""
-          className="hidden"
-          tabIndex={-1}
-          aria-hidden="true"
-        />
-        <Field label="Имя" htmlFor="name">
-          <Input id="name" name="name" type="text" placeholder="Ваше имя" required />
-        </Field>
-        <Field label="Телефон или e-mail" htmlFor="contact">
-          <Input
-            id="contact"
-            name="contact"
-            type="text"
-            placeholder="+7 900 000 00 00 или mail@example.com"
-            required
-          />
-        </Field>
-        <Field label="Сообщение" htmlFor="message">
-          <Textarea id="message" name="message" rows={4} placeholder="Чем можем помочь?" />
-        </Field>
-        <button
-          type="submit"
-          disabled={isPending}
-          className={buttonVariants({ variant: "primary", size: "lg", className: "w-full" })}
-        >
+    <form className="flex max-w-xl flex-col gap-6" onSubmit={handleSubmit} aria-label={form.title}>
+      {/* Honeypot — bots fill it, humans don't */}
+      <input type="text" name="website" defaultValue="" className="hidden" tabIndex={-1} aria-hidden="true" />
+      <Field label="Имя" htmlFor="name">
+        <Input id="name" name="name" type="text" placeholder="Ваше имя" required />
+      </Field>
+      <Field label="Телефон или e-mail" htmlFor="contact">
+        <Input id="contact" name="contact" type="text" placeholder="+7 900 000 00 00 или mail@example.com" required />
+      </Field>
+      <Field label="Сообщение" htmlFor="message">
+        <Textarea id="message" name="message" rows={4} placeholder="Чем можем помочь?" />
+      </Field>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <button type="submit" disabled={isPending} className={buttonVariants({ variant: "primary", size: "lg" })}>
           {isPending ? "Отправляем..." : "Отправить"}
         </button>
-        <FormStatus state={result} />
-      </form>
-      <p className="mt-3 font-mono text-2xs text-text-muted">{form.note}</p>
-    </div>
+        <p className="m-0 text-site-caption text-ink-3">{form.note}</p>
+      </div>
+      <FormStatus state={result} />
+    </form>
   );
 }

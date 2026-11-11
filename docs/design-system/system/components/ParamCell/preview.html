@@ -1,0 +1,18 @@
+<!-- @dsCard group="Программа" height=140 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>ParamCell</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--app"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  function Demo() {
+    var _s = React.useState('eq');
+    var cells = [['src', 'Вход A', false], ['gain', '0,0 дБ', false], ['delay', '4,20 мс', false], ['pol', 'Норм.', true], ['hp', '30 Гц · LR', false], ['lp', '100 Гц · LR', false], ['eq', '2 полосы', false], ['lim', '+8 dBu', false]];
+    return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(8, 104px)', alignItems: 'center', height: '36px', background: 'var(--surface)', borderBottom: '1px solid var(--line)' } },
+      cells.map(function (c) { return h('span', { key: c[0], style: { padding: '0 2px' } }, h(N.ParamCell, { selected: _s[0] === c[0], off: c[2], onClick: function () { _s[1](c[0]); } }, c[1])); }));
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

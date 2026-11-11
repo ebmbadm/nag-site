@@ -4,14 +4,12 @@ import {
   AccordionItem,
   Breadcrumb,
   Container,
-  Eyebrow,
-  SectionHeader,
-  Surface,
-  Toc,
+  PageHeader,
+  Section,
+  Tabs,
   buttonVariants,
-  type TocItem,
 } from "@/components/ds";
-import { Block } from "@/components/history/blocks";
+import { TextBlocks } from "@/components/company/text-blocks";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getClassTdArticle } from "@/lib/content/articles";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo";
@@ -33,15 +31,15 @@ export const metadata: Metadata = {
   },
 };
 
-const tocItems: TocItem[] = a.sections.map((s) => ({
-  id: s.id,
-  label: s.title,
-  meta: s.label.split(" · ")[0],
-}));
+const BREADCRUMB = [
+  { label: "Главная", href: "/" },
+  { label: "Каталог", href: "/catalog" },
+  { label: "Class-TD" },
+];
 
 export default function ClassTdPage() {
   return (
-    <div>
+    <>
       <JsonLd
         data={[
           ...articleSchema({
@@ -50,123 +48,57 @@ export default function ClassTdPage() {
             description: DESCRIPTION,
             faq: a.faq,
           }),
-          breadcrumbSchema([
-            { label: "Главная", href: "/" },
-            { label: "Каталог", href: "/catalog" },
-            { label: "Class-TD" },
-          ]),
+          breadcrumbSchema(BREADCRUMB),
         ]}
       />
 
-      <Surface mode="dark" className="py-16">
-        <Container>
-          <Breadcrumb
-            items={[
-              { label: "Главная", href: "/" },
-              { label: "Каталог", href: "/catalog" },
-              { label: "Class-TD" },
-            ]}
-          />
-          <div className="enter mt-6 max-w-prose">
-            <Eyebrow accent>{a.hero.eyebrow}</Eyebrow>
-            <h1
-              className="mt-3 font-display uppercase text-text"
-              style={{
-                fontSize: "clamp(var(--text-3xl), 5vw, var(--text-5xl))",
-                lineHeight: "var(--lh-tight)",
-                letterSpacing: "var(--ls-tight)",
-              }}
-            >
-              {a.hero.title}
-            </h1>
-            <p className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              {a.hero.lede}
-            </p>
-          </div>
-        </Container>
-      </Surface>
-
-      <Container className="py-12">
-        <div className="reveal max-w-[66ch] border-l-[var(--border-w-rule)] border-accent bg-surface p-6">
-          <div className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-text-faint">
-            {a.answer.title}
-          </div>
-          <div className="mt-3">
-            <Block block={{ type: "p", text: a.answer.text }} />
-          </div>
-        </div>
+      <Container className="pt-6">
+        <Breadcrumb items={BREADCRUMB} />
+      </Container>
+      <Container className="pt-12">
+        <PageHeader title={a.hero.title} lead={a.hero.lede} />
+        <Tabs
+          className="mt-12"
+          label="Разделы статьи"
+          items={a.sections.map((s) => ({ label: s.title, href: `#${s.id}` }))}
+        />
       </Container>
 
-      <Container className="pb-16">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
-          <div className="max-w-[66ch]">
-            {a.sections.map((s) => (
-              <section key={s.id} id={s.id} className="scroll-mt-28 border-t border-border pt-10">
-                <div className="font-mono text-2xs uppercase tracking-[var(--ls-label)] text-accent">
-                  {s.label}
-                </div>
-                <h2
-                  className="mb-6 mt-2 font-display uppercase text-text"
-                  style={{
-                    fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
-                    lineHeight: "var(--lh-tight)",
-                    letterSpacing: "var(--ls-tight)",
-                  }}
-                >
-                  {s.title}
-                </h2>
-                {s.blocks.map((b, i) => (
-                  <Block key={i} block={b} />
-                ))}
-              </section>
-            ))}
-          </div>
+      <Container className="flex flex-col gap-24 pt-20">
+        <Section title={a.answer.title}>
+          <TextBlocks blocks={[{ type: "p", text: a.answer.text }]} />
+        </Section>
 
-          <aside className="hidden lg:block">
-            <Toc items={tocItems} className="sticky top-28" />
-          </aside>
-        </div>
-      </Container>
+        {a.sections.map((s) => (
+          <Section key={s.id} id={s.id} title={s.title}>
+            <TextBlocks blocks={s.blocks} />
+          </Section>
+        ))}
 
-      <section className="border-t border-border bg-surface-2 py-16">
-        <Container>
-          <SectionHeader eyebrow="Частые вопросы" title="Коротко о классах" className="mb-6" />
-          <div className="max-w-[72ch]">
+        <Section id="voprosy" title="Коротко о классах" description="Частые вопросы">
+          <div className="max-w-2xl">
             {a.faq.map((f) => (
               <AccordionItem key={f.q} summary={f.q}>
-                <p className="pb-5 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-                  {f.a}
-                </p>
+                <p className="m-0">{f.a}</p>
               </AccordionItem>
             ))}
           </div>
-        </Container>
-      </section>
+        </Section>
 
-      <Container className="py-16">
-        <div className="max-w-[66ch]">
-          <h2
-            className="font-display uppercase text-text"
-            style={{ fontSize: "var(--text-2xl)", letterSpacing: "var(--ls-tight)" }}
-          >
-            {a.cta.title}
-          </h2>
-          <p className="mt-3 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-            {a.cta.text}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+        <Section title={a.cta.title} description={a.cta.text}>
+          <div className="flex flex-wrap gap-3">
             {a.cta.links.map((l, i) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={buttonVariants({ variant: i === 0 ? "primary" : "outline", size: "lg" })}
+                className={buttonVariants({ variant: i === 0 ? "primary" : "secondary" })}
               >
                 {l.label}
               </Link>
             ))}
           </div>
-        </div>
+        </Section>
       </Container>
-    </div>
+    </>
   );
 }

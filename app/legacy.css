@@ -1,0 +1,131 @@
+/* ============================================================
+   Frozen pre-redesign layer — «История» only.
+   The owner froze the visual layer of /istoriya until the separate project
+   «История, часть II» (decision 2026-11-08). Nothing outside `.legacy`
+   (app/istoriya/layout.tsx) may use these tokens or utilities.
+   ============================================================ */
+
+@theme inline {
+  --color-bg-raised: var(--bg-raised);
+  --color-surface-2: var(--surface-2);
+  --color-surface-inset: var(--surface-inset);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-faint: var(--border-faint);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-accent-wash: var(--accent-wash);
+
+  --font-display: var(--font-oswald), "PT Sans Narrow", "Arial Narrow", system-ui, sans-serif;
+  --font-text: var(--font-golos), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), "SFMono-Regular", ui-monospace, monospace;
+
+  --text-2xs: 11px;
+  --text-4xl: 54px;
+}
+
+.legacy {
+  --bg: #fbfaf7;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ece9e2;
+  --surface-inset: #ded9cf;
+  --border: rgba(11, 11, 13, 0.12);
+  --border-strong: rgba(11, 11, 13, 0.2);
+  --border-faint: rgba(11, 11, 13, 0.06);
+  --text: #0b0b0d;
+  --text-muted: #54545e;
+  --text-faint: #87878f;
+  --accent: #e11507;
+  --accent-hover: #c01206;
+  --accent-wash: #fbe1dc;
+  --on-accent: #ffffff;
+  --focus-ring: #e11507;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 18px;
+  --text-lg: 21px;
+  --text-xl: 26px;
+  --text-2xl: 33px;
+  --text-3xl: 42px;
+  --text-4xl: 54px;
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.14;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.65;
+  --ls-tight: -0.02em;
+  --ls-wide: 0.04em;
+  --ls-label: 0.14em;
+  --ls-mono: 0.02em;
+
+  --radius-xs: 2px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --container: 1240px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --border-w-rule: 3px;
+  --shadow-2: 0 4px 14px rgba(11, 11, 13, 0.08), 0 1px 3px rgba(11, 11, 13, 0.06);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 200ms;
+  --dur-slow: 360ms;
+
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  color: var(--text);
+  font-family: var(--font-text);
+  line-height: var(--lh-normal);
+}
+
+.legacy ::selection {
+  background: var(--accent-wash);
+  color: var(--text);
+}
+
+.legacy .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes legacyRevealUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .legacy .reveal {
+      animation: legacyRevealUp 460ms var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 32%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .legacy .enter,
+  .legacy .enter-stagger > * {
+    animation: legacyRevealUp 460ms var(--ease-out) both;
+  }
+  .legacy .enter-stagger > *:nth-child(1) { animation-delay: 60ms; }
+  .legacy .enter-stagger > *:nth-child(2) { animation-delay: 130ms; }
+  .legacy .enter-stagger > *:nth-child(3) { animation-delay: 200ms; }
+  .legacy .enter-stagger > *:nth-child(n + 4) { animation-delay: 270ms; }
+
+  @supports (interpolate-size: allow-keywords) {
+    .legacy {
+      interpolate-size: allow-keywords;
+    }
+    .legacy details::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition:
+        block-size var(--dur-slow) var(--ease-out),
+        content-visibility var(--dur-slow) allow-discrete;
+    }
+    .legacy details[open]::details-content {
+      block-size: auto;
+    }
+  }
+}

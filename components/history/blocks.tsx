@@ -1,4 +1,4 @@
-import { Figure } from "@/components/ds";
+import { Figure } from "@/components/history/legacy/figure";
 import { renderInline } from "./rich-text";
 import type { HistoryBlock } from "@/lib/content/types";
 

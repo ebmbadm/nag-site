@@ -39,12 +39,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className={fontVariables}>
-      <body className="bg-noise flex min-h-screen flex-col">
+      <body className="flex min-h-screen flex-col">
         <YandexMetrika />
         <MetrikaPageviews />
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        {/* 128px before the footer; a page that ends on its dark band marks it data-band-end. */}
+        <main className="flex-1 pb-32 has-[[data-band-end]]:pb-0">{children}</main>
         <SiteFooter />
       </body>
     </html>

@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import type { NavItem } from "./mobile-nav";
 
-/**
- * Desktop nav with current-page state. Longest matching href wins, so
- * /catalog/amplifiers lights "Усилители" only and /catalog/d-8000 lights "Каталог".
- */
-export function NavLinks({ items }: { items: NavItem[] }) {
+export type NavItem = { label: string; href: string; secondary?: boolean };
+
+/** Current section is underlined, not coloured. Longest matching href wins. */
+export function NavLinks({ items, className }: { items: NavItem[]; className?: string }) {
   const pathname = usePathname();
   const active = items.reduce<string | null>((best, item) => {
     const match = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -17,15 +15,16 @@ export function NavLinks({ items }: { items: NavItem[] }) {
   }, null);
 
   return (
-    <nav className="hidden flex-1 items-center gap-6 lg:flex" aria-label="Основная навигация">
+    <nav aria-label="Основная навигация" className={cn("flex flex-wrap gap-x-7 gap-y-1 text-base", className)}>
       {items.map((item) => (
         <Link
           key={item.href}
           href={item.href}
           aria-current={item.href === active ? "page" : undefined}
           className={cn(
-            "border-b-2 border-transparent pb-1 font-mono text-2xs uppercase tracking-[var(--ls-label)] transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus-ring)] focus-visible:rounded-[var(--radius-xs)]",
-            item.href === active ? "border-accent text-text" : "text-text-muted",
+            "underline transition-quick hover:decoration-current",
+            item.href === active ? "decoration-current" : "decoration-transparent",
+            item.secondary ? "text-ink-2 hover:text-ink" : "text-ink",
           )}
         >
           {item.label}

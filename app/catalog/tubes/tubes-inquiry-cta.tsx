@@ -11,7 +11,7 @@ export function TubesInquiryCta() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={buttonVariants({ variant: "primary", size: "lg" })}
+        className={buttonVariants({ variant: "primary", className: "cursor-pointer" })}
       >
         Запросить модель
       </button>

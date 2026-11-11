@@ -1,49 +1,40 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone } from "lucide-react";
-import { Container, buttonVariants } from "@/components/ds";
-import { MobileNav } from "./mobile-nav";
-import { NavLinks } from "./nav-links";
+import { Container } from "@/components/ds";
+import { NavLinks, type NavItem } from "./nav-links";
 
-export const NAV = [
-  { label: "Каталог", href: "/catalog" },
-  { label: "Процессоры", href: "/catalog/processors" },
+/** Catalog sections first (ink), company pages after them (ink-2). */
+export const NAV: NavItem[] = [
   { label: "Усилители", href: "/catalog/amplifiers" },
+  { label: "Процессоры", href: "/catalog/processors" },
   { label: "Модули", href: "/catalog/modules" },
-  { label: "Лампы", href: "/catalog/tubes" },
-  { label: "О компании", href: "/o-kompanii" },
-  { label: "Контакты", href: "/kontakty" },
+  { label: "Ламповые NOVIK", href: "/catalog/tubes" },
+  { label: "О компании", href: "/o-kompanii", secondary: true },
+  { label: "Контакты", href: "/kontakty", secondary: true },
 ];
 
-/** Global sticky navigation header. */
+/** Logo, sections as text, phone on the right. No buttons in the header. */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/86 backdrop-blur-md supports-[backdrop-filter]:bg-bg/72">
-      <Container className="flex h-[58px] items-center gap-6">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="NAG — на главную">
+    <header className="border-b border-line">
+      <Container className="flex min-h-18 flex-wrap items-center gap-x-10 gap-y-3 py-4">
+        <Link href="/" className="block shrink-0" aria-label="NAG · NOVIK, на главную">
           <Image
             src="/brand/nag-logo-onlight.png"
-            alt="NAG"
-            width={96}
-            height={20}
+            alt=""
+            width={106}
+            height={22}
             priority
-            className="h-5 w-auto"
+            className="block h-5.5 w-auto"
           />
         </Link>
-
-        <NavLinks items={NAV} />
-
-        <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none">
-          <a
-            href="tel:+79219372508"
-            aria-label="Позвонить: +7 921 937 25 08"
-            className={buttonVariants({ variant: "outline", size: "sm", className: "font-mono" })}
-          >
-            <Phone className="size-4 lg:hidden" aria-hidden />
-            <span className="hidden lg:inline">+7 921 937 25 08</span>
-          </a>
-          <MobileNav nav={NAV} />
-        </div>
+        <a
+          href="tel:+79219372508"
+          className="order-2 ml-auto text-base font-medium text-ink no-underline hover:underline lg:order-3"
+        >
+          +7 921 937 25 08
+        </a>
+        <NavLinks items={NAV} className="order-3 w-full lg:order-2 lg:w-auto lg:flex-1" />
       </Container>
     </header>
   );

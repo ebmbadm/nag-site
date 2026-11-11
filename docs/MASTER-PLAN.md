@@ -19,9 +19,10 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 - **Language:** Russian only (`ru-RU`). Prices in roubles.
 - **Tech:** Next.js 16 App Router · React 19 · TS strict · Tailwind v4 · SSG-first. Backend
   (Supabase) arrives in P5 for inquiries; commerce (P6) is optional.
-- **Design:** one design system, ported in P0 (`app/globals.css` + `components/ds/`). Industrial
-  warm-paper + signal-red, dark "chassis" bands for technical content. **Tokens only, no hardcoded
-  hex.** Reuse primitives; extend the DS, don't fork it.
+- **Design:** the NAG · NOVIK design system (approved 2026-11-08, issue #81; source
+  `docs/design-system/system/`), ported into `app/globals.css` + `components/ds/`. Calm engineering
+  catalog: white, Golos Text only, red only for the main action. **Tokens only, no hardcoded hex.**
+  Reuse primitives; extend the DS, don't fork it.
 - **Method:** every slice is brainstormed and planned before code; logic-bearing code is TDD'd;
   every slice ends in code review. Faithfulness to source content is mandatory — **never invent a
   product, spec, or price.**
@@ -35,6 +36,7 @@ design record for the foundation is `docs/superpowers/specs/2026-06-28-nag-site-
 | **P2 — Catalog (DSP + power amps + tube)** | ✅ DSP processors (6 pages + `/catalog/processors`), transistor power amps (5 pages + `/catalog/amplifiers`), NOVIK tube amps (4 pages + `/catalog/tubes`). КОНТУР family still pending. |
 | **P3 — Company/legal + boutique** | ✅ Company & legal (`/o-kompanii`, `/garantiya`, `/kontakty`) + NOVIK Tubes Boutique (`/catalog/boutique`, `/catalog/savers`, `/catalog/converters`). |
 | **P5 — Forms & Inquiries** | ✅ Vercel migration (P5a) + Supabase + server action + DS primitives (P5b) + ContactForm + InquiryModal + ProductCtaButtons + boutique wiring (P5c). |
+| **Redesign (#81)** | ✅ Site moved to the NAG · NOVIK design system (2026-11): new tokens, Golos-only type, DS primitives rebuilt, catalog as rows, one dark band. «История» frozen on the old layer by owner's decision. |
 | P4, P6–P7 | ⏳ Planned — see roadmap + slices. |
 
 ## 3. Information architecture — full sitemap
@@ -124,20 +126,23 @@ These are documented per-area in the slice files with exact line references.
 
 ## 7. Design-system contract (every slice obeys this)
 
-- **Tokens only.** Colors/space/type/elevation/motion come from `app/globals.css`. No hex in
-  components. Light is default; technical/dark bands use `<Surface mode="dark">`.
-- **Fonts:** `font-display` (Oswald, headings, uppercase), `font-text` (Golos Text, body),
-  `font-mono` (JetBrains Mono, specs/labels). Eyebrows = mono uppercase + `tracking-[var(--ls-label)]`.
-- **Primitives (`components/ds/`)** — reuse, don't re-implement: `Button`, `Container`, `Eyebrow`,
-  `Badge`, `Chip`, `Divider`, `Rule`, `Surface`, `SectionHeader`, `SpecTable`, `AccordionItem`,
-  `Figure`, `Gallery`, `Toc`, `ScrollProgress`, `ExpandAllControl`. New primitives go in
-  `components/ds` and get exported from `index.ts` (see P1 backlog: `Meter`, `Tabs`/`PillGroup`,
-  `SpecMatrixTable`, `Breadcrumb`, `ProductCard`, `Prose`, `MobileNav`, form inputs).
+- **Tokens only.** Colour roles, 4px spacing, `text-site-*` type scale, radii 4/6/8 come from
+  `app/globals.css` (ported from `docs/design-system/system/tokens.json`). No hex, no `clamp()`, no
+  arbitrary px in components. Light is default; the one dark band per page uses `<Theme dark>`.
+- **Font:** Golos Text only, sentence case. No Oswald, no monospace, no caps eyebrows, no 01/02
+  section numbers, no hero metric rows, no grids of identical cards, no grey photo wells.
+- **Primitives (`components/ds/`)** — reuse, don't re-implement: `Button`, `Container`, `Theme`,
+  `Icon`, `Section`, `PageHeader`, `Breadcrumb`, `Tabs`, `ProductRow`, `SpecTable`/`SpecGroups`,
+  `SpecMatrixTable`, `Status`, `Tag`, `Notice`, form controls, `AccordionItem`, `Figure`,
+  `Lightbox`, `Prose`, `DownloadList`. New primitives go in `components/ds` and get exported from
+  `index.ts`. Rules per surface: `docs/design-system/system/1-site.md`.
+- **«История» is frozen** on the old visual layer (`app/legacy.css`, `components/history/legacy/`)
+  until «История, часть II».
 - **Content patterns:** (1) MDX + zod frontmatter for product/marketing pages
   (`content/products/*.mdx` → `/catalog/[slug]`); (2) typed data module for complex editorial
   longreads (`content/company/istoriya.ts`). Validate frontmatter (build fails on invalid).
-- **Brand accent:** NAG = signal red. NOVIK tube line may shift accent to tube-glow amber
-  (`--nag-amber-500`); decide at the tube slice's brainstorm.
+- **Brand nuance:** one system for both brands; NOVIK differs only in the colour of the word NOVIK
+  (`text-novik`) in tube-section titles.
 - **Server components by default**; `"use client"` only for interactivity.
 
 ## 8. Per-slice recipe (how a future agent runs a slice)

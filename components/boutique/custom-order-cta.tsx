@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Container, buttonVariants } from "@/components/ds";
+import { Section, buttonVariants } from "@/components/ds";
 import { InquiryModal } from "@/components/inquiry";
 import type { BoutiqueCustom } from "@/lib/content/types";
 
@@ -8,36 +8,22 @@ export function CustomOrderCta({ custom }: { custom: BoutiqueCustom }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="custom" className="scroll-mt-20 border-t border-border bg-surface-2 py-16">
-      <Container>
-        <div className="reveal max-w-prose">
-          <h2
-            className="font-display uppercase text-text"
-            style={{
-              fontSize: "clamp(var(--text-2xl), 4vw, var(--text-3xl))",
-              lineHeight: "var(--lh-tight)",
-              letterSpacing: "var(--ls-tight)",
-            }}
-          >
-            {custom.title}
-          </h2>
-          {custom.body.map((p, i) => (
-            <p key={i} className="mt-4 text-text-muted" style={{ lineHeight: "var(--lh-relaxed)" }}>
-              {p}
-            </p>
-          ))}
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className={buttonVariants({ variant: "primary", size: "lg" })}
-            >
-              {custom.cta.label}
-            </button>
-          </div>
-        </div>
-      </Container>
+    <Section id="custom" title={custom.title}>
+      <div className="max-w-2xl">
+        {custom.body.map((p, i) => (
+          <p key={i} className="mt-0 mb-4 text-ink-2">
+            {p}
+          </p>
+        ))}
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className={buttonVariants({ variant: "primary", className: "mt-2 cursor-pointer" })}
+        >
+          {custom.cta.label}
+        </button>
+      </div>
       <InquiryModal open={open} onClose={() => setOpen(false)} kind="boutique" />
-    </section>
+    </Section>
   );
 }

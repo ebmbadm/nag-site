@@ -1,243 +1,117 @@
 @import "tailwindcss";
+@import "./legacy.css";
 
 /* ============================================================
-   NAG / NOVIK Design System — token port
-   Source: nag-novik-design-system (_ds tokens)
-   Light is the default surface. Dark bands use [data-surface="dark"].
-   Components MUST consume tokens — never hardcode hex.
+   NAG · NOVIK design system — token port
+   Source: docs/design-system/system/tokens.json (approved 2026-11-08).
+   Light is the default; [data-theme="dark"] flips every role for the one
+   dark band on the site. Components consume tokens only — no hex, no
+   arbitrary sizes.
    ============================================================ */
 
 @theme inline {
-  /* --- semantic colors (resolve to vars that flip per surface) --- */
   --color-bg: var(--bg);
-  --color-bg-raised: var(--bg-raised);
   --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-surface-inset: var(--surface-inset);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-border-faint: var(--border-faint);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
-  --color-text-faint: var(--text-faint);
-  --color-text-inverse: var(--text-inverse);
+  --color-surface-raised: var(--surface-raised);
+  --color-photo: var(--photo);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-control: var(--line-control);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --color-accent-press: var(--accent-press);
-  --color-accent-wash: var(--accent-wash);
   --color-on-accent: var(--on-accent);
-  --color-heat: var(--heat);
-  --color-glow: var(--glow);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-ok: var(--ok);
+  --color-novik: var(--novik);
+  --color-focus: var(--focus);
 
-  /* --- fixed palette (do not flip per surface) --- */
-  --color-paper: #fbfaf7;
-  --color-ivory: #f5f3ee;
-  --color-ink: #0b0b0d;
-  --color-red: #e11507;
-  --color-red-600: #c01206;
-  --color-red-700: #9e0e04;
-  --color-orange: #ff5a0c;
-  --color-amber: #f59e2e;
-  --color-amber-warn: #e6a400;
-  --color-green: #34b36a;
-  --color-photo-backdrop: #e9e9e5;
+  --font-sans: var(--font-golos), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  /* --- fonts (next/font binds --font-oswald / --font-golos / --font-jetbrains) --- */
-  --font-display: var(--font-oswald), "PT Sans Narrow", "Arial Narrow", system-ui, sans-serif;
-  --font-text: var(--font-golos), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--font-jetbrains), "SFMono-Regular", ui-monospace, monospace;
+  /* Site type scale (tokens.json → type.groups["Сайт"]) */
+  --text-site-display: 44px;
+  --text-site-display--line-height: 49px;
+  --text-site-display--letter-spacing: -0.02em;
+  --text-site-display--font-weight: 600;
+  --text-site-section: 28px;
+  --text-site-section--line-height: 34px;
+  --text-site-section--letter-spacing: -0.01em;
+  --text-site-section--font-weight: 600;
+  --text-site-title: 20px;
+  --text-site-title--line-height: 26px;
+  --text-site-title--font-weight: 600;
+  --text-site-lead: 19px;
+  --text-site-lead--line-height: 29px;
+  --text-site-body: 17px;
+  --text-site-body--line-height: 27px;
+  --text-site-small: 15px;
+  --text-site-small--line-height: 22px;
+  --text-site-caption: 13px;
+  --text-site-caption--line-height: 18px;
 
-  /* --- type scale (px, technical rhythm) --- */
-  --text-2xs: 11px;
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-base: 16px;
-  --text-md: 18px;
-  --text-lg: 21px;
-  --text-xl: 26px;
-  --text-2xl: 33px;
-  --text-3xl: 42px;
-  --text-4xl: 54px;
-  --text-5xl: 68px;
-  --text-6xl: 88px;
-  --text-7xl: 116px;
-
-  /* --- radii (hardware-square, small functional rounding) --- */
-  --radius-xs: 2px;
+  /* Radii: fields/tags 4, buttons 6, rare containers 8. Photos are never rounded. */
   --radius-sm: 4px;
   --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-xl: 14px;
-  --radius-pill: 999px;
+  --radius-lg: 8px;
 
-  /* --- containers --- */
-  --container-nag: 1240px;
-  --container-nag-wide: 1440px;
+  --shadow-raised: var(--raised-shadow);
+
+  /* Sizes */
+  --container-page: 1200px;
+  --spacing-photo-rack: 400px;
 }
 
-/* ============================================================
-   Raw token layer (referenced via var() in components)
-   ============================================================ */
-:root {
-  /* palette — blacks */
-  --nag-black-980: #08080a;
-  --nag-black-950: #0b0b0d;
-  --nag-black-900: #111114;
-  --nag-black-850: #16161b;
-  --nag-black-800: #1c1c22;
-  --nag-black-750: #232329;
-  /* palette — grays */
-  --nag-gray-700: #2e2e36;
-  --nag-gray-600: #3c3c45;
-  --nag-gray-500: #565660;
-  --nag-gray-400: #7b7b86;
-  --nag-gray-300: #a2a2ad;
-  --nag-gray-200: #c9c9d1;
-  --nag-gray-100: #e4e4e8;
-  /* palette — ivory / paper */
-  --nag-ivory-50: #f5f3ee;
-  --nag-ivory-100: #ece9e2;
-  --nag-ivory-200: #ded9cf;
-  --nag-paper: #fbfaf7;
-  --nag-white: #ffffff;
-  /* palette — red */
-  --nag-red-700: #9e0e04;
-  --nag-red-600: #c01206;
-  --nag-red-500: #e11507;
-  --nag-red-400: #f4361f;
-  --nag-red-300: #ff6a55;
-  --nag-red-100: #fbe1dc;
-  /* palette — accents */
-  --nag-orange-500: #ff5a0c;
-  --nag-amber-500: #f59e2e;
-  --nag-amber-300: #f8c57a;
-  --nag-amber-warn: #e6a400;
-  --nag-green-500: #34b36a;
-
-  /* semantic — LIGHT (default) */
-  --bg: #fbfaf7;
-  --bg-raised: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #ece9e2;
-  --surface-inset: #ded9cf;
-  --border: rgba(11, 11, 13, 0.12);
-  --border-strong: rgba(11, 11, 13, 0.2);
-  --border-faint: rgba(11, 11, 13, 0.06);
-  --text: #0b0b0d;
-  --text-muted: #54545e;
-  --text-faint: #87878f;
-  --text-inverse: #f5f3ee;
-  --accent: #e11507;
-  --accent-hover: #c01206;
-  --accent-press: #9e0e04;
-  --accent-wash: #fbe1dc;
+:root,
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --surface-raised: #ffffff;
+  --photo: #ffffff;
+  --line: #e5e5e5;
+  --line-strong: #cfcfcf;
+  --line-control: #8a8a8a;
+  --ink: #171717;
+  --ink-2: #595959;
+  --ink-3: #6b6b6b;
+  --accent: #d41406;
+  --accent-hover: #b01105;
   --on-accent: #ffffff;
-  --heat: #ff5a0c;
-  --glow: #f59e2e;
-  --focus-ring: #e11507;
-
-  /* line-height */
-  --lh-tight: 1.02;
-  --lh-snug: 1.14;
-  --lh-normal: 1.45;
-  --lh-relaxed: 1.65;
-
-  /* letter-spacing */
-  --ls-tight: -0.02em;
-  --ls-normal: 0;
-  --ls-wide: 0.04em;
-  --ls-label: 0.14em;
-  --ls-mono: 0.02em;
-
-  /* font weights */
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
-  --fw-bold: 700;
-
-  /* spacing (8px grid + 4px half-step) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
-  --space-32: 128px;
-  --space-40: 160px;
-
-  /* layout */
-  --container: 1240px;
-  --container-wide: 1440px;
-  --gutter: clamp(16px, 4vw, 48px);
-
-  /* borders */
-  --border-w: 1px;
-  --border-w-thick: 2px;
-  --border-w-rule: 3px;
-
-  /* control heights */
-  --control-sm: 32px;
-  --control-md: 40px;
-  --control-lg: 48px;
-  --control-xl: 56px;
-
-  /* elevation — light */
-  --shadow-0: none;
-  --shadow-1: 0 1px 2px rgba(11, 11, 13, 0.06), 0 1px 1px rgba(11, 11, 13, 0.04);
-  --shadow-2: 0 4px 14px rgba(11, 11, 13, 0.08), 0 1px 3px rgba(11, 11, 13, 0.06);
-  --shadow-3: 0 14px 32px rgba(11, 11, 13, 0.12), 0 4px 10px rgba(11, 11, 13, 0.07);
-  --shadow-4: 0 30px 64px rgba(11, 11, 13, 0.16), 0 10px 24px rgba(11, 11, 13, 0.1);
-  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.65), inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-
-  /* ambient colors — washes and soft overlays */
-  --ambient-amber: color-mix(in srgb, var(--nag-amber-500) 10%, transparent);
-
-  /* signal glows */
-  --glow-red: 0 0 0 1px rgba(225, 21, 7, 0.5), 0 0 18px rgba(225, 21, 7, 0.35);
-  --glow-amber: 0 0 22px rgba(245, 158, 46, 0.4);
-
-  /* motion */
-  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.6, 0, 0.2, 1);
-  --ease-snap: cubic-bezier(0.5, 0, 0.1, 1.2);
-  --dur-fast: 120ms;
-  --dur-base: 200ms;
-  --dur-slow: 360ms;
-
-  /* noise texture (fractal noise overlay used across the designs) */
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  --danger: #b01105;
+  --danger-soft: #fdecea;
+  --warn: #9a5b00;
+  --warn-soft: #fff4e0;
+  --ok: #2f7d47;
+  --novik: #8f5410;
+  --focus: #d41406;
+  --selection: #fbe3e0;
+  --raised-shadow: 0 1px 2px rgba(23, 23, 23, 0.12);
 }
 
-/* semantic — DARK surface band */
-[data-surface="dark"] {
-  --bg: #08080a;
-  --bg-raised: #111114;
-  --surface: #16161b;
-  --surface-2: #1c1c22;
-  --surface-inset: #2e2e36;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --border-faint: rgba(255, 255, 255, 0.05);
-  --text: #f5f3ee;
-  --text-muted: #a2a2ad;
-  --text-faint: #7b7b86;
-  --text-inverse: #0b0b0d;
-  --accent-hover: #f4361f;
-  --accent-press: #c01206;
-  --accent-wash: rgba(225, 21, 7, 0.14);
-  --focus-ring: #f4361f;
-
-  /* dark elevation — tight, deep, top highlight line */
-  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 14px rgba(0, 0, 0, 0.55);
-  --shadow-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 34px rgba(0, 0, 0, 0.6);
-  --shadow-4: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 28px 70px rgba(0, 0, 0, 0.66);
+[data-theme="dark"] {
+  --bg: #171717;
+  --surface: #1f1f1f;
+  --surface-raised: #2a2a2a;
+  --photo: #ededed;
+  --line: #2e2e2e;
+  --line-strong: #3d3d3d;
+  --line-control: #757575;
+  --ink: #f5f5f5;
+  --ink-2: #a3a3a3;
+  --ink-3: #8a8a8a;
+  --danger: #ff5a4d;
+  --danger-soft: #3a1714;
+  --warn: #e8a24a;
+  --warn-soft: #33270f;
+  --ok: #3fae62;
+  --novik: #e8a24a;
+  --focus: #ff5a4d;
+  --selection: #4a1e1a;
+  --raised-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================================
@@ -247,213 +121,109 @@
   box-sizing: border-box;
 }
 
-/* Smooth anchor scrolling is motion too: the history TOC and the product
-   quick-links (#specs / #docs / #software) must jump for anyone who asked
-   the OS for less movement. */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
 body {
   margin: 0;
   background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-text);
-  line-height: var(--lh-normal);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 27px;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-/* paper grain overlay */
-.bg-noise {
-  background-image: var(--noise);
+[data-theme] {
+  background-color: var(--bg);
+  color: var(--ink);
 }
 
-/* native disclosure marker reset (used by Accordion / details) */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* native disclosure marker reset (spec groups use <details>) */
 details > summary {
   list-style: none;
-  outline: none;
   cursor: pointer;
 }
 details > summary::-webkit-details-marker {
   display: none;
 }
 
-/* mono numerals align in spec tables */
-.tabular {
-  font-variant-numeric: tabular-nums;
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.6);
 }
 
 /* ============================================================
-   Keyframe animations
+   Motion — light and quiet (owner's decision 2026-11-08, replaces
+   "colour change only"). Feedback on interaction, a short entrance of
+   the first screen, and a soft fade-in of content on scroll. Nothing
+   loops, nothing moves more than 8px, everything stops for
+   prefers-reduced-motion.
    ============================================================ */
-@keyframes mobileNavIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
+:root {
+  --dur-quick: 120ms;
+  --dur-base: 240ms;
+  --dur-reveal: 520ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  @keyframes mobileNavIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+@utility transition-quick {
+  transition-property: color, background-color, border-color, text-decoration-color, opacity, transform;
+  transition-duration: var(--dur-quick);
+  transition-timing-function: ease-out;
 }
 
-/* ── Hero power-on ───────────────────────────────────────────
-   The landing's one authored sequence, played once on load: the rule
-   draws, the headline lines rise, the last line ignites red like a lamp
-   coming up, then the chassis lights and its meters run a self-test.
-   Every class below lives inside the no-preference guard, so with reduced
-   motion the hero simply renders in its final state — including
-   `.power-hairline`, which only borrows the border colour while it draws. */
-@keyframes powerRule {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-@keyframes powerRise {
-  from { opacity: 0; transform: translateY(14px); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: none; }
 }
 
-@keyframes powerIgnite {
-  0%   { opacity: 0; transform: translateY(14px); color: var(--text-faint); text-shadow: none; }
-  55%  { opacity: 1; transform: none; color: var(--accent); text-shadow: 0 0 26px rgba(225, 21, 7, 0.55); }
-  100% { opacity: 1; transform: none; color: var(--accent); text-shadow: none; }
-}
-
-@keyframes powerFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .power-rule {
-    transform-origin: left center;
-    animation: powerRule var(--dur-slow) var(--ease-out) var(--pd, 0ms) both;
+  html {
+    scroll-behavior: smooth;
   }
-  .power-hairline {
-    transform-origin: left center;
-    animation: powerRule 520ms var(--ease-out) var(--pd, 0ms) both;
-  }
-  .power-rise {
-    animation: powerRise 460ms var(--ease-out) var(--pd, 0ms) both;
-  }
-  .power-ignite {
-    animation: powerIgnite 620ms var(--ease-out) var(--pd, 0ms) both;
-  }
-  .power-fade {
-    animation: powerFade 500ms var(--ease-out) var(--pd, 0ms) both;
-  }
-}
 
-/* ── Reveal on entry ─────────────────────────────────────────
-   Scroll-driven: the animation is bound to the element's own progress
-   through the viewport, so there is no observer and no JS. The range
-   `entry 10% → cover 32%` matters — anything already on screen at load
-   has passed it and renders finished, so nothing can sit half faded
-   waiting for a scroll that never comes. Browsers without scroll-driven
-   animations skip the block entirely and just show the content.
-
-   `reveal-fade` (and its stagger) is the opacity-only variant for the
-   gap-px grids, where a sliding card would drag the seam colour with it. */
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
-@keyframes revealIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal,
-    .reveal-stagger > * {
-      animation: revealUp 460ms var(--ease-out) both;
-    }
-
-    .reveal-fade,
-    .reveal-fade-stagger > * {
-      animation: revealIn 460ms var(--ease-out) both;
-    }
-
-    .reveal,
-    .reveal-fade,
-    .reveal-stagger > *,
-    .reveal-fade-stagger > * {
-      animation-timeline: view();
-      animation-range: entry 10% cover 32%;
-    }
-
-    /* Siblings arrive as a list: each child's range opens a little later, so
-       the stagger is measured in scroll distance rather than in seconds. */
-    .reveal-stagger > *:nth-child(2),
-    .reveal-fade-stagger > *:nth-child(2) {
-      animation-range: entry 15% cover 37%;
-    }
-    .reveal-stagger > *:nth-child(3),
-    .reveal-fade-stagger > *:nth-child(3) {
-      animation-range: entry 20% cover 42%;
-    }
-    .reveal-stagger > *:nth-child(4),
-    .reveal-fade-stagger > *:nth-child(4) {
-      animation-range: entry 25% cover 47%;
-    }
-    .reveal-stagger > *:nth-child(n + 5),
-    .reveal-fade-stagger > *:nth-child(n + 5) {
-      animation-range: entry 30% cover 52%;
-    }
-  }
-}
-
-/* ── Entrance on load ────────────────────────────────────────
-   The scroll-driven reveal above cannot play for anything already on
-   screen when the page opens — its range is behind the scroll position by
-   then. So the first screen of every page uses a plain timed entrance
-   instead: the intro block, the hero media, the first grid. Everything
-   further down stays on `.reveal`. Total stagger is capped so the page is
-   never waiting on itself. */
-@media (prefers-reduced-motion: no-preference) {
-  .enter,
-  .enter-stagger > * {
-    animation: revealUp 460ms var(--ease-out) both;
-  }
+  /* First screen: plays once on load. */
   .enter {
-    animation-delay: var(--pd, 0ms);
+    animation: rise var(--dur-reveal) var(--ease-out) both;
+    animation-delay: var(--delay, 0ms);
   }
-  .enter-stagger > *:nth-child(1) { animation-delay: 60ms; }
-  .enter-stagger > *:nth-child(2) { animation-delay: 130ms; }
-  .enter-stagger > *:nth-child(3) { animation-delay: 200ms; }
-  .enter-stagger > *:nth-child(4) { animation-delay: 270ms; }
-  .enter-stagger > *:nth-child(5) { animation-delay: 340ms; }
-  .enter-stagger > *:nth-child(n + 6) { animation-delay: 400ms; }
-}
 
-/* ── Route change ────────────────────────────────────────────
-   app/template.tsx remounts on every navigation, so this plays once per
-   page. Short on purpose: a slow page transition reads as latency. */
-@keyframes routeEnter {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: none; }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .route-enter {
-    animation: routeEnter 260ms var(--ease-out) both;
+  /* Content below the fold: bound to its own scroll progress, no JS.
+     Anything already on screen at load is past the range and renders finished. */
+  @supports (animation-timeline: view()) {
+    .reveal,
+    .reveal-children > * {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
   }
-}
 
-/* ── Dialogs (photo lightbox, inquiry modal) ─────────────────
-   Transitions rather than keyframes, so the close is animated too:
-   `allow-discrete` keeps display/overlay alive for the exit. The base
-   hidden state lives inside the guard — with reduced motion the dialog
-   must appear instantly, not stay at opacity 0. */
-@media (prefers-reduced-motion: no-preference) {
+  /* Dialogs (inquiry form, photo): fade and settle in, fade out. */
   dialog {
     opacity: 0;
     transform: translateY(8px) scale(0.98);
@@ -473,29 +243,19 @@ details > summary::-webkit-details-marker {
       transform: translateY(8px) scale(0.98);
     }
   }
-
   dialog::backdrop {
-    background-color: rgb(0 0 0 / 0);
     transition:
       background-color var(--dur-base) var(--ease-out),
       overlay var(--dur-base) allow-discrete,
       display var(--dur-base) allow-discrete;
-  }
-  dialog[open]::backdrop {
-    background-color: rgb(0 0 0 / 0.55);
   }
   @starting-style {
     dialog[open]::backdrop {
       background-color: rgb(0 0 0 / 0);
     }
   }
-}
 
-/* ── Disclosure ──────────────────────────────────────────────
-   Spec groups and history chapters stop popping open. `interpolate-size`
-   is what makes height animate to `auto`; without support the disclosure
-   keeps its instant behaviour. */
-@media (prefers-reduced-motion: no-preference) {
+  /* Accordions open by height instead of popping. */
   @supports (interpolate-size: allow-keywords) {
     :root {
       interpolate-size: allow-keywords;
@@ -504,8 +264,8 @@ details > summary::-webkit-details-marker {
       block-size: 0;
       overflow-y: clip;
       transition:
-        block-size var(--dur-slow) var(--ease-out),
-        content-visibility var(--dur-slow) allow-discrete;
+        block-size var(--dur-base) var(--ease-out),
+        content-visibility var(--dur-base) allow-discrete;
     }
     details[open]::details-content {
       block-size: auto;
@@ -513,102 +273,8 @@ details > summary::-webkit-details-marker {
   }
 }
 
-/* spec ticker — shift exactly one of the four copies per cycle.
-   Four copies (not two) so the remaining tail still covers viewports
-   wider than a single copy; with two, a gap opened past ~1400px. */
-@keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-25%); }
-}
-
-.spec-ticker {
-  animation: ticker 28s linear infinite;
-}
-
-/* Hold the strip still so a spec can actually be read, and stop paying for
-   the loop once it is off screen (the component toggles [data-paused]). */
-.spec-rail:hover .spec-ticker,
-.spec-rail[data-paused] .spec-ticker {
-  animation-play-state: paused;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .spec-ticker {
-    animation: none;
+  .transition-quick {
+    transition: none;
   }
-}
-
-/* ============================================================
-   Motion utilities
-   ============================================================ */
-@utility transition-base {
-  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
-  transition-duration: var(--dur-base);
-  transition-timing-function: var(--ease-out);
-}
-
-@utility transition-slow {
-  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
-  transition-duration: var(--dur-slow);
-  transition-timing-function: var(--ease-out);
-}
-
-@utility glow-red {
-  box-shadow: var(--glow-red);
-}
-
-@utility glow-amber {
-  box-shadow: var(--glow-amber);
-}
-
-::selection {
-  background: var(--accent-wash);
-  color: var(--text);
-}
-
-/* ── LevelMeter (segmented VU/peak) ───────────────────────────── */
-.nag-meter {
-  display: inline-flex;
-  gap: 10px;
-  align-items: flex-end;
-  font-family: var(--font-mono);
-}
-.nag-meter__col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.nag-meter__track {
-  display: flex;
-  gap: 2px;
-  padding: 3px;
-  background: var(--nag-black-980);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-xs);
-  box-shadow: var(--shadow-inset);
-}
-.nag-meter--horizontal .nag-meter__track {
-  flex-direction: row-reverse;
-}
-.nag-meter--vertical .nag-meter__track {
-  flex-direction: column-reverse;
-}
-.nag-meter__seg {
-  border-radius: 1px;
-  transition:
-    opacity var(--dur-fast) linear,
-    background var(--dur-fast) linear;
-}
-.nag-meter--vertical .nag-meter__seg {
-  width: 14px;
-}
-.nag-meter--horizontal .nag-meter__seg {
-  height: 14px;
-}
-.nag-meter__label {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-faint);
 }

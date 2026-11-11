@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Сравнение шрифтов</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Golos+Text:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Inter:wght@400;500;600&amp;family=Onest:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#14171C}a:hover{color:#E11507}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1240px; box-sizing: border-box; padding: 64px; background: #F6F6F4; color: #141414; font-family: system-ui, -apple-system, sans-serif; display: flex; flex-direction: column; gap: 40px;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5C5C5C;">Шрифты · кириллица в деле</p>
+      <h1 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em;">Одна карточка товара в шести гарнитурах</h1>
+    </div>
+    <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.55; color: #555555;">Заголовок 34 px / 600, текст 16 px / 400, цифры с табличными знаками, техническая подпись моноширинным. Все шесть есть в Google Fonts с кириллицей.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; flex-grow: 1;">
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'IBM Plex Sans', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">IBM Plex Sans</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">→ направление A</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Инженерный, слегка механический. Своя пара Plex Mono из той же семьи. Лучший кандидат для таблиц характеристик.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'Geist', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">Geist</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">→ направление B</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Строгий, современный, плотный в крупных кеглях. Пара Geist Mono. Самый «продуктовый» из шести.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'Golos Text', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">Golos Text</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">→ направление C</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Рисовался под кириллицу (ParaType), поэтому русский текст в нём самый ровный. Уже стоит на сайте.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'Inter', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">Inter</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">→ направление D</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Самый нейтральный и предсказуемый. Хорошие цифры, но лица у сайта он не добавляет.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'Onest', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">Onest</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">дополнительно</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Нейтральный гротеск с родной кириллицей, чуть мягче Inter. Запасной вариант, если Golos покажется привычным.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E3E3E0; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px; font-family: 'Manrope', sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span style="font-size: 15px; font-weight: 600;">Manrope</span>
+        <span style="font-size: 12px; color: #5C5C5C; font-family: system-ui, sans-serif;">дополнительно</span>
+      </div>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em;">Усилитель мощности QM-400</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A4A;">Флагманский четырёхканальный усилитель NAG Class-TD для профессиональных систем. Один аппарат закрывает несколько независимых линий усиления.</p>
+      <p style="margin: 0; font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums;">4 × 2400 Вт · 199 900 ₽</p>
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5C5C5C;">Class-TD · 4 канала · 2U · 17,3 кг</p>
+      <p style="margin: auto 0 0; padding-top: 16px; border-top: 1px solid #ECECEA; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.5; color: #5C5C5C;">Широкий, геометричный, дружелюбный. Для каталога техники, пожалуй, слишком мягкий: показываю для контраста.</p>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

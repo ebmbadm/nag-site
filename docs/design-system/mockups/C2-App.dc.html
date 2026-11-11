@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>ПО процессора D-8000</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid #D41406;outline-offset:2px}
+button{font:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 1440px; height: 980px; box-sizing: border-box; background: {{t.bg}}; color: {{t.text}}; font-family: 'Golos Text', system-ui, sans-serif; font-size: 14px; line-height: 1.4; font-variant-numeric: tabular-nums; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Верхняя панель: прибор, пресет, запись -->
+  <div style="height: 56px; flex: 0 0 auto; box-sizing: border-box; padding: 0 16px; border-bottom: 1px solid {{t.line}}; display: flex; align-items: center; gap: 16px;">
+    <img src="{{t.logo}}" alt="NAG" style="height: 16px; width: auto; display: block; margin-right: 8px;">
+    <button type="button" style="height: 36px; padding: 0 10px 0 12px; border: 1px solid {{t.line2}}; border-radius: 6px; background: {{t.field}}; color: {{t.text}}; display: inline-flex; align-items: center; gap: 8px;">
+      <span style="font-weight: 600;">D-8000 Wi-Fi</span><span style="color: {{t.text2}};">Зал, левый портал</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: {{t.text2}};"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{t.green}};"></span>Wi-Fi, на связи</span>
+    <span style="flex: 1 1 auto;"></span>
+    <span style="font-size: 13px; color: {{t.text3}};">Пресет</span>
+    <button type="button" style="height: 36px; padding: 0 10px 0 12px; border: 1px solid {{t.line2}}; border-radius: 6px; background: {{t.field}}; color: {{t.text}}; display: inline-flex; align-items: center; gap: 8px;">
+      03 · Концерт
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <span style="width: 210px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: {{t.text2}};"><span style="width: 8px; height: 8px; border-radius: 999px; background: {{syncDot}}; flex: 0 0 auto;"></span>{{syncText}}</span>
+    <button type="button" onClick="{{undo}}" style="height: 36px; padding: 0 14px; border: 1px solid {{t.line2}}; border-radius: 6px; background: transparent; color: {{t.text}}; font-weight: 500;">Отменить</button>
+    <button type="button" onClick="{{write}}" style="height: 36px; padding: 0 16px; border: 0; border-radius: 6px; background: #D41406; color: #FFFFFF; font-weight: 500;">Записать в процессор</button>
+  </div>
+
+  <div style="flex: 1 1 auto; min-height: 0; display: flex;">
+
+    <!-- Устройства и пресеты -->
+    <aside aria-label="Устройства и пресеты" style="width: 200px; flex: 0 0 auto; box-sizing: border-box; padding: 16px 12px; background: {{t.panel}}; border-right: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 4px;">
+      <h2 style="margin: 0 8px 8px; font-size: 13px; font-weight: 600; color: {{t.text2}};">Устройства</h2>
+      <button type="button" aria-pressed="true" style="text-align: left; padding: 8px; border: 0; border-radius: 6px; background: {{t.sel}}; box-shadow: inset 0 0 0 1px {{t.line}}; color: {{t.text}}; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="width: 8px; height: 8px; margin-top: 6px; border-radius: 999px; background: {{t.green}}; flex: 0 0 auto;"></span>
+        <span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">Зал, левый портал</span><span style="font-size: 12px; color: {{t.text3}};">D-8000 Wi-Fi</span></span>
+      </button>
+      <button type="button" aria-pressed="false" style="text-align: left; padding: 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text}}; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="width: 8px; height: 8px; margin-top: 6px; border-radius: 999px; background: {{t.green}}; flex: 0 0 auto;"></span>
+        <span style="display: flex; flex-direction: column;"><span>Зал, правый портал</span><span style="font-size: 12px; color: {{t.text3}};">D-8000 Wi-Fi</span></span>
+      </button>
+      <button type="button" aria-pressed="false" style="text-align: left; padding: 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text2}}; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="width: 8px; height: 8px; margin-top: 6px; border-radius: 999px; border: 1.5px solid {{t.text3}}; box-sizing: border-box; flex: 0 0 auto;"></span>
+        <span style="display: flex; flex-direction: column;"><span>Сабвуферы, сцена</span><span style="font-size: 12px; color: {{t.text3}};">не в сети</span></span>
+      </button>
+      <button type="button" style="margin-top: 8px; height: 32px; border: 1px solid {{t.line2}}; border-radius: 6px; background: transparent; color: {{t.text}}; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 500;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        Найти в сети
+      </button>
+
+      <h2 style="margin: 28px 8px 8px; font-size: 13px; font-weight: 600; color: {{t.text2}};">Пресеты в процессоре</h2>
+      <button type="button" style="text-align: left; height: 32px; padding: 0 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text}};">01 · Речь</button>
+      <button type="button" style="text-align: left; height: 32px; padding: 0 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text}};">02 · Фоновая музыка</button>
+      <button type="button" aria-pressed="true" style="text-align: left; height: 32px; padding: 0 8px; border: 0; border-radius: 6px; background: {{t.sel}}; box-shadow: inset 0 0 0 1px {{t.line}}; color: {{t.text}}; font-weight: 500; display: flex; justify-content: space-between; align-items: center;">03 · Концерт
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button>
+      <button type="button" style="text-align: left; height: 32px; padding: 0 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text3}};">04 · пусто</button>
+      <button type="button" style="text-align: left; height: 32px; padding: 0 8px; border: 0; border-radius: 6px; background: transparent; color: {{t.text3}};">05 · пусто</button>
+      <p style="margin: 8px 8px 0; font-size: 12px; color: {{t.text3}};">Всего ячеек: 30</p>
+    </aside>
+
+    <main style="flex: 1 1 auto; min-width: 0; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+
+      <!-- Все каналы: одна таблица, столбцы идут по пути сигнала -->
+      <div role="table" aria-label="Каналы процессора" style="flex: 0 0 auto;">
+        <div role="row" style="display: grid; grid-template-columns: 36px 136px 92px 100px 100px 92px 104px 104px 108px 104px minmax(0, 1fr) 44px; align-items: center; height: 28px; font-size: 12px; color: {{t.text3}};">
+          <span role="columnheader" style="padding: 0 4px;">№</span>
+          <span role="columnheader" style="padding: 0 8px;">Название</span>
+          <span role="columnheader" style="padding: 0 8px;">Источник</span>
+          <span role="columnheader" style="padding: 0 8px;">Усиление</span>
+          <span role="columnheader" style="padding: 0 8px;">Задержка</span>
+          <span role="columnheader" style="padding: 0 8px;">Полярность</span>
+          <span role="columnheader" style="padding: 0 8px;">ФВЧ</span>
+          <span role="columnheader" style="padding: 0 8px;">ФНЧ</span>
+          <span role="columnheader" style="padding: 0 8px;">Эквалайзер</span>
+          <span role="columnheader" style="padding: 0 8px;">Гейт / лимитер</span>
+          <span role="columnheader" style="padding: 0 8px;">Уровень</span>
+          <span role="columnheader" aria-label="Без звука"></span>
+        </div>
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+          <div role="rowgroup">
+            <div role="row" style="height: 36px; box-sizing: border-box; display: flex; align-items: flex-end; padding: 0 4px 6px; border-bottom: 1px solid {{t.line2}};">
+              <span role="rowheader" style="font-size: 13px; font-weight: 600; color: {{t.text2}};">{{g.title}}</span>
+            </div>
+            <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+              <div role="row" style="display: grid; grid-template-columns: 36px 136px 92px 100px 100px 92px 104px 104px 108px 104px minmax(0, 1fr) 44px; align-items: center; height: 36px; box-sizing: border-box; background: {{r.rowBg}}; border-bottom: 1px solid {{t.line}}; color: {{r.color}};">
+                <span role="cell" style="padding: 0 4px; font-weight: 600;">{{r.id}}</span>
+                <sc-for list="{{r.cells}}" as="c" hint-placeholder-count="9">
+                  <span role="cell" style="padding: 0 2px; min-width: 0;">
+                    <sc-if value="{{c.na}}" hint-placeholder-val="{{ false }}"><span style="display: block; padding: 0 6px; color: {{t.text3}};">—</span></sc-if>
+                    <sc-if value="{{c.ok}}" hint-placeholder-val="{{ true }}">
+                      <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.selected}}" style="display: block; width: 100%; height: 28px; padding: 0 6px; border: 0; border-radius: 4px; background: {{c.bg}}; box-shadow: {{c.ring}}; color: {{c.color}}; font-weight: {{c.weight}}; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{c.text}}</button>
+                    </sc-if>
+                  </span>
+                </sc-for>
+                <span role="cell" style="padding: 0 8px; display: flex; align-items: center; gap: 8px; min-width: 0;">
+                  <span aria-hidden="true" style="width: 72px; height: 6px; border-radius: 3px; background: {{t.track}}; overflow: hidden; flex: 0 0 auto;"><span style="display: block; height: 6px; width: {{r.fillW}}px; background: {{r.fill}};"></span></span>
+                  <span style="font-size: 12px; color: {{r.levelColor}}; font-weight: {{r.levelWeight}}; white-space: nowrap;">{{r.levelText}}</span>
+                </span>
+                <span role="cell" style="display: flex; justify-content: flex-end; padding-right: 4px;">
+                  <button type="button" onClick="{{r.toggleMute}}" aria-pressed="{{r.muted}}" aria-label="Без звука: {{r.label}}" style="width: 28px; height: 28px; padding: 0; border: {{r.muteBorder}}; border-radius: 4px; background: {{r.muteBg}}; color: {{r.muteFg}}; font-size: 12px; font-weight: 600;">M</button>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Редактор выбранной ячейки -->
+      <section aria-label="Редактор параметра" style="flex: 1 1 auto; min-height: 0; border: 1px solid {{t.line}}; border-radius: 8px; display: flex; flex-direction: column;">
+        <div style="height: 44px; flex: 0 0 auto; box-sizing: border-box; padding: 0 12px 0 16px; border-bottom: 1px solid {{t.line}}; display: flex; align-items: center; gap: 12px;">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap;">{{ed.title}}</h2>
+          <span style="color: {{t.text2}}; white-space: nowrap;">{{ed.subtitle}}</span>
+          <span style="flex: 1 1 auto;"></span>
+          <button type="button" style="height: 32px; padding: 0 12px; border: 1px solid {{t.line2}}; border-radius: 6px; background: transparent; color: {{t.text}}; font-weight: 500;">Копировать на другой канал</button>
+        </div>
+
+        <div style="flex: 1 1 auto; min-height: 0; padding: 12px 16px; display: flex; gap: 24px;">
+            <div style="position: relative; width: 708px; height: 276px; flex: 0 0 auto;">
+              <div aria-hidden="true" style="position: absolute; right: 8px; top: 4px; display: flex; gap: 16px; font-size: 12px; color: {{t.text2}}; background: {{t.bg}}; padding: 2px 6px; border-radius: 4px; z-index: 1;">
+                <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 2px; background: {{t.curve}};"></span>{{ed.short}}</span>
+                <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 1px; background: {{t.curveOther}}; box-shadow: 0 0 0 0.5px {{t.curveOther}};"></span>{{ed.peers}}</span>
+              </div>
+              <svg width="708" height="276" viewBox="0 0 708 276" role="img" aria-label="Частотная характеристика: {{ed.title}}" style="position: absolute; left: 0; top: 0; display: block;">
+                <path d="{{gridPath}}" stroke="{{t.grid}}" stroke-width="1" fill="none"></path>
+                <path d="{{zeroPath}}" stroke="{{t.grid0}}" stroke-width="1" fill="none"></path>
+                <path d="{{othersPath}}" stroke="{{t.curveOther}}" stroke-width="1.25" fill="none" stroke-linejoin="round"></path>
+                <path d="{{selPath}}" stroke="{{t.curve}}" stroke-width="2" fill="none" stroke-linejoin="round"></path>
+              </svg>
+              <sc-for list="{{fLabels}}" as="l" hint-placeholder-count="10">
+                <span style="position: absolute; left: {{l.left}}px; top: 256px; width: 40px; text-align: center; font-size: 12px; color: {{t.text3}};">{{l.text}}</span>
+              </sc-for>
+              <sc-for list="{{dLabels}}" as="l" hint-placeholder-count="7">
+                <span style="position: absolute; left: 0; top: {{l.top}}px; width: 30px; text-align: right; font-size: 12px; color: {{t.text3}};">{{l.text}}</span>
+              </sc-for>
+              <sc-for list="{{markers}}" as="m" hint-placeholder-count="2">
+                <span style="position: absolute; left: {{m.left}}px; top: {{m.top}}px; width: 20px; height: 20px; box-sizing: border-box; border: 1.5px solid {{t.curve}}; border-radius: 999px; background: {{t.markerFill}}; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600;">{{m.n}}</span>
+              </sc-for>
+            </div>
+            <div style="width: 440px; flex: 0 0 auto; align-self: flex-start;">
+            <sc-if value="{{ed.isEq}}" hint-placeholder-val="{{ true }}">
+            <div role="table" aria-label="Фильтры и полосы эквалайзера">
+              <div role="row" style="display: grid; grid-template-columns: 84px 124px 88px 88px 56px; align-items: center; height: 24px; font-size: 12px; color: {{t.text3}};">
+                <span role="columnheader">Фильтр</span>
+                <span role="columnheader">Тип</span>
+                <span role="columnheader" style="text-align: right;">Частота</span>
+                <span role="columnheader" style="text-align: right;">Усиление</span>
+                <span role="columnheader" style="text-align: right;">Q</span>
+              </div>
+              <sc-for list="{{bands}}" as="b" hint-placeholder-count="8">
+                <div role="row" style="display: grid; grid-template-columns: 84px 124px 88px 88px 56px; align-items: center; height: 30px; box-sizing: border-box; border-top: 1px solid {{t.line}}; background: {{b.bg}};">
+                  <span role="rowheader" style="font-weight: 500; white-space: nowrap;">{{b.k}}</span>
+                  <span role="cell" style="color: {{b.typeColor}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{b.type}}</span>
+                  <sc-for list="{{b.vals}}" as="v" hint-placeholder-count="3">
+                    <span role="cell" style="display: flex; justify-content: flex-end; padding-left: 8px; min-width: 0;">
+                      <sc-if value="{{v.on}}" hint-placeholder-val="{{ true }}"><span style="display: flex; align-items: center; justify-content: flex-end; width: 100%; height: 24px; box-sizing: border-box; padding: 0 6px; border: 1px solid {{t.line2}}; border-radius: 4px; background: {{t.field}}; white-space: nowrap;">{{v.text}}</span></sc-if>
+                      <sc-if value="{{v.off}}" hint-placeholder-val="{{ false }}"><span style="padding-right: 6px; color: {{t.text3}};">—</span></sc-if>
+                    </span>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ed.isParam}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 4px;">
+            <sc-if value="{{ed.hasOptions}}" hint-placeholder-val="{{ false }}">
+              <div role="group" aria-label="{{ed.subtitle}}" style="display: inline-flex; align-self: flex-start; padding: 3px; background: {{t.panel}}; border-radius: 6px; gap: 2px;">
+                <sc-for list="{{ed.options}}" as="o" hint-placeholder-count="2">
+                  <button type="button" onClick="{{o.pick}}" aria-pressed="{{o.on}}" style="height: 32px; min-width: 56px; padding: 0 14px; border: 0; border-radius: 4px; background: {{o.bg}}; box-shadow: {{o.shadow}}; color: {{o.color}}; font-weight: {{o.weight}};">{{o.text}}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-for list="{{ed.fields}}" as="f" hint-placeholder-count="2">
+              <div style="display: grid; grid-template-columns: 120px 180px; align-items: center; gap: 12px;">
+                <span style="font-size: 13px; color: {{t.text2}};">{{f.label}}</span>
+                <span style="display: flex; align-items: center; justify-content: flex-end; height: 36px; box-sizing: border-box; padding: 0 10px; border: 1px solid {{t.line2}}; border-radius: 4px; background: {{t.field}}; font-weight: 500;">{{f.value}}</span>
+              </div>
+            </sc-for>
+            <p style="margin: 0; max-width: 34em; font-size: 13px; color: {{t.text3}};">{{ed.note}}</p>
+            </div>
+            </sc-if>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["Светлая","Тёмная"],"default":"Светлая","section":"Тема"},"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: { kind: 'out', id: 3, stage: 'eq' }, muted: { 'out8': true }, inv: {}, src: {}, dirty: 0 };
+  }
+
+  renderVals() {
+    const dark = (this.props.theme ?? 'Светлая') === 'Тёмная';
+    const t = dark ? {
+      bg: '#171717', panel: '#1F1F1F', sel: '#2A2A2A', rowSel: '#1F1F1F', line: '#2E2E2E', line2: '#3D3D3D',
+      text: '#F5F5F5', text2: '#A3A3A3', text3: '#8A8A8A', track: '#2E2E2E',
+      green: '#3FAE62', amber: '#E8A24A', red: '#FF5A4D', grid: '#262626', grid0: '#3D3D3D',
+      curve: '#F5F5F5', curveOther: '#4A4A4A', field: '#1F1F1F', markerFill: '#171717',
+      logo: '/_blob/4b225dda936476e05bc0ca13b2b21b07'
+    } : {
+      bg: '#FFFFFF', panel: '#F5F5F5', sel: '#FFFFFF', rowSel: '#F5F5F5', line: '#E5E5E5', line2: '#CFCFCF',
+      text: '#171717', text2: '#595959', text3: '#737373', track: '#E5E5E5',
+      green: '#2F9E55', amber: '#D9930D', red: '#D41406', grid: '#EDEDED', grid0: '#CFCFCF',
+      curve: '#171717', curveOther: '#CFCFCF', field: '#FFFFFF', markerFill: '#FFFFFF',
+      logo: '/_blob/792df371b8d19474812147cf8808ca21'
+    };
+
+    const S = this.state;
+    const bump = (patch) => this.setState(Object.assign({}, patch, { dirty: S.dirty + 1 }));
+    const sign = (v) => (v < 0 ? '−' : (v > 0 ? '+' : ''));
+    const g1 = (v) => sign(v) + Math.abs(v).toFixed(1).replace('.', ',');
+    const ms = (v) => v.toFixed(2).replace('.', ',') + ' мс';
+    const hz = (f) => f >= 1000 ? String(Math.round(f / 100) / 10).replace('.', ',') + ' кГц' : Math.round(f) + ' Гц';
+    const qf = (q) => q.toFixed(1).replace('.', ',');
+    const bandsWord = (n) => n === 1 ? 'полоса' : (n < 5 ? 'полосы' : 'полос');
+    const pct = (lv) => Math.max(0, Math.min(1, (lv + 60) / 60));
+    const meterColor = (lv) => lv > -3 ? t.red : (lv > -10 ? t.amber : t.green);
+    const passName = (p) => (p.k === 'LR' ? 'LR ' : 'BW ') + (p.o * 6) + ' дБ/окт';
+
+    const sat = [{ t: 'peak', f: 2500, g: -2, q: 2 }, { t: 'hs', f: 8000, g: -1.5, q: 0.7 }];
+    const sub = [{ t: 'peak', f: 55, g: 3, q: 1.4 }, { t: 'peak', f: 80, g: -2.5, q: 2 }];
+    const mon = [{ t: 'peak', f: 250, g: -4, q: 1.2 }, { t: 'peak', f: 3200, g: -3, q: 3 }];
+    const ins = [
+      { kind: 'in', id: 'A', name: 'Пульт L', gain: 0, delay: 0, level: -12, peq: [], gate: null },
+      { kind: 'in', id: 'B', name: 'Пульт R', gain: 0, delay: 0, level: -13, peq: [], gate: null },
+      { kind: 'in', id: 'C', name: 'Пульт моно', gain: -3, delay: 0, level: -18, peq: [], gate: null },
+      { kind: 'in', id: 'D', name: 'Мониторы', gain: 0, delay: 0, level: -6, peq: [{ t: 'peak', f: 160, g: -3, q: 1 }], gate: null }
+    ];
+    const outs = [
+      { kind: 'out', id: 1, name: 'Сателлит Л', src: 'A', gain: -2, delay: 0, level: -14, hp: { k: 'LR', o: 4, f: 90 }, lp: null, peq: sat, lim: 10 },
+      { kind: 'out', id: 2, name: 'Сателлит П', src: 'B', gain: -2, delay: 0, level: -15, hp: { k: 'LR', o: 4, f: 90 }, lp: null, peq: sat, lim: 10 },
+      { kind: 'out', id: 3, name: 'Саб Л', src: 'A', gain: 0, delay: 4.2, level: -9, hp: { k: 'LR', o: 4, f: 30 }, lp: { k: 'LR', o: 4, f: 100 }, peq: sub, lim: 8 },
+      { kind: 'out', id: 4, name: 'Саб П', src: 'B', gain: 0, delay: 4.2, level: -10, hp: { k: 'LR', o: 4, f: 30 }, lp: { k: 'LR', o: 4, f: 100 }, peq: sub, lim: 8 },
+      { kind: 'out', id: 5, name: 'Фронтфил', src: 'C', gain: -6, delay: 12.5, level: -20, hp: { k: 'LR', o: 4, f: 120 }, lp: null, peq: [{ t: 'peak', f: 1200, g: -2, q: 1.5 }, { t: 'hs', f: 8000, g: -3, q: 0.7 }], lim: 6 },
+      { kind: 'out', id: 6, name: 'Монитор 1', src: 'D', gain: -3, delay: 0, level: -4, hp: { k: 'BW', o: 2, f: 80 }, lp: null, peq: mon, lim: 4 },
+      { kind: 'out', id: 7, name: 'Монитор 2', src: 'D', gain: -3, delay: 0, level: -1, hp: { k: 'BW', o: 2, f: 80 }, lp: null, peq: mon, lim: 4 },
+      { kind: 'out', id: 8, name: 'Резерв', src: null, gain: 0, delay: 0, level: -90, hp: null, lp: null, peq: [], lim: null }
+    ];
+    outs.forEach((o) => { if (S.src[o.id] !== undefined) o.src = S.src[o.id]; });
+    const key = (ch) => ch.kind + ch.id;
+    const all = ins.concat(outs);
+    const cur = all.find((c) => c.kind === S.sel.kind && c.id === S.sel.id);
+    const stage = S.sel.stage;
+    const isInv = (ch) => !!S.inv[key(ch)];
+
+    const STAGES = ['name', 'src', 'gain', 'delay', 'pol', 'hp', 'lp', 'eq', 'dyn'];
+    const cellText = (ch, st) => {
+      if (st === 'name') return ch.name;
+      if (st === 'src') return ch.kind === 'in' ? 'Аналог' : (ch.src ? 'Вход ' + ch.src : 'Нет');
+      if (st === 'gain') return g1(ch.gain) + ' дБ';
+      if (st === 'delay') return ms(ch.delay);
+      if (st === 'pol') return isInv(ch) ? 'Инв.' : 'Норм.';
+      if (st === 'hp') return ch.hp ? hz(ch.hp.f) + ' · ' + ch.hp.k : 'Выкл.';
+      if (st === 'lp') return ch.lp ? hz(ch.lp.f) + ' · ' + ch.lp.k : 'Выкл.';
+      if (st === 'eq') return ch.peq.length ? ch.peq.length + ' ' + bandsWord(ch.peq.length) : 'Выкл.';
+      if (ch.kind === 'in') return ch.gate ? ch.gate : 'Гейт выкл.';
+      return ch.lim === null ? 'Выкл.' : sign(ch.lim) + ch.lim + ' dBu';
+    };
+    const rowOf = (ch) => {
+      const muted = !!S.muted[key(ch)];
+      const rowSelected = ch.kind === S.sel.kind && ch.id === S.sel.id;
+      const cells = STAGES.map((st) => {
+        const na = ch.kind === 'in' && (st === 'hp' || st === 'lp');
+        const selected = rowSelected && st === stage;
+        const txt = cellText(ch, st);
+        const off = txt === 'Выкл.' || txt === 'Гейт выкл.' || txt === 'Нет' || (st === 'pol' && !isInv(ch)) || (st === 'delay' && ch.delay === 0);
+        return {
+          na: na, ok: !na, text: txt, selected: selected,
+          color: (muted || off) && !selected ? t.text3 : t.text,
+          bg: selected ? t.sel : 'transparent',
+          ring: selected ? 'inset 0 0 0 1.5px ' + t.text : 'none',
+          weight: (st === 'name' || selected) ? 500 : 400,
+          pick: () => this.setState({ sel: { kind: ch.kind, id: ch.id, stage: st } })
+        };
+      });
+      const clip = !muted && ch.level > -3;
+      return {
+        id: ch.id, label: (ch.kind === 'in' ? 'вход ' : 'выход ') + ch.id, cells: cells, muted: muted,
+        rowBg: rowSelected ? t.rowSel : 'transparent',
+        color: muted ? t.text3 : t.text,
+        fillW: muted ? 0 : Math.round(pct(ch.level) * 72), fill: meterColor(ch.level),
+        levelText: muted ? 'без звука' : (clip ? 'перегрузка' : (ch.level <= -60 ? '—' : sign(ch.level) + Math.abs(ch.level) + ' дБ')),
+        levelColor: clip ? t.red : t.text3, levelWeight: clip ? 600 : 400,
+        muteBg: muted ? '#D41406' : 'transparent', muteFg: muted ? '#FFFFFF' : t.text,
+        muteBorder: muted ? '1px solid #D41406' : '1px solid ' + t.line2,
+        toggleMute: () => { const m = Object.assign({}, S.muted); m[key(ch)] = !m[key(ch)]; bump({ muted: m }); }
+      };
+    };
+    const groups = [
+      { title: 'Входы', rows: ins.map(rowOf) },
+      { title: 'Выходы', rows: outs.map(rowOf) }
+    ];
+
+    // Частотная характеристика
+    const resp = (ch, f) => {
+      let db = ch.gain;
+      ch.peq.forEach((b) => {
+        const w = f / b.f, A = Math.pow(10, b.g / 40), sA = Math.sqrt(A);
+        let nr, ni, dr, di, k = 0;
+        if (b.t === 'peak') { nr = 1 - w * w; ni = w * A / b.q; dr = 1 - w * w; di = w / (A * b.q); }
+        else if (b.t === 'ls') { nr = A - w * w; ni = sA / b.q * w; dr = 1 - A * w * w; di = ni; k = 20 * Math.log10(A); }
+        else { nr = 1 - A * w * w; ni = sA / b.q * w; dr = A - w * w; di = ni; k = 20 * Math.log10(A); }
+        db += k + 10 * Math.log10((nr * nr + ni * ni) / (dr * dr + di * di));
+      });
+      const pass = (p, r) => p.k === 'LR' ? 1 / (1 + Math.pow(r, p.o)) : 1 / Math.sqrt(1 + Math.pow(r, 2 * p.o));
+      if (ch.hp) db += 20 * Math.log10(pass(ch.hp, ch.hp.f / f));
+      if (ch.lp) db += 20 * Math.log10(pass(ch.lp, f / ch.lp.f));
+      return db;
+    };
+    const x0 = 36, x1 = 700, y0 = 8, y1 = 248;
+    const X = (f) => x0 + Math.log10(f / 20) / 3 * (x1 - x0);
+    const Y = (db) => y0 + (15 - Math.max(-30, Math.min(15, db))) / 45 * (y1 - y0);
+    const freqs = [];
+    for (let i = 0; i < 160; i++) freqs.push(20 * Math.pow(10, 3 * i / 159));
+    const pathOf = (ch) => freqs.map((f, i) => (i ? 'L' : 'M') + X(f).toFixed(1) + ' ' + Y(resp(ch, f)).toFixed(1)).join(' ');
+    const peers = cur.kind === 'out' ? outs : ins;
+    const othersPath = peers.filter((c) => c !== cur && !S.muted[key(c)] && (c.kind === 'in' || c.src)).map(pathOf).join(' ');
+    const vt = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
+    const vtText = ['20', '50', '100', '200', '500', '1к', '2к', '5к', '10к', '20к'];
+    const gridPath = vt.map((f) => 'M' + X(f).toFixed(1) + ' ' + y0 + ' V' + y1).join(' ') + ' ' + [12, 6, -6, -12, -18, -24].map((d) => 'M' + x0 + ' ' + Y(d).toFixed(1) + ' H' + x1).join(' ');
+    const typeName = { peak: 'Пик', ls: 'Полка НЧ', hs: 'Полка ВЧ' };
+    const on = (text) => ({ on: true, off: false, text: text });
+    const off = { on: false, off: true, text: '' };
+    const bands = [];
+    if (cur.kind === 'out') {
+      [['ФВЧ', cur.hp, 'hp'], ['ФНЧ', cur.lp, 'lp']].forEach((p) => bands.push(p[1]
+        ? { k: p[0], type: passName(p[1]), typeColor: t.text, vals: [on(hz(p[1].f)), off, off], bg: stage === p[2] ? t.rowSel : 'transparent' }
+        : { k: p[0], type: 'Выкл.', typeColor: t.text3, vals: [off, off, off], bg: stage === p[2] ? t.rowSel : 'transparent' }));
+    }
+    const nBands = cur.kind === 'out' ? 6 : 8;
+    for (let i = 0; i < nBands; i++) {
+      const b = cur.peq[i];
+      bands.push(b
+        ? { k: 'Полоса ' + (i + 1), type: typeName[b.t], typeColor: t.text, vals: [on(hz(b.f)), on(g1(b.g) + ' дБ'), on(qf(b.q))], bg: 'transparent' }
+        : { k: 'Полоса ' + (i + 1), type: 'Выкл.', typeColor: t.text3, vals: [off, off, off], bg: 'transparent' });
+    }
+
+    // Редактор
+    const chTitle = (cur.kind === 'in' ? 'Вход ' : 'Выход ') + cur.id + ' · ' + cur.name;
+    const seg = (items, curVal, set) => items.map((it) => ({
+      text: it[1], on: it[0] === curVal,
+      bg: it[0] === curVal ? t.sel : 'transparent',
+      shadow: it[0] === curVal ? '0 1px 2px rgba(0,0,0,0.12), inset 0 0 0 1px ' + t.line : 'none',
+      color: it[0] === curVal ? t.text : t.text2, weight: it[0] === curVal ? 500 : 400,
+      pick: () => set(it[0])
+    }));
+    let ed = { title: chTitle, isEq: false, isParam: true, hasOptions: false, options: [], fields: [], note: '', subtitle: '',
+      short: (cur.kind === 'in' ? 'Вход ' : 'Выход ') + cur.id, peers: cur.kind === 'in' ? 'другие входы' : 'другие выходы' };
+    if (stage === 'hp' || stage === 'lp' || stage === 'eq') {
+      ed = Object.assign(ed, { isEq: true, isParam: false, subtitle: cur.kind === 'out' ? 'Фильтры и эквалайзер' : 'Эквалайзер, 8 полос' });
+    } else if (stage === 'gain') {
+      ed = Object.assign(ed, { subtitle: 'Усиление', fields: [{ label: 'Усиление', value: g1(cur.gain) + ' дБ' }], note: 'От −40 до +15 дБ, шаг 0,1 дБ.' });
+    } else if (stage === 'delay') {
+      ed = Object.assign(ed, { subtitle: 'Задержка', fields: [{ label: 'Время', value: ms(cur.delay) }, { label: 'Расстояние', value: (cur.delay * 0.346).toFixed(2).replace('.', ',') + ' м' }], note: 'До 1000 мс на каждом входе и выходе: это 346 м.' });
+    } else if (stage === 'pol') {
+      const k = key(cur);
+      ed = Object.assign(ed, { subtitle: 'Полярность', hasOptions: true, options: seg([[false, 'Норм. +'], [true, 'Инв. −']], isInv(cur), (v) => { const m = Object.assign({}, S.inv); m[k] = v; bump({ inv: m }); }), note: 'Инвертированная полярность меняет фазу сигнала на 180°.' });
+    } else if (stage === 'src') {
+      if (cur.kind === 'out') {
+        ed = Object.assign(ed, { subtitle: 'Источник', hasOptions: true, options: seg([['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D'], [null, 'Нет']], cur.src, (v) => { const m = Object.assign({}, S.src); m[cur.id] = v; bump({ src: m }); }), note: 'Любой выход можно связать с любым входом.' });
+      } else {
+        ed = Object.assign(ed, { subtitle: 'Тип входа', hasOptions: true, options: seg([['an', 'Аналог'], ['aes', 'AES/EBU']], 'an', () => {}), note: 'Цифровой вход AES/EBU есть на входах A и C.' });
+      }
+    } else if (stage === 'dyn') {
+      ed = cur.kind === 'out'
+        ? Object.assign(ed, { subtitle: 'Лимитер', fields: [{ label: 'Порог', value: cur.lim === null ? 'Выкл.' : sign(cur.lim) + cur.lim + ' dBu' }, { label: 'Атака', value: '5,0 мс' }, { label: 'Затухание', value: '200 мс' }], note: 'Порог от −20 до +20 dBu, атака 0,3–90 мс, затухание 1,2–2880 мс.' })
+        : Object.assign(ed, { subtitle: 'Шумоподавитель', fields: [{ label: 'Состояние', value: 'Выкл.' }], note: 'Шумоподавитель настраивается на каждом входе.' });
+    } else {
+      ed = Object.assign(ed, { subtitle: 'Название', fields: [{ label: 'Название канала', value: cur.name }], note: 'Название видно в программе и на дисплее процессора.' });
+    }
+
+    const n = S.dirty;
+    const plural = (k) => (k % 10 === 1 && k % 100 !== 11) ? 'изменение' : ((k % 10 >= 2 && k % 10 <= 4 && (k % 100 < 10 || k % 100 >= 20)) ? 'изменения' : 'изменений');
+
+    return {
+      t: t, groups: groups, ed: ed, bands: bands,
+      gridPath: gridPath, zeroPath: 'M' + x0 + ' ' + Y(0).toFixed(1) + ' H' + x1,
+      othersPath: othersPath, selPath: pathOf(cur),
+      fLabels: vt.map((f, i) => ({ left: Math.round(X(f) - 20), text: vtText[i] })),
+      dLabels: [12, 6, 0, -6, -12, -18, -24].map((d) => ({ top: Math.round(Y(d) - 8), text: sign(d) + Math.abs(d) })),
+      markers: cur.peq.map((b, i) => ({ n: i + 1, left: Math.round(X(b.f) - 10), top: Math.round(Y(resp(cur, b.f)) - 10) })),
+      syncDot: n ? t.amber : t.green,
+      syncText: n ? 'Не записано: ' + n + ' ' + plural(n) : 'Совпадает с процессором',
+      write: () => this.setState({ dirty: 0 }),
+      undo: () => this.setState({ muted: { 'out8': true }, inv: {}, src: {}, dirty: 0 })
+    };
+  }
+}
+</script>
+</body>
+</html>

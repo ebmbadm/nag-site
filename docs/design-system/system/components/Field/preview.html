@@ -1,0 +1,16 @@
+<!-- @dsCard group="Формы" height=300 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Field</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '24px 32px' } },
+    h(N.Field, { label: 'Телефон', type: 'tel', placeholder: '+7', help: 'Перезвоним в рабочее время.' }),
+    h(N.Field, { label: 'Почта', type: 'email', defaultValue: 'sound.example.ru', error: 'В адресе нет символа @. Проверьте и введите ещё раз.' }),
+    h('div', { style: { gridColumn: '1 / -1' } }, h(N.Field, { label: 'Задача', multiline: true, rows: 3, defaultValue: 'Зал на 400 мест, два портала и сабвуферы.' })),
+    h(N.Field, { label: 'Задержка, мс', size: 'sm', defaultValue: '4,20' })));
+</script>
+</body>
+</html>

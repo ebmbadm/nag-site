@@ -1,0 +1,13 @@
+<!-- @dsCard group="Программа" height=150 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Meter</title></head>
+<body>
+<div id="root" class="nag-demo nag-demo--col nag-demo--app"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(N.Meter, { level: -14 }), h(N.Meter, { level: -4 }), h(N.Meter, { level: -1 }), h(N.Meter, { level: -9, muted: true })));
+</script>
+</body>
+</html>

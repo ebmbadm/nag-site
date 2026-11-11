@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { getProduct } from "@/lib/content/products";
 import { AmplifiersCategoryPage } from "../amplifiers-category-page";
@@ -15,7 +15,14 @@ describe("AmplifiersCategoryPage", () => {
     expect(screen.getByRole("heading", { name: "QM-400" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "TD-100 / TD-80" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "TD-40 / TD-30" })).toBeInTheDocument();
-    expect(screen.getByRole("table", { name: "Характеристики и цены" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Характеристики и цены" })).toBeInTheDocument();
+
+    const table = screen.getByRole("table");
+    const heads = within(table).getAllByRole("columnheader").map((th) => th.textContent);
+    expect(heads).toEqual(["QM-400", "TD-100", "TD-80", "TD-40", "TD-30"]);
+    expect(within(table).getByRole("row", { name: /Цена/ })).toHaveTextContent(
+      /199\s900 ₽.*120\s900 ₽.*110\s900 ₽.*80\s490 ₽.*70\s000 ₽/,
+    );
   });
 
   test("every model leads on to a page where it can be ordered", () => {
@@ -26,11 +33,8 @@ describe("AmplifiersCategoryPage", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: "QM-400: цена и заявка" })).toHaveAttribute(
-      "href",
-      "/catalog/qm-400",
-    );
-    for (const name of ["TD-100 / TD-80: цена и заявка", "TD-40 / TD-30: цена и заявка"]) {
+    expect(screen.getByRole("link", { name: /NAG QM-400/ })).toHaveAttribute("href", "/catalog/qm-400");
+    for (const name of [/TD-100 \/ TD-80/, /TD-40 \/ TD-30/]) {
       expect(screen.getByRole("link", { name })).toHaveAttribute("href", "/catalog/td-series");
     }
   });

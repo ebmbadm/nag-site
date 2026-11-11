@@ -1,0 +1,18 @@
+<!-- @dsCard group="Данные" height=120 -->
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Status</title></head>
+<body>
+<div id="root" class="nag-demo"></div>
+<script>
+  var N = window.Nag, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(N.Status, { tone: 'ok' }, 'В наличии'),
+    h(N.Status, { tone: 'warn' }, 'Под заказ'),
+    h(N.Status, { tone: 'off' }, 'Снято с производства'),
+    h(N.Status, { tone: 'ok', size: 'sm' }, 'Wi-Fi, на связи'),
+    h(N.Status, { tone: 'warn', size: 'sm' }, 'Не записано: 2 изменения'),
+    h(N.Status, { tone: 'danger', size: 'sm' }, 'Нет связи')));
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-import { Container, Figure } from "@/components/ds";
+import { Container } from "@/components/history/legacy/primitives";
+import { Figure } from "@/components/history/legacy/figure";
 
 /** Editorial note and approved ship image before the founder's chronology. */
 export function HistoryPreface() {

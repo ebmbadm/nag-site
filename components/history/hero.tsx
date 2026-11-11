@@ -1,4 +1,4 @@
-import { Container, Eyebrow } from "@/components/ds";
+import { Container, Eyebrow } from "@/components/history/legacy/primitives";
 import type { HistoryHero } from "@/lib/content/types";
 
 /** History longread hero — title, dropcap lead, founder portrait. */

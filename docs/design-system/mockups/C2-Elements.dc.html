@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>C2 · Элементы системы</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#171717;text-underline-offset:0.22em;text-decoration-thickness:1px}
+a:hover{color:#B01105}
+::selection{background:#FBE3E0;color:#171717}
+:focus-visible{outline:2px solid #D41406;outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+</style>
+</helmet>
+<div style="background: #FFFFFF; color: #171717; font-family: 'Golos Text', system-ui, sans-serif; font-size: 17px; line-height: 1.6; font-variant-numeric: tabular-nums;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 120px; box-sizing: border-box;">
+
+  <h1 style="margin: 0; font-size: 44px; line-height: 1.12; font-weight: 600; letter-spacing: -0.02em;">Элементы системы</h1>
+  <p style="margin: 16px 0 0; max-width: 40em; font-size: 19px; line-height: 1.55; color: #595959;">Один шрифт, белый фон, красный только у главного действия и у тревоги. Одни и те же токены работают на сайте, в мануалах и в программе управления процессором.</p>
+
+  <!-- Цвет -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Цвет</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Нейтральная шкала без оттенка. Тёмная тема — те же роли, другие значения. Число — контраст с фоном.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; overflow-x: auto;">
+      <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-size: 15px;">
+        <thead>
+          <tr style="text-align: left; color: #595959;">
+            <th scope="col" style="font-weight: 500; padding: 0 16px 12px 0;">Роль</th>
+            <th scope="col" style="font-weight: 500; padding: 0 16px 12px 0;">Светлая</th>
+            <th scope="col" style="font-weight: 500; padding: 0 0 12px 0;">Тёмная</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Фон</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #FFFFFF; border: 1px solid #CFCFCF;"></span>#FFFFFF</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #171717;"></span>#171717</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Подложка</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #F5F5F5;"></span>#F5F5F5</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #1F1F1F;"></span>#1F1F1F</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Линия / линия сильная</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #E5E5E5;"></span>#E5E5E5 / #CFCFCF</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #2E2E2E;"></span>#2E2E2E / #3D3D3D</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Текст</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #171717;"></span>#171717 · 17,9</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #F5F5F5; border: 1px solid #CFCFCF;"></span>#F5F5F5 · 16,4</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Текст вторичный</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #595959;"></span>#595959 · 7,0</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #A3A3A3;"></span>#A3A3A3 · 7,1</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Подпись</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #737373;"></span>#737373 · 4,7</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #8A8A8A;"></span>#8A8A8A · 5,2</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Действие и тревога</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #D41406;"></span>#D41406 · белый 5,4</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #FF5A4D;"></span>#FF5A4D текстом · 5,8</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Норма (сигнал, в наличии)</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #2F7D47;"></span>#2F7D47 · 5,1</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #3FAE62;"></span>#3FAE62 · 6,4</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">Внимание (лимитер, под заказ)</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #9A5B00;"></span>#9A5B00 · 5,4</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #E8A24A;"></span>#E8A24A · 8,3</span></td></tr>
+          <tr style="border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; padding: 10px 16px 10px 0;">NOVIK</th><td style="padding: 10px 16px 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #8F5410;"></span>#8F5410 · 6,1</span></td><td style="padding: 10px 0;"><span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 20px; border-radius: 4px; background: #E8A24A;"></span>#E8A24A · 8,3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Шрифт -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Шрифт</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Golos Text, три начертания: 400, 500, 600. Цифры всегда табличные. Три плотности одной шкалы: сайт, программа, печать.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 40px;">
+      <div>
+        <h3 style="margin: 0 0 8px; font-size: 17px; font-weight: 600;">Сайт</h3>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">44 / 1,12 · 600</span><span style="font-size: 44px; line-height: 1.12; font-weight: 600; letter-spacing: -0.02em;">Заголовок страницы</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">28 / 1,2 · 600</span><span style="font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Раздел</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">20 / 1,3 · 600</span><span style="font-size: 20px; line-height: 1.3; font-weight: 600;">Название модели</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">19 / 1,55 · 400</span><span style="font-size: 19px; line-height: 1.55;">Вводный абзац страницы</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">17 / 1,6 · 400</span><span style="font-size: 17px;">Основной текст описаний и статей</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">15 / 1,5 · 400</span><span style="font-size: 15px; color: #595959;">Вторичный текст, подписи к строкам</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"><span style="flex: 0 0 120px; font-size: 13px; color: #737373;">13 / 1,4 · 400</span><span style="font-size: 13px; color: #737373;">Мелкая подпись, сноска, единицы</span></div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+        <div style="flex: 1 1 280px; min-width: 0;">
+          <h3 style="margin: 0 0 8px; font-size: 17px; font-weight: 600;">Программа</h3>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">15 · 600</span><span style="font-size: 15px; font-weight: 600;">Заголовок панели</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">14 · 400</span><span style="font-size: 14px;">Подпись поля, пункт меню</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">14 · 500</span><span style="font-size: 14px; font-weight: 500;">−2,0 дБ · 90 Гц · 4,20 мс</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">12 · 400</span><span style="font-size: 12px; color: #737373;">Шкала графика, единицы</span></div>
+        </div>
+        <div style="flex: 1 1 280px; min-width: 0;">
+          <h3 style="margin: 0 0 8px; font-size: 17px; font-weight: 600;">Печать</h3>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">20 pt · 600</span><span style="font-size: 20px; font-weight: 600;">Раздел мануала</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">10,5 pt</span><span style="font-size: 14px;">Основной текст инструкции</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">9,5 pt</span><span style="font-size: 13px;">Таблица характеристик</span></div>
+          <div style="display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"><span style="flex: 0 0 96px; font-size: 13px; color: #737373;">9 pt</span><span style="font-size: 12px; color: #595959;">Подпись рисунка, колонтитул</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отступы -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Отступы и сетка</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Шаг 4 px. Внутри группы — мелкие шаги, между разделами — крупные. Страница: колонка заголовка 1 часть, содержимое 3 части.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #595959;">
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">4 · 2xs</span><span style="height: 12px; width: 4px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">8 · xs</span><span style="height: 12px; width: 8px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">12 · sm</span><span style="height: 12px; width: 12px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">16 · md</span><span style="height: 12px; width: 16px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">24 · lg</span><span style="height: 12px; width: 24px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">32 · xl</span><span style="height: 12px; width: 32px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">48 · 2xl</span><span style="height: 12px; width: 48px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">64 · 3xl</span><span style="height: 12px; width: 64px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">96 · 4xl</span><span style="height: 12px; width: 96px; background: #171717;"></span></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span style="flex: 0 0 80px;">128 · 5xl</span><span style="height: 12px; width: 128px; background: #171717;"></span></div>
+      <p style="margin: 12px 0 0; font-size: 15px; color: #595959;">Скругления: 4 px у полей и меток, 6 px у кнопок, 8 px у редких контейнеров. Фото не скругляем.</p>
+    </div>
+  </section>
+
+  <!-- Кнопки -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Кнопки</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Одна красная кнопка на экран. Высота 48 на сайте, 32 в программе. Подпись называет действие.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px;">
+        <button type="button" style="height: 48px; padding: 0 24px; border: 0; border-radius: 6px; background: #D41406; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer;">Запросить счёт</button>
+        <button type="button" style="height: 48px; padding: 0 20px; border: 1px solid #CFCFCF; border-radius: 6px; background: #FFFFFF; color: #171717; font: inherit; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>Скачать PDF</button>
+        <a href="#buttons" style="font-weight: 500;">Все усилители</a>
+        <button type="button" disabled="" style="height: 48px; padding: 0 24px; border: 0; border-radius: 6px; background: #F5F5F5; color: #737373; font: inherit; font-weight: 500;">Нет в наличии</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px;">
+        <button type="button" style="height: 32px; padding: 0 14px; border: 0; border-radius: 6px; background: #D41406; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;">Записать в процессор</button>
+        <button type="button" style="height: 32px; padding: 0 12px; border: 1px solid #CFCFCF; border-radius: 6px; background: #FFFFFF; color: #171717; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;">Отменить</button>
+        <button type="button" aria-label="Добавить полосу" style="width: 32px; height: 32px; padding: 0; border: 1px solid #CFCFCF; border-radius: 6px; background: #FFFFFF; color: #171717; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+        <button type="button" aria-pressed="true" style="height: 32px; min-width: 32px; padding: 0 10px; border: 0; border-radius: 6px; background: #D41406; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;">M</button>
+        <span style="font-size: 13px; color: #737373;">Кнопка «Без звука» во включённом состоянии красная: это тревога, а не действие.</span>
+      </div>
+      <div style="background: #171717; border-radius: 8px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px;">
+        <button type="button" style="height: 48px; padding: 0 24px; border: 0; border-radius: 6px; background: #D41406; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer;">Подобрать оборудование</button>
+        <button type="button" style="height: 48px; padding: 0 20px; border: 1px solid #3D3D3D; border-radius: 6px; background: transparent; color: #F5F5F5; font: inherit; font-weight: 500; cursor: pointer;">Скачать PDF</button>
+        <a href="#buttons" style="color: #F5F5F5; font-weight: 500;">Архив моделей</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Поля -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Поля</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Подпись всегда над полем, подсказка под ним. Ошибка называет проблему и что сделать.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px 32px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="f-name" style="font-size: 15px; font-weight: 500;">Имя</label>
+        <input id="f-name" type="text" value="Алексей" style="height: 48px; padding: 0 14px; border: 1px solid #CFCFCF; border-radius: 4px; font: inherit; color: #171717; background: #FFFFFF; box-sizing: border-box;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="f-phone" style="font-size: 15px; font-weight: 500;">Телефон</label>
+        <input id="f-phone" type="tel" placeholder="+7" style="height: 48px; padding: 0 14px; border: 2px solid #171717; border-radius: 4px; font: inherit; color: #171717; background: #FFFFFF; box-sizing: border-box;">
+        <span style="font-size: 13px; color: #737373;">Фокус: рамка 2 px цвета текста.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="f-mail" style="font-size: 15px; font-weight: 500;">Почта</label>
+        <input id="f-mail" type="email" value="sound.example.ru" aria-invalid="true" aria-describedby="f-mail-err" style="height: 48px; padding: 0 14px; border: 1px solid #D41406; border-radius: 4px; font: inherit; color: #171717; background: #FFFFFF; box-sizing: border-box;">
+        <span id="f-mail-err" style="font-size: 13px; color: #B01105;">В адресе нет символа @. Проверьте и введите ещё раз.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="f-model" style="font-size: 15px; font-weight: 500;">Модель</label>
+        <div style="position: relative;">
+          <select id="f-model" style="width: 100%; height: 48px; padding: 0 40px 0 14px; border: 1px solid #CFCFCF; border-radius: 4px; font: inherit; color: #171717; background: #FFFFFF; appearance: none;">
+            <option>NAG QM-400</option>
+            <option>NAG TD, серия</option>
+            <option>NAG F-8</option>
+          </select>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#595959" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 14px; top: 16px; pointer-events: none;"><path d="m6 9 6 6 6-6"></path></svg>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1;">
+        <label for="f-task" style="font-size: 15px; font-weight: 500;">Задача</label>
+        <textarea id="f-task" rows="3" style="padding: 12px 14px; border: 1px solid #CFCFCF; border-radius: 4px; font: inherit; color: #171717; background: #FFFFFF; resize: vertical;">Зал на 400 мест, две точки по 2 × 12″ и сабвуферы 2 × 18″.</textarea>
+      </div>
+      <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 10px;">
+        <legend style="padding: 0 0 6px; font-size: 15px; font-weight: 500;">Способ связи</legend>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 16px;"><input type="radio" name="contact" checked="" style="width: 20px; height: 20px; accent-color: #171717; margin: 0;">Телефон</label>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 16px;"><input type="radio" name="contact" style="width: 20px; height: 20px; accent-color: #171717; margin: 0;">Почта</label>
+      </fieldset>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 16px;"><input type="checkbox" checked="" style="width: 20px; height: 20px; accent-color: #171717; margin: 0;">Нужен счёт на юрлицо</label>
+        <label style="display: flex; align-items: center; gap: 12px; font-size: 16px;">
+          <span style="width: 40px; height: 24px; border-radius: 999px; background: #171717; position: relative; flex: 0 0 auto;"><span style="position: absolute; top: 3px; left: 19px; width: 18px; height: 18px; border-radius: 999px; background: #FFFFFF;"></span></span>
+          Тёмная тема
+        </label>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span id="seg-l" style="font-size: 15px; font-weight: 500;">Режим</span>
+        <div role="group" aria-labelledby="seg-l" style="display: inline-flex; padding: 3px; background: #F5F5F5; border-radius: 6px; align-self: flex-start;">
+          <button type="button" aria-pressed="true" style="height: 34px; padding: 0 14px; border: 0; border-radius: 4px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(23,23,23,0.12); color: #171717; font: inherit; font-size: 14px; font-weight: 500;">Стерео</button>
+          <button type="button" aria-pressed="false" style="height: 34px; padding: 0 14px; border: 0; border-radius: 4px; background: transparent; color: #595959; font: inherit; font-size: 14px;">Параллель</button>
+          <button type="button" aria-pressed="false" style="height: 34px; padding: 0 14px; border: 0; border-radius: 4px; background: transparent; color: #595959; font: inherit; font-size: 14px;">Мост</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Навигация -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Навигация</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Текущий пункт подчёркнут линией 2 px цвета текста, не красным.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 32px;">
+      <nav aria-label="Пример вкладок" style="display: flex; flex-wrap: wrap; gap: 4px 32px; border-bottom: 1px solid #E5E5E5; font-size: 16px;">
+        <a href="#nav" style="padding: 12px 0; text-decoration: none; color: #595959;">Описание</a>
+        <a href="#nav" aria-current="page" style="padding: 12px 0 10px; text-decoration: none; border-bottom: 2px solid #171717; font-weight: 500;">Характеристики</a>
+        <a href="#nav" style="padding: 12px 0; text-decoration: none; color: #595959;">Фото</a>
+        <a href="#nav" style="padding: 12px 0; text-decoration: none; color: #595959;">Документы</a>
+      </nav>
+      <nav aria-label="Пример хлебных крошек" style="font-size: 14px; color: #737373; display: flex; flex-wrap: wrap; gap: 8px;">
+        <a href="#nav" style="color: #595959;">Каталог</a><span aria-hidden="true">/</span><a href="#nav" style="color: #595959;">Усилители мощности</a><span aria-hidden="true">/</span><span>QM-400</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Данные -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Данные</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Статус — точка и слово, не цветная плашка. Числа с неразрывным пробелом перед единицей.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 999px; background: #2F7D47;"></span>В наличии</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 999px; background: #9A5B00;"></span>Под заказ</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; color: #595959;"><span style="width: 8px; height: 8px; border-radius: 999px; border: 1.5px solid #737373; box-sizing: border-box;"></span>Снято с производства</span>
+        <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 8px; border: 1px solid #CFCFCF; border-radius: 4px; font-size: 13px; color: #595959;">Class-TD</span>
+        <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 8px; border: 1px solid #CFCFCF; border-radius: 4px; font-size: 13px; color: #595959;">2U</span>
+      </div>
+      <table style="width: 100%; border-collapse: collapse; font-size: 16px;">
+        <caption style="text-align: left; font-size: 17px; font-weight: 600; padding-bottom: 8px;">Таблица характеристик</caption>
+        <tbody>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; color: #595959; padding: 12px 24px 12px 0;">Мощность на 4 Ом</th><td style="text-align: right; padding: 12px 0;">4&nbsp;×&nbsp;2400&nbsp;Вт</td></tr>
+          <tr style="border-top: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; color: #595959; padding: 12px 24px 12px 0;">Уровень шума</th><td style="text-align: right; padding: 12px 0;">−99&nbsp;дБ</td></tr>
+          <tr style="border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"><th scope="row" style="text-align: left; font-weight: 400; color: #595959; padding: 12px 24px 12px 0;">Габариты</th><td style="text-align: right; padding: 12px 0;">483&nbsp;×&nbsp;463&nbsp;×&nbsp;88&nbsp;мм</td></tr>
+        </tbody>
+      </table>
+      <a href="#data" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding: 24px 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; text-decoration: none;">
+        <img src="/_blob/69b7bbef0efb8f6e759e5d20b8922e87" alt="NAG TD40, передняя панель" style="flex: 0 1 320px; min-width: 0; width: 320px; height: auto; display: block;">
+        <div style="flex: 1 1 200px; min-width: 0;">
+          <h3 style="margin: 0; font-size: 20px; line-height: 1.3; font-weight: 600;">NAG TD, серия</h3>
+          <p style="margin: 4px 0 0; font-size: 15px; color: #595959;">Строка каталога: фото, модель, суть, цена</p>
+        </div>
+        <p style="flex: 0 0 auto; margin: 0; font-size: 18px; font-weight: 600;">от 70&nbsp;000&nbsp;₽</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Сообщения -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Сообщения</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Значок и тон фона, без цветной полосы слева. В мануале — те же три уровня.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+      <div role="note" style="display: flex; gap: 12px; padding: 16px; background: #F5F5F5; border-radius: 6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+        <p style="margin: 0; font-size: 15px;"><strong style="font-weight: 600;">Примечание.</strong> Усилитель готов к работе через 3–5 секунд после включения, в это время горит индикатор защиты.</p>
+      </div>
+      <div role="note" style="display: flex; gap: 12px; padding: 16px; background: #FFF4E0; border-radius: 6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A4A00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+        <p style="margin: 0; font-size: 15px; color: #171717;"><strong style="font-weight: 600; color: #7A4A00;">Внимание.</strong> Не закрывайте вентиляционные отверстия.</p>
+      </div>
+      <div role="alert" style="display: flex; gap: 12px; padding: 16px; background: #FDECEA; border-radius: 6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B01105" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+        <p style="margin: 0; font-size: 15px; color: #171717;"><strong style="font-weight: 600; color: #B01105;">Нет связи с процессором.</strong> Проверьте, что компьютер в той же сети Wi-Fi, и нажмите «Найти в сети».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Иконки -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Иконки</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Lucide, линия 1,75, размер 20 и 16. Иконка только рядом со словом или в кнопке с подписью для экранного диктора.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 24px 16px; font-size: 13px; color: #595959;">
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>arrow-right</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>chevron-down</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>download</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>file-text</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>search</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.86a10 10 0 0 1 14 0"></path><path d="M8.5 16.43a5 5 0 0 1 7 0"></path></svg>wifi</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>check</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>x</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>info</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>triangle-alert</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M20 4 8.12 15.88"></path><path d="M14.47 14.48 20 20"></path><path d="M8.12 8.12 12 12"></path></svg>scissors</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171717" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>plus</div>
+    </div>
+  </section>
+
+  <!-- Фото -->
+  <section style="margin-top: 96px; display: flex; flex-wrap: wrap; gap: 24px 48px; border-top: 1px solid #CFCFCF; padding-top: 24px;">
+    <div style="flex: 1 1 240px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;">Фото техники</h2>
+      <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: #595959;">Белый фон, без рамок, плашек и надписей поверх. Рэковые приборы — одной ширины, тогда высота сама показывает 1U и 2U.</p>
+    </div>
+    <div style="flex: 3 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        <img src="/_blob/4829b11e8dad8daf2f3e1c856a2d420a" alt="NAG QM-400, 2U" style="width: 560px; max-width: 100%; height: auto; display: block;">
+        <figcaption style="font-size: 13px; color: #737373;">QM-400 · 2U</figcaption>
+      </figure>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        <img src="/_blob/69b7bbef0efb8f6e759e5d20b8922e87" alt="NAG TD40, 1U" style="width: 560px; max-width: 100%; height: auto; display: block;">
+        <figcaption style="font-size: 13px; color: #737373;">TD40 · 1U</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
